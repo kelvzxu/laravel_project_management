@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\GithubController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
+Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

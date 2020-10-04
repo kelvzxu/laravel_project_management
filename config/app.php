@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -225,6 +226,7 @@ return [
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'Str' => Illuminate\Support\Str::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,

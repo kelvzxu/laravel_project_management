@@ -42,6 +42,10 @@
                 <x-jet-button class="ml-4">
                     {{ __('Login') }}
                 </x-jet-button>
+
+                <a class="ml-1 btn btn-primary" href="{{ url('auth/github') }}" style="margin-top: 0px !important;background: blue;color: #ffffff;padding: 5px;border-radius:7px;" id="btn-fblogin">
+                    <i class="fa fa-github" aria-hidden="true"></i> Login with Github
+                </a>
             </div>
         </form>
     </x-jet-authentication-card>

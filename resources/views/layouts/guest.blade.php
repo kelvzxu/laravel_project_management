@@ -5,10 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Laravel Login</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/font-awesome-4.7.0/css/font-awesome.min.css')}}">
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
