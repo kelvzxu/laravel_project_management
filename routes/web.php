@@ -24,3 +24,9 @@ Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallba
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/project', function () {
+    return Inertia\Inertia::render('Project');
+})->name('project');
+Route::middleware(['auth:sanctum', 'verified'])->get('/timesheet', function () {
+    return Inertia\Inertia::render('Timesheet');
+})->name('timesheet');

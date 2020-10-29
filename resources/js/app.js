@@ -1,18 +1,22 @@
 require('./bootstrap');
 
 import Vue from 'vue';
+import Vuetify from 'vuetify';
 
 import { InertiaApp } from '@inertiajs/inertia-vue';
 import { InertiaForm } from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
-import apps from './app.vue'
 
 Vue.mixin({ methods: { route } });
+Vue.use(Vuetify);
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
 
+const opts = {}
 const app = document.getElementById('app');
+
+export default new Vuetify(opts)
 
 new Vue({
     render: (h) =>

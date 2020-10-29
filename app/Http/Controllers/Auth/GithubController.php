@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Team;
 use App\Models\User;
 use Validator;
 use Socialite;
@@ -37,7 +38,9 @@ class GithubController extends Controller
                     'github_id'=> $user->id,
                     'password' => encrypt('123456dummy')
                 ]);
-    
+                
+                $this->createTeam($newUser);
+
                 Auth::login($newUser);
      
                 return redirect('/dashboard');
@@ -46,5 +49,14 @@ class GithubController extends Controller
         } catch (Exception $e) {
             dd($e->getMessage());
         }
+    }
+
+    protected function createTeam(User $user)
+    {
+        $user->ownedTeams()->save(Team::forceCreate([
+            'user_id' => $user->id,
+            'name' => explode(' ', $user->name, 2)[0]."'s Team",
+            'personal_team' => true,
+        ]));
     }
 }
