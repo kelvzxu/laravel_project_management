@@ -64,10 +64,6 @@
                       <a href="{{ url('/dashboard') }}" class="btn btn-singin">Dashboard</a>
                   @else
                       <a href="{{ route('login') }}" class="btn btn-singin">Sign In</a>
-
-                      @if (Route::has('register'))
-                          <a href="{{ route('register') }}" class="btn btn-apple text-white">Sign Up</a>
-                      @endif
                   @endif
                 @endif
               </li>
@@ -99,15 +95,14 @@
 
 
     <!-- Services Section Start -->
-    <section id="services" class="section">
+    <section id="services" class="section mt-0">
       <div class="container">
-
         <div class="row">
           <!-- Start Col -->
           <div class="col-lg-4 col-md-6 col-xs-12">
             <div class="services-item text-center">
               <!-- <div class="icon"> -->
-                <img src="{{asset('assets/img/service/create_team.png')}}" alt="create team" width="260" height="245">
+                <img src="{{asset('assets/img/svg/content_team.svg')}}" alt="create team" width="260" height="245">
               <!-- </div> -->
               <h4>The Team Playbook</h4>
               <p>It’s easy to get your team up and running. We’ve collected all of the boards and tools your team needs to succeed in one handy resource.</p>
@@ -118,7 +113,7 @@
           <div class="col-lg-4 col-md-6 col-xs-12">
 
             <div class="services-item text-center">
-              <img src="{{asset('assets/img/service/email_integration.png')}}" alt="create team" width="260" height="245">
+              <img src="{{asset('assets/img/svg/mail_inbox.svg')}}" alt="create team" width="260" height="245">
               <h4>A Productivity Platform</h4>
               <p>Integrate email with your team members right into your workflow. we will send every notification automatically to your team member.</p>
             </div>
@@ -127,7 +122,7 @@
           <!-- Start Col -->
           <div class="col-lg-4 col-md-6 col-xs-12">
             <div class="services-item text-center">
-              <img src="{{asset('assets/img/service/sync_apps.png')}}" alt="create team" width="260" height="245">
+              <img src="{{asset('assets/img/svg/file_sync.svg')}}" alt="create team" width="260" height="245">
               <h4>Always In Sync</h4>
               <p>We stays in sync across all of your devices. Collaborate with your team anywhere, from sitting on the bus to sitting on the beach.</p>
             </div>

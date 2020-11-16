@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
