@@ -4,6 +4,7 @@
         <div class="signin-signup">
             <form  action="{{ route('login') }}" method="POST" class="sign-in-form">
             @csrf
+            <img src="https://witech.co.id/web/image/res.company/1/favicon/" alt="" srcset="" class="application-logo">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
                 <i class="fas fa-user"></i>

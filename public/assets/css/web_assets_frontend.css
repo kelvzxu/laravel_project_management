@@ -181,6 +181,10 @@ input,button {
   z-index: 5;
 }
 
+img.application-logo{
+  height : 100px;
+}
+
 form {
   display: flex;
   align-items: center;
