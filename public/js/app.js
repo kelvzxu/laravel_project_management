@@ -2323,20 +2323,182 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    align: {
-      "default": 'right'
-    },
-    width: {
-      "default": '48'
-    },
-    contentClasses: {
-      "default": function _default() {
-        return ['py-1', 'bg-white'];
-      }
-    }
-  },
   data: function data() {
     return {
       open: false
@@ -2351,26 +2513,10 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
 
-    this.$once('hook:destroyed', function () {
-      document.removeEventListener('keydown', closeOnEscape);
+    this.$once("hook:destroyed", function () {
+      document.removeEventListener("keydown", closeOnEscape);
     });
-    document.addEventListener('keydown', closeOnEscape);
-  },
-  computed: {
-    widthClass: function widthClass() {
-      return {
-        '48': 'w-48'
-      }[this.width.toString()];
-    },
-    alignmentClasses: function alignmentClasses() {
-      if (this.align == 'left') {
-        return 'origin-top-left left-0';
-      } else if (this.align == 'right') {
-        return 'origin-top-right right-0';
-      } else {
-        return 'origin-top';
-      }
-    }
+    document.addEventListener("keydown", closeOnEscape);
   }
 });
 
@@ -2646,6 +2792,83 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Jetstream/ProfileDialog.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Jetstream/ProfileDialog.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Jetstream_ApplicationMark__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/ApplicationMark */ "./resources/js/Jetstream/ApplicationMark.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    JetApplicationMark: _Jetstream_ApplicationMark__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      showingNavigationDropdown: false
+    };
+  },
+  methods: {
+    logout: function logout() {
+      axios.post(route("logout").url()).then(function (response) {
+        window.location = "/";
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Jetstream/ResponsiveNavLink.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Jetstream/ResponsiveNavLink.vue?vue&type=script&lang=js& ***!
@@ -2671,7 +2894,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ["active", "href", "as"],
   computed: {
     classes: function classes() {
-      return this.active ? "block pl-3 pr-4 py-2 text-black border-transparent text-base font-medium focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 ease-in-out" : "block pl-3 pr-4 py-2 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out";
+      return this.active ? "block text-black border-transparent text-base font-medium focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 ease-in-out button_link" : "block border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none ease-in-out button_link";
     }
   }
 });
@@ -2874,6 +3097,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Sidebar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/Sidebar */ "./resources/js/Jetstream/Sidebar.vue");
 /* harmony import */ var _Jetstream_SidebarPrimary__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/SidebarPrimary */ "./resources/js/Jetstream/SidebarPrimary.vue");
 /* harmony import */ var _Jetstream_SidebarSecondary__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Jetstream/SidebarSecondary */ "./resources/js/Jetstream/SidebarSecondary.vue");
+/* harmony import */ var _Jetstream_ProfileDialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Jetstream/ProfileDialog */ "./resources/js/Jetstream/ProfileDialog.vue");
 //
 //
 //
@@ -3073,6 +3297,129 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3090,11 +3437,13 @@ __webpack_require__.r(__webpack_exports__);
     JetResponsiveNavLink: _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__["default"],
     JetSidebar: _Jetstream_Sidebar__WEBPACK_IMPORTED_MODULE_5__["default"],
     JetSidebarPrimary: _Jetstream_SidebarPrimary__WEBPACK_IMPORTED_MODULE_6__["default"],
-    JetSidebarSecondary: _Jetstream_SidebarSecondary__WEBPACK_IMPORTED_MODULE_7__["default"]
+    JetSidebarSecondary: _Jetstream_SidebarSecondary__WEBPACK_IMPORTED_MODULE_7__["default"],
+    JetProfileDialog: _Jetstream_ProfileDialog__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   data: function data() {
     return {
-      showingNavigationDropdown: false
+      showingNavigationDropdown: false,
+      showingProfileDialog: false
     };
   },
   methods: {
@@ -3104,12 +3453,17 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         preserveState: false
       });
-    },
-    logout: function logout() {
-      axios.post(route("logout").url()).then(function (response) {
-        window.location = "/";
-      });
     }
+  },
+  created: function created() {
+    var _this = this;
+
+    var closeOnEscape = function closeOnEscape(e) {
+      if (_this.showingProfileDialog && e.keyCode === 27) {
+        _this.showingProfileDialog = false;
+        console.log(_this.showingProfileDialog);
+      }
+    };
   }
 });
 
@@ -24459,11 +24813,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "relative" },
     [
       _c(
         "div",
         {
+          staticClass: "relativesidebar-profile-menu-wrapper",
           on: {
             click: function($event) {
               _vm.open = !_vm.open
@@ -24473,23 +24827,6 @@ var render = function() {
         [_vm._t("trigger")],
         2
       ),
-      _vm._v(" "),
-      _c("div", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.open,
-            expression: "open"
-          }
-        ],
-        staticClass: "fixed inset-0 z-40",
-        on: {
-          click: function($event) {
-            _vm.open = false
-          }
-        }
-      }),
       _vm._v(" "),
       _c(
         "transition",
@@ -24515,8 +24852,7 @@ var render = function() {
                   expression: "open"
                 }
               ],
-              staticClass: "absolute z-50 mt-2 rounded-md shadow-lg",
-              class: [_vm.widthClass, _vm.alignmentClasses],
+              staticClass: "dialog-node",
               staticStyle: { display: "none" },
               on: {
                 click: function($event) {
@@ -24528,11 +24864,468 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "rounded-md shadow-xs",
-                  class: _vm.contentClasses
+                  staticClass: "ds-dialog-content-wrapper",
+                  staticStyle: {
+                    position: "relative",
+                    left: "60px",
+                    top: "143px"
+                  },
+                  attrs: { tabindex: "-1" }
                 },
-                [_vm._t("content")],
-                2
+                [
+                  _c("div", { staticClass: "ds-dialog-content-component" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "ds-menu-dialog ds-menu-md surface-avatar-menu-dialog"
+                      },
+                      [
+                        _c("div", { staticClass: "ds-menu-inner" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "ds-menu-section menu-section-as-wrapper menu-section-header"
+                            },
+                            [
+                              _c("div", { staticClass: "ds-menu-column" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "ds-menu-item-content" },
+                                  [
+                                    _c(
+                                      "span",
+                                      { staticClass: "image-wrapper" },
+                                      [
+                                        _c("img", {
+                                          staticClass: "image-inner",
+                                          attrs: {
+                                            src:
+                                              "https://cdn7.monday.com/images/logos/monday_logo_icon.png"
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "menu-item-content-titles-wrapper"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "menu-item-content-subtitle"
+                                          },
+                                          [_vm._v("kelvzxu")]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "ds-menu-column menu-column-with-link"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "ds-menu-item disable-hover-highlight"
+                                    },
+                                    [
+                                      _c("span", { staticClass: "ds-title" }, [
+                                        _vm._v("Log out")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "secondary-menu-icon" },
+                                        [
+                                          _c("i", {
+                                            staticClass: "far fa-sign-out-alt"
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "ds-menu-section menu-section-as-wrapper menu-section-body"
+                            },
+                            [
+                              _c("div", { staticClass: "ds-menu-column" }, [
+                                _c("div", { staticClass: "ds-menu-section" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "ds-menu-section-title" },
+                                    [_vm._v("Account")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "button_link",
+                                      attrs: { href: "/users/17864734" }
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "ds-menu-item" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "ds-icon" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "far fa-user"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "ds-title" },
+                                            [_vm._v("My profile")]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "button_link",
+                                      attrs: {
+                                        href: "/integration_groups/imports"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "ds-menu-item" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "ds-icon" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fal fa-download"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "ds-title" },
+                                            [_vm._v("Import data")]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "ds-menu-item" }, [
+                                    _c("div", { staticClass: "ds-icon" }, [
+                                      _c("i", { staticClass: "fa fa-code" })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("span", { staticClass: "ds-title" }, [
+                                      _vm._v("Developers")
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "button_link",
+                                      attrs: { href: "/recycle_bin" }
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "ds-menu-item" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "ds-icon" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "far fa-trash"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "ds-title" },
+                                            [_vm._v("Recycle bin")]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "button_link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "ds-menu-item" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "ds-icon" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fal fa-archive"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "ds-title" },
+                                            [_vm._v("Archived boards")]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "ds-menu-item" }, [
+                                    _c("div", { staticClass: "ds-icon" }, [
+                                      _c("i", { staticClass: "fal fa-clock" })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("span", { staticClass: "ds-title" }, [
+                                      _vm._v("Active Session")
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "ds-menu-item" }, [
+                                    _c("div", { staticClass: "ds-icon" }, [
+                                      _c("i", {
+                                        staticClass: "fal fa-lock-alt"
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("span", { staticClass: "ds-title" }, [
+                                      _vm._v("Security")
+                                    ])
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "ds-menu-column menu-section-short-divider"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "ds-menu-section" },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "ds-menu-section-title"
+                                        },
+                                        [_vm._v("Explore")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "ds-menu-item" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "ds-icon" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon icon-present"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "ds-title" },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "whats-new-title-wrapper"
+                                                },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass:
+                                                        "whats-new-title"
+                                                    },
+                                                    [_vm._v("What's new")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("div", {
+                                                    staticClass:
+                                                      "whats-new-title-dot"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "ds-menu-item" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "ds-icon" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "icon icon-dapulse-keyboard-no-keys"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "ds-title" },
+                                            [_vm._v("Shortcuts")]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "ds-menu-item" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "ds-icon" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "far fa-user-plus"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "ds-title" },
+                                            [_vm._v("Invite members")]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "ds-menu-item" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "ds-icon" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fal fa-headset"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "ds-title" },
+                                            [_vm._v("Contact sales")]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "new-upgrade-button-container",
+                                      attrs: { submenuindex: "0" }
+                                    },
+                                    [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "new-upgrade-button monday-style-button monday-style-button--size-md monday-style-button--kind-primary monday-style-button--color-positive",
+                                          staticStyle: {
+                                            "--element-width": "159.797px",
+                                            "--element-height": "40px"
+                                          },
+                                          attrs: {
+                                            type: "button",
+                                            name: "",
+                                            id: "",
+                                            "aria-labelledby": "",
+                                            "aria-label": "",
+                                            "aria-busy": "false"
+                                          }
+                                        },
+                                        [
+                                          _c("span", {
+                                            staticClass:
+                                              "icon_component monday-style-button--left-icon icon_component--no-focus-style fa icon-upgrade-stars-new",
+                                            attrs: {
+                                              "aria-label": "",
+                                              tabindex: "-1",
+                                              role: ""
+                                            }
+                                          }),
+                                          _vm._v(
+                                            "Upgrade\n                    "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", {
+                          staticClass: "ds-seconday-menu-wrapper-right"
+                        })
+                      ]
+                    )
+                  ])
+                ]
               )
             ]
           )
@@ -24924,6 +25717,152 @@ var render = function() {
     [_vm._t("default")],
     2
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Jetstream/ProfileDialog.vue?vue&type=template&id=38ee1c4d&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Jetstream/ProfileDialog.vue?vue&type=template&id=38ee1c4d& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "dialog-node" }, [
+    _c(
+      "div",
+      {
+        staticClass: "ds-dialog-content-wrapper",
+        staticStyle: { position: "relative", left: "60px", top: "143px" },
+        attrs: { tabindex: "-1" }
+      },
+      [
+        _c("div", { staticClass: "ds-dialog-content-component" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "ds-menu-dialog ds-menu-md surface-avatar-menu-dialog"
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "ds-menu-inner" },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "ds-menu-section menu-section-as-wrapper menu-section-header"
+                    },
+                    [
+                      _c("div", { staticClass: "ds-menu-column" }, [
+                        _c("div", { staticClass: "ds-menu-item-content" }, [
+                          _c(
+                            "span",
+                            { staticClass: "image-wrapper" },
+                            [
+                              _c("jet-application-mark", {
+                                staticClass: "image-inner"
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "menu-item-content-titles-wrapper" },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "ml-2 menu-item-content-subtitle"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(_vm.$page.user.name) +
+                                      "\n                  "
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "ds-menu-column menu-column-with-link" },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "ds-menu-item disable-hover-highlight"
+                            },
+                            [
+                              _c(
+                                "form",
+                                {
+                                  attrs: { method: "POST" },
+                                  on: {
+                                    submit: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.logout($event)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn ds-title far fa-sign-out-alt",
+                                      staticStyle: {
+                                        border: "none",
+                                        outline: "none"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                    Log out\n                  "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._t("default")
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "ds-seconday-menu-wrapper-right" })
+            ]
+          )
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -25627,53 +26566,70 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "sidebar-profile-menu-wrapper" }, [
-                  _vm.$page.jetstream.managesProfilePhotos
-                    ? _c(
-                        "button",
-                        { staticClass: "sidebar-profile-component" },
-                        [
-                          _c("img", {
-                            staticClass:
-                              "profile-border-component rounded-circle profile-rounded-component",
-                            attrs: {
-                              src: _vm.$page.user.profile_photo_url,
-                              alt: _vm.$page.user.name
-                            }
-                          })
-                        ]
-                      )
-                    : _c(
-                        "button",
-                        { staticClass: "sidebar-profile-component" },
-                        [
-                          _c("div", [_vm._v(_vm._s(_vm.$page.user.name))]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "ml-1" }, [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "fill-current h-4 w-4",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  viewBox: "0 0 20 20"
-                                }
-                              },
-                              [
-                                _c("path", {
+                _c(
+                  "div",
+                  {
+                    staticClass: "sidebar-profile-menu-wrapper",
+                    on: {
+                      click: function($event) {
+                        _vm.showingProfileDialog = !_vm.showingProfileDialog
+                      }
+                    }
+                  },
+                  [
+                    _vm.$page.jetstream.managesProfilePhotos
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "sidebar-profile-component",
+                            staticStyle: { border: "none", outline: "none" }
+                          },
+                          [
+                            _c("img", {
+                              staticClass:
+                                "profile-border-component rounded-circle profile-rounded-component",
+                              attrs: {
+                                src: _vm.$page.user.profile_photo_url,
+                                alt: _vm.$page.user.name
+                              }
+                            })
+                          ]
+                        )
+                      : _c(
+                          "button",
+                          {
+                            staticClass: "sidebar-profile-component",
+                            staticStyle: { border: "none", outline: "none" }
+                          },
+                          [
+                            _c("div", [_vm._v(_vm._s(_vm.$page.user.name))]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "ml-1" }, [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "fill-current h-4 w-4",
                                   attrs: {
-                                    "fill-rule": "evenodd",
-                                    d:
-                                      "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                                    "clip-rule": "evenodd"
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    viewBox: "0 0 20 20"
                                   }
-                                })
-                              ]
-                            )
-                          ])
-                        ]
-                      )
-                ])
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      "fill-rule": "evenodd",
+                                      d:
+                                        "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                                      "clip-rule": "evenodd"
+                                    }
+                                  })
+                                ]
+                              )
+                            ])
+                          ]
+                        )
+                  ]
+                )
               ])
             ]),
             _vm._v(" "),
@@ -25958,7 +26914,283 @@ var render = function() {
               _vm._m(2)
             ]
           )
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.showingProfileDialog,
+                expression: "showingProfileDialog"
+              }
+            ],
+            staticStyle: { display: "none" },
+            attrs: { id: "profile-dialog" },
+            on: {
+              click: function($event) {
+                _vm.showingProfileDialog = false
+              }
+            }
+          },
+          [
+            _c("jet-profile-dialog", [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "ds-menu-section menu-section-as-wrapper menu-section-body"
+                },
+                [
+                  _c("div", { staticClass: "ds-menu-column" }, [
+                    _c(
+                      "div",
+                      { staticClass: "ds-menu-section" },
+                      [
+                        _c("div", { staticClass: "ds-menu-section-title" }, [
+                          _vm._v("Account")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "jet-responsive-nav-link",
+                          {
+                            attrs: {
+                              href: _vm.route("profile.show"),
+                              active: _vm.route().current("profile.show")
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "ds-menu-item" }, [
+                              _c("div", { staticClass: "ds-icon" }, [
+                                _c("i", { staticClass: "far fa-user" })
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "ds-title" }, [
+                                _vm._v("My profile")
+                              ])
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "jet-responsive-nav-link",
+                          {
+                            attrs: {
+                              href: _vm.route("profile.show"),
+                              active: _vm.route().current("profile.show")
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "ds-menu-item" }, [
+                              _c("div", { staticClass: "ds-icon" }, [
+                                _c("i", { staticClass: "fal fa-download" })
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "ds-title" }, [
+                                _vm._v("Import data")
+                              ])
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "jet-responsive-nav-link",
+                          {
+                            attrs: {
+                              href: _vm.route("api-tokens.index"),
+                              active: _vm.route().current("api-tokens.index")
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "ds-menu-item" }, [
+                              _c("div", { staticClass: "ds-icon" }, [
+                                _c("i", { staticClass: "fa fa-code" })
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "ds-title" }, [
+                                _vm._v("Developers")
+                              ])
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "button_link",
+                            attrs: { href: "/recycle_bin" }
+                          },
+                          [
+                            _c("div", { staticClass: "ds-menu-item" }, [
+                              _c("div", { staticClass: "ds-icon" }, [
+                                _c("i", { staticClass: "far fa-trash" })
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "ds-title" }, [
+                                _vm._v("Recycle bin")
+                              ])
+                            ])
+                          ]
+                        ),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "button_link",
+                            attrs: { href: "/archived_boards" }
+                          },
+                          [
+                            _c("div", { staticClass: "ds-menu-item" }, [
+                              _c("div", { staticClass: "ds-icon" }, [
+                                _c("i", { staticClass: "fal fa-archive" })
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "ds-title" }, [
+                                _vm._v("Archived boards")
+                              ])
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "ds-menu-item" }, [
+                          _c("div", { staticClass: "ds-icon" }, [
+                            _c("i", { staticClass: "fal fa-clock" })
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "ds-title" }, [
+                            _vm._v("Active Session")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "ds-menu-item" }, [
+                          _c("div", { staticClass: "ds-icon" }, [
+                            _c("i", { staticClass: "fal fa-lock-alt" })
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "ds-title" }, [
+                            _vm._v("Security")
+                          ])
+                        ])
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "ds-menu-column menu-section-short-divider"
+                    },
+                    [
+                      _c("div", { staticClass: "ds-menu-section" }, [
+                        _c("div", { staticClass: "ds-menu-section-title" }, [
+                          _vm._v("Explore")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "ds-menu-item" }, [
+                          _c("div", { staticClass: "ds-icon" }, [
+                            _c("i", { staticClass: "icon icon-present" })
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "ds-title" }, [
+                            _c(
+                              "div",
+                              { staticClass: "whats-new-title-wrapper" },
+                              [
+                                _c("span", { staticClass: "whats-new-title" }, [
+                                  _vm._v("What's new")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", {
+                                  staticClass: "whats-new-title-dot"
+                                })
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "ds-menu-item" }, [
+                          _c("div", { staticClass: "ds-icon" }, [
+                            _c("i", {
+                              staticClass: "icon icon-dapulse-keyboard-no-keys"
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "ds-title" }, [
+                            _vm._v("Shortcuts")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "ds-menu-item" }, [
+                          _c("div", { staticClass: "ds-icon" }, [
+                            _c("i", { staticClass: "far fa-user-plus" })
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "ds-title" }, [
+                            _vm._v("Invite members")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "ds-menu-item" }, [
+                          _c("div", { staticClass: "ds-icon" }, [
+                            _c("i", { staticClass: "fal fa-headset" })
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "ds-title" }, [
+                            _vm._v("Contact sales")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "new-upgrade-button-container",
+                          attrs: { submenuindex: "0" }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "new-upgrade-button monday-style-button monday-style-button--size-md monday-style-button--kind-primary monday-style-button--color-positive",
+                              staticStyle: {
+                                "--element-width": "159.797px",
+                                "--element-height": "40px"
+                              },
+                              attrs: {
+                                type: "button",
+                                name: "",
+                                id: "",
+                                "aria-labelledby": "",
+                                "aria-label": "",
+                                "aria-busy": "false"
+                              }
+                            },
+                            [
+                              _c("span", {
+                                staticClass:
+                                  "icon_component monday-style-button--left-icon icon_component--no-focus-style fa icon-upgrade-stars-new",
+                                attrs: {
+                                  "aria-label": "",
+                                  tabindex: "-1",
+                                  role: ""
+                                }
+                              }),
+                              _vm._v("Upgrade\n              ")
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ]
+              )
+            ])
+          ],
+          1
+        )
       ],
       1
     )
@@ -86592,6 +87824,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NavLink_vue_vue_type_template_id_1719168e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NavLink_vue_vue_type_template_id_1719168e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Jetstream/ProfileDialog.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/Jetstream/ProfileDialog.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ProfileDialog_vue_vue_type_template_id_38ee1c4d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProfileDialog.vue?vue&type=template&id=38ee1c4d& */ "./resources/js/Jetstream/ProfileDialog.vue?vue&type=template&id=38ee1c4d&");
+/* harmony import */ var _ProfileDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProfileDialog.vue?vue&type=script&lang=js& */ "./resources/js/Jetstream/ProfileDialog.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ProfileDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ProfileDialog_vue_vue_type_template_id_38ee1c4d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ProfileDialog_vue_vue_type_template_id_38ee1c4d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Jetstream/ProfileDialog.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Jetstream/ProfileDialog.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/Jetstream/ProfileDialog.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProfileDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ProfileDialog.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Jetstream/ProfileDialog.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProfileDialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Jetstream/ProfileDialog.vue?vue&type=template&id=38ee1c4d&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/Jetstream/ProfileDialog.vue?vue&type=template&id=38ee1c4d& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProfileDialog_vue_vue_type_template_id_38ee1c4d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ProfileDialog.vue?vue&type=template&id=38ee1c4d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Jetstream/ProfileDialog.vue?vue&type=template&id=38ee1c4d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProfileDialog_vue_vue_type_template_id_38ee1c4d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProfileDialog_vue_vue_type_template_id_38ee1c4d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
