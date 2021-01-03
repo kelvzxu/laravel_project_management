@@ -262,13 +262,21 @@ input[type="button"] {
     transition: margin-left 100ms ease, visibility 150ms ease, opacity 150ms ease;
 }
 
-.application-content-wrapper.first-level-control-pinned {
+.application-content-wrapper.application-control-pinned {
     margin-left: 265px;
 }
 
 
 .application-control-button-component.is-pinned {
     right: -14px;
+}
+
+.application-content .application-content-wrapper .first-level-content {
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    height: 100%;
+    overflow: auto;
+    position: relative;
 }
 
 .application-control-button-component {
