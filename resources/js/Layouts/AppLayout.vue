@@ -31,10 +31,14 @@
                 <span class="fas fa-question text-white"> </span>
               </div>
             </div>
-            <div class="sidebar-profile-menu-wrapper">
+            <div
+              @click="showingProfileDialog = !showingProfileDialog"
+              class="sidebar-profile-menu-wrapper"
+            >
               <button
                 v-if="$page.jetstream.managesProfilePhotos"
                 class="sidebar-profile-component"
+                style="border: none; outline: none"
               >
                 <img
                   class="profile-border-component rounded-circle profile-rounded-component"
@@ -42,7 +46,11 @@
                   :alt="$page.user.name"
                 />
               </button>
-              <button v-else class="sidebar-profile-component">
+              <button
+                v-else
+                class="sidebar-profile-component"
+                style="border: none; outline: none"
+              >
                 <div>{{ $page.user.name }}</div>
 
                 <div class="ml-1">
@@ -193,6 +201,120 @@
           </div>
         </div>
       </div>
+      <!-- Profile Dialog -->
+      <div
+        id="profile-dialog"
+        v-show="showingProfileDialog"
+        style="display: none"
+        @click="showingProfileDialog = false"
+      >
+        <jet-profile-dialog>
+          <div
+            class="ds-menu-section menu-section-as-wrapper menu-section-body"
+          >
+            <div class="ds-menu-column">
+              <div class="ds-menu-section">
+                <div class="ds-menu-section-title">Account</div>
+                <jet-responsive-nav-link
+                  :href="route('profile.show')"
+                  :active="route().current('profile.show')"
+                >
+                  <div class="ds-menu-item">
+                    <div class="ds-icon"><i class="far fa-user"></i></div>
+                    <span class="ds-title">My profile</span>
+                  </div>
+                </jet-responsive-nav-link>
+                <jet-responsive-nav-link
+                  :href="route('profile.show')"
+                  :active="route().current('profile.show')"
+                >
+                  <div class="ds-menu-item">
+                    <div class="ds-icon"><i class="fal fa-download"></i></div>
+                    <span class="ds-title">Import data</span>
+                  </div>
+                </jet-responsive-nav-link>
+                <jet-responsive-nav-link
+                  :href="route('api-tokens.index')"
+                  :active="route().current('api-tokens.index')"
+                >
+                  <div class="ds-menu-item">
+                    <div class="ds-icon"><i class="fa fa-code"></i></div>
+                    <span class="ds-title">Developers</span>
+                  </div>
+                </jet-responsive-nav-link>
+
+                <a href="/recycle_bin" class="button_link">
+                  <div class="ds-menu-item">
+                    <div class="ds-icon"><i class="far fa-trash"></i></div>
+                    <span class="ds-title">Recycle bin</span>
+                  </div> </a
+                ><a href="/archived_boards" class="button_link">
+                  <div class="ds-menu-item">
+                    <div class="ds-icon"><i class="fal fa-archive"></i></div>
+                    <span class="ds-title">Archived boards</span>
+                  </div>
+                </a>
+                <div class="ds-menu-item">
+                  <div class="ds-icon"><i class="fal fa-clock"></i></div>
+                  <span class="ds-title">Active Session</span>
+                </div>
+                <div class="ds-menu-item">
+                  <div class="ds-icon"><i class="fal fa-lock-alt"></i></div>
+                  <span class="ds-title">Security</span>
+                </div>
+              </div>
+            </div>
+            <div class="ds-menu-column menu-section-short-divider">
+              <div class="ds-menu-section">
+                <div class="ds-menu-section-title">Explore</div>
+                <div class="ds-menu-item">
+                  <div class="ds-icon"><i class="icon icon-present"></i></div>
+                  <span class="ds-title">
+                    <div class="whats-new-title-wrapper">
+                      <span class="whats-new-title">What's new</span>
+                      <div class="whats-new-title-dot"></div>
+                    </div>
+                  </span>
+                </div>
+                <div class="ds-menu-item">
+                  <div class="ds-icon">
+                    <i class="icon icon-dapulse-keyboard-no-keys"></i>
+                  </div>
+                  <span class="ds-title">Shortcuts</span>
+                </div>
+                <div class="ds-menu-item">
+                  <div class="ds-icon"><i class="far fa-user-plus"></i></div>
+                  <span class="ds-title">Invite members</span>
+                </div>
+                <div class="ds-menu-item">
+                  <div class="ds-icon"><i class="fal fa-headset"></i></div>
+                  <span class="ds-title">Contact sales</span>
+                </div>
+              </div>
+              <div class="new-upgrade-button-container" submenuindex="0">
+                <button
+                  type="button"
+                  class="new-upgrade-button monday-style-button monday-style-button--size-md monday-style-button--kind-primary monday-style-button--color-positive"
+                  name=""
+                  id=""
+                  aria-labelledby=""
+                  aria-label=""
+                  aria-busy="false"
+                  style="--element-width: 159.797px; --element-height: 40px"
+                >
+                  <span
+                    class="icon_component monday-style-button--left-icon icon_component--no-focus-style fa icon-upgrade-stars-new"
+                    aria-label=""
+                    tabindex="-1"
+                    role=""
+                  ></span
+                  >Upgrade
+                </button>
+              </div>
+            </div>
+          </div>
+        </jet-profile-dialog>
+      </div>
     </div>
   </div>
 </template>
@@ -206,6 +328,7 @@ import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
 import JetSidebar from "@/Jetstream/Sidebar";
 import JetSidebarPrimary from "@/Jetstream/SidebarPrimary";
 import JetSidebarSecondary from "@/Jetstream/SidebarSecondary";
+import JetProfileDialog from "@/Jetstream/ProfileDialog";
 
 export default {
   components: {
@@ -217,11 +340,13 @@ export default {
     JetSidebar,
     JetSidebarPrimary,
     JetSidebarSecondary,
+    JetProfileDialog,
   },
 
   data() {
     return {
       showingNavigationDropdown: false,
+      showingProfileDialog: false,
     };
   },
 
@@ -237,12 +362,15 @@ export default {
         }
       );
     },
+  },
 
-    logout() {
-      axios.post(route("logout").url()).then((response) => {
-        window.location = "/";
-      });
-    },
+  created() {
+    const closeOnEscape = (e) => {
+      if (this.showingProfileDialog && e.keyCode === 27) {
+        this.showingProfileDialog = false;
+        console.log(this.showingProfileDialog);
+      }
+    };
   },
 };
 </script>
