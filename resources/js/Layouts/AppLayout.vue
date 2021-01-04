@@ -1,6 +1,7 @@
 <template>
   <div class="application">
-    <div class="application-layers with-secondary-surface-control">
+    <div class="application-layers">
+      <!-- with-secondary-surface-control -->
       <jet-sidebar>
         <jet-sidebar-primary>
           <div class="sidebar-navigation-items">
@@ -76,7 +77,7 @@
             </div>
           </div>
         </jet-sidebar-primary>
-        <jet-sidebar-secondary>
+        <jet-sidebar-secondary style="display:none;">
           <template v-for="team in $page.user.all_teams">
             <form @submit.prevent="switchToTeam(team)" :key="team.id">
               <jet-dropdown-link as="button">
