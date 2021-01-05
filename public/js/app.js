@@ -4832,8 +4832,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -29766,162 +29764,218 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.$page.jetstream.managesProfilePhotos
-      ? _c(
-          "div",
-          { staticClass: "col-span-6 sm:col-span-4" },
-          [
-            _c("input", {
-              ref: "photo",
-              staticClass: "hidden",
-              attrs: { type: "file" },
-              on: { change: _vm.updatePhotoPreview }
-            }),
-            _vm._v(" "),
-            _c("jet-label", { attrs: { for: "photo", value: "Photo" } }),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: !_vm.photoPreview,
-                    expression: "!photoPreview"
-                  }
-                ],
-                staticClass: "mt-2"
-              },
-              [
-                _c("img", {
-                  staticClass: "rounded-full h-20 w-20 object-cover",
-                  attrs: {
-                    src: _vm.user.profile_photo_url,
-                    alt: "Current Profile Photo"
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.photoPreview,
-                    expression: "photoPreview"
-                  }
-                ],
-                staticClass: "mt-2"
-              },
-              [
-                _c("span", {
-                  staticClass: "block rounded-full w-20 h-20",
-                  style:
-                    "background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url('" +
-                    _vm.photoPreview +
-                    "');"
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "jet-secondary-button",
-              {
-                staticClass: "mt-2 mr-2",
-                attrs: { type: "button" },
-                nativeOn: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.selectNewPhoto($event)
-                  }
-                }
-              },
-              [_vm._v("\n      Select A New Photo\n    ")]
-            ),
-            _vm._v(" "),
-            _vm.user.profile_photo_path
+  return _c("jet-form-section", {
+    on: { submitted: _vm.updateProfileInformation },
+    scopedSlots: _vm._u([
+      {
+        key: "title",
+        fn: function() {
+          return [_vm._v(" Profile Information ")]
+        },
+        proxy: true
+      },
+      {
+        key: "description",
+        fn: function() {
+          return [
+            _vm._v(
+              "\n    Update your account's profile information and email address.\n  "
+            )
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "form",
+        fn: function() {
+          return [
+            _vm.$page.jetstream.managesProfilePhotos
               ? _c(
-                  "jet-secondary-button",
-                  {
-                    staticClass: "mt-2",
-                    attrs: { type: "button" },
-                    nativeOn: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.deletePhoto($event)
-                      }
-                    }
-                  },
-                  [_vm._v("\n      Remove Photo\n    ")]
+                  "div",
+                  { staticClass: "col-span-6 sm:col-span-4" },
+                  [
+                    _c("input", {
+                      ref: "photo",
+                      staticClass: "hidden",
+                      attrs: { type: "file" },
+                      on: { change: _vm.updatePhotoPreview }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-label", {
+                      attrs: { for: "photo", value: "Photo" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.photoPreview,
+                            expression: "!photoPreview"
+                          }
+                        ],
+                        staticClass: "mt-2"
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "rounded-full h-20 w-20 object-cover",
+                          attrs: {
+                            src: _vm.user.profile_photo_url,
+                            alt: "Current Profile Photo"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.photoPreview,
+                            expression: "photoPreview"
+                          }
+                        ],
+                        staticClass: "mt-2"
+                      },
+                      [
+                        _c("span", {
+                          staticClass: "block rounded-full w-20 h-20",
+                          style:
+                            "background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url('" +
+                            _vm.photoPreview +
+                            "');"
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "jet-secondary-button",
+                      {
+                        staticClass: "mt-2 mr-2",
+                        attrs: { type: "button" },
+                        nativeOn: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.selectNewPhoto($event)
+                          }
+                        }
+                      },
+                      [_vm._v("\n        Select A New Photo\n      ")]
+                    ),
+                    _vm._v(" "),
+                    _vm.user.profile_photo_path
+                      ? _c(
+                          "jet-secondary-button",
+                          {
+                            staticClass: "mt-2",
+                            attrs: { type: "button" },
+                            nativeOn: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.deletePhoto($event)
+                              }
+                            }
+                          },
+                          [_vm._v("\n        Remove Photo\n      ")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.form.error("photo") }
+                    })
+                  ],
+                  1
                 )
               : _vm._e(),
             _vm._v(" "),
-            _c("jet-input-error", {
-              staticClass: "mt-2",
-              attrs: { message: _vm.form.error("photo") }
-            })
-          ],
-          1
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-span-6 sm:col-span-4" },
-      [
-        _c("jet-label", { attrs: { for: "name", value: "Name" } }),
-        _vm._v(" "),
-        _c("jet-input", {
-          staticClass: "mt-1 block w-full",
-          attrs: { id: "name", type: "text", autocomplete: "name" },
-          model: {
-            value: _vm.form.name,
-            callback: function($$v) {
-              _vm.$set(_vm.form, "name", $$v)
-            },
-            expression: "form.name"
-          }
-        }),
-        _vm._v(" "),
-        _c("jet-input-error", {
-          staticClass: "mt-2",
-          attrs: { message: _vm.form.error("name") }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-span-6 sm:col-span-4" },
-      [
-        _c("jet-label", { attrs: { for: "email", value: "Email" } }),
-        _vm._v(" "),
-        _c("jet-input", {
-          staticClass: "mt-1 block w-full",
-          attrs: { id: "email", type: "email" },
-          model: {
-            value: _vm.form.email,
-            callback: function($$v) {
-              _vm.$set(_vm.form, "email", $$v)
-            },
-            expression: "form.email"
-          }
-        }),
-        _vm._v(" "),
-        _c("jet-input-error", {
-          staticClass: "mt-2",
-          attrs: { message: _vm.form.error("email") }
-        })
-      ],
-      1
-    )
-  ])
+            _c(
+              "div",
+              { staticClass: "col-span-6 sm:col-span-4" },
+              [
+                _c("jet-label", { attrs: { for: "name", value: "Name" } }),
+                _vm._v(" "),
+                _c("jet-input", {
+                  staticClass: "mt-1 block w-full",
+                  attrs: { id: "name", type: "text", autocomplete: "name" },
+                  model: {
+                    value: _vm.form.name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "name", $$v)
+                    },
+                    expression: "form.name"
+                  }
+                }),
+                _vm._v(" "),
+                _c("jet-input-error", {
+                  staticClass: "mt-2",
+                  attrs: { message: _vm.form.error("name") }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-span-6 sm:col-span-4" },
+              [
+                _c("jet-label", { attrs: { for: "email", value: "Email" } }),
+                _vm._v(" "),
+                _c("jet-input", {
+                  staticClass: "mt-1 block w-full",
+                  attrs: { id: "email", type: "email" },
+                  model: {
+                    value: _vm.form.email,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "email", $$v)
+                    },
+                    expression: "form.email"
+                  }
+                }),
+                _vm._v(" "),
+                _c("jet-input-error", {
+                  staticClass: "mt-2",
+                  attrs: { message: _vm.form.error("email") }
+                })
+              ],
+              1
+            )
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "actions",
+        fn: function() {
+          return [
+            _c(
+              "jet-action-message",
+              {
+                staticClass: "mr-3",
+                attrs: { on: _vm.form.recentlySuccessful }
+              },
+              [_vm._v("\n      Saved.\n    ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "jet-button",
+              {
+                class: { "opacity-25": _vm.form.processing },
+                attrs: { disabled: _vm.form.processing }
+              },
+              [_vm._v("\n      Save\n    ")]
+            )
+          ]
+        },
+        proxy: true
+      }
+    ])
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
