@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GithubController;
+use App\Http\Controllers\Auth\SessionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ Route::get('/', function () {
 
 Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
 Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
+Route::get('/user/sessions', [SessionsController::class, 'session'])
+                    ->name('profile.session');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
@@ -30,3 +33,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/project', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/timesheet', function () {
     return Inertia\Inertia::render('Timesheet');
 })->name('timesheet');
+
