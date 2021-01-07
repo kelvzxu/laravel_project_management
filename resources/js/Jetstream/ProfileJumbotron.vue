@@ -49,11 +49,11 @@
         <div class="user_profile_menu_container">
           <div id="user_profile_tabs">
             <ul class="pulse-tabs">
-              <li class="is-selected">
-                <a href="/users/17864734/settings/personal_info"
-                  >Personal Info</a
-                >
-              </li>
+              <jet-responsive-nav-link
+                :href="route('profile.show')"
+                :active="route().current('profile.show')"
+                >Personal Info</jet-responsive-nav-link
+              >
               <li class="">
                 <a href="/users/17864734/settings/working_status"
                   >Working Status</a
@@ -75,9 +75,11 @@
                   >Email Integration</a
                 >
               </li>
-              <li class="">
-                <a href="/users/17864734/settings/sessions">Sessions</a>
-              </li>
+              <jet-responsive-nav-link
+                :href="route('profile.session')"
+                :active="route().current('profile.session')"
+                >Sessions</jet-responsive-nav-link
+              >
             </ul>
           </div>
           <select class="user_profile_mobile_menu">
@@ -95,3 +97,43 @@
     <slot></slot>
   </div>
 </template>
+
+<script>
+import JetResponsiveNavLink from "@/Jetstream/ProfileNav";
+
+export default {
+  components: {
+    JetResponsiveNavLink,
+  },
+
+  data() {
+    return {
+      showingNavigationDropdown: false,
+      showingProfileDialog: false,
+    };
+  },
+
+  methods: {
+    switchToTeam(team) {
+      this.$inertia.put(
+        route("current-team.update"),
+        {
+          team_id: team.id,
+        },
+        {
+          preserveState: false,
+        }
+      );
+    },
+  },
+
+  created() {
+    const closeOnEscape = (e) => {
+      if (this.showingProfileDialog && e.keyCode === 27) {
+        this.showingProfileDialog = false;
+        console.log(this.showingProfileDialog);
+      }
+    };
+  },
+};
+</script>
