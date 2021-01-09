@@ -82,7 +82,22 @@
               >
             </ul>
           </div>
-          <select class="user_profile_mobile_menu">
+          <jet-dropdown
+            class="user_profile_mobile_menu"
+            align="right"
+            width="48"
+          >
+            <template #trigger> menu </template>
+            <template #content>
+              <jet-dropdown-link :href="route('profile.show')">
+                Profile
+              </jet-dropdown-link>
+              <jet-dropdown-link :href="route('profile.session')"
+                >Sessions</jet-dropdown-link
+              >
+            </template>
+          </jet-dropdown>
+          <!-- <select class="user_profile_mobile_menu" @change="changePage($event)">
             <option value="personal_info">Personal Info</option>
             <option value="working_status">Working Status</option>
             <option value="password">Password</option>
@@ -90,7 +105,7 @@
             <option value="notifications">Notifications</option>
             <option value="email_integration">Email Integration</option>
             <option value="sessions">Sessions</option>
-          </select>
+          </select> -->
         </div>
       </section>
     </div>
@@ -100,10 +115,14 @@
 
 <script>
 import JetResponsiveNavLink from "@/Jetstream/ProfileNav";
+import JetDropdown from "@/Jetstream/Dropdown";
+import JetDropdownLink from "@/Jetstream/DropdownLink";
 
 export default {
   components: {
     JetResponsiveNavLink,
+    JetDropdown,
+    JetDropdownLink,
   },
 
   data() {
@@ -124,6 +143,9 @@ export default {
           preserveState: false,
         }
       );
+    },
+    changePage(val) {
+      console.log(val.target.value);
     },
   },
 
