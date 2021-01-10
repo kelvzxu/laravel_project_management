@@ -77,7 +77,7 @@
             </div>
           </div>
         </jet-sidebar-primary>
-        <jet-sidebar-secondary style="display:none;">
+        <jet-sidebar-secondary style="display: none">
           <template v-for="team in $page.user.all_teams">
             <form @submit.prevent="switchToTeam(team)" :key="team.id">
               <jet-dropdown-link as="button">
@@ -124,6 +124,8 @@
       </jet-sidebar>
       <div id="workspace">
         <slot></slot>
+        <!-- Modal Portal -->
+        <portal-target name="modal" multiple> </portal-target>
       </div>
       <!-- Profile Dialog -->
       <div

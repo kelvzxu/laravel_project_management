@@ -786,6 +786,10 @@
     z-index: 5;
 }
 
+.dialog-modal {
+    z-index: 1000000;
+}
+
 .dialog-node {
     position: absolute;
     top: 145px;
@@ -1380,7 +1384,6 @@ body a.button_link:focus {
 .ds-menu-button.open {
     background-color: #e5f4ff !important;
     color: #0085ff;
-    color: var(--primary-color);
 }
 
 .ds-menu-square-button .icon.ellipsis {

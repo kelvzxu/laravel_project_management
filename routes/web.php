@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GithubController;
-use App\Http\Controllers\Auth\SessionsController;
+use App\Http\Controllers\Auth\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +21,12 @@ Route::get('/', function () {
 
 Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
 Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
-Route::get('/user/sessions', [SessionsController::class, 'session'])
+Route::get('/user/sessions', [ProfileController::class, 'session'])
                     ->name('profile.session');
+Route::get('/user/password', [ProfileController::class, 'update_password'])
+                    ->name('profile.password');
+Route::get('/user/preferences', [ProfileController::class, 'preference'])
+                    ->name('profile.preferences');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');

@@ -55,25 +55,23 @@
                 >Personal Info</jet-responsive-nav-link
               >
               <li class="">
-                <a href="/users/17864734/settings/working_status"
-                  >Working Status</a
-                >
+                <a href="#">Working Status</a>
+              </li>
+              <jet-responsive-nav-link
+                :href="route('profile.password')"
+                :active="route().current('profile.password')"
+                >Password</jet-responsive-nav-link
+              >
+              <jet-responsive-nav-link
+                :href="route('profile.preferences')"
+                :active="route().current('profile.preferences')"
+                >Preferences</jet-responsive-nav-link
+              >
+              <li class="">
+                <a href="#">Notifications</a>
               </li>
               <li class="">
-                <a href="/users/17864734/settings/password">Password</a>
-              </li>
-              <li class="">
-                <a href="/users/17864734/settings/preferences">Preferences</a>
-              </li>
-              <li class="">
-                <a href="/users/17864734/settings/notifications"
-                  >Notifications</a
-                >
-              </li>
-              <li class="">
-                <a href="/users/17864734/settings/email_integration"
-                  >Email Integration</a
-                >
+                <a href="#">Email Integration</a>
               </li>
               <jet-responsive-nav-link
                 :href="route('profile.session')"
