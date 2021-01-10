@@ -1,23 +1,25 @@
 <template>
-  <jet-action-section>
-    <template #title> Delete Account </template>
-
-    <template #description> Permanently delete your account. </template>
-
-    <template #content>
-      <div class="max-w-xl text-sm text-gray-600">
-        Once your account is deleted, all of its resources and data will be
-        permanently deleted. Before deleting your account, please download any
-        data or information that you wish to retain.
+  <div class="content" id="content-body">
+    <div
+      class="flash-container flash-container-page sticky"
+      data-qa-selector="flash_container"
+    ></div>
+    <div class="row kl-mt-3">
+      <div class="col-lg-4 profile-settings-sidebar">
+        <h4 class="kl-mt-0 text-danger">Delete account</h4>
       </div>
-
-      <div class="mt-5">
-        <jet-danger-button @click.native="confirmUserDeletion">
-          Delete Account
-        </jet-danger-button>
+      <div class="col-lg-7">
+        <p class="text-justify">
+          Once your account is deleted, all of its resources and data will be
+          permanently deleted. Before deleting your account, please download any
+          data or information that you wish to retain.
+        </p>
+        <div class="mt-5">
+          <jet-danger-button @click.native="confirmUserDeletion">
+            Delete Account
+          </jet-danger-button>
+        </div>
       </div>
-
-      <!-- Delete Account Confirmation Modal -->
       <jet-dialog-modal
         :show="confirmingUserDeletion"
         @close="confirmingUserDeletion = false"
@@ -59,8 +61,8 @@
           </jet-danger-button>
         </template>
       </jet-dialog-modal>
-    </template>
-  </jet-action-section>
+    </div>
+  </div>
 </template>
 
 <script>

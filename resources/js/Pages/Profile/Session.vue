@@ -10,10 +10,7 @@
 
         <div>
           <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            <logout-other-browser-sessions-form
-              :sessions="sessions"
-              class="mt-10 sm:mt-0"
-            />
+            <browser-sessions-form :sessions="sessions" class="mt-10 sm:mt-0" />
           </div>
         </div>
       </jumbotron>
@@ -27,7 +24,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import DeleteUserForm from "./DeleteUserForm";
 import JetSectionBorder from "@/Jetstream/SectionBorder";
 import Jumbotron from "@/Jetstream/ProfileJumbotron";
-import LogoutOtherBrowserSessionsForm from "./LogoutOtherBrowserSessionsForm";
+import BrowserSessionsForm from "./BrowserSessionsForm";
 import TwoFactorAuthenticationForm from "./TwoFactorAuthenticationForm";
 import UpdatePasswordForm from "./UpdatePasswordForm";
 import UpdatePhotoProfile from "./UpdatePhotoProfile";
@@ -39,10 +36,10 @@ export default {
   components: {
     AppContent,
     AppLayout,
+    BrowserSessionsForm,
     DeleteUserForm,
     JetSectionBorder,
     Jumbotron,
-    LogoutOtherBrowserSessionsForm,
     TwoFactorAuthenticationForm,
     UpdatePasswordForm,
     UpdatePhotoProfile,

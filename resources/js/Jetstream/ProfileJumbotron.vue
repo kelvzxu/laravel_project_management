@@ -55,25 +55,23 @@
                 >Personal Info</jet-responsive-nav-link
               >
               <li class="">
-                <a href="/users/17864734/settings/working_status"
-                  >Working Status</a
-                >
+                <a href="#">Working Status</a>
+              </li>
+              <jet-responsive-nav-link
+                :href="route('profile.password')"
+                :active="route().current('profile.password')"
+                >Password</jet-responsive-nav-link
+              >
+              <jet-responsive-nav-link
+                :href="route('profile.preferences')"
+                :active="route().current('profile.preferences')"
+                >Preferences</jet-responsive-nav-link
+              >
+              <li class="">
+                <a href="#">Notifications</a>
               </li>
               <li class="">
-                <a href="/users/17864734/settings/password">Password</a>
-              </li>
-              <li class="">
-                <a href="/users/17864734/settings/preferences">Preferences</a>
-              </li>
-              <li class="">
-                <a href="/users/17864734/settings/notifications"
-                  >Notifications</a
-                >
-              </li>
-              <li class="">
-                <a href="/users/17864734/settings/email_integration"
-                  >Email Integration</a
-                >
+                <a href="#">Email Integration</a>
               </li>
               <jet-responsive-nav-link
                 :href="route('profile.session')"
@@ -82,7 +80,22 @@
               >
             </ul>
           </div>
-          <select class="user_profile_mobile_menu">
+          <jet-dropdown
+            class="user_profile_mobile_menu"
+            align="right"
+            width="48"
+          >
+            <template #trigger> menu </template>
+            <template #content>
+              <jet-dropdown-link :href="route('profile.show')">
+                Profile
+              </jet-dropdown-link>
+              <jet-dropdown-link :href="route('profile.session')"
+                >Sessions</jet-dropdown-link
+              >
+            </template>
+          </jet-dropdown>
+          <!-- <select class="user_profile_mobile_menu" @change="changePage($event)">
             <option value="personal_info">Personal Info</option>
             <option value="working_status">Working Status</option>
             <option value="password">Password</option>
@@ -90,7 +103,7 @@
             <option value="notifications">Notifications</option>
             <option value="email_integration">Email Integration</option>
             <option value="sessions">Sessions</option>
-          </select>
+          </select> -->
         </div>
       </section>
     </div>
@@ -100,10 +113,14 @@
 
 <script>
 import JetResponsiveNavLink from "@/Jetstream/ProfileNav";
+import JetDropdown from "@/Jetstream/Dropdown";
+import JetDropdownLink from "@/Jetstream/DropdownLink";
 
 export default {
   components: {
     JetResponsiveNavLink,
+    JetDropdown,
+    JetDropdownLink,
   },
 
   data() {
@@ -124,6 +141,9 @@ export default {
           preserveState: false,
         }
       );
+    },
+    changePage(val) {
+      console.log(val.target.value);
     },
   },
 

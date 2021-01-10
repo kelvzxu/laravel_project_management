@@ -2,6 +2,7 @@ require('./bootstrap');
 
 import Vue from 'vue';
 import Vuetify from 'vuetify';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
 import { InertiaApp } from '@inertiajs/inertia-vue';
 import { InertiaForm } from 'laravel-jetstream';
@@ -12,6 +13,8 @@ Vue.use(Vuetify);
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
+Vue.use (BootstrapVue)
+Vue.use (IconsPlugin)
 
 const opts = {}
 const app = document.getElementById('app');
