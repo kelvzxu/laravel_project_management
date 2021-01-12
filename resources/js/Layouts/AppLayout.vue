@@ -180,10 +180,15 @@
                     <span class="ds-title">Archived boards</span>
                   </div>
                 </a>
-                <div class="ds-menu-item">
-                  <div class="ds-icon"><i class="fal fa-users"></i></div>
-                  <span class="ds-title">teams</span>
-                </div>
+                <jet-responsive-nav-link
+                  :href="route('team.myteam', $page.user.id)"
+                  :active="route().current('team.myteam', $page.user.id)"
+                >
+                  <div class="ds-menu-item">
+                    <div class="ds-icon"><i class="fa fa-code"></i></div>
+                    <span class="ds-title">teams</span>
+                  </div>
+                </jet-responsive-nav-link>
                 <div class="ds-menu-item">
                   <div class="ds-icon"><i class="fal fa-lock-alt"></i></div>
                   <span class="ds-title">Security</span>

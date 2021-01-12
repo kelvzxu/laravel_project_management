@@ -25,7 +25,7 @@ class ProfileController extends UserProfileController
         ]);
     }
 
-    public function update_password(Request $request)
+    public function updatePassword(Request $request)
     {
         return Jetstream::inertia()->render($request, 'Profile/Security');
     }

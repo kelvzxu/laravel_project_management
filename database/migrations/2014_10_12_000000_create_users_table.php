@@ -22,6 +22,17 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
+            $table->boolean('show_public_email')->default(False);
+            $table->string('skype')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('website_url')->nullable();
+            $table->string('location')->nullable();
+            $table->string('job_title')->nullable();
+            $table->string('organization')->nullable();
+            $table->string('bio')->nullable();
+            $table->boolean('private_profile')->default(true);
+            $table->boolean('include_private_contributions')->default(true);
             $table->timestamps();
         });
     }
