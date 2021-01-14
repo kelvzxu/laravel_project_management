@@ -1,5 +1,6 @@
 <template>
     <app-layout>
+        <app-content>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Team Settings
@@ -22,10 +23,12 @@
                 </template>
             </div>
         </div>
+        </app-content>
     </app-layout>
 </template>
 
 <script>
+import AppContent from "@/Jetstream/ApplicationContent";
     import TeamMemberManager from './TeamMemberManager'
     import AppLayout from '@/Layouts/AppLayout'
     import DeleteTeamForm from './DeleteTeamForm'
@@ -40,6 +43,7 @@
         ],
 
         components: {
+            AppContent,
             AppLayout,
             DeleteTeamForm,
             JetSectionBorder,

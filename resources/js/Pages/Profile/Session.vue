@@ -27,7 +27,6 @@ import Jumbotron from "@/Jetstream/ProfileJumbotron";
 import BrowserSessionsForm from "./BrowserSessionsForm";
 import TwoFactorAuthenticationForm from "./TwoFactorAuthenticationForm";
 import UpdatePasswordForm from "./UpdatePasswordForm";
-import UpdatePhotoProfile from "./UpdatePhotoProfile";
 import UpdateProfileInformationForm from "./UpdateProfileInformationForm";
 
 export default {
@@ -42,7 +41,6 @@ export default {
     Jumbotron,
     TwoFactorAuthenticationForm,
     UpdatePasswordForm,
-    UpdatePhotoProfile,
     UpdateProfileInformationForm,
   },
 };

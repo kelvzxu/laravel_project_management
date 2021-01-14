@@ -21,7 +21,7 @@ class InheritTeamController extends TeamController
 
         // dd($teams);
         return Jetstream::inertia()->render($request, 'Teams/MyTeam', [
-            'team' => $teams->load('owner', 'users'),
+            'teams' => $teams->load('owner', 'users'),
         ]);
     }
 }

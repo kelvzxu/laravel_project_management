@@ -23,7 +23,6 @@
 import AppContent from "@/Jetstream/ApplicationContent";
 import AppLayout from "@/Layouts/AppLayout";
 import Jumbotron from "@/Jetstream/ProfileJumbotron";
-import UpdatePhotoProfile from "./UpdatePhotoProfile";
 import UpdateProfileInformationForm from "./UpdateProfileInformationForm";
 
 export default {
@@ -33,7 +32,6 @@ export default {
     AppContent,
     AppLayout,
     Jumbotron,
-    UpdatePhotoProfile,
     UpdateProfileInformationForm,
   },
 };

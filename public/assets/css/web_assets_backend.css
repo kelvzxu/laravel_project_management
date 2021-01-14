@@ -4649,3 +4649,7 @@ input.pager_value:focus {
 .add-cover-button-component .add-cover-button.is-add-cover-dialog-open {
     background-color: #e5f4ff;
 }
+
+.data_row{
+    cursor: pointer;
+}
