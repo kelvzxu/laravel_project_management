@@ -10,7 +10,7 @@
 
         <div>
           <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            <update-photo-profile :user="$page.user" />
+            <!-- <update-photo-profile :user="$page.user" /> -->
             <update-profile-information-form :user="$page.user" />
           </div>
         </div>
@@ -23,7 +23,6 @@
 import AppContent from "@/Jetstream/ApplicationContent";
 import AppLayout from "@/Layouts/AppLayout";
 import Jumbotron from "@/Jetstream/ProfileJumbotron";
-import UpdatePhotoProfile from "./UpdatePhotoProfile";
 import UpdateProfileInformationForm from "./UpdateProfileInformationForm";
 
 export default {
@@ -33,7 +32,6 @@ export default {
     AppContent,
     AppLayout,
     Jumbotron,
-    UpdatePhotoProfile,
     UpdateProfileInformationForm,
   },
 };
