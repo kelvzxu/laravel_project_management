@@ -1,54 +1,126 @@
 <template>
-    <app-layout>
-        <app-content>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Team Settings
-            </h2>
-        </template>
+  <app-layout>
+    <app-content>
+      <div class="workspace-page-component">
+        <div class="workspace-header-component">
+          <div class="workspace-cover-component-wrapper">
+            <div
+              class="workspace-cover-component"
+              style="
+                background-image: url('https://cdn7.monday.com/images/workspaces_cover_photos/full/photo-1559251606-c623743a6d76.jpeg');
+                background-size: 100%;
+                background-position: center center;
+              "
+            >
+              <div class="add-cover-button-component-wrapper">
+                <div class="add-cover-button-component">
+                  <div class="add-cover-button">+ Add cover</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="workspace-header">
+            <div class="workspace-page-icon">
+              <div class="workspace-icon-container workspace-size-xl">
+                <div
+                  class="workspace-icon-shape-container"
+                  style="background-color: rgb(242, 121, 242)"
+                >
+                  <div class="workspace-icon icon">
+                    <span class="letter">{{ team.name[0].toUpperCase() }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="workspace-header-content">
+              <div class="top-row">
+                <i class="fa fa-home main-workspace-icon"></i>
+                <div class="workspace-name-wrapper">
+                  <div class="rename-workspace-component">
+                    <div
+                      class="ds-editable-component rename-workspace-editable"
+                      style="width: auto; height: auto"
+                    >
+                      <div class="ds-text-component" dir="auto">
+                        <span>{{ team.name }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="workspace-description-component">
+                <div>
+                  <div class="board-description can-edit has-content">
+                    <div
+                      class="ds-editable-component"
+                      style="width: auto; height: auto"
+                    >
+                      <div class="ds-text-component description-content">
+                        <div class="description-line">
+                          <span class="text-content"
+                            >Use the Main Workspace to manage and collaborate on
+                            all company-wide boards. All team members are in
+                            this workspace.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="workspace-header-mobile-content">
+            <div class="row">
+              <div class="col-12 text-center">
+                <i class="fa fa-home"></i>
+                <span class="font-weight-bold">{{ team.name }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <update-team-name-form :team="team" :permissions="permissions" />
+          <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            <update-team-name-form :team="team" :permissions="permissions" />
 
-                <team-member-manager class="mt-10 sm:mt-0"
-                            :team="team"
-                            :available-roles="availableRoles"
-                            :user-permissions="permissions" />
+            <team-member-manager
+              class="mt-10 sm:mt-0"
+              :team="team"
+              :available-roles="availableRoles"
+              :user-permissions="permissions"
+            />
 
-                <template v-if="permissions.canDeleteTeam && ! team.personal_team">
-                    <jet-section-border />
+            <template v-if="permissions.canDeleteTeam && !team.personal_team">
+              <jet-section-border />
 
-                    <delete-team-form class="mt-10 sm:mt-0" :team="team" />
-                </template>
-            </div>
+              <delete-team-form class="mt-10 sm:mt-0" :team="team" />
+            </template>
+          </div>
         </div>
-        </app-content>
-    </app-layout>
+      </div>
+    </app-content>
+  </app-layout>
 </template>
 
 <script>
 import AppContent from "@/Jetstream/ApplicationContent";
-    import TeamMemberManager from './TeamMemberManager'
-    import AppLayout from '@/Layouts/AppLayout'
-    import DeleteTeamForm from './DeleteTeamForm'
-    import JetSectionBorder from '@/Jetstream/SectionBorder'
-    import UpdateTeamNameForm from './UpdateTeamNameForm'
+import TeamMemberManager from "./TeamMemberManager";
+import AppLayout from "@/Layouts/AppLayout";
+import DeleteTeamForm from "./DeleteTeamForm";
+import JetSectionBorder from "@/Jetstream/SectionBorder";
+import UpdateTeamNameForm from "./UpdateTeamNameForm";
 
-    export default {
-        props: [
-            'team',
-            'availableRoles',
-            'permissions',
-        ],
+export default {
+  props: ["team", "availableRoles", "permissions"],
 
-        components: {
-            AppContent,
-            AppLayout,
-            DeleteTeamForm,
-            JetSectionBorder,
-            TeamMemberManager,
-            UpdateTeamNameForm,
-        },
-    }
+  components: {
+    AppContent,
+    AppLayout,
+    DeleteTeamForm,
+    JetSectionBorder,
+    TeamMemberManager,
+    UpdateTeamNameForm,
+  },
+};
 </script>
