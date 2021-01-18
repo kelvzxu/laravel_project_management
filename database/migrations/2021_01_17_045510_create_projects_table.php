@@ -30,6 +30,8 @@ class CreateProjectsTable extends Migration
             $table->boolean('rating_active');
             $table->string('rating_status');
             $table->string('rating_status_period');
+            $table->boolean('allow_timesheets');
+            $table->boolean('allow_timesheet_timer');
             $table->foreignId('create_uid')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('write_uid')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
