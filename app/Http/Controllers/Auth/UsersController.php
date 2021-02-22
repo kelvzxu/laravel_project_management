@@ -13,7 +13,7 @@ use Laravel\Jetstream\Http\Controllers\Inertia\UserProfileController;
 
 class UsersController extends UserProfileController
 {
-    public function fetchUser(Request $request,$UserID)
+    public function fetchUser($UserID)
     {
         $response = user::where('id','!=',$UserID)->get();
         if ($response) {

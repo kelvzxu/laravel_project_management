@@ -29,8 +29,8 @@
           </div>
           <div class="primary-navigation-items-area">
             <inertia-link
-              :href="route('search', $page.user.id)"
-              :active="route().current('search', $page.user.id)"
+              :href="route('user.search', $page.user.id)"
+              :active="route().current('user.search', $page.user.id)"
               class="button_link"
             >
               <div class="sidebar-icon-wrapper" id="action-search">

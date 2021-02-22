@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\InheritTeamController;
 use App\Http\Controllers\Auth\UsersController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,14 +36,14 @@ Route::get('/team/fetch', [InheritTeamController::class, 'fetchTeams'])
                     ->name('fetch.teams');
 Route::get('/user/fetch/{user}', [UsersController::class, 'fetchUser'])
                     ->name('fetch.user');
+Route::get('/search/{user}', [SearchController::class, 'Search'])
+                    ->name('user.search');
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/search/{user}', function () {
-    return Inertia\Inertia::render('search');
-})->name('search');
 Route::middleware(['auth:sanctum', 'verified'])->get('/timesheet', function () {
     return Inertia\Inertia::render('Timesheet');
 })->name('timesheet');
