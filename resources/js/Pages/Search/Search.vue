@@ -91,9 +91,81 @@
             </ul>
           </section>
         </div>
+        <kanban-area v-if="DataRow == 'users'">
+          <kanban-box v-for="user in users.original.result" :key="user.email">
+            <template #image
+              ><div
+                class="kanban_image_fill_left"
+                v-bind:style="{
+                  'background-image':
+                    'url(/storage/' + user.profile_photo_path + ')',
+                }"
+              ></div
+            ></template>
+            <template #name
+              ><span>{{ user.name }}</span></template
+            >
+            <template #jobs
+              ><span>{{ user.job_title }}</span></template
+            >
+            <template #tags v-if="user.location != null"
+              ><span class="field_tag tag_color_6"
+                ><span></span>{{ user.location }}</span
+              ></template
+            >
+            <template #email
+              ><span
+                ><small>{{ user.email }}</small></span
+              ></template
+            >
+            <template #button
+              ><inertia-link
+                class="btn btn-sm btn-primary text-white float-right"
+                role="button"
+                >Add Friend</inertia-link
+              ></template
+            >
+          </kanban-box>
+          <kanban-ghost
+            v-for="n in 80 - teams.original.result.length"
+            :key="n"
+          ></kanban-ghost>
+        </kanban-area>
+        <kanban-area v-else>
+          <kanban-box v-for="team in teams.original.result" :key="team.name">
+            <template #image
+              ><div
+                class="kanban_image_fill_left"
+                style="
+                  background-image: url('https://erp.kltech-intl.technology/images/icons/avatar.png');
+                "
+              ></div
+            ></template>
+            <template #jobs
+              ><span>{{ team.name }}</span></template
+            >
+            <template #tags
+              ><span class="field_tag tag_color_6"
+                ><span></span>{{ team.team_type }}</span
+              ></template
+            >
+
+            <template #button
+              ><inertia-link
+                class="btn btn-sm btn-primary text-white float-right"
+                role="button"
+                >Request Join</inertia-link
+              ></template
+            >
+          </kanban-box>
+          <kanban-ghost
+            v-for="n in 80 - teams.original.result.length"
+            :key="n"
+          ></kanban-ghost>
+        </kanban-area>
       </div>
-      <div v-if="DataRow == 'users'">{{users}}</div>
-      <div v-else>{{teams}}</div>
+      <!-- <div v-if="DataRow == 'users'">{{users}}</div>
+      <div v-else>{{teams}}</div> -->
     </app-content>
   </app-layout>
 </template>
@@ -105,9 +177,13 @@ import AppLayout from "@/Layouts/AppLayout";
 import ControlPanel from "@/Jetstream/ControlPanel";
 import SearchPanel from "@/Jetstream/SearchPanel";
 import JetSuccessButton from "@/Jetstream/SuccessButton";
+// Kanban Component
+import KanbanArea from "@/Jetstream/KanbanArea";
+import KanbanBox from "@/Jetstream/KanbanBox";
+import KanbanGhost from "@/Jetstream/KanbanGhost";
 
 export default {
-  props: ["teams","users"],
+  props: ["teams", "users"],
 
   components: {
     AppContent,
@@ -115,6 +191,9 @@ export default {
     ControlPanel,
     SearchPanel,
     JetSuccessButton,
+    KanbanArea,
+    KanbanBox,
+    KanbanGhost,
   },
   data() {
     return {
@@ -141,9 +220,9 @@ export default {
   computed: {
     _preparationData() {
       if (this.fetchUser == true) {
-        return 'users'
+        return "users";
       } else {
-        return 'teams';
+        return "teams";
       }
     },
     DataRow() {

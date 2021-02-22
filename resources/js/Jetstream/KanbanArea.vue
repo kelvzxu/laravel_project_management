@@ -1,5 +1,5 @@
 <template>
   <div class="kanban_view renderer_with_searchpanel kanban_ungrouped">
-    <slot name="kanban"></slot>
+    <slot></slot>
   </div>
 </template>

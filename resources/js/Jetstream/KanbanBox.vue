@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="field_many2manytags kanban_tags">
-        <span class="field_tag tag_color_6"><span></span>Employee</span>
+        <slot name="tags"></slot>
       </div>
       <ul>
         <li>
