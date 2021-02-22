@@ -28,11 +28,17 @@
             </div>
           </div>
           <div class="primary-navigation-items-area">
-            <div class="sidebar-icon-wrapper" id="action-search">
-              <div class="sidebar-navigation-action-component">
-                <span class="fas fa-search text-white"> </span>
+            <inertia-link
+              :href="route('search', $page.user.id)"
+              :active="route().current('search', $page.user.id)"
+              class="button_link"
+            >
+              <div class="sidebar-icon-wrapper" id="action-search">
+                <div class="sidebar-navigation-action-component">
+                  <span class="fas fa-search text-white"> </span>
+                </div>
               </div>
-            </div>
+            </inertia-link>
             <div class="sidebar-icon-wrapper" id="action-help">
               <div class="sidebar-navigation-action-component">
                 <span class="fas fa-question text-white"> </span>

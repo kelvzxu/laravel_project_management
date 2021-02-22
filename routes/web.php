@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\InheritTeamController;
+use App\Http\Controllers\Auth\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,14 +31,18 @@ Route::get('/user/preferences', [ProfileController::class, 'preference'])
                     ->name('profile.preferences');
 Route::get('/user/team/all/{user}', [InheritTeamController::class, 'getMyTeams'])
                     ->name('team.myteam');
+Route::get('/team/fetch', [InheritTeamController::class, 'fetchTeams'])
+                    ->name('fetch.teams');
+Route::get('/user/fetch/{user}', [UsersController::class, 'fetchUser'])
+                    ->name('fetch.user');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/project', function () {
-    return Inertia\Inertia::render('Project');
-})->name('project');
+Route::middleware(['auth:sanctum', 'verified'])->get('/search/{user}', function () {
+    return Inertia\Inertia::render('search');
+})->name('search');
 Route::middleware(['auth:sanctum', 'verified'])->get('/timesheet', function () {
     return Inertia\Inertia::render('Timesheet');
 })->name('timesheet');
