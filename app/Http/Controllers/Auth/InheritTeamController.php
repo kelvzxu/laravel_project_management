@@ -24,4 +24,18 @@ class InheritTeamController extends TeamController
             'teams' => $teams->load('owner', 'users'),
         ]);
     }
+    public function fetchTeams()
+    {
+        $response = Jetstream::newTeamModel()->get();
+        if ($response) {
+            return response()->json([
+                'status' => 'success',
+                'result' => $response
+            ], 200);
+        }
+        return response()->json([
+            'status' => 'failed',
+            'result' => []
+        ]);
+    }
 }
