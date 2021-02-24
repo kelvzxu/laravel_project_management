@@ -13,20 +13,23 @@ use Laravel\Jetstream\Contracts\UpdatesTeamNames;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Jetstream\RedirectsActions;
 use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
+use App\Models\Team;
+use App\Models\Membership;
 
 class InheritTeamController extends TeamController
 {
     public function getMyTeams (Request $request, $userId){
-        $teams = Jetstream::newTeamModel()->where('user_id','=',$userId)->get();
-
-        // dd($teams);
+        $teams = Jetstream::hasTeamFeatures() ? $request->user()->allTeams() : null;
         return Jetstream::inertia()->render($request, 'Teams/MyTeam', [
             'teams' => $teams->load('owner', 'users'),
         ]);
     }
-    public function fetchTeams()
+    public function fetchTeams($UserID)
     {
-        $response = Jetstream::newTeamModel()->get();
+        $response = team::addSelect(['join' => Membership::select('role')->whereColumn('team_id', 'teams.id')
+                        ->where('user_id','=',$UserID)
+                        ->limit(1)
+                    ])->where('user_id','!=',$UserID)->get();
         if ($response) {
             return response()->json([
                 'status' => 'success',

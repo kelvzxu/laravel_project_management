@@ -118,20 +118,26 @@
                 ><small>{{ user.email }}</small></span
               ></template
             >
-            <template #button
+            <template #button>
+              <form
+                method="POST"
+                v-if="user.state == null"
+                @submit.prevent="Follow($page.user.id, user.id)"
               >
-              <inertia-link v-if="user.state == null"
-                class="btn btn-sm btn-primary text-white float-right"
-                role="button"
-                >Follow</inertia-link
+                <jet-Primary-button class="float-right">
+                  Follow
+                </jet-Primary-button>
+              </form>
+              <form
+                method="POST"
+                v-else
+                @submit.prevent="Unfollow($page.user.id, user.id)"
               >
-              <inertia-link v-else
-                class="btn btn-sm btn-primary text-white float-right"
-                role="button"
-                >UnFollow</inertia-link
-              >
-              </template
-            >
+                <jet-Primary-button class="float-right">
+                  Unfollow
+                </jet-Primary-button>
+              </form>
+            </template>
           </kanban-box>
           <kanban-ghost
             v-for="n in 80 - teams.original.result.length"
@@ -157,13 +163,26 @@
               ></template
             >
 
-            <template #button
-              ><inertia-link
-                class="btn btn-sm btn-primary text-white float-right"
-                role="button"
-                >Request Join</inertia-link
-              ></template
-            >
+            <template #button>
+              <form
+                method="POST"
+                v-if="team.join == null"
+                @submit.prevent="Join($page.user.id, team.id)"
+              >
+                <jet-Primary-button class="float-right">
+                  Join
+                </jet-Primary-button>
+              </form>
+              <form
+                method="POST"
+                v-else
+                @submit.prevent="Leave($page.user.id, team.id)"
+              >
+                <jet-Primary-button class="float-right">
+                  Leave
+                </jet-Primary-button>
+              </form>
+            </template>
           </kanban-box>
           <kanban-ghost
             v-for="n in 80 - teams.original.result.length"
@@ -183,7 +202,7 @@ import AppContent from "@/Jetstream/ApplicationContent";
 import AppLayout from "@/Layouts/AppLayout";
 import ControlPanel from "@/Jetstream/ControlPanel";
 import SearchPanel from "@/Jetstream/SearchPanel";
-import JetSuccessButton from "@/Jetstream/SuccessButton";
+import JetPrimaryButton from "@/Jetstream/PrimaryButton";
 // Kanban Component
 import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBox";
@@ -197,7 +216,7 @@ export default {
     AppLayout,
     ControlPanel,
     SearchPanel,
-    JetSuccessButton,
+    JetPrimaryButton,
     KanbanArea,
     KanbanBox,
     KanbanGhost,
@@ -211,6 +230,7 @@ export default {
   },
   created() {
     this.detectMob();
+    // this.Follow();
   },
   methods: {
     detectMob() {
@@ -222,6 +242,20 @@ export default {
     },
     viewDetail(row) {
       this.$inertia.visit(route("teams.show", row.id));
+    },
+    Follow(uid, friend) {
+      this.$inertia.post(route("user.follow"), {
+        user_id: uid,
+        friend_id: friend,
+        preserveState: false,
+      });
+    },
+    Unfollow(uid, friend) {
+      this.$inertia.post(route("user.unfollow"), {
+        user_id: uid,
+        friend_id: friend,
+        preserveState: false,
+      });
     },
   },
   computed: {

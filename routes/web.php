@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\InheritTeamController;
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserFriendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,24 +22,24 @@ use App\Http\Controllers\SearchController;
 Route::get('/', function () {
     return view('index');
 });
-
-Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
-Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
-Route::get('/user/sessions', [ProfileController::class, 'session'])
-                    ->name('profile.session');
-Route::get('/user/password', [ProfileController::class, 'updatePassword'])
-                    ->name('profile.password');
-Route::get('/user/preferences', [ProfileController::class, 'preference'])
-                    ->name('profile.preferences');
-Route::get('/user/team/all/{user}', [InheritTeamController::class, 'getMyTeams'])
-                    ->name('team.myteam');
-Route::get('/team/fetch', [InheritTeamController::class, 'fetchTeams'])
-                    ->name('fetch.teams');
-Route::get('/user/fetch/{user}', [UsersController::class, 'fetchUser'])
-                    ->name('fetch.user');
-Route::get('/search/{user}', [SearchController::class, 'Search'])
-                    ->name('user.search');
-
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
+    Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
+    Route::get('/user/sessions', [ProfileController::class, 'session'])
+                        ->name('profile.session');
+    Route::get('/user/password', [ProfileController::class, 'updatePassword'])
+                        ->name('profile.password');
+    Route::get('/user/preferences', [ProfileController::class, 'preference'])
+                        ->name('profile.preferences');
+    Route::get('/user/team/all/{user}', [InheritTeamController::class, 'getMyTeams'])
+                        ->name('team.myteam');
+    Route::get('/search/{user}', [SearchController::class, 'Search'])
+                        ->name('user.search');
+    Route::post('/user/follow',[UserFriendController::class,'FollowUser'])
+                        ->name('user.follow'); 
+    Route::post('/user/unfollow',[UserFriendController::class,'UnfollowUser'])
+                        ->name('user.unfollow'); 
+});  
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
