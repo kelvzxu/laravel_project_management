@@ -287,6 +287,7 @@ import JetLabel from "@/Jetstream/Label";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import JetSuccessButton from "@/Jetstream/SuccessButton";
+import JetDangerButton from "@/Jetstream/DangerButton";
 
 export default {
   components: {
@@ -298,6 +299,7 @@ export default {
     JetLabel,
     JetSecondaryButton,
     JetSuccessButton,
+    JetDangerButton,
   },
 
   props: ["user"],
