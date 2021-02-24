@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\user_friends;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -60,4 +61,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // Relation Table
+    public function Followers()
+    {
+        return $this->hasMany(UserFriend::class,'friend_id','id');
+    }
+    public function Following()
+    {
+        return $this->hasMany(UserFriend::class,'user_id','id');
+    }
 }
