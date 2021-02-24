@@ -119,11 +119,18 @@
               ></template
             >
             <template #button
-              ><inertia-link
+              >
+              <inertia-link v-if="user.state == null"
                 class="btn btn-sm btn-primary text-white float-right"
                 role="button"
-                >Add Friend</inertia-link
-              ></template
+                >Follow</inertia-link
+              >
+              <inertia-link v-else
+                class="btn btn-sm btn-primary text-white float-right"
+                role="button"
+                >UnFollow</inertia-link
+              >
+              </template
             >
           </kanban-box>
           <kanban-ghost
