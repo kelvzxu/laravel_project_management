@@ -10,23 +10,44 @@ use Laravel\Jetstream\Actions\ValidateTeamDeletion;
 use Laravel\Jetstream\Contracts\CreatesTeams;
 use Laravel\Jetstream\Contracts\DeletesTeams;
 use Laravel\Jetstream\Contracts\UpdatesTeamNames;
+use Laravel\Jetstream\Contracts\AddsTeamMembers;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Jetstream\RedirectsActions;
 use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
+use App\Models\Team;
+use App\Models\Membership;
 
 class InheritTeamController extends TeamController
 {
-    public function getMyTeams (Request $request, $userId){
-        $teams = Jetstream::newTeamModel()->where('user_id','=',$userId)->get();
+    public function show(Request $request, $teamId)
+    {
+        $team = Jetstream::newTeamModel()->findOrFail($teamId);
 
-        // dd($teams);
+        return Jetstream::inertia()->render($request, 'Teams/Show', [
+            'team' => $team->load('owner', 'users'),
+            'availableRoles' => array_values(Jetstream::$roles),
+            'availablePermissions' => Jetstream::$permissions,
+            'defaultPermissions' => Jetstream::$defaultPermissions,
+            'permissions' => [
+                'canAddTeamMembers' => Gate::check('addTeamMember', $team),
+                'canDeleteTeam' => Gate::check('delete', $team),
+                'canRemoveTeamMembers' => Gate::check('removeTeamMember', $team),
+                'canUpdateTeam' => Gate::check('update', $team),
+            ],
+        ]);
+    }
+    public function getMyTeams (Request $request, $userId){
+        $teams = Jetstream::hasTeamFeatures() ? $request->user()->allTeams() : null;
         return Jetstream::inertia()->render($request, 'Teams/MyTeam', [
             'teams' => $teams->load('owner', 'users'),
         ]);
     }
-    public function fetchTeams()
+    public function fetchTeams($UserID)
     {
-        $response = Jetstream::newTeamModel()->get();
+        $response = team::addSelect(['join' => Membership::select('role')->whereColumn('team_id', 'teams.id')
+                        ->where('user_id','=',$UserID)
+                        ->limit(1)
+                    ])->where('user_id','!=',$UserID)->get();
         if ($response) {
             return response()->json([
                 'status' => 'success',
@@ -37,5 +58,20 @@ class InheritTeamController extends TeamController
             'status' => 'failed',
             'result' => []
         ]);
+    }
+
+    public function Join(Request $request, $teamId)
+    {
+        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+
+        echo$request->email;
+        app(AddsTeamMembers::class)->join(
+            $request->user(),
+            $team,
+            $request->email ?: '',
+            $request->role
+        );
+
+        return back(303);
     }
 }

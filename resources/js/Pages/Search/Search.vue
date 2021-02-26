@@ -92,7 +92,12 @@
           </section>
         </div>
         <kanban-area v-if="DataRow == 'users'">
-          <kanban-box v-for="user in users.original.result" :key="user.email">
+          <kanban-box
+            class="data_row"
+            v-for="user in users.original.result"
+            :key="user.email"
+            @click.native="viewUser(user)"
+          >
             <template #image
               ><div
                 class="kanban_image_fill_left"
@@ -118,13 +123,26 @@
                 ><small>{{ user.email }}</small></span
               ></template
             >
-            <template #button
-              ><inertia-link
-                class="btn btn-sm btn-primary text-white float-right"
-                role="button"
-                >Add Friend</inertia-link
-              ></template
-            >
+            <template #button>
+              <form
+                method="POST"
+                v-if="user.state == null"
+                @submit.prevent="Follow($page.user.id, user.id)"
+              >
+                <jet-Primary-button class="float-right">
+                  Follow
+                </jet-Primary-button>
+              </form>
+              <form
+                method="POST"
+                v-else
+                @submit.prevent="Unfollow($page.user.id, user.id)"
+              >
+                <jet-Primary-button class="float-right">
+                  Unfollow
+                </jet-Primary-button>
+              </form>
+            </template>
           </kanban-box>
           <kanban-ghost
             v-for="n in 80 - teams.original.result.length"
@@ -139,10 +157,11 @@
                 style="
                   background-image: url('https://erp.kltech-intl.technology/images/icons/avatar.png');
                 "
+                @click="viewTeam(team)"
               ></div
             ></template>
             <template #jobs
-              ><span>{{ team.name }}</span></template
+              ><span @click="viewTeam(team)">{{ team.name }}</span></template
             >
             <template #tags
               ><span class="field_tag tag_color_6"
@@ -150,13 +169,26 @@
               ></template
             >
 
-            <template #button
-              ><inertia-link
-                class="btn btn-sm btn-primary text-white float-right"
-                role="button"
-                >Request Join</inertia-link
-              ></template
-            >
+            <template #button>
+              <form
+                method="POST"
+                v-if="team.join == null"
+                @submit.prevent="Join($page.user, team)"
+              >
+                <jet-Primary-button class="float-right">
+                  Join
+                </jet-Primary-button>
+              </form>
+              <form
+                method="POST"
+                v-else
+                @submit.prevent="LeaveTeam($page.user, team)"
+              >
+                <jet-Primary-button class="float-right">
+                  Leave
+                </jet-Primary-button>
+              </form>
+            </template>
           </kanban-box>
           <kanban-ghost
             v-for="n in 80 - teams.original.result.length"
@@ -176,7 +208,7 @@ import AppContent from "@/Jetstream/ApplicationContent";
 import AppLayout from "@/Layouts/AppLayout";
 import ControlPanel from "@/Jetstream/ControlPanel";
 import SearchPanel from "@/Jetstream/SearchPanel";
-import JetSuccessButton from "@/Jetstream/SuccessButton";
+import JetPrimaryButton from "@/Jetstream/PrimaryButton";
 // Kanban Component
 import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBox";
@@ -190,7 +222,7 @@ export default {
     AppLayout,
     ControlPanel,
     SearchPanel,
-    JetSuccessButton,
+    JetPrimaryButton,
     KanbanArea,
     KanbanBox,
     KanbanGhost,
@@ -204,6 +236,7 @@ export default {
   },
   created() {
     this.detectMob();
+    // this.Follow();
   },
   methods: {
     detectMob() {
@@ -215,6 +248,39 @@ export default {
     },
     viewDetail(row) {
       this.$inertia.visit(route("teams.show", row.id));
+    },
+    Follow(uid, friend) {
+      this.$inertia.post(route("user.follow"), {
+        user_id: uid,
+        friend_id: friend,
+        preserveState: false,
+      });
+    },
+    Unfollow(uid, friend) {
+      this.$inertia.post(route("user.unfollow"), {
+        user_id: uid,
+        friend_id: friend,
+        preserveState: false,
+      });
+    },
+    Join(user, team) {
+      this.$inertia.post(route("team.join", team), {
+        user: user,
+        email: user.email,
+        role: "editor",
+        preserveScroll: true,
+      });
+    },
+    LeaveTeam(user, team) {
+      this.$inertia.delete(route("team-members.destroy", [team, user]));
+    },
+    viewTeam(row) {
+      this.$inertia.visit(route("teams.show", row.id));
+    },
+    viewUser(row) {
+      this.$inertia.visit(route("profile.public", row.email), {
+        user: row,
+      });
     },
   },
   computed: {

@@ -34,6 +34,18 @@ class AddTeamMember implements AddsTeamMembers
         TeamMemberAdded::dispatch($team, $newTeamMember);
     }
 
+    public function join($user, $team, string $email, string $role = null)
+    {
+        $this->validate($team, $email, $role);
+
+        $team->users()->attach(
+            $newTeamMember = Jetstream::findUserByEmailOrFail($email),
+            ['role' => $role]
+        );
+
+        TeamMemberAdded::dispatch($team, $newTeamMember);
+    }
+
     /**
      * Validate the add member operation.
      *

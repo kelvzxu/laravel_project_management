@@ -13,7 +13,7 @@ class SearchController extends Controller
     public function Search(Request $request,$UserID)
     {
         $users = app(UsersController::class)->fetchUser($UserID);
-        $teams = app(InheritTeamController::class)->fetchTeams();
+        $teams = app(InheritTeamController::class)->fetchTeams($UserID);
         return Jetstream::inertia()->render($request, 'Search/Search', [
             'teams' => $teams,
             'users' => $users,
