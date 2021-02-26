@@ -157,11 +157,11 @@
                 style="
                   background-image: url('https://erp.kltech-intl.technology/images/icons/avatar.png');
                 "
-                @click="viewTeams(team)"
+                @click="viewTeam(team)"
               ></div
             ></template>
             <template #jobs
-              ><span @click="viewTeams(team)">{{ team.name }}</span></template
+              ><span @click="viewTeam(team)">{{ team.name }}</span></template
             >
             <template #tags
               ><span class="field_tag tag_color_6"
@@ -274,8 +274,13 @@ export default {
     LeaveTeam(user, team) {
       this.$inertia.delete(route("team-members.destroy", [team, user]));
     },
-    viewTeams(row) {
+    viewTeam(row) {
       this.$inertia.visit(route("teams.show", row.id));
+    },
+    viewUser(row) {
+      this.$inertia.visit(route("profile.public", row.email), {
+        user: row,
+      });
     },
   },
   computed: {

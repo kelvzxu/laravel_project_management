@@ -25,6 +25,8 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function (){
     Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
     Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
+    Route::get('/{user}', [ProfileController::class, 'PublicProfile'])
+                        ->name('profile.public');
     Route::get('/user/sessions', [ProfileController::class, 'session'])
                         ->name('profile.session');
     Route::get('/user/password', [ProfileController::class, 'updatePassword'])

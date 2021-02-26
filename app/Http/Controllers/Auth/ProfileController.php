@@ -62,4 +62,12 @@ class ProfileController extends UserProfileController
             ];
         });
     }
+
+    public function PublicProfile(Request $request, $user){
+        $data = app(UsersController::class)->getUser($user);
+        echo $data;
+        // return Jetstream::inertia()->render($request, 'Search/Search', [
+        //     'users' => $users,
+        // ]);
+    }
 }
