@@ -33,7 +33,8 @@ class UsersController extends UserProfileController
             'result' => []
         ]);
     }
-    public function GetUser($user)
+
+    public function getUser($user)
     {
         $user = user::where('email',$user)->first();
         $response = user::with('followers','following')->addSelect(['state' => UserFriend::select('state')
