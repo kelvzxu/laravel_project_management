@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function (){
                         ->name('user.follow'); 
     Route::post('/user/unfollow',[UserFriendController::class,'UnfollowUser'])
                         ->name('user.unfollow'); 
+    Route::post('/join/teams/{team}/members', [InheritTeamController::class, 'Join'])->name('team.join');
+    Route::get('/teams/{team}', [InheritTeamController::class, 'show'])->name('teams.show');
 });  
 
 

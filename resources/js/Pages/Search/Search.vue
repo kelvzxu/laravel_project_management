@@ -92,7 +92,12 @@
           </section>
         </div>
         <kanban-area v-if="DataRow == 'users'">
-          <kanban-box v-for="user in users.original.result" :key="user.email">
+          <kanban-box
+            class="data_row"
+            v-for="user in users.original.result"
+            :key="user.email"
+            @click.native="viewUser(user)"
+          >
             <template #image
               ><div
                 class="kanban_image_fill_left"
@@ -152,10 +157,11 @@
                 style="
                   background-image: url('https://erp.kltech-intl.technology/images/icons/avatar.png');
                 "
+                @click="viewTeams(team)"
               ></div
             ></template>
             <template #jobs
-              ><span>{{ team.name }}</span></template
+              ><span @click="viewTeams(team)">{{ team.name }}</span></template
             >
             <template #tags
               ><span class="field_tag tag_color_6"
@@ -167,7 +173,7 @@
               <form
                 method="POST"
                 v-if="team.join == null"
-                @submit.prevent="Join($page.user.id, team.id)"
+                @submit.prevent="Join($page.user, team)"
               >
                 <jet-Primary-button class="float-right">
                   Join
@@ -176,7 +182,7 @@
               <form
                 method="POST"
                 v-else
-                @submit.prevent="Leave($page.user.id, team.id)"
+                @submit.prevent="LeaveTeam($page.user, team)"
               >
                 <jet-Primary-button class="float-right">
                   Leave
@@ -256,6 +262,20 @@ export default {
         friend_id: friend,
         preserveState: false,
       });
+    },
+    Join(user, team) {
+      this.$inertia.post(route("team.join", team), {
+        user: user,
+        email: user.email,
+        role: "editor",
+        preserveScroll: true,
+      });
+    },
+    LeaveTeam(user, team) {
+      this.$inertia.delete(route("team-members.destroy", [team, user]));
+    },
+    viewTeams(row) {
+      this.$inertia.visit(route("teams.show", row.id));
     },
   },
   computed: {
