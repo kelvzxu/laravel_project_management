@@ -2,18 +2,25 @@
   <app-layout>
     <app-content>
       <jumbotron>
-        <template #header>
-          <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Profile
-          </h2>
-        </template>
-
-        <div>
-          <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            <!-- <update-photo-profile :user="$page.user" /> -->
-            <update-profile-information-form :user="$page.user" />
+        <template #followers>
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <inertia-link class="text-link" href="/users/kelvzxu/followers"
+            >{{ users.original.result.followers.length }} followers
+          </inertia-link></template
+        >
+        <template #following>
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <inertia-link class="text-link" href="/users/kelvzxu/followers"
+            >{{ users.original.result.following.length }} following
+          </inertia-link></template
+        >
+        <template #main>
+          <div>
+            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+              <update-profile-information-form :user="$page.user" />
+            </div>
           </div>
-        </div>
+        </template>
       </jumbotron>
     </app-content>
   </app-layout>
@@ -26,7 +33,7 @@ import Jumbotron from "@/Jetstream/ProfileJumbotron";
 import UpdateProfileInformationForm from "./UpdateProfileInformationForm";
 
 export default {
-  props: ["sessions"],
+  props: ["sessions", "users"],
 
   components: {
     AppContent,

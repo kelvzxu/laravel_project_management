@@ -22,9 +22,9 @@ class GithubController extends Controller
     {
         try {
     
-            $user = Socialite::driver('github')->stateless()->user();
-     
-            $finduser = User::where('github_id', $user->id)->first();
+            $response = Socialite::driver('github')->stateless()->user();
+            $user = $response->user;
+            $finduser = User::where('github_id', $user['id'])->first();
      
             if($finduser){
                 Auth::login($finduser);
@@ -33,10 +33,14 @@ class GithubController extends Controller
      
             }else{
                 $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'github_id'=> $user->id,
-                    'password' => encrypt('123456dummy')
+                    'name' => $user['name'],
+                    'username' => $user['login'],
+                    'email' => $user['email'],
+                    'github_id'=> $user['id'],
+                    'password' => encrypt('123456dummy'),
+                    'website_url' => $user['blog'],
+                    'location' => $user['location'],
+                    'twitter'=>$user['twitter_username'],
                 ]);
                 
                 $this->createTeam($newUser);

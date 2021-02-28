@@ -2,23 +2,31 @@
   <app-layout>
     <app-content>
       <jumbotron>
-        <template #header>
-          <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Profile
-          </h2>
-        </template>
+        <template #followers>
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <inertia-link class="text-link" href="/users/kelvzxu/followers"
+            >{{ users.original.result.followers.length }} followers
+          </inertia-link></template
+        >
+        <template #following>
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <inertia-link class="text-link" href="/users/kelvzxu/followers"
+            >{{ users.original.result.following.length }} following
+          </inertia-link></template
+        >
+        <template #main>
+          <div>
+            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+              <div v-if="$page.jetstream.canManageTwoFactorAuthentication">
+                <two-factor-authentication-form class="mt-10 sm:mt-0" />
+              </div>
 
-        <div>
-          <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            <div v-if="$page.jetstream.canManageTwoFactorAuthentication">
-              <two-factor-authentication-form class="mt-10 sm:mt-0" />
+              <jet-section-border />
+
+              <delete-user-form class="mt-10 sm:mt-0" />
             </div>
-
-            <jet-section-border />
-
-            <delete-user-form class="mt-10 sm:mt-0" />
           </div>
-        </div>
+        </template>
       </jumbotron>
     </app-content>
   </app-layout>
@@ -35,7 +43,7 @@ import UpdatePasswordForm from "./UpdatePasswordForm";
 import UpdateProfileInformationForm from "./UpdateProfileInformationForm";
 
 export default {
-  props: ["sessions"],
+  props: ["sessions", "users"],
 
   components: {
     AppContent,

@@ -1,5 +1,5 @@
 <template>
-  <jet-form-section @submitted="updatePassword">
+  <jet-form @submitted="updatePassword">
     <template #form>
       <div class="content" id="content-body">
         <div
@@ -91,13 +91,13 @@
         Save password
       </jet-button>
     </template>
-  </jet-form-section>
+  </jet-form>
 </template>
 
 <script>
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/SuccessButton";
-import JetFormSection from "@/Jetstream/Form";
+import JetForm from "@/Jetstream/Form";
 import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
@@ -106,7 +106,7 @@ export default {
   components: {
     JetActionMessage,
     JetButton,
-    JetFormSection,
+    JetForm,
     JetInput,
     JetInputError,
     JetLabel,

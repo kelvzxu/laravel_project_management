@@ -23,3 +23,5 @@ Route::get('/team/fetch/{user}', [InheritTeamController::class, 'fetchTeams'])
                     ->name('fetch.teams');
 Route::get('/user/fetch/{user}', [UsersController::class, 'fetchUser'])
                     ->name('fetch.user');
+Route::get('/user/get/{user}', [UsersController::class, 'getUser'])
+                    ->name('get.user');

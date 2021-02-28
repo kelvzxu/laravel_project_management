@@ -33,14 +33,11 @@ class UsersController extends UserProfileController
             'result' => []
         ]);
     }
-    public function GetUser($user)
+
+    public function getUser($user)
     {
-        $user = user::where('email',$user)->first();
-        $response = user::with('followers','following')->addSelect(['state' => UserFriend::select('state')
-            ->whereColumn('friend_id', 'users.id')
-            ->where('user_id','=',$user->id)
-            ->limit(1)
-        ])->where('email','=',$user->email)->first();
+        $user = $this->findUser($user);
+        $response = user::with('followers.userfollowers','following.userfollowing')->where('email','=',$user->email)->first();
 
         if ($response) {
             return response()->json([
@@ -52,5 +49,10 @@ class UsersController extends UserProfileController
             'status' => 'failed',
             'result' => []
         ]);
+    }
+
+    public function findUser($mail){
+        $user = user::where('email',$mail)->first();
+        return $user;
     }
 }
