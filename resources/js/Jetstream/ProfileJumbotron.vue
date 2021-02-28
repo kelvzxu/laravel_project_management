@@ -1,126 +1,111 @@
 <template>
-  <div class="user_profile_container">
-    <div class="user_profile">
-      <section class="user_profile_top_container">
-        <div class="locale-picker-wrapper">
-          <!-- <select
-            class="custom-select"
-            style="border: none"
-            id="inputGroupSelect01"
+  <jet-profile-header>
+    <template #avatar>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        :href="$page.user.profile_photo_url"
+        ><img
+          class="avatar s90 js-lazy-loaded qa-js-lazy-loaded"
+          itemprop="image"
+          :src="$page.user.profile_photo_url"
+          :alt="$page.user.name"
+          loading="lazy"
+        />
+      </a>
+    </template>
+    <template #name>{{ $page.user.name }}</template>
+    <template #username v-if="$page.user.username">
+      <span class="middle-dot-divider"> @{{ $page.user.username }} </span>
+    </template>
+    <template #join_date
+      ><small
+        >Member Since {{ $page.user.created_at | formatDate }}</small
+      ></template
+    >
+    <template #location v-if="$page.user.location">
+      <i class="fa fa-map-marker" aria-hidden="true"></i>
+      <span class="vertical-align-middle" itemprop="addressLocality">
+        {{ $page.user.location }}
+      </span>
+    </template>
+    <template #website v-if="$page.user.website_url">
+      <a
+        class="text-link"
+        target="_blank"
+        itemprop="url"
+        :href="$page.user.website_url"
+        >{{ $page.user.website_url }}</a
+      >
+    </template>
+    <template #followers> <slot name="followers"></slot></template>
+    <template #following> <slot name="following"></slot></template>
+    <template #navigation_menu>
+      <ul
+        class="nav-links user-profile-nav scrolling-tabs nav nav-tabs is-initialized"
+      >
+        <li class="js-info-tab">
+          <inertia-link
+            :href="route('profile.show')"
+            :active="route().current('profile.show')"
+            >Personal Info</inertia-link
           >
-            <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select> -->
-        </div>
-        <div class="user-profile-top-component">
-          <div class="user_inner_container user_profile_top">
-            <div class="profile-image-component">
-              <div
-                class="inline_block out_of_office_icon_container position_relative"
-              >
-                <div class="out_of_office_user animated FadeIn inline_block">
-                  <img
-                    class="out_of_office-icon"
-                    src="https://cdn7.monday.com/images/working-status/wfh.svg"
-                  />
-                </div>
-              </div>
-              <div class="ds-menu-button-container">
-                <div class="hover-wrapper">
-                  <img
-                    class="profile-image hover"
-                    :src="$page.user.profile_photo_url"
-                    :alt="$page.user.name"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="user_name">
-              <h1>
-                <div>
-                  <span class="editable">{{ $page.user.name }}</span>
-                </div>
-              </h1>
-            </div>
-          </div>
-        </div>
-        <div class="user_profile_menu_container">
-          <div id="user_profile_tabs">
-            <ul class="pulse-tabs">
-              <jet-responsive-nav-link
-                :href="route('profile.show')"
-                :active="route().current('profile.show')"
-                >Personal Info</jet-responsive-nav-link
-              >
-              <li class="">
-                <a href="#">Working Status</a>
-              </li>
-              <jet-responsive-nav-link
-                :href="route('profile.password')"
-                :active="route().current('profile.password')"
-                >Password</jet-responsive-nav-link
-              >
-              <jet-responsive-nav-link
-                :href="route('profile.preferences')"
-                :active="route().current('profile.preferences')"
-                >Preferences</jet-responsive-nav-link
-              >
-              <li class="">
-                <a href="#">Notifications</a>
-              </li>
-              <li class="">
-                <a href="#">Email Integration</a>
-              </li>
-              <jet-responsive-nav-link
-                :href="route('profile.session')"
-                :active="route().current('profile.session')"
-                >Sessions</jet-responsive-nav-link
-              >
-            </ul>
-          </div>
-          <jet-dropdown
-            class="user_profile_mobile_menu"
-            align="right"
-            width="48"
+        </li>
+        <li class="js-password-tab">
+          <inertia-link
+            :href="route('profile.password')"
+            :active="route().current('profile.password')"
+            >Password</inertia-link
           >
-            <template #trigger> menu </template>
-            <template #content>
-              <jet-dropdown-link :href="route('profile.show')">
-                Profile
-              </jet-dropdown-link>
-              <jet-dropdown-link :href="route('profile.session')"
-                >Sessions</jet-dropdown-link
-              >
-            </template>
-          </jet-dropdown>
-          <!-- <select class="user_profile_mobile_menu" @change="changePage($event)">
-            <option value="personal_info">Personal Info</option>
-            <option value="working_status">Working Status</option>
-            <option value="password">Password</option>
-            <option value="preferences">Preferences</option>
-            <option value="notifications">Notifications</option>
-            <option value="email_integration">Email Integration</option>
-            <option value="sessions">Sessions</option>
-          </select> -->
-        </div>
-      </section>
-    </div>
-    <slot></slot>
-  </div>
+        </li>
+        <li class="js-preferences-tab">
+          <inertia-link
+            :href="route('profile.preferences')"
+            :active="route().current('profile.preferences')"
+            >Preferences</inertia-link
+          >
+        </li>
+        <li class="js-followers-tab">
+          <inertia-link
+            :href="route('profile.followers', $page.user.email)"
+            :active="route().current('profile.followers')"
+            >Followers</inertia-link
+          >
+        </li>
+        <li class="js-following-tab">
+          <inertia-link
+            :href="route('profile.following', $page.user.email)"
+            :active="route().current('profile.following')"
+            >Following</inertia-link
+          >
+        </li>
+        <li class="js-session-tab">
+          <inertia-link
+            :href="route('profile.session')"
+            :active="route().current('profile.session')"
+            >Sessions</inertia-link
+          >
+        </li>
+      </ul>
+    </template>
+    <template #main>
+      <slot name="main"></slot>
+    </template>
+  </jet-profile-header>
 </template>
 
 <script>
 import JetResponsiveNavLink from "@/Jetstream/ProfileNav";
 import JetDropdown from "@/Jetstream/Dropdown";
 import JetDropdownLink from "@/Jetstream/DropdownLink";
+import JetProfileHeader from "@/Jetstream/ProfileHeader";
 
 export default {
   components: {
     JetResponsiveNavLink,
     JetDropdown,
     JetDropdownLink,
+    JetProfileHeader,
   },
 
   data() {

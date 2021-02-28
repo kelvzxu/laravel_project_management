@@ -22,19 +22,27 @@ use App\Http\Controllers\UserFriendController;
 Route::get('/', function () {
     return view('index');
 });
+Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
+Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
 Route::group(['middleware' => 'auth'], function (){
-    Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
-    Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
-    Route::get('/view/{user}', [ProfileController::class, 'PublicProfile'])
+    Route::get('/user/profile', [ProfileController::class, 'show'])
+                    ->name('profile.show');
+    Route::get('/{user}/view/', [ProfileController::class, 'PublicProfile'])
                         ->name('profile.public');
+    Route::get('/{user}/followers', [ProfileController::class, 'Followers'])
+                        ->name('profile.followers');
+    Route::get('/{user}/following', [ProfileController::class, 'Following'])
+                        ->name('profile.following');
     Route::get('/user/sessions', [ProfileController::class, 'session'])
                         ->name('profile.session');
     Route::get('/user/password', [ProfileController::class, 'updatePassword'])
                         ->name('profile.password');
     Route::get('/user/preferences', [ProfileController::class, 'preference'])
                         ->name('profile.preferences');
-    Route::get('/user/team/all/{user}', [InheritTeamController::class, 'getMyTeams'])
+    Route::get('/user/team/all/', [InheritTeamController::class, 'getMyTeams'])
                         ->name('team.myteam');
+    Route::get('/{user}/team/all/', [InheritTeamController::class, 'getTeams'])
+                        ->name('profile.teams');
     Route::get('/search/{user}', [SearchController::class, 'Search'])
                         ->name('user.search');
     Route::post('/user/follow',[UserFriendController::class,'FollowUser'])

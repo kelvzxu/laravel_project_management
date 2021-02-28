@@ -278,9 +278,7 @@ export default {
       this.$inertia.visit(route("teams.show", row.id));
     },
     viewUser(row) {
-      this.$inertia.visit(route("profile.public", row.email), {
-        user: row,
-      });
+      this.$inertia.visit(route("profile.public", row.email));
     },
   },
   computed: {

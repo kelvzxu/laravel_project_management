@@ -7,6 +7,13 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import { InertiaApp } from '@inertiajs/inertia-vue';
 import { InertiaForm } from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
+import moment from 'moment';
+
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(String(value)).format('MMMM DD, YYYY')
+    }
+});
 
 Vue.mixin({ methods: { route } });
 Vue.use(Vuetify);

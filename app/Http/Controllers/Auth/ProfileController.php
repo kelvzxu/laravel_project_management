@@ -12,6 +12,13 @@ use Laravel\Jetstream\Http\Controllers\Inertia\UserProfileController;
 
 class ProfileController extends UserProfileController
 {
+    public function show(Request $request)
+    {
+        return Jetstream::inertia()->render($request, 'Profile/Show', [
+            'users'=> $this->currentUser($request),
+            'sessions' => $this->sessions($request)->all(),
+        ]);
+    }
     /**
      * Show the general profile settings screen.
      *
@@ -22,17 +29,27 @@ class ProfileController extends UserProfileController
     {
         return Jetstream::inertia()->render($request, 'Profile/Session', [
             'sessions' => $this->sessions($request)->all(),
+            'users'=> $this->currentUser($request),
         ]);
     }
 
     public function updatePassword(Request $request)
     {
-        return Jetstream::inertia()->render($request, 'Profile/Security');
+        return Jetstream::inertia()->render($request, 'Profile/Security',[
+            'users'=> $this->currentUser($request),
+        ]);
     }
 
     public function preference(Request $request)
     {
-        return Jetstream::inertia()->render($request, 'Profile/Preference');
+        return Jetstream::inertia()->render($request, 'Profile/Preference',[
+            'users'=> $this->currentUser($request),
+        ]);
+    }
+
+    public function currentUser(Request $request){
+         $data = app(UsersController::class)->getUser($request->user()->email);
+         return $data;
     }
 
     public function sessions(Request $request)
@@ -65,9 +82,23 @@ class ProfileController extends UserProfileController
 
     public function PublicProfile(Request $request, $user){
         $data = app(UsersController::class)->getUser($user);
-        echo $data;
-        // return Jetstream::inertia()->render($request, 'Search/Search', [
-        //     'users' => $users,
-        // ]);
+        // echo $data;
+        return Jetstream::inertia()->render($request, 'Public/PublicView', [
+            'users' => $data,
+        ]);
+    }
+     public function Followers(Request $request, $user){
+        $data = app(UsersController::class)->getUser($user);
+        return Jetstream::inertia()->render($request, 'Public/Friends', [
+            'view_type' => 'followers',
+            'users' => $data,
+        ]);
+    }
+    public function Following(Request $request, $user){
+        $data = app(UsersController::class)->getUser($user);
+        return Jetstream::inertia()->render($request, 'Public/Friends', [
+            'view_type' => 'following',
+            'users' => $data,
+        ]);
     }
 }

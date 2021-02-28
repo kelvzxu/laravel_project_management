@@ -187,8 +187,8 @@
                   </div>
                 </a>
                 <jet-responsive-nav-link
-                  :href="route('team.myteam', $page.user.id)"
-                  :active="route().current('team.myteam', $page.user.id)"
+                  :href="route('team.myteam')"
+                  :active="route().current('team.myteam')"
                 >
                   <div class="ds-menu-item">
                     <div class="ds-icon"><i class="fa fa-code"></i></div>

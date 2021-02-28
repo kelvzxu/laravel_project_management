@@ -14,6 +14,7 @@ use Laravel\Jetstream\Contracts\AddsTeamMembers;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Jetstream\RedirectsActions;
 use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
+use App\Http\Controllers\Auth\UsersController;
 use App\Models\Team;
 use App\Models\Membership;
 
@@ -36,12 +37,23 @@ class InheritTeamController extends TeamController
             ],
         ]);
     }
-    public function getMyTeams (Request $request, $userId){
+    public function getMyTeams (Request $request){
         $teams = Jetstream::hasTeamFeatures() ? $request->user()->allTeams() : null;
         return Jetstream::inertia()->render($request, 'Teams/MyTeam', [
             'teams' => $teams->load('owner', 'users'),
         ]);
     }
+
+    public function getTeams (Request $request, $userId){
+        $users = app(UsersController::class)->findUser($userId);
+        $user = app(UsersController::class)->getUser($userId);
+        $teams = Jetstream::hasTeamFeatures() ? $users->allTeams() : null;
+        return Jetstream::inertia()->render($request, 'Public/Team', [
+            'teams' => $teams->load('owner', 'users'),
+            'users' => $user,
+        ]);
+    }
+
     public function fetchTeams($UserID)
     {
         $response = team::addSelect(['join' => Membership::select('role')->whereColumn('team_id', 'teams.id')
