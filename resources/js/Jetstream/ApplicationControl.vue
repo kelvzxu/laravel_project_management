@@ -294,14 +294,24 @@ export default {
           "div.application-control-component"
         );
         this.control.classList.remove("is-expanded");
+        this.ChangeWrapper();
         this.ExpanceControl = false;
       } else {
         this.control = document.querySelector(
           "div.application-control-component"
         );
         this.control.classList.add("is-expanded");
+        this.RestoreWrapper();
         this.ExpanceControl = true;
       }
+    },
+    ChangeWrapper() {
+      this.control = document.querySelector("div#first-level-content");
+      this.control.style.left = "-260px";
+    },
+    RestoreWrapper() {
+      this.control = document.querySelector("div#first-level-content");
+      this.control.style.left = "0px";
     },
     AddSidebar() {
       this.workspace = document.querySelector("div.application-layers");
