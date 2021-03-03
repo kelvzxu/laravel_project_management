@@ -2,8 +2,8 @@
   <div class="dialog-node">
     <div
       tabindex="-1"
-      class="ds-dialog-content-wrapper"
-      style="position: relative; left: 60px; top: 143px"
+      class="ds-dialog-content-wrapper profile-dialog-component"
+      style="position: relative; left: 60px"
     >
       <div class="ds-dialog-content-component">
         <div class="ds-menu-dialog ds-menu-md surface-avatar-menu-dialog">

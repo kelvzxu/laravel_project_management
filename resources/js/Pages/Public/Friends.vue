@@ -17,9 +17,9 @@
           </a>
         </template>
         <template #name>{{ users.original.result.name }}</template>
-        <template #username v-if="users.original.result.username">
+        <template #username v-if="users.original.result.show_public_email">
           <span class="middle-dot-divider">
-            @{{ users.original.result.username }}
+            {{ users.original.result.email }}
           </span>
         </template>
         <template #join_date
