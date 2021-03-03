@@ -16,13 +16,16 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
         <link rel="stylesheet" href="{{ asset('assets/css/web_assets_backend.css')}}">
+        <link rel="stylesheet" href="{{ asset('assets/css/screen.css')}}">
+        <link rel="stylesheet" href="{{ asset('assets/css/vendors.css')}}">
+        <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
 
         <!-- Scripts -->
         @routes
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
+    <body id="main" class="font-sans antialiased light-app-theme">
         @inertia
     </body>
 </html>

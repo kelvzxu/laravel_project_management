@@ -1,104 +1,625 @@
 <template>
-    <div>
-        <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+  <div
+    class="first-level-content-wrapper first-level-control-pinned"
+    id="first-level-content-wrapper"
+  >
+    <div
+      class="first-level-content-header"
+      id="first-level-content-header"
+    ></div>
+    <div id="board-view-ui-container"></div>
+    <div
+      class="first-level-content react-board"
+      id="first-level-content"
+      style="margin-right: 0px"
+    >
+      <div class="current-board-component" id="current-board-component-id">
+        <div tabindex="-1" class="board-with-keyboard-navigation-component">
+          <div class="board-with-keyboard-overlay"></div>
+          <div id="board-wrapper-first-level-content" class="board-wrapper">
             <div>
-                <jet-application-logo class="block h-12 w-auto" />
+              <div class="board-subscribers-dialog-component"></div>
+              <div class="templates-creation-onboarding-dialog-component"></div>
             </div>
-
-            <div class="mt-8 text-2xl">
-                Welcome to your Jetstream application!
-            </div>
-
-            <div class="mt-6 text-gray-500">
-                Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-                to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-                you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-                ecosystem to be a breath of fresh air. We hope you love it.
-            </div>
-        </div>
-
-        <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
-            <div class="p-6">
-                <div class="flex items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                    <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="https://laravel.com/docs">Documentation</a></div>
-                </div>
-
-                <div class="ml-12">
-                    <div class="mt-2 text-sm text-gray-500">
-                        Laravel has wonderful documentation covering every aspect of the framework. Whether you're new to the framework or have previous experience, we recommend reading all of the documentation from beginning to end.
-                    </div>
-
-                    <a href="https://laravel.com/docs">
-                        <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
-                                <div>Explore the documentation</div>
-
-                                <div class="ml-1 text-indigo-500">
-                                    <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                </div>
+            <div id="board-header" class="board-header collapse-mode-enabled">
+              <div class="board-header-top"></div>
+              <div
+                class="board-header-content-wrapper monday-board-header-content-wrapper-v2"
+              >
+                <div class="board-header-main">
+                  <div class="board-header-top">
+                    <div class="board-header-left">
+                      <div class="board-name">
+                        <div
+                          class="ds-editable-component"
+                          style="width: auto; height: auto"
+                        >
+                          <div class="ds-text-component" dir="auto">
+                            <span>Start from scratch</span>
+                          </div>
                         </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
-                <div class="flex items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="https://laracasts.com">Laracasts</a></div>
-                </div>
-
-                <div class="ml-12">
-                    <div class="mt-2 text-sm text-gray-500">
-                        Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                    </div>
-
-                    <a href="https://laracasts.com">
-                        <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
-                                <div>Start watching Laracasts</div>
-
-                                <div class="ml-1 text-indigo-500">
-                                    <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                </div>
+                        <div class="star-component favorite-star">
+                          <i class="icon icon-v2-star-o is-off"></i>
                         </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="p-6 border-t border-gray-200">
-                <div class="flex items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="https://tailwindcss.com/">Tailwind</a></div>
-                </div>
-
-                <div class="ml-12">
-                    <div class="mt-2 text-sm text-gray-500">
-                        Laravel Jetstream is built with Tailwind, an amazing utility first CSS framework that doesn't get in your way. You'll be amazed how easily you can build and maintain fresh, modern designs with this wonderful framework at your fingertips.
+                      </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="p-6 border-t border-gray-200 md:border-l">
-                <div class="flex items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">Authentication</div>
-                </div>
-
-                <div class="ml-12">
-                    <div class="mt-2 text-sm text-gray-500">
-                        Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started what matters most: building your application.
+                    <div class="board-header-right" id="board-header-right">
+                      <div class="board-actions-v2">
+                        <div
+                          class="subscribers-images-component subscribers-images-component-v2"
+                        >
+                          <div class="subscribers-overlap-images-wrapper">
+                            <div class="board-header-label">
+                              <div class="label-text">Last seen</div>
+                              <div class="label-labeled">
+                                <div class="overlap-images-component">
+                                  <div class="overlap-images-wrapper">
+                                    <div
+                                      class="overlap-image"
+                                      style="
+                                        height: 30px;
+                                        width: 30px;
+                                        margin: 0px;
+                                      "
+                                    >
+                                      <img
+                                        :src="$page.user.profile_photo_url"
+                                        class="inner-image"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="board-actions-section subscribers-list-wrapper"
+                        >
+                          <div class="monday-board-control">
+                            <div class="monday-board-control__icon">
+                              <i class="icon icon-v2-surface-invite"></i>
+                            </div>
+                            <div class="monday-board-control__text">
+                              Invite / 1
+                            </div>
+                          </div>
+                        </div>
+                        <div class="monday-board-control">
+                          <div class="monday-board-control__icon">
+                            <i class="icon icon-v2-activity-no-border"></i>
+                          </div>
+                          <div class="monday-board-control__text">Activity</div>
+                        </div>
+                        <div class="monday-add-to-board-wrapper">
+                          <div
+                            class="monday-add-to-board-menu"
+                            id="monday-add-to-board-menu-container"
+                          >
+                            <div class="ds-menu-button-container">
+                              <div class="monday-add-to-board-menu-button">
+                                <div class="monday-board-control">
+                                  <div class="monday-board-control__icon">
+                                    <i class="icon icon-v2-plus-simple"></i>
+                                  </div>
+                                  <div class="monday-board-control__text">
+                                    Add to board
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="board-menu" id="current-board-menu-button">
+                          <div class="ds-menu-button-container">
+                            <a class="board-menu-button fullscreen-views"
+                              ><span
+                                class="icon ellipsis icon-v2-ellipsis"
+                              ></span
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                  </div>
+                  <div>
+                    <div class="board-description can-edit">
+                      <div
+                        class="ds-editable-component"
+                        style="width: auto; height: auto"
+                      >
+                        <div class="ds-text-component description-content">
+                          <div class="description-line">
+                            <span class="text-content"
+                              >Add board description</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div class="monday-board-subset-toolbar">
+                  <div class="monday-board-subset-toolbar__subset-picker">
+                    <div class="board-subset-picker-component-v2">
+                      <div class="board-subset-picker-button">
+                        <div class="board-subset-picker-switch">
+                          <div class="board-subset-picker-switch__icon">
+                            <i class="icon icon-v2-hamburger-menu"></i>
+                          </div>
+                          <div class="board-subset-picker-switch__text">
+                            <div class="ds-text-component" dir="auto">
+                              <span>All Views</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="monday-board-subset-toolbar__separator"></div>
+                  <div class="monday-board-subset-toolbar__pinned-subsets">
+                    <div class="monday-board-pinned-subsets">
+                      <div class="monday-board-subset-item">
+                        <button
+                          type="button"
+                          class="monday-board-subset-item__button monday-style-button monday-style-button--size-md monday-style-button--kind-tertiary monday-style-button--color-primary"
+                          name=""
+                          id=""
+                          aria-labelledby=""
+                          aria-label=""
+                          aria-busy="false"
+                          style="
+                            width: 128.031px;
+                            --element-width: 128.031px;
+                            --element-height: 40px;
+                          "
+                        >
+                          <div class="monday-board-subset-item__left-icon">
+                            <i class="icon-v2-view-table"></i>
+                            <div
+                              class="monday-board-subset-item__subset-additional-icon monday-board-subset-item__home-icon"
+                            >
+                              <i class="icon icon-v2-default-view-house"></i>
+                            </div>
+                          </div>
+                          <div class="monday-board-subset-item__label">
+                            <div
+                              class="ds-editable-component subset-name"
+                              style="width: auto; height: auto"
+                            >
+                              <div class="ds-text-component" dir="auto">
+                                <span>Main Table</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="ds-menu-button-container">
+                            <div
+                              class="monday-board-subset-item__options-button menu-subset-edit-options-button-container menu-subset-edit-options-button-container-with-subset-id"
+                            >
+                              <span
+                                class="icon ellipsis icon-v2-ellipsis menu-subset-edit-options-button"
+                              ></span>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+                      <div
+                        class="monday-board-subset-item monday-board-subset-item--active"
+                      >
+                        <button
+                          type="button"
+                          class="monday-board-subset-item__button monday-style-button monday-style-button--size-md monday-style-button--kind-tertiary monday-style-button--color-primary"
+                          name=""
+                          id=""
+                          aria-labelledby=""
+                          aria-label=""
+                          aria-busy="false"
+                          style="
+                            width: 107.312px;
+                            --element-width: 107.313px;
+                            --element-height: 40px;
+                          "
+                        >
+                          <div class="monday-board-subset-item__left-icon">
+                            <i class="icon icon-v2-line-kanban"></i>
+                            <div
+                              class="monday-board-subset-item__subset-additional-icon monday-board-subset-item__pinned-icon"
+                            >
+                              <i class="icon icon-v2-pin-with-fill"></i>
+                            </div>
+                          </div>
+                          <div class="monday-board-subset-item__label">
+                            <div
+                              class="ds-editable-component subset-name"
+                              style="width: auto; height: auto"
+                            >
+                              <div class="ds-text-component" dir="auto">
+                                <span>Kanban</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="ds-menu-button-container">
+                            <div
+                              class="monday-board-subset-item__options-button menu-subset-edit-options-button-container menu-subset-edit-options-button-container-with-subset-id"
+                            >
+                              <span
+                                class="icon ellipsis icon-v2-ellipsis menu-subset-edit-options-button"
+                              ></span>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="monday-subset-toolbar-extended collapse-mode-enabled"
+                  >
+                    <div
+                      class="monday-subset-toolbar-extended__automations-integrations"
+                    >
+                      <div class="automations-button-component">
+                        <div class="automations-buttons-inner">
+                          <div class="integrations-button">
+                            <div class="integrations-button-content">
+                              <span
+                                class="entity-icon icon icon-dapulse-integrations"
+                              ></span
+                              >Integrate
+                              <div class="apps-badges-container">
+                                <div class="integration-badges-component">
+                                  <div class="integration-badge-container">
+                                    <div class="hexagon-container disabled">
+                                      <svg
+                                        width="40"
+                                        height="40"
+                                        viewBox="0 0 54 50"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <g filter="url(#filter0_d)">
+                                          <path
+                                            d="M29.004 5.5359L43.0081 13.6211C44.2457 14.3357 45.0081 15.6562 45.0081 17.0852V33.2557C45.0081 34.6848 44.2457 36.0053 43.0081 36.7198L29.004 44.805C27.7664 45.5196 26.2416 45.5196 25.004 44.805L11 36.7198C9.7624 36.0053 9 34.6848 9 33.2557V17.0852C9 15.6562 9.7624 14.3357 11 13.6211L25.004 5.5359C26.2416 4.82137 27.7664 4.82137 29.004 5.5359Z"
+                                            fill="var(--primary-background-color)"
+                                            stroke="var(--layout-border-color)"
+                                            stroke-width="2"
+                                          ></path>
+                                        </g>
+                                        <defs>
+                                          <filter
+                                            id="filter0_d"
+                                            x="0"
+                                            y="0"
+                                            width="49.0081"
+                                            height="53.3409"
+                                            filterUnits="userSpaceOnUse"
+                                            color-interpolation-filters="sRGB"
+                                          >
+                                            <feFlood
+                                              flood-opacity="0"
+                                              result="BackgroundImageFix"
+                                            ></feFlood>
+                                            <feColorMatrix
+                                              in="SourceAlpha"
+                                              type="matrix"
+                                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                            ></feColorMatrix>
+                                            <feOffset dy="0"></feOffset>
+                                            <feGaussianBlur
+                                              stdDeviation="0"
+                                            ></feGaussianBlur>
+                                            <feColorMatrix
+                                              type="matrix"
+                                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+                                            ></feColorMatrix>
+                                            <feBlend
+                                              mode="normal"
+                                              in2="BackgroundImageFix"
+                                              result="effect1_dropShadow"
+                                            ></feBlend>
+                                            <feBlend
+                                              mode="normal"
+                                              in="SourceGraphic"
+                                              in2="effect1_dropShadow"
+                                              result="shape"
+                                            ></feBlend>
+                                          </filter>
+                                        </defs></svg
+                                      ><img
+                                        class="integration-logo"
+                                        :src="$page.user.profile_photo_url"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="integration-badge-container">
+                                    <div class="hexagon-container disabled">
+                                      <svg
+                                        width="40"
+                                        height="40"
+                                        viewBox="0 0 54 50"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <g filter="url(#filter0_d)">
+                                          <path
+                                            d="M29.004 5.5359L43.0081 13.6211C44.2457 14.3357 45.0081 15.6562 45.0081 17.0852V33.2557C45.0081 34.6848 44.2457 36.0053 43.0081 36.7198L29.004 44.805C27.7664 45.5196 26.2416 45.5196 25.004 44.805L11 36.7198C9.7624 36.0053 9 34.6848 9 33.2557V17.0852C9 15.6562 9.7624 14.3357 11 13.6211L25.004 5.5359C26.2416 4.82137 27.7664 4.82137 29.004 5.5359Z"
+                                            fill="var(--primary-background-color)"
+                                            stroke="var(--layout-border-color)"
+                                            stroke-width="2"
+                                          ></path>
+                                        </g>
+                                        <defs>
+                                          <filter
+                                            id="filter0_d"
+                                            x="0"
+                                            y="0"
+                                            width="49.0081"
+                                            height="53.3409"
+                                            filterUnits="userSpaceOnUse"
+                                            color-interpolation-filters="sRGB"
+                                          >
+                                            <feFlood
+                                              flood-opacity="0"
+                                              result="BackgroundImageFix"
+                                            ></feFlood>
+                                            <feColorMatrix
+                                              in="SourceAlpha"
+                                              type="matrix"
+                                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                            ></feColorMatrix>
+                                            <feOffset dy="0"></feOffset>
+                                            <feGaussianBlur
+                                              stdDeviation="0"
+                                            ></feGaussianBlur>
+                                            <feColorMatrix
+                                              type="matrix"
+                                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+                                            ></feColorMatrix>
+                                            <feBlend
+                                              mode="normal"
+                                              in2="BackgroundImageFix"
+                                              result="effect1_dropShadow"
+                                            ></feBlend>
+                                            <feBlend
+                                              mode="normal"
+                                              in="SourceGraphic"
+                                              in2="effect1_dropShadow"
+                                              result="shape"
+                                            ></feBlend>
+                                          </filter>
+                                        </defs></svg
+                                      ><img
+                                        class="integration-logo"
+                                        :src="$page.user.profile_photo_url"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="integration-badge-container">
+                                    <div class="hexagon-container disabled">
+                                      <svg
+                                        width="40"
+                                        height="40"
+                                        viewBox="0 0 54 50"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <g filter="url(#filter0_d)">
+                                          <path
+                                            d="M29.004 5.5359L43.0081 13.6211C44.2457 14.3357 45.0081 15.6562 45.0081 17.0852V33.2557C45.0081 34.6848 44.2457 36.0053 43.0081 36.7198L29.004 44.805C27.7664 45.5196 26.2416 45.5196 25.004 44.805L11 36.7198C9.7624 36.0053 9 34.6848 9 33.2557V17.0852C9 15.6562 9.7624 14.3357 11 13.6211L25.004 5.5359C26.2416 4.82137 27.7664 4.82137 29.004 5.5359Z"
+                                            fill="var(--primary-background-color)"
+                                            stroke="var(--layout-border-color)"
+                                            stroke-width="2"
+                                          ></path>
+                                        </g>
+                                        <defs>
+                                          <filter
+                                            id="filter0_d"
+                                            x="0"
+                                            y="0"
+                                            width="49.0081"
+                                            height="53.3409"
+                                            filterUnits="userSpaceOnUse"
+                                            color-interpolation-filters="sRGB"
+                                          >
+                                            <feFlood
+                                              flood-opacity="0"
+                                              result="BackgroundImageFix"
+                                            ></feFlood>
+                                            <feColorMatrix
+                                              in="SourceAlpha"
+                                              type="matrix"
+                                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                            ></feColorMatrix>
+                                            <feOffset dy="0"></feOffset>
+                                            <feGaussianBlur
+                                              stdDeviation="0"
+                                            ></feGaussianBlur>
+                                            <feColorMatrix
+                                              type="matrix"
+                                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+                                            ></feColorMatrix>
+                                            <feBlend
+                                              mode="normal"
+                                              in2="BackgroundImageFix"
+                                              result="effect1_dropShadow"
+                                            ></feBlend>
+                                            <feBlend
+                                              mode="normal"
+                                              in="SourceGraphic"
+                                              in2="effect1_dropShadow"
+                                              result="shape"
+                                            ></feBlend>
+                                          </filter>
+                                        </defs></svg
+                                      ><img
+                                        :src="$page.user.profile_photo_url"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="automations-button">
+                            <span class="button-label"
+                              ><span
+                                class="entity-icon icon icon icon-autopilot"
+                              ></span>
+                              <div class="automations-button-text">
+                                Automate
+                              </div>
+                              <span class="entity-counter">/ 1</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="board-header-collapse-mode-button-component monday-subset-toolbar-extended__collapse-header-btn expand-mode"
+                    >
+                      <i class="collapse-icon fa fa-angle-right"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="board-header-view-bar">
+                  <div class="board-filter new-board-filter monday-v2-header">
+                    <div class="board-subset-left-side-container"></div>
+                    <div class="add-board-entity-button-wrapper">
+                      <div class="add-task-button-component">
+                        <button
+                          type="button"
+                          class="add-with-dropdown monday-style-button monday-style-button--size-sm monday-style-button--kind-primary monday-style-button--color-primary"
+                          name=""
+                          id=""
+                          aria-labelledby=""
+                          aria-label=""
+                          aria-busy="false"
+                          style="
+                            --element-width: 75.4531px;
+                            --element-height: 32px;
+                          "
+                        >
+                          New Item
+                        </button>
+                        <div class="ds-menu-button-container">
+                          <div class="dropdown-button small-button">
+                            <i class="fa fa-angle-down"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="filter-buttons-wrapper">
+                      <div
+                        class="board-filter-input-container board-filter-search board-filter-input-container--expandable"
+                      >
+                        <span class="icon icon-v2-search"></span>
+                        <div class="board-filter-input-wrapper_v2">
+                          <div class="icon-and-input-wrapper">
+                            <input placeholder="Search" value="" />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="board-filter-item-component person-filter-component"
+                      >
+                        <div class="board-filter-item-content-wrapper">
+                          <div
+                            class="board-filter-item-content person-filter-component show-title-when-closed show-title-when-open"
+                          >
+                            <i
+                              class="item-icon icon icon-dapulse-person-column person-filter-icon"
+                            ></i
+                            ><span class="item-title">Person</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="board-filter-item-component rule-based-filer-component"
+                      >
+                        <div class="board-filter-item-content-wrapper">
+                          <div
+                            class="board-filter-item-content rule-based-filer-component with-caret show-title-when-closed show-title-when-open"
+                          >
+                            <i class="item-icon icon icon-v2-funnel"></i
+                            ><span class="item-title">Filter</span>
+                            <div class="caret-icon-container">
+                              <i class="icon caret-icon icon-arrow-down"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="board-filter-item-component sort-settings-component"
+                      >
+                        <div class="board-filter-item-content-wrapper">
+                          <div
+                            class="board-filter-item-content sort-settings-component show-title-when-closed show-title-when-open"
+                          >
+                            <i
+                              class="item-icon icon icon-v2-sort-up-down-arrows"
+                            ></i
+                            ><span class="item-title">Sort</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="board-header-view-actions-wrapper">
+                    <div class="board-header-view-actions">
+                      <div class="full-screen-button-component">
+                        <div class="board-filter-item-component">
+                          <div class="board-filter-item-content-wrapper">
+                            <div class="board-filter-item-content">
+                              <i
+                                class="item-icon icon item-icon icon icon-v2-fullscreen"
+                              ></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="board-filter-item-component">
+                        <div class="board-filter-item-content-wrapper">
+                          <div
+                            class="board-filter-item-content without-additional-data"
+                          >
+                            <i
+                              class="item-icon icon item-icon icon icon-v2-settings-line"
+                            ></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="board-filter-item-component">
+                        <div class="board-filter-item-content-wrapper">
+                          <div class="board-filter-item-content">
+                            <i class="item-icon icon icon-v2-user-feedback"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <div class="menu-component-wrapper">
+              <div></div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+
+    <div id="thumbnail-container"></div>
+    <div id="video-center-button-container"></div>
+    <div id="monday-only-bug-button-container"></div>
+  </div>
 </template>
 
 <script>
-    import JetApplicationLogo from '@/Jetstream/ApplicationLogo'
+import JetApplicationLogo from "@/Jetstream/ApplicationLogo";
 
-    export default {
-        components: {
-            JetApplicationLogo,
-        },
-    }
+export default {
+  components: {
+    JetApplicationLogo,
+  },
+};
 </script>

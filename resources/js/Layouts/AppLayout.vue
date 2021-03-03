@@ -1,130 +1,131 @@
 <template>
-  <div class="application">
-    <div class="application-layers">
+  <div id="application" class="application with-top-reminder">
+    <div class="application-layers" id="application-layers">
       <!-- with-secondary-surface-control -->
       <jet-sidebar>
         <jet-sidebar-primary>
-          <div class="sidebar-navigation-items">
+          <div class="customization-navigation-items-area">
             <inertia-link
               :href="route('dashboard')"
               :active="route().current('dashboard')"
               class="button_link"
             >
-              <div class="sidebar-icon-wrapper">
-                <div class="sidebar-navigation-action-component">
-                  <span class="fa fa-th-large text-white"> </span>
+              <div class="surface-view-icon-wrapper navigate-to-workspaces">
+                <div
+                  class="surface-navigation-action-item-component"
+                  tabindex="0"
+                  aria-label="Workspaces"
+                  role="button"
+                >
+                  <span
+                    class="navigation-action-item-icon fa fa-th-large text-whit"
+                  ></span>
                 </div>
+                <div class="selected-view-indication"></div>
               </div>
             </inertia-link>
-            <div class="sidebar-icon-wrapper">
-              <div class="sidebar-navigation-action-component">
-                <span class="fas fa-bell text-white"> </span>
+            <a href="/public_profile.html">
+              <div class="surface-action-icon-wrapper">
+                <div class="surface-notifications-component">
+                  <span>
+                    <div
+                      class="surface-navigation-dialog-item-component"
+                      tabindex="0"
+                      aria-label="Notifications"
+                      role="button"
+                    >
+                      <span
+                        class="navigation-dialog-item-icon fas fa-bell text-white"
+                      ></span>
+                    </div>
+                  </span>
+                </div>
               </div>
-            </div>
-            <div class="sidebar-icon-wrapper">
-              <div class="sidebar-navigation-action-component">
-                <span class="fas fa-download text-white"> </span>
-              </div>
-            </div>
+            </a>
           </div>
-          <div class="primary-navigation-items-area">
+          <div class="permanent-navigation-items-area">
             <inertia-link
               :href="route('user.search', $page.user.id)"
               :active="route().current('user.search', $page.user.id)"
               class="button_link"
             >
-              <div class="sidebar-icon-wrapper" id="action-search">
-                <div class="sidebar-navigation-action-component">
-                  <span class="fas fa-search text-white"> </span>
+              <div class="surface-action-icon-wrapper">
+                <div
+                  class="surface-navigation-action-item-component"
+                  tabindex="0"
+                  aria-label="Search Everything"
+                  role="button"
+                >
+                  <span
+                    class="navigation-action-item-icon fas fa-search text-white"
+                  ></span>
                 </div>
               </div>
             </inertia-link>
-            <div class="sidebar-icon-wrapper" id="action-help">
-              <div class="sidebar-navigation-action-component">
-                <span class="fas fa-question text-white"> </span>
+            <div class="surface-action-icon-wrapper surface-help-wrapper">
+              <div
+                class="surface-navigation-action-item-component"
+                tabindex="0"
+                aria-label="Help"
+                role="button"
+              >
+                <span
+                  class="navigation-action-item-icon fas fa-question text-white"
+                ></span>
               </div>
             </div>
             <div
               @click="showingProfileDialog = !showingProfileDialog"
-              class="sidebar-profile-menu-wrapper"
+              class="surface-avatar-menu-connector-wrapper"
             >
-              <button
-                v-if="$page.jetstream.managesProfilePhotos"
-                class="sidebar-profile-component"
-                style="border: none; outline: none"
+              <div
+                id="surface-avatar-menu-component"
+                class="surface-avatar-menu-component"
               >
-                <img
-                  class="profile-border-component rounded-circle profile-rounded-component"
-                  :src="$page.user.profile_photo_url"
-                  :alt="$page.user.name"
-                />
-              </button>
-              <button
-                v-else
-                class="sidebar-profile-component"
-                style="border: none; outline: none"
-              >
-                <div>{{ $page.user.name }}</div>
-
-                <div class="ml-1">
-                  <svg
-                    class="fill-current h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
+                <div class="ds-menu-button-container">
+                  <div class="avatar-photo-button-wrapper">
+                    <div class="person-bullet-component wrapper">
+                      <img
+                        class="profile-border-component rounded-circle profile-rounded-component"
+                        :src="$page.user.profile_photo_url"
+                        :alt="$page.user.name"
+                      />
+                    </div>
+                  </div>
                 </div>
-              </button>
+              </div>
             </div>
           </div>
         </jet-sidebar-primary>
         <jet-sidebar-secondary style="display: none">
-          <template v-for="team in $page.user.all_teams">
-            <form @submit.prevent="switchToTeam(team)" :key="team.id">
-              <jet-dropdown-link as="button">
-                <!-- <div class="flex items-center">
+          <template v-for="team in $page.user.all_teams" >
+            <!-- <div class="flex items-center">
                   <div>{{ team.name }}</div>
                 </div> -->
-                <div class="surface-workspace-list-item" id="workspace_item_-1">
-                  <div class="workspace-icon-wrapper selected">
+            <div class="surface-workspace-list-item" id="workspace_item_-1">
+              <div class="workspace-icon-wrapper selected">
+                <form @submit.prevent="switchToTeam(team)" :key="team.id">
+                  <jet-dropdown-link as="button">
                     <div
                       class="workspace-icon-container workspace-size-sm hover-effect"
                     >
                       <div
                         class="workspace-icon-shape-container"
-                        style="background-color: rgb(242, 121, 242)"
+                        style="background-color: rgb(0, 202, 114)"
                       >
                         <div class="workspace-icon icon">
                           <span class="letter">{{ team.name[0] }}</span>
                         </div>
                       </div>
-                      <div
-                        v-if="team.id == $page.user.current_team_id"
-                        class="workspace-permission-icon-wrapper main-workspace-icon-wrapper"
-                      >
-                        <div
-                          class="workspace-permission-icon-inner main-workspace-icon-inner"
-                        >
-                          <i
-                            class="fas fa-crown workspace-permission-icon main-workspace-icon"
-                          ></i>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                  <div
-                    v-if="team.id == $page.user.current_team_id"
-                    class="selected-workspace-indication selected"
-                  ></div>
-                  <div v-else class="selected-workspace-indication"></div>
-                </div>
-              </jet-dropdown-link>
-            </form>
+                  </jet-dropdown-link>
+                </form>
+              </div>
+              <div
+                v-if="team.id == $page.user.current_team_id"
+                class="selected-workspace-indication selected"
+              ></div>
+            </div>
           </template>
         </jet-sidebar-secondary>
       </jet-sidebar>

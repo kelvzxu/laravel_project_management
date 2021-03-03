@@ -1,11 +1,12 @@
 <template>
-  <div class="sidebar-control-primary">
-    <div class="sidebar-application-logo-component-wrapper">
-      <div class="sidebar-application-logo-component">
-        <span class="sidebar-company-logo-image-wrapper">
-          <inertia-link :href="route('dashboard')">
-            <jet-application-mark class="sidebar-company-logo-image" />
-          </inertia-link>
+  <div class="surface-control-primary">
+    <div class="surface-company-logo-component-wrapper">
+      <div class="surface-company-logo-component">
+        <span class="surface-company-logo-image-wrapper">
+          <jet-application-mark
+            class="sidebar-company-logo-image"
+            width="auto"
+          />
         </span>
       </div>
     </div>

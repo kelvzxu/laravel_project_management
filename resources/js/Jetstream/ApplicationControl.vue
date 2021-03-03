@@ -1,11 +1,16 @@
 <template>
-  <div class="application-content">
-    <div id="application-control">
-      <div class="application-control-component is-expanded">
-        <div class="application-control-button-component-wrap">
+  <div class="first-level" id="first-level">
+    <div
+      classname="first-level-expand-button-container"
+      id="first-level-expand-button-container"
+    ></div>
+
+    <div class="first-level-control" id="first-level-control">
+      <div class="first-level-control-component is-expanded is-pinned">
+        <div class="collapse-first-level-button-component-wrapper">
           <div
             disabled=""
-            class="application-control-button-component is-pinned"
+            class="collapse-first-leve-button-component is-pinned"
             @click="HideControl"
           >
             <span class="collapse-icon fa fa-angle-right"></span>
@@ -14,36 +19,45 @@
         <div class="first-level-control-content">
           <div class="home-control-component">
             <div class="home-workspace-items-component">
-              <div class="content-wrapper">
+              <div class="title-wrapper">
                 <div class="home-workspace-items-title-component">
                   <div
                     class="home-control-top-header-component home-workspace-items-header without-dropdown-navigation"
                   >
-                    <div class="workspace-title">
-                      <div class="workspace-icon-container workspace-size-md">
-                        <div
-                          class="workspace-icon-shape-container"
-                          style="background-color: rgb(242, 121, 242)"
-                        >
-                          <div class="workspace-icon icon">
-                            <span class="letter">M</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="workspace-name-wrapper">
-                        <div
-                          class="ds-editable-component workspace-name"
-                          style="width: auto; height: auto"
-                        >
-                          <div class="ds-text-component" dir="auto">
-                            <template v-for="team in $page.user.all_teams">
-                              <form
-                                @submit.prevent="switchToTeam(team)"
-                                :key="team.id"
+                    <template v-for="team in $page.user.all_teams">
+                      <form @submit.prevent="switchToTeam(team)" :key="team.id">
+                        <span v-if="team.id == $page.user.current_team_id">
+                          <div class="workspace-title">
+                            <div
+                              class="workspace-icon-container workspace-size-md"
+                            >
+                              <div
+                                class="workspace-icon-shape-container"
+                                style="background-color: rgb(0, 202, 114)"
                               >
-                                <span
-                                  v-if="team.id == $page.user.current_team_id"
+                                <div class="workspace-icon icon">
+                                  <span class="letter">{{ team.name[0] }}</span>
+                                </div>
+                              </div>
+                              <div
+                                v-if="team.user_id == $page.user.id"
+                                class="workspace-permission-icon-wrapper main-workspace-icon-wrapper"
+                              >
+                                <div
+                                  class="workspace-permission-icon-inner main-workspace-icon-inner"
                                 >
+                                  <i
+                                    class="fa fa-home workspace-permission-icon"
+                                  ></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="workspace-name-wrapper">
+                              <div
+                                class="ds-editable-component workspace-name"
+                                style="width: auto; height: auto"
+                              >
+                                <div class="ds-text-component" dir="auto">
                                   <jet-responsive-nav-link
                                     :href="
                                       route(
@@ -55,22 +69,25 @@
                                   >
                                     {{ team.name }}
                                   </jet-responsive-nav-link>
-                                </span>
-                              </form>
-                            </template>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
+                        </span>
+                      </form>
+                    </template>
                   </div>
                   <div class="home-workspace-items-content-sub-header-wrapper">
                     <div class="new-boards-list-button-component">
-                      <div class="top-new-button-component default-icon">
-                        <div
-                          class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
-                        >
-                          <i class="fa fa-plus-circle" aria-hidden="true"></i
-                          ><span class="ml-1"> Add</span>
+                      <div class="ds-menu-button-container">
+                        <div>
+                          <div class="top-new-button-component default-icon">
+                            <div
+                              class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
+                            >
+                              <i class="fa fa-plus-circle main-icon"></i>Add
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -79,13 +96,11 @@
                     >
                       <div class="boards-filter-row-wrapper">
                         <div class="boards-list-filter-button-component">
-                          <i class="fa fa-filter" aria-hidden="true"></i
-                          ><span class="ml-1"> Filters</span>
+                          <i class="fa fa-filter main-icon"></i
+                          ><span class="filters-text">Filters</span>
                         </div>
                       </div>
-                      <div
-                        class="unified-boards-search-input-wrapper empty mt-2"
-                      >
+                      <div class="unified-boards-search-input-wrapper empty">
                         <i class="fa fa-search search-icon"></i
                         ><input
                           id="boards-list-search-input"
@@ -105,7 +120,6 @@
                   class="home-control-unified-boards-list-component selected"
                 >
                   <div
-                    tabindex="-1"
                     class="with-keyboard-navigation-enhancer home-control-unified-boards-virtualized-list-wrapper"
                   >
                     <div
@@ -118,10 +132,6 @@
                             class="virtual-list-scrollable-container"
                           >
                             <div
-                              aria-label="grid"
-                              aria-readonly="true"
-                              role="grid"
-                              tabindex="0"
                               style="
                                 box-sizing: border-box;
                                 direction: ltr;
@@ -133,7 +143,6 @@
                               "
                             >
                               <div
-                                role="rowgroup"
                                 style="
                                   width: auto;
                                   height: 304px;
@@ -144,7 +153,6 @@
                                 "
                               >
                                 <div
-                                  id="id-6ccefcf2-3857-1064-eeb9-eb74d3f6200a_940000411"
                                   style="
                                     height: 34px;
                                     left: 0px;
@@ -186,10 +194,12 @@
                                                 >
                                                   <div
                                                     dir="auto"
-                                                    class="text-with-highlights ml-1"
+                                                    class="text-with-highlights"
                                                   >
                                                     <em></em
-                                                    ><span> Change Team</span>
+                                                    ><span
+                                                      >Start from scratch</span
+                                                    >
                                                   </div>
                                                 </div>
                                                 <div
@@ -219,7 +229,6 @@
                                   </div>
                                 </div>
                                 <div
-                                  id="id-6ccefcf2-3857-1064-eeb9-eb74d3f6200a_leftpane_footer"
                                   style="
                                     height: 270px;
                                     left: 0px;
@@ -249,18 +258,7 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="application-content-wrapper application-control-pinned">
-      <div
-        class="first-level-content"
-        id="first-level-content"
-        style="margin-right: 0px"
-      >
-        <slot></slot>
-      </div>
-      <div class="livechat-button">
-        <span class="far fa-comments fa-2x text-center"> </span>
-      </div>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -291,14 +289,14 @@ export default {
     HideControl() {
       if (this.ExpanceControl == true) {
         this.control = document.querySelector(
-          "div.application-control-component"
+          "div.first-level-control-component"
         );
         this.control.classList.remove("is-expanded");
         this.ChangeWrapper();
         this.ExpanceControl = false;
       } else {
         this.control = document.querySelector(
-          "div.application-control-component"
+          "div.first-level-control-component"
         );
         this.control.classList.add("is-expanded");
         this.RestoreWrapper();
@@ -306,24 +304,26 @@ export default {
       }
     },
     ChangeWrapper() {
-      this.control = document.querySelector("div#first-level-content");
-      this.control.style.left = "-260px";
+      this.wrapper = document.querySelector("div#first-level-content-wrapper");
+      this.wrapper.classList.add("first-level-control-unpinned");
+      this.wrapper.classList.remove("first-level-control-pinned");
     },
     RestoreWrapper() {
-      this.control = document.querySelector("div#first-level-content");
-      this.control.style.left = "0px";
+      this.wrapper = document.querySelector("div#first-level-content-wrapper");
+      this.wrapper.classList.add("first-level-control-pinned");
+      this.wrapper.classList.remove("first-level-control-unpinned");
     },
     AddSidebar() {
       this.workspace = document.querySelector("div.application-layers");
       this.workspace.classList.add("with-secondary-surface-control");
       this.sidebar_secondary = document.querySelector(
-        "div.sidebar-control-secondary"
+        "div.surface-control-secondary"
       );
       this.sidebar_secondary.style.display = "block";
     },
     RemoveSidebar() {
       this.sidebar_secondary = document.querySelector(
-        "div.sidebar-control-secondary"
+        "div.surface-control-secondary"
       );
       this.sidebar_secondary.style.display = "none";
       this.workspace = document.querySelector("div.application-layers");
