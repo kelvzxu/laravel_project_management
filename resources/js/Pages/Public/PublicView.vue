@@ -46,13 +46,17 @@
         </template>
         <template #followers>
           <i class="fa fa-users" aria-hidden="true"></i>
-          <inertia-link class="text-link" href="/users/kelvzxu/followers"
+          <inertia-link
+            class="text-link"
+            :href="route('profile.followers', users.original.result.email)"
             >{{ users.original.result.followers.length }} followers
           </inertia-link></template
         >
         <template #following>
           <i class="fa fa-users" aria-hidden="true"></i>
-          <inertia-link class="text-link" href="/users/kelvzxu/followers"
+          <inertia-link
+            class="text-link"
+            :href="route('profile.following', users.original.result.email)"
             >{{ users.original.result.following.length }} following
           </inertia-link></template
         >

@@ -117,7 +117,6 @@ export default {
 
   methods: {
     enableTwoFactorAuthentication() {
-      console.log("______________");
       this.enabling = true;
 
       this.$inertia

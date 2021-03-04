@@ -4,15 +4,22 @@
       <jumbotron>
         <template #followers>
           <i class="fa fa-users" aria-hidden="true"></i>
-          <inertia-link class="text-link" href="/users/kelvzxu/followers"
+          <inertia-link
+            :href="route('profile.followers', $page.user.email)"
+            :active="route().current('profile.followers')"
             >{{ users.original.result.followers.length }} followers
           </inertia-link></template
         >
         <template #following>
           <i class="fa fa-users" aria-hidden="true"></i>
-          <inertia-link class="text-link" href="/users/kelvzxu/followers"
-            >{{ users.original.result.following.length }} following
-          </inertia-link></template
+          <inertia-link
+            :href="route('profile.following', $page.user.email)"
+            :active="route().current('profile.following')"
+            >{{
+              users.original.result.following.length
+            }}
+            Following</inertia-link
+          ></template
         >
         <template #main>
           <div>

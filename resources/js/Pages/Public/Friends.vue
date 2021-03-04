@@ -48,7 +48,7 @@
           <i class="fa fa-users" aria-hidden="true"></i>
           <inertia-link
             class="text-link"
-            :href="route('profile.followers', $page.user.email)"
+            :href="route('profile.followers', users.original.result.email)"
             >{{ users.original.result.followers.length }} followers
           </inertia-link></template
         >
@@ -56,7 +56,7 @@
           <i class="fa fa-users" aria-hidden="true"></i>
           <inertia-link
             class="text-link"
-            :href="route('profile.following', $page.user.email)"
+            :href="route('profile.following', users.original.result.email)"
             >{{ users.original.result.following.length }} following
           </inertia-link></template
         >

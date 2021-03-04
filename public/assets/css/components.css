@@ -17573,6 +17573,12 @@ a.ds-text-link-component:hover {
   height: 0;
 }
 
+.board-filter-item-component.active {
+  color: #212529;
+  background-color: #948f8f;
+  border-color: #dfdfdf;
+}
+
 .board-filter-item-component .item-title {
   transition: max-width 200ms ease-in-out;
   max-width: 0;

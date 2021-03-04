@@ -6,6 +6,7 @@
           <jet-application-mark
             class="sidebar-company-logo-image"
             width="auto"
+            height="auto"
           />
         </span>
       </div>

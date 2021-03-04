@@ -23,7 +23,7 @@ class UserFriend extends Model
     {
         return $this->hasOne(User::class,'id','user_id')->addSelect(['state' => UserFriend::select('state')
             ->whereColumn('friend_id', 'users.id')
-            ->where('user_id','=',5)
+            ->where('user_id','=',auth::id())
             ->limit(1)
         ]);
     }
@@ -31,7 +31,7 @@ class UserFriend extends Model
     {
         return $this->hasOne(User::class,'id','friend_id')->addSelect(['state' => UserFriend::select('state')
             ->whereColumn('friend_id', 'users.id')
-            ->where('user_id','=',5)
+            ->where('user_id','=',auth::id())
             ->limit(1)
         ]);
     }

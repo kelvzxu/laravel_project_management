@@ -557,13 +557,6 @@ input.pager_value:focus {
     display: none;
 }
 
-.workspace-title {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    width: 100%;
-}
-
 @media (max-width:657px) {
     .workspace-header-component .workspace-header-mobile-content {
         margin-top: -5vh;
@@ -572,7 +565,6 @@ input.pager_value:focus {
     }
 
     .workspace-title {
-        margin-top: 7vh;
         top: -44px;
     }
 }
@@ -2733,4 +2725,8 @@ input.pager_value:focus {
 
 .application-content {
     width: 100%;
+}
+
+.application-dialog_modal {
+    z-index: 1000;
 }

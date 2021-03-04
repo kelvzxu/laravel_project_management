@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\InheritTeamController;
 use App\Http\Controllers\Auth\UsersController;
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserFriendController;
 
 /*
@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
 Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
 Route::group(['middleware' => 'auth'], function (){
+    Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/user/profile', [ProfileController::class, 'show'])
                     ->name('profile.show');
     Route::get('/{user}/view/', [ProfileController::class, 'PublicProfile'])
@@ -43,7 +44,7 @@ Route::group(['middleware' => 'auth'], function (){
                         ->name('team.myteam');
     Route::get('/{user}/team/all/', [InheritTeamController::class, 'getTeams'])
                         ->name('profile.teams');
-    Route::get('/search/{user}', [SearchController::class, 'Search'])
+    Route::get('/search/{user}', [PageController::class, 'Search'])
                         ->name('user.search');
     Route::post('/user/follow',[UserFriendController::class,'FollowUser'])
                         ->name('user.follow'); 
@@ -54,9 +55,9 @@ Route::group(['middleware' => 'auth'], function (){
 });  
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return Inertia\Inertia::render('Dashboard');
+// })->name('dashboard');
 Route::middleware(['auth:sanctum', 'verified'])->get('/timesheet', function () {
     return Inertia\Inertia::render('Timesheet');
 })->name('timesheet');

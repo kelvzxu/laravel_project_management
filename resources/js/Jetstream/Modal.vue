@@ -3,7 +3,7 @@
     <transition leave-active-class="duration-200">
       <div
         v-show="show"
-        class="dialog-modal fixed top-0 inset-x-0 px-4 pt-6 sm:px-0 sm:items-top sm:justify-center"
+        class="dialog-modal application-dialog_modal fixed top-0 inset-x-0 px-4 pt-6 sm:px-0 sm:items-top sm:justify-center"
       >
         <transition
           enter-active-class="ease-out duration-300"
