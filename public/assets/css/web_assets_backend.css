@@ -2734,3 +2734,7 @@ input.pager_value:focus {
 .application-content {
     width: 100%;
 }
+
+.application-dialog_modal{
+    z-index: 1000;
+}

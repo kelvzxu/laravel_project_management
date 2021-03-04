@@ -24,9 +24,6 @@
                   <div
                     class="home-control-top-header-component home-workspace-items-header without-dropdown-navigation"
                   >
-                    <template v-for="team in $page.user.all_teams">
-                      <form @submit.prevent="switchToTeam(team)" :key="team.id">
-                        <span v-if="team.id == $page.user.current_team_id">
                           <div class="workspace-title">
                             <div
                               class="workspace-icon-container workspace-size-md"
@@ -40,7 +37,6 @@
                                 </div>
                               </div>
                               <div
-                                v-if="team.user_id == $page.user.id"
                                 class="workspace-permission-icon-wrapper main-workspace-icon-wrapper"
                               >
                                 <div
@@ -58,24 +54,11 @@
                                 style="width: auto; height: auto"
                               >
                                 <div class="ds-text-component" dir="auto">
-                                  <jet-responsive-nav-link
-                                    :href="
-                                      route(
-                                        'teams.show',
-                                        $page.user.current_team
-                                      )
-                                    "
-                                    :active="route().current('teams.show')"
-                                  >
                                     {{ team.name }}
-                                  </jet-responsive-nav-link>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </span>
-                      </form>
-                    </template>
                   </div>
                   <div class="home-workspace-items-content-sub-header-wrapper">
                     <div class="new-boards-list-button-component">
@@ -85,7 +68,7 @@
                             <div
                               class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
                             >
-                              <i class="fa fa-plus-circle main-icon"></i>Add
+                              <i class="fa fa-user-plus main-icon"></i>Invite
                             </div>
                           </div>
                         </div>
@@ -94,12 +77,22 @@
                     <div
                       class="boards-list-header-component selected leftpane-workspace-header-redesign"
                     >
+                    <jet-responsive-nav-link
+                                    :href="
+                                      route(
+                                        'teams.show',
+                                        team.id
+                                      )
+                                    "
+                                    :active="route().current('teams.show')"
+                                  >
                       <div class="boards-filter-row-wrapper">
                         <div class="boards-list-filter-button-component">
-                          <i class="fa fa-filter main-icon"></i
-                          ><span class="filters-text">Filters</span>
+                          <i class="fa fa-cog main-icon"></i
+                          ><span class="filters-text">Team Details</span>
                         </div>
                       </div>
+                    </jet-responsive-nav-link>
                       <div class="unified-boards-search-input-wrapper empty">
                         <i class="fa fa-search search-icon"></i
                         ><input
@@ -198,7 +191,7 @@
                                                   >
                                                     <em></em
                                                     ><span
-                                                      >Start from scratch</span
+                                                      >Change Team</span
                                                     >
                                                   </div>
                                                 </div>
@@ -267,6 +260,8 @@
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
 
 export default {
+  props: ["team", "users"],
+
   components: {
     JetResponsiveNavLink,
   },

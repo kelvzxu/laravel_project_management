@@ -1900,11 +1900,13 @@ div#fancybox-buttons a:hover {
 }
 
 .application .application-layers .first-level .first-level-content-wrapper.first-level-control-unpinned {
-  margin-left: 30px
+  margin-left: 30px;
+  width: auto;
 }
 
 .application .application-layers .first-level .first-level-content-wrapper.first-level-control-pinned {
-  margin-left: 255px
+  margin-left: 255px;
+  width: auto;
 }
 
 .application .application-layers .first-level .first-level-content-wrapper .first-level-content {

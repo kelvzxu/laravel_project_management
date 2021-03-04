@@ -35,11 +35,8 @@
                           style="width: auto; height: auto"
                         >
                           <div class="ds-text-component" dir="auto">
-                            <span>Start from scratch</span>
+                            <span>{{ team.name }}</span>
                           </div>
-                        </div>
-                        <div class="star-component favorite-star">
-                          <i class="icon icon-v2-star-o is-off"></i>
                         </div>
                       </div>
                     </div>
@@ -78,18 +75,12 @@
                         >
                           <div class="monday-board-control">
                             <div class="monday-board-control__icon">
-                              <i class="icon icon-v2-surface-invite"></i>
+                              <i class="fa fa-users"></i>
                             </div>
                             <div class="monday-board-control__text">
-                              Invite / 1
+                              Member / 1
                             </div>
                           </div>
-                        </div>
-                        <div class="monday-board-control">
-                          <div class="monday-board-control__icon">
-                            <i class="icon icon-v2-activity-no-border"></i>
-                          </div>
-                          <div class="monday-board-control__text">Activity</div>
                         </div>
                         <div class="monday-add-to-board-wrapper">
                           <div
@@ -100,10 +91,10 @@
                               <div class="monday-add-to-board-menu-button">
                                 <div class="monday-board-control">
                                   <div class="monday-board-control__icon">
-                                    <i class="icon icon-v2-plus-simple"></i>
+                                    <i class="fa fa-plus-square"></i>
                                   </div>
                                   <div class="monday-board-control__text">
-                                    Add to board
+                                    Add Projects
                                   </div>
                                 </div>
                               </div>
@@ -131,7 +122,7 @@
                         <div class="ds-text-component description-content">
                           <div class="description-line">
                             <span class="text-content"
-                              >Add board description</span
+                              >{{ team.description }}</span
                             >
                           </div>
                         </div>
@@ -139,7 +130,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="monday-board-subset-toolbar">
+                <!-- <div class="monday-board-subset-toolbar">
                   <div class="monday-board-subset-toolbar__subset-picker">
                     <div class="board-subset-picker-component-v2">
                       <div class="board-subset-picker-button">
@@ -479,11 +470,11 @@
                       <i class="collapse-icon fa fa-angle-right"></i>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="board-header-view-bar">
                   <div class="board-filter new-board-filter monday-v2-header">
                     <div class="board-subset-left-side-container"></div>
-                    <div class="add-board-entity-button-wrapper">
+                    <!-- <div class="add-board-entity-button-wrapper">
                       <div class="add-task-button-component">
                         <button
                           type="button"
@@ -506,29 +497,15 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="filter-buttons-wrapper">
                       <div
                         class="board-filter-input-container board-filter-search board-filter-input-container--expandable"
                       >
-                        <span class="icon icon-v2-search"></span>
+                        <span class="fa fa-search"></span>
                         <div class="board-filter-input-wrapper_v2">
                           <div class="icon-and-input-wrapper">
                             <input placeholder="Search" value="" />
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="board-filter-item-component person-filter-component"
-                      >
-                        <div class="board-filter-item-content-wrapper">
-                          <div
-                            class="board-filter-item-content person-filter-component show-title-when-closed show-title-when-open"
-                          >
-                            <i
-                              class="item-icon icon icon-dapulse-person-column person-filter-icon"
-                            ></i
-                            ><span class="item-title">Person</span>
                           </div>
                         </div>
                       </div>
@@ -539,10 +516,10 @@
                           <div
                             class="board-filter-item-content rule-based-filer-component with-caret show-title-when-closed show-title-when-open"
                           >
-                            <i class="item-icon icon icon-v2-funnel"></i
+                            <i class="item-icon fa fa-filter"></i
                             ><span class="item-title">Filter</span>
                             <div class="caret-icon-container">
-                              <i class="icon caret-icon icon-arrow-down"></i>
+                              <i class="fa fa-angle-down"></i>
                             </div>
                           </div>
                         </div>
@@ -555,7 +532,7 @@
                             class="board-filter-item-content sort-settings-component show-title-when-closed show-title-when-open"
                           >
                             <i
-                              class="item-icon icon icon-v2-sort-up-down-arrows"
+                              class="item-icon fas fa-sort-alt"
                             ></i
                             ><span class="item-title">Sort</span>
                           </div>
@@ -565,14 +542,14 @@
                   </div>
                   <div class="board-header-view-actions-wrapper">
                     <div class="board-header-view-actions">
-                      <div class="full-screen-button-component">
-                        <div class="board-filter-item-component">
-                          <div class="board-filter-item-content-wrapper">
-                            <div class="board-filter-item-content">
-                              <i
-                                class="item-icon icon item-icon icon icon-v2-fullscreen"
-                              ></i>
-                            </div>
+                      <div class="board-filter-item-component active">
+                        <div class="board-filter-item-content-wrapper">
+                          <div
+                            class="board-filter-item-content without-additional-data"
+                          >
+                            <i
+                              class="item-icon fa fa-lg fa-th-large"
+                            ></i>
                           </div>
                         </div>
                       </div>
@@ -582,15 +559,8 @@
                             class="board-filter-item-content without-additional-data"
                           >
                             <i
-                              class="item-icon icon item-icon icon icon-v2-settings-line"
+                              class="item-icon fa fa-lg fa-list-ul"
                             ></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="board-filter-item-component">
-                        <div class="board-filter-item-content-wrapper">
-                          <div class="board-filter-item-content">
-                            <i class="item-icon icon icon-v2-user-feedback"></i>
                           </div>
                         </div>
                       </div>
@@ -599,10 +569,67 @@
                 </div>
               </div>
             </div>
+            <!-- <kanban-area>
+              <kanban-box >
+              <template #jobs
+                ><span>Project Tugas</span></template
+              >
+              <template #tags
+                ><span class="field_tag tag_color_6"
+                  ><span></span>Kelvin Leonardi</span
+                ></template
+              >
 
-            <div class="menu-component-wrapper">
-              <div></div>
-            </div>
+            </kanban-box>
+            <kanban-box >
+              <template #jobs
+                ><span>Project Tugas 2</span></template
+              >
+              <template #tags
+                ><span class="field_tag tag_color_6"
+                  ><span></span>Kelvin Leonardi</span
+                ></template
+              >
+
+            </kanban-box>
+            <kanban-box >
+              <template #jobs
+                ><span>Project Tugas 3</span></template
+              >
+              <template #tags
+                ><span class="field_tag tag_color_6"
+                  ><span></span>Kelvin Leonardi</span
+                ></template
+              >
+
+            </kanban-box>
+            <kanban-box >
+              <template #jobs
+                ><span>Project Tugas 4</span></template
+              >
+              <template #tags
+                ><span class="field_tag tag_color_6"
+                  ><span></span>Kelvin Leonardi</span
+                ></template
+              >
+
+            </kanban-box>
+            <kanban-box >
+              <template #jobs
+                ><span>Project Tugas 5</span></template
+              >
+              <template #tags
+                ><span class="field_tag tag_color_6"
+                  ><span></span>Kelvin Leonardi</span
+                ></template
+              >
+
+            </kanban-box>
+            <kanban-ghost
+              v-for="n in 75"
+              :key="n"
+            ></kanban-ghost>
+          </kanban-area> -->
           </div>
         </div>
       </div>
@@ -616,10 +643,22 @@
 
 <script>
 import JetApplicationLogo from "@/Jetstream/ApplicationLogo";
+// Kanban Component
+import KanbanArea from "@/Jetstream/KanbanArea";
+import KanbanBox from "@/Jetstream/KanbanBox";
+import KanbanGhost from "@/Jetstream/KanbanGhost";
 
 export default {
+  props: ["team", "users"],
+
   components: {
     JetApplicationLogo,
+    KanbanArea,
+    KanbanBox,
+    KanbanGhost,
+  },
+  created() {
+    console.log(this)
   },
 };
 </script>

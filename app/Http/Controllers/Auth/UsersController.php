@@ -55,4 +55,9 @@ class UsersController extends UserProfileController
         $user = user::where('email',$mail)->first();
         return $user;
     }
+
+    public function getUserbyID($params){
+        $user = user::findOrFail($params);
+        return $user;
+    }
 }
