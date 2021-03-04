@@ -10,9 +10,11 @@
         >
         <template #following>
           <i class="fa fa-users" aria-hidden="true"></i>
-          <inertia-link class="text-link" href="/users/kelvzxu/followers"
-            >{{ users.original.result.following.length }} following
-          </inertia-link></template
+          <inertia-link
+            :href="route('profile.following', $page.user.email)"
+            :active="route().current('profile.following')"
+            >Following</inertia-link
+          ></template
         >
         <template #main>
           <div>
