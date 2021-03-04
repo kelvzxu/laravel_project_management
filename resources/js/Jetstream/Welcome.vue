@@ -78,7 +78,7 @@
                               <i class="fa fa-users"></i>
                             </div>
                             <div class="monday-board-control__text">
-                              Member / 1
+                              Member / {{ team.users.length + 1 }}
                             </div>
                           </div>
                         </div>
@@ -121,9 +121,9 @@
                       >
                         <div class="ds-text-component description-content">
                           <div class="description-line">
-                            <span class="text-content"
-                              >{{ team.description }}</span
-                            >
+                            <span class="text-content">{{
+                              team.description
+                            }}</span>
                           </div>
                         </div>
                       </div>
@@ -531,9 +531,7 @@
                           <div
                             class="board-filter-item-content sort-settings-component show-title-when-closed show-title-when-open"
                           >
-                            <i
-                              class="item-icon fas fa-sort-alt"
-                            ></i
+                            <i class="item-icon fas fa-sort-alt"></i
                             ><span class="item-title">Sort</span>
                           </div>
                         </div>
@@ -547,9 +545,7 @@
                           <div
                             class="board-filter-item-content without-additional-data"
                           >
-                            <i
-                              class="item-icon fa fa-lg fa-th-large"
-                            ></i>
+                            <i class="item-icon fa fa-lg fa-th-large"></i>
                           </div>
                         </div>
                       </div>
@@ -558,9 +554,7 @@
                           <div
                             class="board-filter-item-content without-additional-data"
                           >
-                            <i
-                              class="item-icon fa fa-lg fa-list-ul"
-                            ></i>
+                            <i class="item-icon fa fa-lg fa-list-ul"></i>
                           </div>
                         </div>
                       </div>
@@ -569,67 +563,49 @@
                 </div>
               </div>
             </div>
-            <!-- <kanban-area>
-              <kanban-box >
-              <template #jobs
-                ><span>Project Tugas</span></template
-              >
-              <template #tags
-                ><span class="field_tag tag_color_6"
-                  ><span></span>Kelvin Leonardi</span
-                ></template
-              >
-
-            </kanban-box>
-            <kanban-box >
-              <template #jobs
-                ><span>Project Tugas 2</span></template
-              >
-              <template #tags
-                ><span class="field_tag tag_color_6"
-                  ><span></span>Kelvin Leonardi</span
-                ></template
-              >
-
-            </kanban-box>
-            <kanban-box >
-              <template #jobs
-                ><span>Project Tugas 3</span></template
-              >
-              <template #tags
-                ><span class="field_tag tag_color_6"
-                  ><span></span>Kelvin Leonardi</span
-                ></template
-              >
-
-            </kanban-box>
-            <kanban-box >
-              <template #jobs
-                ><span>Project Tugas 4</span></template
-              >
-              <template #tags
-                ><span class="field_tag tag_color_6"
-                  ><span></span>Kelvin Leonardi</span
-                ></template
-              >
-
-            </kanban-box>
-            <kanban-box >
-              <template #jobs
-                ><span>Project Tugas 5</span></template
-              >
-              <template #tags
-                ><span class="field_tag tag_color_6"
-                  ><span></span>Kelvin Leonardi</span
-                ></template
-              >
-
-            </kanban-box>
-            <kanban-ghost
-              v-for="n in 75"
-              :key="n"
-            ></kanban-ghost>
-          </kanban-area> -->
+            <kanban-area>
+              <kanban-box>
+                <template #jobs><span>Project Tugas</span></template>
+                <template #tags
+                  ><span class="field_tag tag_color_6"
+                    ><span></span>Kelvin Leonardi</span
+                  ></template
+                >
+              </kanban-box>
+              <kanban-box>
+                <template #jobs><span>Project Tugas 2</span></template>
+                <template #tags
+                  ><span class="field_tag tag_color_6"
+                    ><span></span>Kelvin Leonardi</span
+                  ></template
+                >
+              </kanban-box>
+              <kanban-box>
+                <template #jobs><span>Project Tugas 3</span></template>
+                <template #tags
+                  ><span class="field_tag tag_color_6"
+                    ><span></span>Kelvin Leonardi</span
+                  ></template
+                >
+              </kanban-box>
+              <kanban-box>
+                <template #jobs><span>Project Tugas 4</span></template>
+                <template #tags
+                  ><span class="field_tag tag_color_6"
+                    ><span></span>Kelvin Leonardi</span
+                  ></template
+                >
+              </kanban-box>
+              <kanban-box>
+                <template #jobs><span>Project Tugas 5</span></template>
+                <template #tags
+                  ><span class="field_tag tag_color_6"
+                    ><span></span>Kelvin Leonardi</span
+                  ></template
+                >
+              </kanban-box>
+              <kanban-ghost v-for="n in 75" :key="n"></kanban-ghost>
+            </kanban-area>
           </div>
         </div>
       </div>
@@ -658,7 +634,7 @@ export default {
     KanbanGhost,
   },
   created() {
-    console.log(this)
+    console.log(this);
   },
 };
 </script>

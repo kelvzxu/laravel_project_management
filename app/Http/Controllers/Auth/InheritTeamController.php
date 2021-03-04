@@ -25,7 +25,7 @@ class InheritTeamController extends TeamController
         $team = Jetstream::newTeamModel()->findOrFail($teamId);
 
         return Jetstream::inertia()->render($request, 'Teams/Show', [
-            'team' => $team->load('owner', 'users'),
+            'team' => $team->load('owner', 'users'), 
             'availableRoles' => array_values(Jetstream::$roles),
             'availablePermissions' => Jetstream::$permissions,
             'defaultPermissions' => Jetstream::$defaultPermissions,

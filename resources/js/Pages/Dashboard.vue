@@ -1,7 +1,12 @@
 <template>
   <app-layout>
-    <jet-application-control :users="users" :team="team">
-      <welcome :users="users" :team="team"/>
+    <jet-application-control
+      :users="users"
+      :team="team"
+      :availableRoles="availableRoles"
+      :user-permissions="permissions"
+    >
+      <welcome :users="users" :team="team" />
     </jet-application-control>
   </app-layout>
 </template>
@@ -12,7 +17,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import Welcome from "@/Jetstream/Welcome";
 
 export default {
-  props: ["team", "users"],
+  props: ["team", "users", "availableRoles", "permissions"],
 
   components: {
     JetApplicationControl,
@@ -20,7 +25,7 @@ export default {
     Welcome,
   },
   created() {
-    console.log(this)
+    console.log(this);
   },
 };
 </script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\Auth\InheritTeamController;
 use Inertia\Inertia;
@@ -26,8 +27,16 @@ class PageController extends Controller
         $user = app(UsersController::class)->getUserbyID(Auth::id());
         $team = app(InheritTeamController::class)->getTeam($user->current_team_id);
         return Jetstream::inertia()->render($request, 'Dashboard', [
-            'team' => $team,
             'users' => $user,
+            'team' =>$team->load('owner', 'users'),
+            'availableRoles' => array_values(Jetstream::$roles),
+            'permissions' => [
+                'canAddTeamMembers' => Gate::check('addTeamMember', $team),
+                'canDeleteTeam' => Gate::check('delete', $team),
+                'canRemoveTeamMembers' => Gate::check('removeTeamMember', $team),
+                'canUpdateTeam' => Gate::check('update', $team),
+            ],
         ]);
     }
 }
+ 
