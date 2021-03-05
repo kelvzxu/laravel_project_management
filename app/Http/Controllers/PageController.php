@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\Auth\InheritTeamController;
+use App\Http\Controllers\ProjectController;
 use Inertia\Inertia;
 use Laravel\Jetstream\Jetstream;
 
@@ -26,9 +27,11 @@ class PageController extends Controller
     {
         $user = app(UsersController::class)->getUserbyID(Auth::id());
         $team = app(InheritTeamController::class)->getTeam($user->current_team_id);
+        $projects = app(ProjectController::class)->getTeamProject($user->current_team_id);
         return Jetstream::inertia()->render($request, 'Dashboard', [
             'users' => $user,
             'team' =>$team->load('owner', 'users'),
+            'projects' =>$projects,
             'availableRoles' => array_values(Jetstream::$roles),
             'permissions' => [
                 'canAddTeamMembers' => Gate::check('addTeamMember', $team),

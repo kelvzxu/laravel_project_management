@@ -77,14 +77,14 @@ class InheritTeamController extends TeamController
         $team = Jetstream::newTeamModel()->findOrFail($teamId);
 
         echo$request->email;
-        app(AddsTeamMembers::class)->join(
-            $request->user(),
-            $team,
-            $request->email ?: '',
-            $request->role
-        );
+        // app(AddsTeamMembers::class)->join(
+        //     $request->user(),
+        //     $team,
+        //     $request->email ?: '',
+        //     $request->role
+        // );
 
-        return back(303);
+        // return back(303);
     }
 
     public function getTeam($teamId)
