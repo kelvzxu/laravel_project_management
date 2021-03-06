@@ -18976,7 +18976,10 @@ select {
     background-color: var(--primary-background-color);
     color: #323338;
     color: var(--primary-text-color);
-    border: 1px solid;
+    border: 1px solid #ccc;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
     border-radius: 3px;
     border-color: #c5c7d0;
     border-color: var(--ui-border-color);
@@ -18994,7 +18997,7 @@ select::-webkit-input-placeholder {
 input[type="text"]:hover,
 input[type="password"]:hover,
 select:hover {
-    border-color: #323338;
+    border-color: white;
     border-color: var(--primary-text-color)
 }
 
@@ -20424,9 +20427,18 @@ div.editable_preview:hover .icon {
     max-width: 225px
 }
 
+select.custom-select {
+    border: 1px solid #ccc;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+}
+
 .Select {
+
     position: relative
 }
+
 
 .Select,
 .Select div,

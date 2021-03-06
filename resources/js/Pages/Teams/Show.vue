@@ -79,10 +79,16 @@
             </div>
           </div>
         </div>
-
-        <div>
+        <div class="mt-5 mt-md-4">
+          <update-team-information
+            :team="team"
+            :permissions="permissions"
+            :available-roles="availableRoles"
+            :projects="projects"
+          />
+        </div>
+        <!-- <div>
           <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            <update-team-name-form :team="team" :permissions="permissions" />
 
             <team-member-manager
               class="mt-10 sm:mt-0"
@@ -97,7 +103,7 @@
               <delete-team-form class="mt-10 sm:mt-0" :team="team" />
             </template>
           </div>
-        </div>
+        </div> -->
       </div>
     </app-content>
   </app-layout>
@@ -109,10 +115,10 @@ import TeamMemberManager from "./TeamMemberManager";
 import AppLayout from "@/Layouts/AppLayout";
 import DeleteTeamForm from "./DeleteTeamForm";
 import JetSectionBorder from "@/Jetstream/SectionBorder";
-import UpdateTeamNameForm from "./UpdateTeamNameForm";
+import UpdateTeamInformation from "./UpdateTeamInformation";
 
 export default {
-  props: ["team", "availableRoles", "permissions"],
+  props: ["team", "availableRoles", "permissions", "projects"],
 
   components: {
     AppContent,
@@ -120,7 +126,7 @@ export default {
     DeleteTeamForm,
     JetSectionBorder,
     TeamMemberManager,
-    UpdateTeamNameForm,
+    UpdateTeamInformation,
   },
 };
 </script>

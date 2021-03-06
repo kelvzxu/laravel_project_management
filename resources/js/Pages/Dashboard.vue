@@ -56,75 +56,83 @@
       </template>
       <template #main_content>
         <jet-dialog-modal :show="InviteModal" @close="InviteModal = false">
-          <template #title> Invite User </template>
+          <template #title> Add Team Member </template>
 
           <template #content>
-            Please provide the email address of the person you would like to add
-            to this team. The email address must be associated with an existing
-            account.
-
-            <div class="mt-4">
-              <!-- Member Email -->
-              <div class="col-span-6 sm:col-span-4">
-                <jet-label for="email" value="Email" />
-                <jet-input
-                  id="email"
-                  type="text"
-                  ref="email"
-                  class="mt-1 block w-full"
-                  v-model="form.email"
-                />
-                <jet-input-error :message="form.error('email')" class="mt-2" />
+            <div class="col-span-6">
+              <div class="max-w-xl text-sm text-gray-600">
+                Please provide the email address of the person you would like to
+                add to this team. The email address must be associated with an
+                existing account.
               </div>
-              <!-- Role -->
-              <div
-                class="col-span-6 lg:col-span-4"
-                v-if="availableRoles.length > 0"
-              >
-                <jet-label for="roles" value="Role" />
-                <jet-input-error :message="form.error('role')" class="mt-2" />
+            </div>
 
+            <div class="col-span-6 sm:col-span-4">
+              <jet-label for="email" value="Email" />
+              <jet-input
+                id="email"
+                type="text"
+                class="mt-1 block w-full"
+                ref="email"
+                v-model="addTeamMemberForm.email"
+              />
+              <jet-input-error
+                :message="addTeamMemberForm.error('email')"
+                class="mt-2"
+              />
+            </div>
+
+            <div
+              class="col-span-6 lg:col-span-4 mt-4"
+              v-if="availableRoles.length > 0"
+            >
+              <jet-label for="roles" value="Role" />
+              <jet-input-error
+                :message="addTeamMemberForm.error('role')"
+                class="mt-2"
+              />
+
+              <div
+                class="mt-1 border border-gray-200 rounded-lg cursor-pointer"
+              >
                 <div
-                  class="mt-1 border border-gray-200 rounded-lg cursor-pointer"
+                  class="px-4 py-3"
+                  :class="{ 'border-t border-gray-200': i > 0 }"
+                  @click="addTeamMemberForm.role = role.key"
+                  v-for="(role, i) in availableRoles"
+                  :key="role.key"
                 >
                   <div
-                    class="px-4 py-3"
-                    :class="{ 'border-t border-gray-200': i > 0 }"
-                    @click="form.role = role.key"
-                    v-for="(role, i) in availableRoles"
-                    :key="role.key"
+                    :class="{
+                      'opacity-50':
+                        addTeamMemberForm.role &&
+                        addTeamMemberForm.role != role.key,
+                    }"
                   >
-                    <div
-                      :class="{
-                        'opacity-50': form.role && form.role != role.key,
-                      }"
-                    >
-                      <!-- Role Name -->
-                      <div class="flex items-center">
-                        <div
-                          class="text-sm text-gray-600"
-                          :class="{
-                            'font-semibold': form.role == role.key,
-                          }"
-                        >
-                          {{ role.name }}
-                        </div>
-
-                        <svg
-                          v-if="form.role == role.key"
-                          class="ml-2 h-5 w-5 text-green-400"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
+                    <div class="flex items-center">
+                      <div
+                        class="text-sm text-gray-600"
+                        :class="{
+                          'font-semibold': addTeamMemberForm.role == role.key,
+                        }"
+                      >
+                        {{ role.name }}
                       </div>
+
+                      <svg
+                        v-if="addTeamMemberForm.role == role.key"
+                        class="ml-2 h-5 w-5 text-green-400"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -133,14 +141,20 @@
           </template>
 
           <template #footer>
-            <jet-success-button
-              class="ml-2"
-              @click.native="InviteUserModal"
-              :class="{ 'opacity-25': form.processing }"
-              :disabled="form.processing"
+            <jet-action-message
+              :on="addTeamMemberForm.recentlySuccessful"
+              class="mr-3"
             >
-              Invite
-            </jet-success-button>
+              Added.
+            </jet-action-message>
+
+            <jet-button
+              :class="{ 'opacity-25': addTeamMemberForm.processing }"
+              :disabled="addTeamMemberForm.processing"
+              @click.native="addTeamMember"
+            >
+              Add
+            </jet-button>
           </template>
         </jet-dialog-modal>
         <jet-dialog-modal
@@ -221,6 +235,13 @@
               </div>
             </div>
           </template>
+          <template #board_button_group>
+            <jet-board-search
+              ><input placeholder="Search" value=""
+            /></jet-board-search>
+            <jet-board-filter-dropdown @click.native="FilterData" />
+            <jet-board-sorting />
+          </template>
           <template #board_header_action>
             <div class="board-header-view-actions">
               <div class="board-filter-item-component active">
@@ -242,6 +263,54 @@
                 </div>
               </div>
             </div>
+          </template>
+          <template #dialog_node>
+            <jet-board-dropdown v-if="FilterDropdown">
+              <template #board_filter_item>
+                <div class="columns-list-item-wrapper">
+                  <div class="floating-columns-list-item-component floating">
+                    <div class="column-list-item-content">
+                      <i
+                        class="icon column-type-icon icon icon-dapulse-text-column"
+                      ></i
+                      ><span class="column-list-item-title"
+                        >Active Project</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="columns-list-item-wrapper">
+                  <div class="floating-columns-list-item-component">
+                    <div class="column-list-item-content">
+                      <i
+                        class="icon column-type-icon icon icon-dapulse-person-column"
+                      ></i
+                      ><span class="column-list-item-title">Followed</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="columns-list-item-wrapper">
+                  <div class="floating-columns-list-item-component">
+                    <div class="column-list-item-content">
+                      <i
+                        class="icon column-type-icon icon icon-dapulse-person-column"
+                      ></i
+                      ><span class="column-list-item-title">My Projects</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="columns-list-item-wrapper">
+                  <div class="floating-columns-list-item-component">
+                    <div class="column-list-item-content">
+                      <i
+                        class="icon column-type-icon icon icon-dapulse-person-column"
+                      ></i
+                      ><span class="column-list-item-title">Archived</span>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </jet-board-dropdown>
           </template>
           <template #board_component>
             <kanban-area>
@@ -272,13 +341,22 @@
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
 import JetApplicationControl from "@/Jetstream/ApplicationControl";
 import AppLayout from "@/Layouts/AppLayout";
-import JetContentWrapper from "@/Jetstream/ContentWrapper";
+// Form & Modal Component
 import JetDialogModal from "@/Jetstream/DialogModal";
-import JetSuccessButton from "@/Jetstream/SuccessButton";
-import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
+// Button Component
+import JetSuccessButton from "@/Jetstream/SuccessButton";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import JetButton from "@/Jetstream/Button";
+// Workspace Component
+import JetContentWrapper from "@/Jetstream/ContentWrapper";
+import JetBoardSorting from "@/Jetstream/BoardSorting";
+import JetBoardSearch from "@/Jetstream/BoardSearch";
+import JetBoardDropdown from "@/Jetstream/BoardDropdown";
+import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
 // Kanban Component
 import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBox";
@@ -298,9 +376,15 @@ export default {
     JetResponsiveNavLink,
     JetSuccessButton,
     JetSecondaryButton,
+    JetButton,
     KanbanArea,
     KanbanBox,
     KanbanGhost,
+    JetBoardSorting,
+    JetBoardSearch,
+    JetBoardDropdown,
+    JetBoardFilterDropdown,
+    JetActionMessage,
   },
   data() {
     return {
@@ -308,13 +392,15 @@ export default {
       SidebarSecondary: false,
       ExpanceControl: true,
       AddProjectModal: false,
-      form: this.$inertia.form(
+      FilterDropdown: false,
+      addTeamMemberForm: this.$inertia.form(
         {
           email: "",
           role: null,
         },
         {
-          bag: "InviteUserModal",
+          bag: "addTeamMember",
+          resetOnSuccess: true,
         }
       ),
       CreateProject: this.$inertia.form(
@@ -336,7 +422,7 @@ export default {
   },
   methods: {
     InviteNewUser() {
-      this.form.email = "";
+      this.addTeamMemberForm.email = "";
 
       this.InviteModal = true;
 
@@ -344,13 +430,13 @@ export default {
         this.$refs.email.focus();
       }, 250);
     },
-    InviteUserModal() {
-      this.form
+    addTeamMember() {
+      this.addTeamMemberForm
         .post(route("team-members.store", this.team), {
           preserveScroll: true,
         })
         .then((response) => {
-          if (!this.form.hasErrors()) {
+          if (!this.addTeamMemberForm.hasErrors()) {
             this.InviteModal = false;
           }
         });
@@ -377,6 +463,13 @@ export default {
         }
         console.log(this.CreateProject);
       });
+    },
+    FilterData() {
+      if (this.FilterDropdown == false) {
+        this.FilterDropdown = true;
+      } else {
+        this.FilterDropdown = false;
+      }
     },
     viewProject(row) {
       this.$inertia.visit(route("project.show", row.id));

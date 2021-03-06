@@ -35,7 +35,7 @@
                           style="width: auto; height: auto"
                         >
                           <div class="ds-text-component" dir="auto">
-                            <span><slot name="board_name"/></span>
+                            <span><slot name="board_name" /></span>
                           </div>
                         </div>
                       </div>
@@ -47,7 +47,9 @@
                         >
                           <div class="subscribers-overlap-images-wrapper">
                             <div class="board-header-label">
-                              <div class="label-text"><slot name="board_subs_images_label"/></div>
+                              <div class="label-text">
+                                <slot name="board_subs_images_label" />
+                              </div>
                               <div class="label-labeled">
                                 <div class="overlap-images-component">
                                   <div class="overlap-images-wrapper">
@@ -59,7 +61,7 @@
                                         margin: 0px;
                                       "
                                     >
-                                      <slot name="board_subs_images"/>
+                                      <slot name="board_subs_images" />
                                     </div>
                                   </div>
                                 </div>
@@ -79,7 +81,7 @@
                             </div>
                           </div>
                         </div>
-                        <slot name="board_button"/>
+                        <slot name="board_button" />
                       </div>
                     </div>
                   </div>
@@ -91,7 +93,9 @@
                       >
                         <div class="ds-text-component description-content">
                           <div class="description-line">
-                            <span class="text-content"><slot name="board_description"/></span>
+                            <span class="text-content"
+                              ><slot name="board_description"
+                            /></span>
                           </div>
                         </div>
                       </div>
@@ -102,52 +106,19 @@
                   <div class="board-filter new-board-filter monday-v2-header">
                     <div class="board-subset-left-side-container"></div>
                     <div class="filter-buttons-wrapper">
-                      <div
-                        class="board-filter-input-container board-filter-search board-filter-input-container--expandable"
-                      >
-                        <span class="fa fa-search"></span>
-                        <div class="board-filter-input-wrapper_v2">
-                          <div class="icon-and-input-wrapper">
-                            <input placeholder="Search" value="" />
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="board-filter-item-component rule-based-filer-component"
-                      >
-                        <div class="board-filter-item-content-wrapper">
-                          <div
-                            class="board-filter-item-content rule-based-filer-component with-caret show-title-when-closed show-title-when-open"
-                          >
-                            <i class="item-icon fa fa-filter"></i
-                            ><span class="item-title">Filter</span>
-                            <div class="caret-icon-container">
-                              <i class="fa fa-angle-down"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="board-filter-item-component sort-settings-component"
-                      >
-                        <div class="board-filter-item-content-wrapper">
-                          <div
-                            class="board-filter-item-content sort-settings-component show-title-when-closed show-title-when-open"
-                          >
-                            <i class="item-icon fas fa-sort-alt"></i
-                            ><span class="item-title">Sort</span>
-                          </div>
-                        </div>
-                      </div>
+                      <slot name="board_button_group" />
                     </div>
                   </div>
                   <div class="board-header-view-actions-wrapper">
-                    <slot name="board_header_action"/>
+                    <slot name="board_header_action" />
                   </div>
                 </div>
               </div>
             </div>
-            <slot name="board_component"/>
+            <div class="dialog-node">
+              <slot name="dialog_node" />
+            </div>
+            <slot name="board_component" />
           </div>
         </div>
       </div>
@@ -168,7 +139,7 @@ import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
 
 export default {
-  props: ["team", "users","projects"],
+  props: ["team", "users", "projects"],
 
   components: {
     JetApplicationLogo,

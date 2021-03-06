@@ -14,6 +14,7 @@ use Laravel\Jetstream\Contracts\AddsTeamMembers;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Jetstream\RedirectsActions;
 use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Auth\UsersController;
 use App\Models\Team;
 use App\Models\Membership;
@@ -23,9 +24,11 @@ class InheritTeamController extends TeamController
     public function show(Request $request, $teamId)
     {
         $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $projects = app(ProjectController::class)->getTeamProject($team->id);
 
         return Jetstream::inertia()->render($request, 'Teams/Show', [
             'team' => $team->load('owner', 'users'), 
+            'projects'=> $projects,
             'availableRoles' => array_values(Jetstream::$roles),
             'availablePermissions' => Jetstream::$permissions,
             'defaultPermissions' => Jetstream::$defaultPermissions,

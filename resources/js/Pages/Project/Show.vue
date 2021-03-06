@@ -1,17 +1,11 @@
 <template>
   <app-layout>
-    <jet-application-control
-      :users="users"
-      :team="team"
-    >
+    <jet-application-control :users="users" :team="team">
       <template #workspace_icon>{{ project.name[0] }}</template>
       <template #workspace_name>{{ project.name }}</template>
       <template #workspace_sub_header>
         <div class="home-workspace-items-content-sub-header-wrapper">
-          <div
-            class="new-boards-list-button-component"
-            @click="InviteNewUser"
-          >
+          <div class="new-boards-list-button-component" @click="InviteNewUser">
             <div class="ds-menu-button-container">
               <div>
                 <div class="top-new-button-component default-icon">
@@ -23,6 +17,21 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div
+            class="boards-list-header-component selected leftpane-workspace-header-redesign"
+          >
+            <jet-responsive-nav-link
+              :href="route('teams.show', team.id)"
+              :active="route().current('teams.show')"
+            >
+              <div class="boards-filter-row-wrapper">
+                <div class="boards-list-filter-button-component">
+                  <i class="far fa-stopwatch main-icon"></i
+                  ><span class="filters-text">Timesheet</span>
+                </div>
+              </div>
+            </jet-responsive-nav-link>
           </div>
           <div
             class="boards-list-header-component selected leftpane-workspace-header-redesign"
@@ -57,7 +66,7 @@
         </div>
       </template>
       <template #main_content>
-        <jet-content-wrapper :users="users" :team="team" :projects="projects">
+        <jet-content-wrapper :users="users" :team="team" :projects="project">
           <template #board_name>{{ project.name }}</template>
           <template #board_description>{{ project.description }}</template>
           <template #board_subs_images_label>Manager </template>
@@ -83,16 +92,22 @@
               </div>
             </div>
           </template>
+          <template #board_button_group>
+            <jet-board-search
+              ><input placeholder="Search" value=""
+            /></jet-board-search>
+            <jet-board-filter-dropdown @click.native="FilterData" />
+            <jet-board-sorting />
+          </template>
           <template #board_component>
             <kanban-area>
-              <kanban-box
-              >
+              <kanban-box>
                 <template #jobs
                   ><span>{{ project.name }}</span></template
                 >
                 <template #tags
                   ><span class="field_tag tag_color_6"
-                    ><span></span>{{project.manager.name}}</span
+                    ><span></span>{{ project.manager.name }}</span
                   ></template
                 >
               </kanban-box>
@@ -109,20 +124,25 @@
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
 import JetApplicationControl from "@/Jetstream/ApplicationControl";
 import AppLayout from "@/Layouts/AppLayout";
-import JetContentWrapper from "@/Jetstream/ContentWrapper";
 import JetDialogModal from "@/Jetstream/DialogModal";
 import JetSuccessButton from "@/Jetstream/SuccessButton";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
+// Workspace Component
+import JetContentWrapper from "@/Jetstream/ContentWrapper";
+import JetBoardSorting from "@/Jetstream/BoardSorting";
+import JetBoardSearch from "@/Jetstream/BoardSearch";
+import JetBoardDropdown from "@/Jetstream/BoardDropdown";
+import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
 // Kanban Component
 import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBox";
 import KanbanGhost from "@/Jetstream/KanbanGhost";
 
 export default {
-  props: ["team", "users","project"],
+  props: ["team", "users", "project"],
 
   components: {
     AppLayout,
@@ -138,6 +158,10 @@ export default {
     KanbanArea,
     KanbanBox,
     KanbanGhost,
+    JetBoardSorting,
+    JetBoardSearch,
+    JetBoardDropdown,
+    JetBoardFilterDropdown,
   },
   data() {
     return {
