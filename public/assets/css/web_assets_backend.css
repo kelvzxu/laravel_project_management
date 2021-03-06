@@ -2730,3 +2730,104 @@ input.pager_value:focus {
 .application-dialog_modal {
     z-index: 1000;
 }
+
+/* form component */
+.o_field_widget {
+    width: 100%;
+    margin-bottom: 5px;
+
+}
+
+.o_input {
+    border: 1px solid #ccc;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+}
+
+.oe_title {
+    color: #212529;
+}
+
+@media (min-width: 575px) {
+    .oe_title {
+        padding-right: 345px;
+        color: #212529;
+    }
+}
+
+@media (min-width: 1595px) {
+    .oe_title {
+        padding-right: 1045px;
+        color: #212529;
+    }
+}
+
+.o_form_label {
+    margin: 0 5px 0 0;
+    font-size: 1.08333333rem;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.o_group {
+    display: inline-block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.o_group.o_inner_group .o_form_label {
+    font-size: 0.9rem;
+}
+
+.o_group.o_inner_group {
+    display: inline-table;
+}
+
+.o_group .o_group_col_6 {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+}
+
+.o_group.o_inner_group>tbody>tr>td.o_td_label {
+    width: 0%;
+    padding: 0 15px 0 0;
+    min-width: 100px;
+}
+
+.o_group.o_inner_group>tbody>tr>td {
+    padding: 0 45px 0 0;
+}
+
+.o_group.o_inner_group>tbody>tr>td {
+    vertical-align: top;
+}
+
+.o_notebook {
+    clear: both;
+    margin-top: 10px;
+}
+
+.o_notebook>.o_notebook_headers {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+@media (min-width:390px) {
+    .o_notebook>.o_notebook_headers {
+        margin-left: 16px;
+        margin-right: -16px;
+    }
+}
+
+.o_notebook>.o_notebook_headers>.nav.nav-tabs {
+    padding-left: 16px;
+    border-bottom: 1px solid #ced4da;
+}
+
+@media (min-width: 992px) and (max-width: 1533.98px) {
+    .o_notebook>.o_notebook_headers>.nav.nav-tabs {
+        padding-left: 32px;
+    }
+}

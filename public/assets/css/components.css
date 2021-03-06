@@ -20985,7 +20985,6 @@ body a.button_link:focus {
 
 /* mixin for multiline */
 .floating-columns-list-component {
-  min-height: 180px;
   max-height: 264px;
   display: flex;
   flex-direction: column;

@@ -75,7 +75,7 @@
           </div>
         </div>
         <hr />
-        <div class="row">
+        <div class="row mt-3">
           <div class="col-lg-4 profile-settings-sidebar">
             <h4 class="kl-mt-0">Main settings</h4>
             <p>This information will appear on your profile</p>

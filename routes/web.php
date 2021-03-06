@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\InheritTeamController;
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserFriendController;
+use  App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,15 +51,18 @@ Route::group(['middleware' => 'auth'], function (){
                         ->name('user.follow'); 
     Route::post('/user/unfollow',[UserFriendController::class,'UnfollowUser'])
                         ->name('user.unfollow'); 
-    Route::post('/join/teams/{team}/members', [InheritTeamController::class, 'Join'])->name('team.join');
-    Route::get('/teams/{team}', [InheritTeamController::class, 'show'])->name('teams.show');
+    Route::post('/join/teams/{team}/members', [InheritTeamController::class, 'Join'])
+                        ->name('team.join');
+    Route::get('/teams/{team}', [InheritTeamController::class, 'show'])
+                        ->name('teams.show');
+    Route::post('/project', [ProjectController::class, 'store'])
+                        ->name('project.store');
+    Route::get('/project/{project}', [ProjectController::class, 'show'])
+                        ->name('project.show');
 });  
 
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return Inertia\Inertia::render('Dashboard');
 // })->name('dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/timesheet', function () {
-    return Inertia\Inertia::render('Timesheet');
-})->name('timesheet');
 
