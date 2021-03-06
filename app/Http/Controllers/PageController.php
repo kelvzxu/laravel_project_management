@@ -26,8 +26,11 @@ class PageController extends Controller
     public function Dashboard(Request $request)
     {
         $user = app(UsersController::class)->getUserbyID(Auth::id());
-        $team = app(InheritTeamController::class)->getTeam($user->current_team_id);
-        $projects = app(ProjectController::class)->getTeamProject($user->current_team_id);
+        if ($user->current_team_id)
+            $team = app(InheritTeamController::class)->getTeam($user->current_team_id);
+        else
+            $team = app(InheritTeamController::class)->getTeamByowner($user->id);
+        $projects = app(ProjectController::class)->getTeamProject($team->id);
         return Jetstream::inertia()->render($request, 'Dashboard', [
             'users' => $user,
             'team' =>$team->load('owner', 'users'),

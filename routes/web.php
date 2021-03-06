@@ -57,13 +57,12 @@ Route::group(['middleware' => 'auth'], function (){
                         ->name('teams.show');
     Route::post('/project', [ProjectController::class, 'store'])
                         ->name('project.store');
+    Route::get('/project/{project}', [ProjectController::class, 'show'])
+                        ->name('project.show');
 });  
 
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return Inertia\Inertia::render('Dashboard');
 // })->name('dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/timesheet', function () {
-    return Inertia\Inertia::render('Timesheet');
-})->name('timesheet');
 

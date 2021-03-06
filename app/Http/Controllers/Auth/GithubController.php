@@ -42,8 +42,8 @@ class GithubController extends Controller
                     'twitter'=>$user['twitter_username'],
                 ]);
                 
-                $this->createTeam($newUser);
-
+                $team = $this->createTeam($newUser);
+                echo $team;
                 Auth::login($newUser);
      
                 return redirect('/dashboard');

@@ -38,7 +38,7 @@ import JetLabel from "@/Jetstream/Label";
 import JetWorkspace from "@/Jetstream/ControlComponent";
 
 export default {
-  props: ["team", "users", "availableRoles", "userPermissions"],
+  props: ["team", "users"],
 
   components: {
     JetResponsiveNavLink,
