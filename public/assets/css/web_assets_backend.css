@@ -1707,6 +1707,276 @@ input.pager_value:focus {
     z-index: 1;
 }
 
+/* kanban_column_progressbar */
+
+.kanban_view .o_kanban_group.o_kanban_has_progressbar>.o_kanban_header .o_kanban_header_title {
+    height: 30px;
+    margin-top: 5px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_has_progressbar.o_kanban_no_records .o_kanban_counter {
+    opacity: 0.3;
+}
+
+.o_kanban_counter {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.3s ease 0s;
+    margin-bottom: 16px;
+}
+
+.o_kanban_counter>.o_kanban_counter_progress {
+    width: 76%;
+    height: 0.94791667rem;
+    margin-bottom: 0;
+    background-color: #dee2e6;
+    box-shadow: none;
+}
+
+.o_kanban_counter>.o_kanban_counter_progress .progress-bar {
+    margin-bottom: 0;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.o_kanban_counter>.o_kanban_counter_progress .o_kanban_counter_label {
+    font-size: 10px;
+    user-select: none;
+}
+
+.o_kanban_counter>.o_kanban_counter_side {
+    width: 21%;
+    margin-left: 3%;
+    color: #212529;
+    text-align: right;
+    white-space: nowrap;
+    transform-origin: right center;
+}
+
+.o_kanban_counter>.o_kanban_counter_side.o_kanban_grow {
+    animation: grow 1s ease 0s 1 normal none running;
+}
+
+.o_kanban_counter>.o_kanban_counter_side.o_kanban_grow_huge {
+    animation: grow_huge 1s ease 0s 1 normal none running;
+}
+
+.o_kanban_counter>.o_kanban_counter_side>span {
+    margin-left: 2px;
+}
+
+.o_column_folded .o_kanban_counter {
+    display: none;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_success,
+.kanban_view .o_kanban_group.o_kanban_group_show_success .o_kanban_header {
+    background-color: #edf5f0;
+    border-color: #7dcda2;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_success .progress-bar.bg-success-full {
+    border: 1px solid white;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_success .oe_kanban_card_success {
+    order: 1;
+    margin-bottom: 4px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_success .oe_kanban_card_success~.oe_kanban_card_success {
+    margin-top: -5px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_success .oe_kanban_card_success~.o_kanban_load_more {
+    margin-top: -4px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_success .o_kanban_load_more {
+    order: 2;
+    padding: 4px 0 8px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_success .kanban_record:not(.oe_kanban_card_success) {
+    order: 3;
+    opacity: 0.5;
+    box-shadow: none;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_success .kanban_record:not(.oe_kanban_card_success):hover,
+.kanban_view .o_kanban_group.o_kanban_group_show_success .kanban_record:not(.oe_kanban_card_success):focus,
+.kanban_view .o_kanban_group.o_kanban_group_show_success .kanban_record:not(.oe_kanban_card_success).focus {
+    opacity: 1;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_warning,
+.kanban_view .o_kanban_group.o_kanban_group_show_warning .o_kanban_header {
+    background-color: #f9f5f0;
+    border-color: #f5d3a4;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_warning .progress-bar.bg-warning-full {
+    border: 1px solid white;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_warning .oe_kanban_card_warning {
+    order: 1;
+    margin-bottom: 4px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_warning .oe_kanban_card_warning~.oe_kanban_card_warning {
+    margin-top: -5px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_warning .oe_kanban_card_warning~.o_kanban_load_more {
+    margin-top: -4px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_warning .o_kanban_load_more {
+    order: 2;
+    padding: 4px 0 8px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_warning .kanban_record:not(.oe_kanban_card_warning) {
+    order: 3;
+    opacity: 0.5;
+    box-shadow: none;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_warning .kanban_record:not(.oe_kanban_card_warning):hover,
+.kanban_view .o_kanban_group.o_kanban_group_show_warning .kanban_record:not(.oe_kanban_card_warning):focus,
+.kanban_view .o_kanban_group.o_kanban_group_show_warning .kanban_record:not(.oe_kanban_card_warning).focus {
+    opacity: 1;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_danger,
+.kanban_view .o_kanban_group.o_kanban_group_show_danger .o_kanban_header {
+    background-color: #f8f2f2;
+    border-color: #ebb1af;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_danger .progress-bar.bg-danger-full {
+    border: 1px solid white;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_danger .oe_kanban_card_danger {
+    order: 1;
+    margin-bottom: 4px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_danger .oe_kanban_card_danger~.oe_kanban_card_danger {
+    margin-top: -5px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_danger .oe_kanban_card_danger~.o_kanban_load_more {
+    margin-top: -4px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_danger .o_kanban_load_more {
+    order: 2;
+    padding: 4px 0 8px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_danger .kanban_record:not(.oe_kanban_card_danger) {
+    order: 3;
+    opacity: 0.5;
+    box-shadow: none;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_danger .kanban_record:not(.oe_kanban_card_danger):hover,
+.kanban_view .o_kanban_group.o_kanban_group_show_danger .kanban_record:not(.oe_kanban_card_danger):focus,
+.kanban_view .o_kanban_group.o_kanban_group_show_danger .kanban_record:not(.oe_kanban_card_danger).focus {
+    opacity: 1;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_muted,
+.kanban_view .o_kanban_group.o_kanban_group_show_muted .o_kanban_header {
+    background-color: #efeff0;
+    border-color: #979a9d;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_muted .progress-bar.bg-muted-full {
+    border: 1px solid white;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_muted .oe_kanban_card_muted {
+    order: 1;
+    margin-bottom: 4px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_muted .oe_kanban_card_muted~.oe_kanban_card_muted {
+    margin-top: -5px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_muted .oe_kanban_card_muted~.o_kanban_load_more {
+    margin-top: -4px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_muted .o_kanban_load_more {
+    order: 2;
+    padding: 4px 0 8px;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_muted .kanban_record:not(.oe_kanban_card_muted) {
+    order: 3;
+    opacity: 0.5;
+    box-shadow: none;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show_muted .kanban_record:not(.oe_kanban_card_muted):hover,
+.kanban_view .o_kanban_group.o_kanban_group_show_muted .kanban_record:not(.oe_kanban_card_muted):focus,
+.kanban_view .o_kanban_group.o_kanban_group_show_muted .kanban_record:not(.oe_kanban_card_muted).focus {
+    opacity: 1;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+}
+
+.kanban_view .o_kanban_group.o_kanban_group_show>* {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes grow_huge {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        transform: scale3d(1.3, 1.3, 1.3);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.kanban_view .o_kanban_group .kanban_record {
+    display: block;
+}
 
 /* /web/static/src/scss/kanban_view_mobile.scss defined in bundle 'web.assets_backend' */
 @media (max-width: 767.98px) {
@@ -2830,4 +3100,16 @@ input.pager_value:focus {
     .o_notebook>.o_notebook_headers>.nav.nav-tabs {
         padding-left: 32px;
     }
+}
+
+.o_field_widget,
+.o_field_widget input.o_input {
+    display: inline-block;
+    text-align: inherit;
+}
+
+.o_field_many2one_avatar>.o_m2o_avatar {
+    width: 20px;
+    height: 20px;
+    margin-left: 6px;
 }
