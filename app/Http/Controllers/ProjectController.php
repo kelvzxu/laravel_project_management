@@ -25,7 +25,7 @@ class ProjectController extends Controller
 
     public function show(Request $request,$projectId){
         $user = app(UsersController::class)->getUserbyID(Auth::id());
-        $response = Project::with('manager')->findOrFail($projectId);
+        $response = $this-> getProjectDetail($projectId);
         $team = app(InheritTeamController::class)->getTeam($response->team_id);
         return Jetstream::inertia()->render($request, 'Project/Show', [
             'users' => $user,
@@ -37,5 +37,10 @@ class ProjectController extends Controller
     public function getTeamProject($teamId){
         $response = Project::with('manager')->where('team_id','=',$teamId)->get();
         return $response;
+    }
+
+    public function getProjectDetail($projectId){
+        $result = Project::with('task_type','task_type.tasks','manager')->findOrFail($projectId);
+        return $result;
     }
 }

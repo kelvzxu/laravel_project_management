@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\user;
+use App\Models\ProjectTaskType;
 
 class Project extends Model
 {
@@ -21,5 +22,8 @@ class Project extends Model
     public function Manager(){
         return $this->hasOne(User::class,'id','user_id');
     }
-
+    
+    public function task_type(){
+        return $this->belongsToMany(ProjectTaskType::class,'project_task_type_rels','project_id','project_task_type_id');
+    }
 }
