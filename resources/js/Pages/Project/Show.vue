@@ -106,20 +106,25 @@
           </template>
           <template #board_component>
             <kanban-area :type="'group'">
-              <kanban-progress>
-                <template #title>Draft</template>
-                <template #counter>{{ arrDraft.length }}</template>
+              <kanban-progress
+                v-for="stage in project.task_type"
+                :key="stage.name"
+                :data-id="stage.name"
+              >
+                <template #title>{{ stage.name }}</template>
+                <template #counter>{{ stage.tasks.length }}</template>
                 <template #record>
                   <draggable
-                    :list="arrDraft"
+                    :list="stage.tasks"
                     group="tasks"
                     style="min-height: 500px"
-                    @add="onAdd($event, true)"
+                    @add="onAdd($event, stage.id)"
                   >
                     <kanban-box
-                      v-for="task in arrDraft"
+                      v-for="task in stage.tasks"
                       :key="task.name"
                       :data-id="task.id"
+                      :stage="stage.name"
                     >
                       <template #header>{{ task.name }}</template>
                       <template #button>
@@ -135,48 +140,7 @@
                         </div>
                       </template>
                       <template #dateline v-if="task.date_end">{{
-                        task.date_end
-                      }}</template>
-                      <template #picture>
-                        <img
-                          :src="$page.user.profile_photo_url"
-                          class="o_m2o_avatar rounded-circle"
-                        />
-                      </template>
-                    </kanban-box>
-                  </draggable>
-                </template>
-              </kanban-progress>
-              <kanban-progress>
-                <template #title>Confirm</template>
-                <template #counter>{{ arrConfirm.length }}</template>
-                <template #record>
-                  <draggable
-                    :list="arrConfirm"
-                    group="tasks"
-                    style="min-height: 500px"
-                    @add="onAdd($event, false)"
-                  >
-                    <kanban-box
-                      v-for="task in arrConfirm"
-                      :key="task.name"
-                      :data-id="task.id"
-                    >
-                      <template #header>{{ task.name }}</template>
-                      <template #button>
-                        <div class="o_priority kanban_field_widget mr-2">
-                          <i class="o_priority_star far fa-star"></i>
-                        </div>
-                        <div
-                          class="o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
-                        >
-                          <i
-                            class="far fa-fw o_activity_color_default fa-clock mt-1"
-                          ></i>
-                        </div>
-                      </template>
-                      <template #dateline v-if="task.date_end">{{
-                        task.date_end
+                        task.date_end | formatDate
                       }}</template>
                       <template #picture>
                         <img
@@ -248,24 +212,6 @@ export default {
       SidebarSecondary: false,
       ExpanceControl: true,
       AddProjectModal: false,
-      arrDraft: [
-        {
-          id: "1",
-          name: "SignUp Page",
-          date_end: "5 days ago",
-        },
-        {
-          id: "2",
-          name: "Test Kanban View",
-          date_end: "",
-        },
-        {
-          id: "3",
-          name: "Fix Web Asset Backend css",
-          date_end: "1 days ago",
-        },
-      ],
-      arrConfirm: [],
       form: this.$inertia.form(
         {
           email: "",
@@ -275,21 +221,10 @@ export default {
           bag: "InviteUserModal",
         }
       ),
-      CreateProject: this.$inertia.form(
-        {
-          name: "",
-          allow_timesheets: true,
-          access_token: Math.random().toString(36).substring(7),
-          sequence: Math.floor(Math.random() * 1000) + 1,
-          user_id: this.users.id,
-          team_id: this.team.id,
-          create_uid: this.users.id,
-          write_uid: this.users.id,
-        },
-        {
-          bag: "InviteUserModal",
-        }
-      ),
+      TaskUpdate: this.$inertia.form({
+        id: "",
+        stage_id: "",
+      }),
     };
   },
   methods: {
@@ -314,7 +249,6 @@ export default {
         });
     },
     AddNewProject() {
-      console.log("____________");
       this.CreateProject.name = "";
 
       this.AddProjectModal = true;
@@ -339,8 +273,20 @@ export default {
     viewProject(row) {
       this.$inertia.visit(route("project.show", row.id));
     },
-    onAdd(event, visible) {
-      console.log(event.item.getAttribute("data-id"));
+    onAdd(event, stage) {
+      this.TaskUpdate.id = event.item.getAttribute("data-id");
+      this.TaskUpdate.stage_id = stage;
+      this.TaskUpdate.post(route("task_stage.update"), {
+        preserveScroll: true,
+      });
+      // }).then((response) => {
+      //   if (!this.TaskUpdate.hasErrors()) {
+      //     this.TaskUpdate.id = "";
+      //     this.TaskUpdate.stage_id = "";
+      //   }
+      // });
+      // console.log(event.item.getAttribute("data-id"));
+      // console.log(stage);
     },
   },
 };

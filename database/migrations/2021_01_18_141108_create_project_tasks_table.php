@@ -20,8 +20,8 @@ class CreateProjectTasksTable extends Migration
             $table->boolean('active')->default(true);
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('priority');
-            $table->integer('sequence');
+            $table->string('priority')->nullable();
+            $table->integer('sequence')->nullable();
             $table->foreignId('stage_id')->references('id')->on('project_task_types')->onDelete('cascade');
             $table->string('kanban_state')->default('normal');
             $table->timestamp('date_end')->nullable();

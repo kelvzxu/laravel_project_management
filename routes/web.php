@@ -7,7 +7,10 @@ use App\Http\Controllers\Auth\InheritTeamController;
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserFriendController;
-use  App\Http\Controllers\ProjectController;
+// Project Module
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectTaskController;
+use App\Http\Controllers\ProjectTaskTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +62,13 @@ Route::group(['middleware' => 'auth'], function (){
                         ->name('project.store');
     Route::get('/project/{project}', [ProjectController::class, 'show'])
                         ->name('project.show');
+    Route::get('/project/{project}/task', [ProjectTaskController::class, 'getTaskProject'])
+                        ->name('project_task.show');
+    Route::get('/project/{project}/task/type', [ProjectController::class, 'getProjectDetail'])
+                        ->name('project_task_type.show');
+    Route::post('/project/task/updatestage', [ProjectTaskController::class, 'UpdateStage'])
+                        ->name('task_stage.update');
+                        
 });  
 
 
