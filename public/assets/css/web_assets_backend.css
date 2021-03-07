@@ -1383,9 +1383,11 @@ input.pager_value:focus {
 }
 
 .kanban_view.o_kanban_grouped {
+    width: 100%;
     min-height: 100%;
     padding: 0;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
+    /* overflow-x: auto; */
 }
 
 .kanban_view.o_kanban_grouped .kanban_record,
@@ -2993,7 +2995,7 @@ input.pager_value:focus {
     }
 }
 
-.application-content {
+. {
     width: 100%;
 }
 
@@ -3104,7 +3106,6 @@ input.pager_value:focus {
 
 .o_field_widget,
 .o_field_widget input.o_input {
-    display: inline-block;
     text-align: inherit;
 }
 
@@ -3112,4 +3113,15 @@ input.pager_value:focus {
     width: 20px;
     height: 20px;
     margin-left: 6px;
+}
+
+.kanban_field_widget {
+    width: auto;
+    margin-bottom: 5px;
+
+}
+
+div.kanban_area div.o_kanban_group.ui-sortable.o_kanban_has_progressbar div#kanban_column.kanban_column {
+    min-height: 500px;
+    background-color: #006d6b;
 }
