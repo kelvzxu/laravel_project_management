@@ -26,7 +26,7 @@ export default {
   props: ["team"],
 
   components: {
-    AppContent,
+    AppContent, 
     AppLayout,
     CreateTeamForm,
     JetSectionBorder,

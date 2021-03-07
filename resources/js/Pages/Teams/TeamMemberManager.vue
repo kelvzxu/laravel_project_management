@@ -161,6 +161,7 @@
         </jet-button>
       </template>
     </jet-dialog-modal>
+    
     <!-- Role Management Modal -->
     <jet-dialog-modal
       :show="currentlyManagingRole"

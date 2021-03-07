@@ -66,7 +66,12 @@
         </div>
       </template>
       <template #main_content>
-        <jet-content-wrapper :users="users" :team="team" :projects="project">
+        <jet-content-wrapper
+          :users="users"
+          :team="team"
+          :projects="project"
+          class="project_view"
+        >
           <template #board_name>{{ project.name }}</template>
           <template #board_description>{{ project.description }}</template>
           <template #board_subs_images_label>Manager </template>
@@ -100,18 +105,89 @@
             <jet-board-sorting />
           </template>
           <template #board_component>
-            <kanban-area>
-              <kanban-box>
-                <template #jobs
-                  ><span>{{ project.name }}</span></template
-                >
-                <template #tags
-                  ><span class="field_tag tag_color_6"
-                    ><span></span>{{ project.manager.name }}</span
-                  ></template
-                >
-              </kanban-box>
-              <kanban-ghost v-for="n in 75" :key="n"></kanban-ghost>
+            <kanban-area :type="'group'">
+              <kanban-progress>
+                <template #title>Draft</template>
+                <template #counter>{{ arrDraft.length }}</template>
+                <template #record>
+                  <draggable
+                    :list="arrDraft"
+                    group="tasks"
+                    style="min-height: 500px"
+                    @add="onAdd($event, true)"
+                  >
+                    <kanban-box
+                      v-for="task in arrDraft"
+                      :key="task.name"
+                      :data-id="task.id"
+                    >
+                      <template #header>{{ task.name }}</template>
+                      <template #button>
+                        <div class="o_priority kanban_field_widget mr-2">
+                          <i class="o_priority_star far fa-star"></i>
+                        </div>
+                        <div
+                          class="o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
+                        >
+                          <i
+                            class="far fa-fw o_activity_color_default fa-clock mt-1"
+                          ></i>
+                        </div>
+                      </template>
+                      <template #dateline v-if="task.date_end">{{
+                        task.date_end
+                      }}</template>
+                      <template #picture>
+                        <img
+                          :src="$page.user.profile_photo_url"
+                          class="o_m2o_avatar rounded-circle"
+                        />
+                      </template>
+                    </kanban-box>
+                  </draggable>
+                </template>
+              </kanban-progress>
+              <kanban-progress>
+                <template #title>Confirm</template>
+                <template #counter>{{ arrConfirm.length }}</template>
+                <template #record>
+                  <draggable
+                    :list="arrConfirm"
+                    group="tasks"
+                    style="min-height: 500px"
+                    @add="onAdd($event, false)"
+                  >
+                    <kanban-box
+                      v-for="task in arrConfirm"
+                      :key="task.name"
+                      :data-id="task.id"
+                    >
+                      <template #header>{{ task.name }}</template>
+                      <template #button>
+                        <div class="o_priority kanban_field_widget mr-2">
+                          <i class="o_priority_star far fa-star"></i>
+                        </div>
+                        <div
+                          class="o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
+                        >
+                          <i
+                            class="far fa-fw o_activity_color_default fa-clock mt-1"
+                          ></i>
+                        </div>
+                      </template>
+                      <template #dateline v-if="task.date_end">{{
+                        task.date_end
+                      }}</template>
+                      <template #picture>
+                        <img
+                          :src="$page.user.profile_photo_url"
+                          class="o_m2o_avatar rounded-circle"
+                        />
+                      </template>
+                    </kanban-box>
+                  </draggable>
+                </template>
+              </kanban-progress>
             </kanban-area>
           </template>
         </jet-content-wrapper>
@@ -138,8 +214,10 @@ import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
 // Kanban Component
 import KanbanArea from "@/Jetstream/KanbanArea";
-import KanbanBox from "@/Jetstream/KanbanBox";
-import KanbanGhost from "@/Jetstream/KanbanGhost";
+import KanbanBox from "@/Jetstream/KanbanBoxGroup";
+import KanbanProgress from "@/Jetstream/KanbanProgress";
+// Module
+import draggable from "vuedraggable";
 
 export default {
   props: ["team", "users", "project"],
@@ -157,11 +235,12 @@ export default {
     JetSecondaryButton,
     KanbanArea,
     KanbanBox,
-    KanbanGhost,
+    KanbanProgress,
     JetBoardSorting,
     JetBoardSearch,
     JetBoardDropdown,
     JetBoardFilterDropdown,
+    draggable,
   },
   data() {
     return {
@@ -169,6 +248,24 @@ export default {
       SidebarSecondary: false,
       ExpanceControl: true,
       AddProjectModal: false,
+      arrDraft: [
+        {
+          id: "1",
+          name: "SignUp Page",
+          date_end: "5 days ago",
+        },
+        {
+          id: "2",
+          name: "Test Kanban View",
+          date_end: "",
+        },
+        {
+          id: "3",
+          name: "Fix Web Asset Backend css",
+          date_end: "1 days ago",
+        },
+      ],
+      arrConfirm: [],
       form: this.$inertia.form(
         {
           email: "",
@@ -241,6 +338,9 @@ export default {
     },
     viewProject(row) {
       this.$inertia.visit(route("project.show", row.id));
+    },
+    onAdd(event, visible) {
+      console.log(event.item.getAttribute("data-id"));
     },
   },
 };
