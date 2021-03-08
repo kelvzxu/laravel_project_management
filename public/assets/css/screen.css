@@ -1862,8 +1862,8 @@ div#fancybox-buttons a:hover {
     bottom: 0;
     height: 100%;
     left: 66px;
-    display: -ms-flexbox;
-    display: flex;
+    /* display: -ms-flexbox;
+    display: flex; */
     -webkit-transition: left 150ms cubic-bezier(0, 0, 0.35, 1);
     -o-transition: left 150ms cubic-bezier(0, 0, 0.35, 1);
     transition: left 150ms cubic-bezier(0, 0, 0.35, 1);
@@ -1882,7 +1882,6 @@ div#fancybox-buttons a:hover {
 }
 
 .application .application-layers .first-level .first-level-content-wrapper {
-    height: 100%;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
@@ -19282,7 +19281,7 @@ div.editable_preview:hover .icon {
     text-decoration: none;
     -webkit-transition: background .2s ease, color .2s ease;
     -o-transition: background .2s ease, color .2s ease;
-    transition: background .2s ease, color .2s ease
+    transition: background .2s ease, color .2s ease;
 }
 
 .on-boarding-tip .on-boarding-tip-inner .on-boarding-tip-button-wrapper a:hover {
