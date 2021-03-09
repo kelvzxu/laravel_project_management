@@ -1,7 +1,6 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-import Vuetify from 'vuetify';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
 import { InertiaApp } from '@inertiajs/inertia-vue';
@@ -16,7 +15,6 @@ Vue.filter('formatDate', function(value) {
 });
 
 Vue.mixin({ methods: { route } });
-Vue.use(Vuetify);
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
@@ -25,8 +23,6 @@ Vue.use (IconsPlugin)
 
 const opts = {}
 const app = document.getElementById('app');
-
-export default new Vuetify(opts)
 
 new Vue({
     render: (h) =>

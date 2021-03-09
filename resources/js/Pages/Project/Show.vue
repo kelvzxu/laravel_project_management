@@ -52,8 +52,8 @@
             class="boards-list-header-component selected leftpane-workspace-header-redesign"
           >
             <jet-responsive-nav-link
-              :href="route('teams.show', team.id)"
-              :active="route().current('teams.show')"
+              :href="route('project.detail', project.id)"
+              :active="route().current('project.detail')"
             >
               <div class="boards-filter-row-wrapper">
                 <div class="boards-list-filter-button-component">

@@ -11,6 +11,7 @@ use App\Http\Controllers\UserFriendController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTaskController;
 use App\Http\Controllers\ProjectTaskTypeController;
+use App\Http\Controllers\IrAttachmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,12 +63,17 @@ Route::group(['middleware' => 'auth'], function (){
                         ->name('project.store');
     Route::get('/project/{project}', [ProjectController::class, 'show'])
                         ->name('project.show');
+    Route::get('/project/view/{project}', [ProjectController::class, 'view'])
+                        ->name('project.detail');
     Route::get('/project/{project}/task', [ProjectTaskController::class, 'getTaskProject'])
                         ->name('project_task.show');
     Route::get('/project/{project}/task/type', [ProjectController::class, 'getProjectDetail'])
                         ->name('project_task_type.show');
     Route::post('/project/task/updatestage', [ProjectTaskController::class, 'UpdateStage'])
                         ->name('task_stage.update');
+    Route::post('/attachment/store', [IrAttachmentController::class, 'store'])
+                        ->name('attachment.store');
+    Route::post('/teams', [InheritTeamController::class, 'store'])->name('teams.store');
                         
 });  
 

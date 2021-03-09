@@ -15,6 +15,7 @@ use Laravel\Jetstream\Jetstream;
 use Laravel\Jetstream\RedirectsActions;
 use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\IrAttachmentController;
 use App\Http\Controllers\Auth\UsersController;
 use App\Models\Team;
 use App\Models\Membership;
@@ -27,7 +28,7 @@ class InheritTeamController extends TeamController
         $projects = app(ProjectController::class)->getTeamProject($team->id);
 
         return Jetstream::inertia()->render($request, 'Teams/Show', [
-            'team' => $team->load('owner', 'users'), 
+            'team' => $team->load('owner', 'users','banner'), 
             'projects'=> $projects,
             'availableRoles' => array_values(Jetstream::$roles),
             'availablePermissions' => Jetstream::$permissions,
@@ -102,5 +103,17 @@ class InheritTeamController extends TeamController
         return $team;
     }
 
-
+    public function store(Request $request)
+    {
+        $attachment = app(IrAttachmentController::class)->store($request);
+        $data = $request->all();
+        if ($attachment->id){
+            $data['banner_image_id'] = $attachment->id;
+        }
+        // $params
+        $creator = app(CreatesTeams::class);
+        $team = $creator->create($request->user(), $data);
+        $data = $team->update($data);
+        // return $this->redirectPath($creator);
+    }
 }
