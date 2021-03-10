@@ -50,8 +50,8 @@ class ProjectController extends Controller
         return $response;
     }
 
-    public function getProjectDetail($projectId){
-        $result = Project::with('task_type','task_type.tasks','manager')->findOrFail($projectId);
+    public function getProjectDetail($token){
+        $result = Project::with('task_type','task_type.tasks','manager')->where('access_token','=',$token)->first();
         return $result;
     }
 

@@ -475,7 +475,7 @@ export default {
       }
     },
     viewProject(row) {
-      this.$inertia.visit(route("project.show", row.id));
+      this.$inertia.visit(route("project.show", row.access_token));
     },
   },
 };

@@ -52,6 +52,21 @@
             class="boards-list-header-component selected leftpane-workspace-header-redesign"
           >
             <jet-responsive-nav-link
+              :href="route('stage.show', project.access_token)"
+              :active="route().current('stage.view')"
+            >
+              <div class="boards-filter-row-wrapper">
+                <div class="boards-list-filter-button-component">
+                  <i class="far fa-layer-group main-icon"></i
+                  ><span class="filters-text">Project Stage</span>
+                </div>
+              </div>
+            </jet-responsive-nav-link>
+          </div>
+          <div
+            class="boards-list-header-component selected leftpane-workspace-header-redesign"
+          >
+            <jet-responsive-nav-link
               :href="route('project.detail', project.id)"
               :active="route().current('project.detail')"
             >
