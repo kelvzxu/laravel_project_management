@@ -6653,6 +6653,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6701,62 +6773,44 @@ __webpack_require__.r(__webpack_exports__);
       InviteModal: false,
       SidebarSecondary: false,
       ExpanceControl: true,
-      AddProjectModal: false,
+      AddNewTask: false,
       form: this.$inertia.form({
-        email: "",
-        role: null
+        name: "",
+        active: true,
+        project_id: this.project.id,
+        is_closed: false,
+        create_uid: this.users.id,
+        write_uid: this.users.id,
+        stage_id: this.project.task_type[0].id,
+        user_id: this.users.id
       }, {
-        bag: "InviteUserModal"
-      }),
-      TaskUpdate: this.$inertia.form({
-        id: "",
-        stage_id: ""
+        bag: "CreateStage"
       })
     };
   },
   methods: {
-    InviteNewUser: function InviteNewUser() {
+    AddStage: function AddStage() {
       var _this = this;
 
-      this.form.email = "";
-      this.InviteModal = true;
+      this.form.name = "";
+      this.AddNewTask = true;
       setTimeout(function () {
-        _this.$refs.email.focus();
-      }, 250);
-    },
-    InviteUserModal: function InviteUserModal() {
-      var _this2 = this;
-
-      this.form.post(route("team-members.store", this.team), {
-        preserveScroll: true
-      }).then(function (response) {
-        if (!_this2.form.hasErrors()) {
-          _this2.InviteModal = false;
-        }
-      });
-    },
-    AddNewProject: function AddNewProject() {
-      var _this3 = this;
-
-      this.CreateProject.name = "";
-      this.AddProjectModal = true;
-      setTimeout(function () {
-        _this3.$refs.name.focus();
+        _this.$refs.name.focus();
       }, 250);
     },
     CreateNewProjects: function CreateNewProjects() {
-      var _this4 = this;
+      var _this2 = this;
 
-      this.CreateProject.post(route("project.store"), {
+      this.form.post(route("project.store"), {
         preserveScroll: true
       }).then(function (response) {
-        _this4.CreateProject.access_token = Math.random().toString(36).substring(7);
+        _this2.form.access_token = Math.random().toString(36).substring(7);
 
-        if (!_this4.CreateProject.hasErrors()) {
-          _this4.AddProjectModal = false;
+        if (!_this2.form.hasErrors()) {
+          _this2.AddNewTask = false;
         }
 
-        console.log(_this4.CreateProject);
+        console.log(_this2.form);
       });
     },
     viewProject: function viewProject(row) {
@@ -8621,6 +8675,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8673,7 +8744,7 @@ __webpack_require__.r(__webpack_exports__);
         is_closed: false,
         create_uid: this.users.id,
         write_uid: this.users.id,
-        sequence: Math.floor(Math.random() * 1000) + 1
+        sequence: ""
       }, {
         bag: "CreateStage"
       })
@@ -8692,39 +8763,28 @@ __webpack_require__.r(__webpack_exports__);
         _this.$refs.email.focus();
       }, 250);
     },
-    InviteUserModal: function InviteUserModal() {
+    AddStage: function AddStage() {
       var _this2 = this;
-
-      this.form.post(route("team-members.store", this.team), {
-        preserveScroll: true
-      }).then(function (response) {
-        if (!_this2.form.hasErrors()) {
-          _this2.InviteModal = false;
-        }
-      });
-    },
-    AddNewProject: function AddNewProject() {
-      var _this3 = this;
 
       this.form.name = "";
       this.AddNewStage = true;
       setTimeout(function () {
-        _this3.$refs.name.focus();
+        _this2.$refs.name.focus();
       }, 250);
     },
     CreateNewStages: function CreateNewStages() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.form.post(route("stage.store"), {
         preserveScroll: true
       }).then(function (response) {
-        _this4.form.access_token = Math.random().toString(36).substring(7);
+        _this3.form.access_token = Math.random().toString(36).substring(7);
 
-        if (!_this4.form.hasErrors()) {
-          _this4.AddNewStage = false;
+        if (!_this3.form.hasErrors()) {
+          _this3.AddNewStage = false;
         }
 
-        console.log(_this4.form);
+        console.log(_this3.form);
       });
     },
     viewProject: function viewProject(row) {
@@ -63615,38 +63675,58 @@ var render = function() {
                     _c(
                       "div",
                       {
-                        staticClass:
-                          "new-boards-list-button-component bg-light",
-                        on: { click: _vm.InviteNewUser }
+                        staticClass: "new-boards-list-button-component bg-light"
                       },
                       [
-                        _c("div", { staticClass: "ds-menu-button-container" }, [
-                          _c("div", [
+                        _c(
+                          "jet-responsive-nav-link",
+                          {
+                            attrs: {
+                              href: _vm.route(
+                                "project.show",
+                                _vm.project.access_token
+                              ),
+                              active: _vm.route().current("teams.show")
+                            }
+                          },
+                          [
                             _c(
                               "div",
-                              {
-                                staticClass:
-                                  "top-new-button-component default-icon"
-                              },
+                              { staticClass: "ds-menu-button-container" },
                               [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-th-large main-icon"
-                                    }),
-                                    _vm._v("Kanban Board\n                ")
-                                  ]
-                                )
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "top-new-button-component default-icon"
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fa fa-th-large main-icon"
+                                          }),
+                                          _vm._v(
+                                            "Kanban Board\n                  "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
                               ]
                             )
-                          ])
-                        ])
-                      ]
+                          ]
+                        )
+                      ],
+                      1
                     ),
                     _vm._v(" "),
                     _c(
@@ -63843,6 +63923,251 @@ var render = function() {
             key: "main_content",
             fn: function() {
               return [
+                _c("jet-dialog-modal", {
+                  attrs: { show: _vm.AddNewTask },
+                  on: {
+                    close: function($event) {
+                      _vm.AddNewTask = false
+                    }
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "title",
+                      fn: function() {
+                        return [_vm._v(" New Stage ")]
+                      },
+                      proxy: true
+                    },
+                    {
+                      key: "content",
+                      fn: function() {
+                        return [
+                          _c("div", { staticClass: "mt-4" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-span-6 sm:col-span-4" },
+                              [
+                                _c("jet-label", {
+                                  attrs: { for: "name", value: "Task Name" }
+                                }),
+                                _vm._v(" "),
+                                _c("jet-input", {
+                                  ref: "name",
+                                  staticClass: "mt-1 block w-full",
+                                  attrs: { id: "name", type: "text" },
+                                  model: {
+                                    value: _vm.form.name,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "name", $$v)
+                                    },
+                                    expression: "form.name"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("jet-input-error", {
+                                  staticClass: "mt-2",
+                                  attrs: { message: _vm.form.error("name") }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-span-6 sm:col-span-4 mt-2" },
+                              [
+                                _c("jet-label", {
+                                  attrs: { for: "stage_id", value: "Stage" }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.stage_id,
+                                        expression: "form.stage_id"
+                                      }
+                                    ],
+                                    staticClass: "mt-1 block w-full",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.form,
+                                          "stage_id",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  _vm._l(_vm.project.task_type, function(row) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: row.id,
+                                        attrs: {
+                                          select: row.id == _vm.form.stage_id
+                                        },
+                                        domProps: { value: row.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                  " +
+                                            _vm._s(row.name) +
+                                            "\n                "
+                                        )
+                                      ]
+                                    )
+                                  }),
+                                  0
+                                ),
+                                _vm._v(" "),
+                                _c("jet-input-error", {
+                                  staticClass: "mt-2",
+                                  attrs: { message: _vm.form.error("stage_id") }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-span-6 sm:col-span-4 mt-2" },
+                              [
+                                _c("jet-label", {
+                                  attrs: { for: "user_id", value: "Stage" }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.user_id,
+                                        expression: "form.user_id"
+                                      }
+                                    ],
+                                    staticClass: "mt-1 block w-full",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.form,
+                                          "user_id",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      {
+                                        attrs: {
+                                          select:
+                                            _vm.team.owner.id ==
+                                            _vm.form.user_id
+                                        },
+                                        domProps: { value: _vm.team.owner.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                  " +
+                                            _vm._s(_vm.team.owner.name) +
+                                            "\n                "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.team.users, function(row) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: row.id,
+                                          attrs: {
+                                            select: row.id == _vm.form.user_id
+                                          },
+                                          domProps: { value: row.id }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                  " +
+                                              _vm._s(row.name) +
+                                              "\n                "
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c("jet-input-error", {
+                                  staticClass: "mt-2",
+                                  attrs: { message: _vm.form.error("user_id") }
+                                })
+                              ],
+                              1
+                            )
+                          ])
+                        ]
+                      },
+                      proxy: true
+                    },
+                    {
+                      key: "footer",
+                      fn: function() {
+                        return [
+                          _c(
+                            "jet-success-button",
+                            {
+                              staticClass: "ml-2",
+                              class: { "opacity-25": _vm.form.processing },
+                              attrs: { disabled: _vm.form.processing },
+                              nativeOn: {
+                                click: function($event) {
+                                  return _vm.CreateNewStages($event)
+                                }
+                              }
+                            },
+                            [_vm._v("\n            Create\n          ")]
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ])
+                }),
+                _vm._v(" "),
                 _c("jet-content-wrapper", {
                   staticClass: "project_view",
                   attrs: {
@@ -63894,7 +64219,7 @@ var render = function() {
                             "div",
                             {
                               staticClass: "monday-add-to-board-wrapper",
-                              on: { click: _vm.AddNewProject }
+                              on: { click: _vm.AddStage }
                             },
                             [
                               _c(
@@ -63944,7 +64269,7 @@ var render = function() {
                                                   staticClass:
                                                     "monday-board-control__text"
                                                 },
-                                                [_vm._v("Add Projects")]
+                                                [_vm._v("Add Tasks")]
                                               )
                                             ]
                                           )
@@ -63992,7 +64317,7 @@ var render = function() {
                             { attrs: { type: "group" } },
                             _vm._l(_vm.project.task_type, function(stage) {
                               return _c("kanban-progress", {
-                                key: stage.name,
+                                key: stage.id,
                                 attrs: { "data-id": stage.name },
                                 scopedSlots: _vm._u(
                                   [
@@ -64037,7 +64362,7 @@ var render = function() {
                                             },
                                             _vm._l(stage.tasks, function(task) {
                                               return _c("kanban-box", {
-                                                key: task.name,
+                                                key: task.id,
                                                 attrs: {
                                                   "data-id": task.id,
                                                   stage: stage.name
@@ -67596,38 +67921,57 @@ var render = function() {
                   [
                     _c(
                       "div",
-                      {
-                        staticClass: "new-boards-list-button-component",
-                        on: { click: _vm.InviteNewUser }
-                      },
+                      { staticClass: "new-boards-list-button-component" },
                       [
-                        _c("div", { staticClass: "ds-menu-button-container" }, [
-                          _c("div", [
+                        _c(
+                          "jet-responsive-nav-link",
+                          {
+                            attrs: {
+                              href: _vm.route(
+                                "project.show",
+                                _vm.project.access_token
+                              ),
+                              active: _vm.route().current("teams.show")
+                            }
+                          },
+                          [
                             _c(
                               "div",
-                              {
-                                staticClass:
-                                  "top-new-button-component default-icon"
-                              },
+                              { staticClass: "ds-menu-button-container" },
                               [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-th-large main-icon"
-                                    }),
-                                    _vm._v("Kanban Board\n                ")
-                                  ]
-                                )
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "top-new-button-component default-icon"
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fa fa-th-large main-icon"
+                                          }),
+                                          _vm._v(
+                                            "Kanban Board\n                  "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
                               ]
                             )
-                          ])
-                        ])
-                      ]
+                          ]
+                        )
+                      ],
+                      1
                     ),
                     _vm._v(" "),
                     _c(
@@ -67852,7 +68196,7 @@ var render = function() {
                               { staticClass: "col-span-6 sm:col-span-4" },
                               [
                                 _c("jet-label", {
-                                  attrs: { for: "name", value: "Project Name" }
+                                  attrs: { for: "name", value: "Stage Name" }
                                 }),
                                 _vm._v(" "),
                                 _c("jet-input", {
@@ -67865,6 +68209,42 @@ var render = function() {
                                       _vm.$set(_vm.form, "name", $$v)
                                     },
                                     expression: "form.name"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("jet-input-error", {
+                                  staticClass: "mt-2",
+                                  attrs: { message: _vm.form.error("name") }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-span-6 sm:col-span-4 mt-2" },
+                              [
+                                _c("jet-label", {
+                                  attrs: {
+                                    for: "sequence",
+                                    value: "Stage sequence"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("jet-input", {
+                                  ref: "sequence",
+                                  staticClass: "mt-1 block w-full",
+                                  attrs: {
+                                    id: "sequence",
+                                    type: "text",
+                                    required: ""
+                                  },
+                                  model: {
+                                    value: _vm.form.sequence,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "sequence", $$v)
+                                    },
+                                    expression: "form.sequence"
                                   }
                                 }),
                                 _vm._v(" "),
@@ -68031,7 +68411,7 @@ var render = function() {
                             "div",
                             {
                               staticClass: "monday-add-to-board-wrapper",
-                              on: { click: _vm.AddNewProject }
+                              on: { click: _vm.AddStage }
                             },
                             [
                               _c(

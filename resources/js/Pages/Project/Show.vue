@@ -5,21 +5,23 @@
       <template #workspace_name>{{ project.name }}</template>
       <template #workspace_sub_header>
         <div class="home-workspace-items-content-sub-header-wrapper">
-          <div
-            class="new-boards-list-button-component bg-light"
-            @click="InviteNewUser"
-          >
-            <div class="ds-menu-button-container">
-              <div>
-                <div class="top-new-button-component default-icon">
-                  <div
-                    class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
-                  >
-                    <i class="fa fa-th-large main-icon"></i>Kanban Board
+          <div class="new-boards-list-button-component bg-light">
+            <jet-responsive-nav-link
+              :href="route('project.show', project.access_token)"
+              :active="route().current('teams.show')"
+            >
+              <div class="ds-menu-button-container">
+                <div>
+                  <div class="top-new-button-component default-icon">
+                    <div
+                      class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
+                    >
+                      <i class="fa fa-th-large main-icon"></i>Kanban Board
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </jet-responsive-nav-link>
           </div>
           <div
             class="boards-list-header-component selected leftpane-workspace-header-redesign"
@@ -84,6 +86,76 @@
         </div>
       </template>
       <template #main_content>
+        <jet-dialog-modal :show="AddNewTask" @close="AddNewTask = false">
+          <template #title> New Stage </template>
+
+          <template #content>
+            <div class="mt-4">
+              <div class="col-span-6 sm:col-span-4">
+                <jet-label for="name" value="Task Name" />
+                <jet-input
+                  id="name"
+                  type="text"
+                  ref="name"
+                  class="mt-1 block w-full"
+                  v-model="form.name"
+                />
+                <jet-input-error :message="form.error('name')" class="mt-2" />
+              </div>
+              <div class="col-span-6 sm:col-span-4 mt-2">
+                <jet-label for="stage_id" value="Stage" />
+                <select v-model="form.stage_id" class="mt-1 block w-full">
+                  <option
+                    v-for="row in project.task_type"
+                    :select="row.id == form.stage_id"
+                    :key="row.id"
+                    :value="row.id"
+                  >
+                    {{ row.name }}
+                  </option>
+                </select>
+                <jet-input-error
+                  :message="form.error('stage_id')"
+                  class="mt-2"
+                />
+              </div>
+              <div class="col-span-6 sm:col-span-4 mt-2">
+                <jet-label for="user_id" value="Stage" />
+                <select v-model="form.user_id" class="mt-1 block w-full">
+                  <option
+                    :select="team.owner.id == form.user_id"
+                    :value="team.owner.id"
+                  >
+                    {{ team.owner.name }}
+                  </option>
+                  <option
+                    v-for="row in team.users"
+                    :select="row.id == form.user_id"
+                    :key="row.id"
+                    :value="row.id"
+                  >
+                    {{ row.name }}
+                  </option>
+                </select>
+                <jet-input-error
+                  :message="form.error('user_id')"
+                  class="mt-2"
+                />
+              </div>
+            </div>
+          </template>
+
+          <template #footer>
+            <jet-success-button
+              class="ml-2"
+              @click.native="CreateNewStages"
+              :class="{ 'opacity-25': form.processing }"
+              :disabled="form.processing"
+            >
+              Create
+            </jet-success-button>
+          </template>
+        </jet-dialog-modal>
         <jet-content-wrapper
           :users="users"
           :team="team"
@@ -97,7 +169,7 @@
             <img :src="project.manager.profile_photo_url" class="inner-image" />
           </template>
           <template #board_button>
-            <div class="monday-add-to-board-wrapper" @click="AddNewProject">
+            <div class="monday-add-to-board-wrapper" @click="AddStage">
               <div
                 class="monday-add-to-board-menu"
                 id="monday-add-to-board-menu-container"
@@ -108,7 +180,7 @@
                       <div class="monday-board-control__icon">
                         <i class="fa fa-plus-square"></i>
                       </div>
-                      <div class="monday-board-control__text">Add Projects</div>
+                      <div class="monday-board-control__text">Add Tasks</div>
                     </div>
                   </div>
                 </div>
@@ -126,7 +198,7 @@
             <kanban-area :type="'group'">
               <kanban-progress
                 v-for="stage in project.task_type"
-                :key="stage.name"
+                :key="stage.id"
                 :data-id="stage.name"
               >
                 <template #title>{{ stage.name }}</template>
@@ -140,7 +212,7 @@
                   >
                     <kanban-box
                       v-for="task in stage.tasks"
-                      :key="task.name"
+                      :key="task.id"
                       :data-id="task.id"
                       :stage="stage.name"
                     >
@@ -229,64 +301,46 @@ export default {
       InviteModal: false,
       SidebarSecondary: false,
       ExpanceControl: true,
-      AddProjectModal: false,
+      AddNewTask: false,
       form: this.$inertia.form(
         {
-          email: "",
-          role: null,
+          name: "",
+          active: true,
+          project_id: this.project.id,
+          is_closed: false,
+          create_uid: this.users.id,
+          write_uid: this.users.id,
+          stage_id: this.project.task_type[0].id,
+          user_id: this.users.id,
         },
         {
-          bag: "InviteUserModal",
+          bag: "CreateStage",
         }
       ),
-      TaskUpdate: this.$inertia.form({
-        id: "",
-        stage_id: "",
-      }),
     };
   },
   methods: {
-    InviteNewUser() {
-      this.form.email = "";
+    AddStage() {
+      this.form.name = "";
 
-      this.InviteModal = true;
-
-      setTimeout(() => {
-        this.$refs.email.focus();
-      }, 250);
-    },
-    InviteUserModal() {
-      this.form
-        .post(route("team-members.store", this.team), {
-          preserveScroll: true,
-        })
-        .then((response) => {
-          if (!this.form.hasErrors()) {
-            this.InviteModal = false;
-          }
-        });
-    },
-    AddNewProject() {
-      this.CreateProject.name = "";
-
-      this.AddProjectModal = true;
+      this.AddNewTask = true;
 
       setTimeout(() => {
         this.$refs.name.focus();
       }, 250);
     },
     CreateNewProjects() {
-      this.CreateProject.post(route("project.store"), {
-        preserveScroll: true,
-      }).then((response) => {
-        this.CreateProject.access_token = Math.random()
-          .toString(36)
-          .substring(7);
-        if (!this.CreateProject.hasErrors()) {
-          this.AddProjectModal = false;
-        }
-        console.log(this.CreateProject);
-      });
+      this.form
+        .post(route("project.store"), {
+          preserveScroll: true,
+        })
+        .then((response) => {
+          this.form.access_token = Math.random().toString(36).substring(7);
+          if (!this.form.hasErrors()) {
+            this.AddNewTask = false;
+          }
+          console.log(this.form);
+        });
     },
     viewProject(row) {
       this.$inertia.visit(route("project.show", row.id));

@@ -5,18 +5,23 @@
       <template #workspace_name>{{ project.name }}</template>
       <template #workspace_sub_header>
         <div class="home-workspace-items-content-sub-header-wrapper">
-          <div class="new-boards-list-button-component" @click="InviteNewUser">
-            <div class="ds-menu-button-container">
-              <div>
-                <div class="top-new-button-component default-icon">
-                  <div
-                    class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
-                  >
-                    <i class="fa fa-th-large main-icon"></i>Kanban Board
+          <div class="new-boards-list-button-component">
+            <jet-responsive-nav-link
+              :href="route('project.show', project.access_token)"
+              :active="route().current('teams.show')"
+            >
+              <div class="ds-menu-button-container">
+                <div>
+                  <div class="top-new-button-component default-icon">
+                    <div
+                      class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
+                    >
+                      <i class="fa fa-th-large main-icon"></i>Kanban Board
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </jet-responsive-nav-link>
           </div>
           <div
             class="boards-list-header-component selected leftpane-workspace-header-redesign"
@@ -87,13 +92,25 @@
           <template #content>
             <div class="mt-4">
               <div class="col-span-6 sm:col-span-4">
-                <jet-label for="name" value="Project Name" />
+                <jet-label for="name" value="Stage Name" />
                 <jet-input
                   id="name"
                   type="text"
                   ref="name"
                   class="mt-1 block w-full"
                   v-model="form.name"
+                />
+                <jet-input-error :message="form.error('name')" class="mt-2" />
+              </div>
+              <div class="col-span-6 sm:col-span-4 mt-2">
+                <jet-label for="sequence" value="Stage sequence" />
+                <jet-input
+                  id="sequence"
+                  type="text"
+                  ref="sequence"
+                  required
+                  class="mt-1 block w-full"
+                  v-model="form.sequence"
                 />
                 <jet-input-error :message="form.error('name')" class="mt-2" />
               </div>
@@ -140,7 +157,7 @@
             <img :src="project.manager.profile_photo_url" class="inner-image" />
           </template>
           <template #board_button>
-            <div class="monday-add-to-board-wrapper" @click="AddNewProject">
+            <div class="monday-add-to-board-wrapper" @click="AddStage">
               <div
                 class="monday-add-to-board-menu"
                 id="monday-add-to-board-menu-container"
@@ -255,7 +272,7 @@ export default {
           is_closed: false,
           create_uid: this.users.id,
           write_uid: this.users.id,
-          sequence: Math.floor(Math.random() * 1000) + 1,
+          sequence: "",
         },
         {
           bag: "CreateStage",
@@ -276,18 +293,7 @@ export default {
         this.$refs.email.focus();
       }, 250);
     },
-    InviteUserModal() {
-      this.form
-        .post(route("team-members.store", this.team), {
-          preserveScroll: true,
-        })
-        .then((response) => {
-          if (!this.form.hasErrors()) {
-            this.InviteModal = false;
-          }
-        });
-    },
-    AddNewProject() {
+    AddStage() {
       this.form.name = "";
 
       this.AddNewStage = true;

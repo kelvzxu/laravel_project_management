@@ -25,7 +25,7 @@ class Project extends Model
     }
     
     public function task_type(){
-        return $this->belongsToMany(ProjectTaskType::class,'project_task_type_rels','project_id','project_task_type_id');
+        return $this->belongsToMany(ProjectTaskType::class,'project_task_type_rels','project_id','project_task_type_id')->orderBy('sequence');
     }
 
     public function team(){

@@ -76,7 +76,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
     Route::post('/attachment/store', [IrAttachmentController::class, 'store'])
                         ->name('attachment.store');
     Route::post('/teams', [InheritTeamController::class, 'store'])->name('teams.store');
-    Route::post('/project/update', [ProjectController::class, 'update'])->name('project.update');                  
+    Route::post('/project/update', [ProjectController::class, 'update'])->name('project.update');   
+    Route::post('/project/task/store', [ProjectTaskController::class, 'store'])->name('project_task.store');               
 });  
 
 
