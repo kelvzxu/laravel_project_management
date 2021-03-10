@@ -2170,16 +2170,6 @@ input.pager_value:focus {
     top: 11px;
 }
 
-.user-profile {
-    overflow: auto;
-    width: 100%;
-}
-
-@media (min-width: 992px) {
-    .user-profile {
-        width: 150%;
-    }
-}
 
 .user-profile .profile-header {
     margin: 0 16px
@@ -3217,4 +3207,31 @@ div.kanban_area div.o_kanban_group.ui-sortable.o_kanban_has_progressbar div#kanb
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: top;
+}
+
+.o_settings_container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+
+.o_settings_container .o_setting_box {
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.o_settings_container .o_setting_box .o_setting_left_pane {
+    width: 24px;
+    float: left;
+}
+
+.o_settings_container .o_setting_box .o_setting_right_pane {
+    margin-left: 30px;
+    border-left: 1px solid #bbbbbb;
+    padding-left: 10px;
 }

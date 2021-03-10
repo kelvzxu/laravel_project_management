@@ -105,15 +105,18 @@ class InheritTeamController extends TeamController
 
     public function store(Request $request)
     {
-        $attachment = app(IrAttachmentController::class)->store($request);
-        $data = $request->all();
-        if ($attachment->id){
-            $data['banner_image_id'] = $attachment->id;
-        }
-        // $params
         $creator = app(CreatesTeams::class);
-        $team = $creator->create($request->user(), $data);
-        $data = $team->update($data);
-        // return $this->redirectPath($creator);
+        $team = $creator->create($request->user(), $request->all());
+        if ($request->attachment){
+            $params = $request->attachment;
+            $params['res_id']= $team->id;
+            $attachment = app(IrAttachmentController::class)->store($params);
+            $data = $request->all();
+            if ($attachment->id){
+                $data['banner_image_id'] = $attachment->id;
+            }
+            $data = $team->update($data);
+        }
+        return $this->redirectPath($creator);
     }
 }

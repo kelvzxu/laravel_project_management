@@ -8,7 +8,7 @@ use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
 use App\Models\ir_attachment;
 
-class Team extends JetstreamTeam
+class Team extends JetstreamTeam 
 {
     /**
      * The attributes that should be cast to native types.

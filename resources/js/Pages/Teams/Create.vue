@@ -300,7 +300,7 @@ export default {
   },
   methods: {
     createTeam() {
-      if (this.$refs.photo) {
+      if (this.$refs.photo.files[0]) {
         this.StoreBanner.url = this.$refs.photo.files[0].name;
         this.StoreBanner.type = this.$refs.photo.files[0].type;
         this.StoreBanner.size = this.$refs.photo.files[0].size;

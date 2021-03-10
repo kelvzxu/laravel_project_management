@@ -54,4 +54,10 @@ class ProjectController extends Controller
         $result = Project::with('task_type','task_type.tasks','manager')->findOrFail($projectId);
         return $result;
     }
+
+    public function update(Request $request){
+        $project = Project::findOrFail($request->id);
+        $project->update($request->all());
+        return back(303);
+    }
 }

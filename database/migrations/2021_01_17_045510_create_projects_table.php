@@ -20,6 +20,8 @@ class CreateProjectsTable extends Migration
             $table->string('description')->nullable();
             $table->boolean('active')->default(true);
             $table->integer('sequence');
+            $table->string('customer')->nullable();
+            $table->string('visibility')->nullable();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('team_id')->references('id')->on('teams');
             $table->string('label_tasks')->nullable();

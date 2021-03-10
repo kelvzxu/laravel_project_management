@@ -279,14 +279,6 @@ export default {
       this.TaskUpdate.post(route("task_stage.update"), {
         preserveScroll: true,
       });
-      // }).then((response) => {
-      //   if (!this.TaskUpdate.hasErrors()) {
-      //     this.TaskUpdate.id = "";
-      //     this.TaskUpdate.stage_id = "";
-      //   }
-      // });
-      // console.log(event.item.getAttribute("data-id"));
-      // console.log(stage);
     },
   },
 };

@@ -8,11 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class IrAttachmentController extends Controller
 {
-    public function store(Request $request){
+    public function store($request){
         try{
-            // $params = $request->attachment;
-            // echo $params;
-            $data=$request->attachment;
+            $data=$request;
             $data['create_uid'] = Auth::id();
             $data['write_uid'] = Auth::id();
             $attachment = ir_attachment::create($data);

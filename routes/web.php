@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
 Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
-Route::group(['middleware' => 'auth'], function (){
+Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/user/profile', [ProfileController::class, 'show'])
                     ->name('profile.show');
@@ -74,7 +74,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/attachment/store', [IrAttachmentController::class, 'store'])
                         ->name('attachment.store');
     Route::post('/teams', [InheritTeamController::class, 'store'])->name('teams.store');
-                        
+    Route::post('/project/update', [ProjectController::class, 'update'])->name('project.update');                  
 });  
 
 
