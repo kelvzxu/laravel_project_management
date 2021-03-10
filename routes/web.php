@@ -69,6 +69,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                         ->name('project_task.show');
     Route::get('/project/{project}/stage', [ProjectTaskTypeController::class, 'show'])
                         ->name('stage.show');
+    Route::post('/project/stage/store', [ProjectTaskTypeController::class, 'store'])
+                        ->name('stage.store');
     Route::post('/project/task/updatestage', [ProjectTaskController::class, 'UpdateStage'])
                         ->name('task_stage.update');
     Route::post('/attachment/store', [IrAttachmentController::class, 'store'])

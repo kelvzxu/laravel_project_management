@@ -5,10 +5,7 @@
       <template #workspace_name>{{ project.name }}</template>
       <template #workspace_sub_header>
         <div class="home-workspace-items-content-sub-header-wrapper">
-          <div
-            class="new-boards-list-button-component bg-light"
-            @click="InviteNewUser"
-          >
+          <div class="new-boards-list-button-component" @click="InviteNewUser">
             <div class="ds-menu-button-container">
               <div>
                 <div class="top-new-button-component default-icon">
@@ -52,7 +49,7 @@
             </jet-responsive-nav-link>
           </div>
           <div
-            class="boards-list-header-component selected leftpane-workspace-header-redesign"
+            class="boards-list-header-component selected leftpane-workspace-header-redesign bg-light"
           >
             <jet-responsive-nav-link
               :href="route('stage.show', project.access_token)"
@@ -70,7 +67,7 @@
             class="boards-list-header-component selected leftpane-workspace-header-redesign"
           >
             <jet-responsive-nav-link
-              :href="route('project.detail', project.id)"
+              :href="route('project.detail', project.access_token)"
               :active="route().current('project.detail')"
             >
               <div class="boards-filter-row-wrapper">
@@ -84,6 +81,52 @@
         </div>
       </template>
       <template #main_content>
+        <jet-dialog-modal :show="AddNewStage" @close="AddNewStage = false">
+          <template #title> New Stage </template>
+
+          <template #content>
+            <div class="mt-4">
+              <div class="col-span-6 sm:col-span-4">
+                <jet-label for="name" value="Project Name" />
+                <jet-input
+                  id="name"
+                  type="text"
+                  ref="name"
+                  class="mt-1 block w-full"
+                  v-model="form.name"
+                />
+                <jet-input-error :message="form.error('name')" class="mt-2" />
+              </div>
+              <div class="col-span-6 sm:col-span-4 mt-1">
+                <label class="form-check-label" for="is_closed"
+                  >Closing State
+                </label>
+                <input
+                  class="form-check-input ml-3"
+                  type="checkbox"
+                  v-model="form.is_closed"
+                  name="is_closed"
+                  id="is_closed"
+                />
+                <jet-input-error
+                  :message="form.error('is_closed')"
+                  class="mt-2"
+                />
+              </div>
+            </div>
+          </template>
+
+          <template #footer>
+            <jet-success-button
+              class="ml-2"
+              @click.native="CreateNewStages"
+              :class="{ 'opacity-25': form.processing }"
+              :disabled="form.processing"
+            >
+              Create
+            </jet-success-button>
+          </template>
+        </jet-dialog-modal>
         <jet-content-wrapper
           :users="users"
           :team="team"
@@ -108,7 +151,7 @@
                       <div class="monday-board-control__icon">
                         <i class="fa fa-plus-square"></i>
                       </div>
-                      <div class="monday-board-control__text">Add Projects</div>
+                      <div class="monday-board-control__text">Add Stage</div>
                     </div>
                   </div>
                 </div>
@@ -123,54 +166,31 @@
             <jet-board-sorting />
           </template>
           <template #board_component>
-            <kanban-area :type="'group'">
-              <kanban-progress
-                v-for="stage in project.task_type"
-                :key="stage.name"
-                :data-id="stage.name"
-              >
-                <template #title>{{ stage.name }}</template>
-                <template #counter>{{ stage.tasks.length }}</template>
-                <template #record>
-                  <draggable
-                    :list="stage.tasks"
-                    group="tasks"
-                    style="min-height: 500px"
-                    @add="onAdd($event, stage.id)"
-                  >
-                    <kanban-box
-                      v-for="task in stage.tasks"
-                      :key="task.name"
-                      :data-id="task.id"
-                      :stage="stage.name"
-                    >
-                      <template #header>{{ task.name }}</template>
-                      <template #button>
-                        <div class="o_priority kanban_field_widget mr-2">
-                          <i class="o_priority_star far fa-star"></i>
-                        </div>
-                        <div
-                          class="o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
-                        >
-                          <i
-                            class="far fa-fw o_activity_color_default fa-clock mt-1"
-                          ></i>
-                        </div>
-                      </template>
-                      <template #dateline v-if="task.date_end">{{
-                        task.date_end | formatDate
-                      }}</template>
-                      <template #picture>
-                        <img
-                          :src="$page.user.profile_photo_url"
-                          class="o_m2o_avatar rounded-circle"
-                        />
-                      </template>
-                    </kanban-box>
-                  </draggable>
-                </template>
-              </kanban-progress>
-            </kanban-area>
+            <table-responsive>
+              <template #header>
+                <tr>
+                  <th
+                    class="o_handle_cell o_column_sortable o_list_number_th"
+                    style="min-width: 33px; width: 33px"
+                  ></th>
+                  <th style="width: 171px">Stage Name</th>
+                  <th style="width: 190px">Projects</th>
+                  <th style="width: 190px">Closing State</th>
+                </tr>
+              </template>
+              <template #content>
+                <tr
+                  class="data_row"
+                  v-for="(task, i) in project.task_type"
+                  :key="i"
+                >
+                  <td class="text-center">{{ i + 1 }}</td>
+                  <td>{{ task.name }}</td>
+                  <td>{{ project.name }}</td>
+                  <td>{{ task.is_closed }}</td>
+                </tr>
+              </template>
+            </table-responsive>
           </template>
         </jet-content-wrapper>
       </template>
@@ -194,10 +214,9 @@ import JetBoardSorting from "@/Jetstream/BoardSorting";
 import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
-// Kanban Component
-import KanbanArea from "@/Jetstream/KanbanArea";
-import KanbanBox from "@/Jetstream/KanbanBoxGroup";
-import KanbanProgress from "@/Jetstream/KanbanProgress";
+// List Component
+import TableResponsive from "@/Jetstream/TableResponsive";
+
 // Module
 import draggable from "vuedraggable";
 
@@ -215,35 +234,37 @@ export default {
     JetResponsiveNavLink,
     JetSuccessButton,
     JetSecondaryButton,
-    KanbanArea,
-    KanbanBox,
-    KanbanProgress,
     JetBoardSorting,
     JetBoardSearch,
     JetBoardDropdown,
     JetBoardFilterDropdown,
     draggable,
+    TableResponsive,
   },
   data() {
     return {
       InviteModal: false,
       SidebarSecondary: false,
       ExpanceControl: true,
-      AddProjectModal: false,
+      AddNewStage: false,
       form: this.$inertia.form(
         {
-          email: "",
-          role: null,
+          name: "",
+          active: true,
+          project_id: this.project.id,
+          is_closed: false,
+          create_uid: this.users.id,
+          write_uid: this.users.id,
+          sequence: Math.floor(Math.random() * 1000) + 1,
         },
         {
-          bag: "InviteUserModal",
+          bag: "CreateStage",
         }
       ),
-      TaskUpdate: this.$inertia.form({
-        id: "",
-        stage_id: "",
-      }),
     };
+  },
+  created() {
+    console.log(this);
   },
   methods: {
     InviteNewUser() {
@@ -267,26 +288,26 @@ export default {
         });
     },
     AddNewProject() {
-      this.CreateProject.name = "";
+      this.form.name = "";
 
-      this.AddProjectModal = true;
+      this.AddNewStage = true;
 
       setTimeout(() => {
         this.$refs.name.focus();
       }, 250);
     },
-    CreateNewProjects() {
-      this.CreateProject.post(route("project.store"), {
-        preserveScroll: true,
-      }).then((response) => {
-        this.CreateProject.access_token = Math.random()
-          .toString(36)
-          .substring(7);
-        if (!this.CreateProject.hasErrors()) {
-          this.AddProjectModal = false;
-        }
-        console.log(this.CreateProject);
-      });
+    CreateNewStages() {
+      this.form
+        .post(route("stage.store"), {
+          preserveScroll: true,
+        })
+        .then((response) => {
+          this.form.access_token = Math.random().toString(36).substring(7);
+          if (!this.form.hasErrors()) {
+            this.AddNewStage = false;
+          }
+          console.log(this.form);
+        });
     },
     viewProject(row) {
       this.$inertia.visit(route("project.show", row.id));

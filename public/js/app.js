@@ -6650,6 +6650,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -8415,11 +8418,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_BoardSearch__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/Jetstream/BoardSearch */ "./resources/js/Jetstream/BoardSearch.vue");
 /* harmony import */ var _Jetstream_BoardDropdown__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/Jetstream/BoardDropdown */ "./resources/js/Jetstream/BoardDropdown.vue");
 /* harmony import */ var _Jetstream_BoardFilterDropdown__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/Jetstream/BoardFilterDropdown */ "./resources/js/Jetstream/BoardFilterDropdown.vue");
-/* harmony import */ var _Jetstream_KanbanArea__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/Jetstream/KanbanArea */ "./resources/js/Jetstream/KanbanArea.vue");
-/* harmony import */ var _Jetstream_KanbanBoxGroup__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/Jetstream/KanbanBoxGroup */ "./resources/js/Jetstream/KanbanBoxGroup.vue");
-/* harmony import */ var _Jetstream_KanbanProgress__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/Jetstream/KanbanProgress */ "./resources/js/Jetstream/KanbanProgress.vue");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _Jetstream_TableResponsive__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/Jetstream/TableResponsive */ "./resources/js/Jetstream/TableResponsive.vue");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_15__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8611,9 +8635,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // Kanban Component
-
-
+ // List Component
 
  // Module
 
@@ -8631,32 +8653,34 @@ __webpack_require__.r(__webpack_exports__);
     JetResponsiveNavLink: _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_0__["default"],
     JetSuccessButton: _Jetstream_SuccessButton__WEBPACK_IMPORTED_MODULE_4__["default"],
     JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_5__["default"],
-    KanbanArea: _Jetstream_KanbanArea__WEBPACK_IMPORTED_MODULE_14__["default"],
-    KanbanBox: _Jetstream_KanbanBoxGroup__WEBPACK_IMPORTED_MODULE_15__["default"],
-    KanbanProgress: _Jetstream_KanbanProgress__WEBPACK_IMPORTED_MODULE_16__["default"],
     JetBoardSorting: _Jetstream_BoardSorting__WEBPACK_IMPORTED_MODULE_10__["default"],
     JetBoardSearch: _Jetstream_BoardSearch__WEBPACK_IMPORTED_MODULE_11__["default"],
     JetBoardDropdown: _Jetstream_BoardDropdown__WEBPACK_IMPORTED_MODULE_12__["default"],
     JetBoardFilterDropdown: _Jetstream_BoardFilterDropdown__WEBPACK_IMPORTED_MODULE_13__["default"],
-    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_17___default.a
+    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_15___default.a,
+    TableResponsive: _Jetstream_TableResponsive__WEBPACK_IMPORTED_MODULE_14__["default"]
   },
   data: function data() {
     return {
       InviteModal: false,
       SidebarSecondary: false,
       ExpanceControl: true,
-      AddProjectModal: false,
+      AddNewStage: false,
       form: this.$inertia.form({
-        email: "",
-        role: null
+        name: "",
+        active: true,
+        project_id: this.project.id,
+        is_closed: false,
+        create_uid: this.users.id,
+        write_uid: this.users.id,
+        sequence: Math.floor(Math.random() * 1000) + 1
       }, {
-        bag: "InviteUserModal"
-      }),
-      TaskUpdate: this.$inertia.form({
-        id: "",
-        stage_id: ""
+        bag: "CreateStage"
       })
     };
+  },
+  created: function created() {
+    console.log(this);
   },
   methods: {
     InviteNewUser: function InviteNewUser() {
@@ -8682,25 +8706,25 @@ __webpack_require__.r(__webpack_exports__);
     AddNewProject: function AddNewProject() {
       var _this3 = this;
 
-      this.CreateProject.name = "";
-      this.AddProjectModal = true;
+      this.form.name = "";
+      this.AddNewStage = true;
       setTimeout(function () {
         _this3.$refs.name.focus();
       }, 250);
     },
-    CreateNewProjects: function CreateNewProjects() {
+    CreateNewStages: function CreateNewStages() {
       var _this4 = this;
 
-      this.CreateProject.post(route("project.store"), {
+      this.form.post(route("stage.store"), {
         preserveScroll: true
       }).then(function (response) {
-        _this4.CreateProject.access_token = Math.random().toString(36).substring(7);
+        _this4.form.access_token = Math.random().toString(36).substring(7);
 
-        if (!_this4.CreateProject.hasErrors()) {
-          _this4.AddProjectModal = false;
+        if (!_this4.form.hasErrors()) {
+          _this4.AddNewStage = false;
         }
 
-        console.log(_this4.CreateProject);
+        console.log(_this4.form);
       });
     },
     viewProject: function viewProject(row) {
@@ -63591,7 +63615,8 @@ var render = function() {
                     _c(
                       "div",
                       {
-                        staticClass: "new-boards-list-button-component",
+                        staticClass:
+                          "new-boards-list-button-component bg-light",
                         on: { click: _vm.InviteNewUser }
                       },
                       [
@@ -67700,7 +67725,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "boards-list-header-component selected leftpane-workspace-header-redesign"
+                          "boards-list-header-component selected leftpane-workspace-header-redesign bg-light"
                       },
                       [
                         _c(
@@ -67756,7 +67781,10 @@ var render = function() {
                           "jet-responsive-nav-link",
                           {
                             attrs: {
-                              href: _vm.route("project.detail", _vm.project.id),
+                              href: _vm.route(
+                                "project.detail",
+                                _vm.project.access_token
+                              ),
                               active: _vm.route().current("project.detail")
                             }
                           },
@@ -67799,6 +67827,159 @@ var render = function() {
             key: "main_content",
             fn: function() {
               return [
+                _c("jet-dialog-modal", {
+                  attrs: { show: _vm.AddNewStage },
+                  on: {
+                    close: function($event) {
+                      _vm.AddNewStage = false
+                    }
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "title",
+                      fn: function() {
+                        return [_vm._v(" New Stage ")]
+                      },
+                      proxy: true
+                    },
+                    {
+                      key: "content",
+                      fn: function() {
+                        return [
+                          _c("div", { staticClass: "mt-4" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-span-6 sm:col-span-4" },
+                              [
+                                _c("jet-label", {
+                                  attrs: { for: "name", value: "Project Name" }
+                                }),
+                                _vm._v(" "),
+                                _c("jet-input", {
+                                  ref: "name",
+                                  staticClass: "mt-1 block w-full",
+                                  attrs: { id: "name", type: "text" },
+                                  model: {
+                                    value: _vm.form.name,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "name", $$v)
+                                    },
+                                    expression: "form.name"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("jet-input-error", {
+                                  staticClass: "mt-2",
+                                  attrs: { message: _vm.form.error("name") }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-span-6 sm:col-span-4 mt-1" },
+                              [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "form-check-label",
+                                    attrs: { for: "is_closed" }
+                                  },
+                                  [_vm._v("Closing State\n              ")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.is_closed,
+                                      expression: "form.is_closed"
+                                    }
+                                  ],
+                                  staticClass: "form-check-input ml-3",
+                                  attrs: {
+                                    type: "checkbox",
+                                    name: "is_closed",
+                                    id: "is_closed"
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(_vm.form.is_closed)
+                                      ? _vm._i(_vm.form.is_closed, null) > -1
+                                      : _vm.form.is_closed
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.form.is_closed,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            _vm.$set(
+                                              _vm.form,
+                                              "is_closed",
+                                              $$a.concat([$$v])
+                                            )
+                                        } else {
+                                          $$i > -1 &&
+                                            _vm.$set(
+                                              _vm.form,
+                                              "is_closed",
+                                              $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1))
+                                            )
+                                        }
+                                      } else {
+                                        _vm.$set(_vm.form, "is_closed", $$c)
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("jet-input-error", {
+                                  staticClass: "mt-2",
+                                  attrs: {
+                                    message: _vm.form.error("is_closed")
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ])
+                        ]
+                      },
+                      proxy: true
+                    },
+                    {
+                      key: "footer",
+                      fn: function() {
+                        return [
+                          _c(
+                            "jet-success-button",
+                            {
+                              staticClass: "ml-2",
+                              class: { "opacity-25": _vm.form.processing },
+                              attrs: { disabled: _vm.form.processing },
+                              nativeOn: {
+                                click: function($event) {
+                                  return _vm.CreateNewStages($event)
+                                }
+                              }
+                            },
+                            [_vm._v("\n            Create\n          ")]
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ])
+                }),
+                _vm._v(" "),
                 _c("jet-content-wrapper", {
                   staticClass: "project_view",
                   attrs: {
@@ -67943,165 +68124,78 @@ var render = function() {
                       key: "board_component",
                       fn: function() {
                         return [
-                          _c(
-                            "kanban-area",
-                            { attrs: { type: "group" } },
-                            _vm._l(_vm.project.task_type, function(stage) {
-                              return _c("kanban-progress", {
-                                key: stage.name,
-                                attrs: { "data-id": stage.name },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "title",
-                                      fn: function() {
-                                        return [_vm._v(_vm._s(stage.name))]
-                                      },
-                                      proxy: true
-                                    },
-                                    {
-                                      key: "counter",
-                                      fn: function() {
-                                        return [
-                                          _vm._v(_vm._s(stage.tasks.length))
-                                        ]
-                                      },
-                                      proxy: true
-                                    },
-                                    {
-                                      key: "record",
-                                      fn: function() {
-                                        return [
-                                          _c(
-                                            "draggable",
-                                            {
-                                              staticStyle: {
-                                                "min-height": "500px"
-                                              },
-                                              attrs: {
-                                                list: stage.tasks,
-                                                group: "tasks"
-                                              },
-                                              on: {
-                                                add: function($event) {
-                                                  return _vm.onAdd(
-                                                    $event,
-                                                    stage.id
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            _vm._l(stage.tasks, function(task) {
-                                              return _c("kanban-box", {
-                                                key: task.name,
-                                                attrs: {
-                                                  "data-id": task.id,
-                                                  stage: stage.name
-                                                },
-                                                scopedSlots: _vm._u(
-                                                  [
-                                                    {
-                                                      key: "header",
-                                                      fn: function() {
-                                                        return [
-                                                          _vm._v(
-                                                            _vm._s(task.name)
-                                                          )
-                                                        ]
-                                                      },
-                                                      proxy: true
-                                                    },
-                                                    {
-                                                      key: "button",
-                                                      fn: function() {
-                                                        return [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "o_priority kanban_field_widget mr-2"
-                                                            },
-                                                            [
-                                                              _c("i", {
-                                                                staticClass:
-                                                                  "o_priority_star far fa-star"
-                                                              })
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
-                                                            },
-                                                            [
-                                                              _c("i", {
-                                                                staticClass:
-                                                                  "far fa-fw o_activity_color_default fa-clock mt-1"
-                                                              })
-                                                            ]
-                                                          )
-                                                        ]
-                                                      },
-                                                      proxy: true
-                                                    },
-                                                    task.date_end
-                                                      ? {
-                                                          key: "dateline",
-                                                          fn: function() {
-                                                            return [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  _vm._f(
-                                                                    "formatDate"
-                                                                  )(
-                                                                    task.date_end
-                                                                  )
-                                                                )
-                                                              )
-                                                            ]
-                                                          },
-                                                          proxy: true
-                                                        }
-                                                      : null,
-                                                    {
-                                                      key: "picture",
-                                                      fn: function() {
-                                                        return [
-                                                          _c("img", {
-                                                            staticClass:
-                                                              "o_m2o_avatar rounded-circle",
-                                                            attrs: {
-                                                              src:
-                                                                _vm.$page.user
-                                                                  .profile_photo_url
-                                                            }
-                                                          })
-                                                        ]
-                                                      },
-                                                      proxy: true
-                                                    }
-                                                  ],
-                                                  null,
-                                                  true
-                                                )
-                                              })
-                                            }),
-                                            1
-                                          )
-                                        ]
-                                      },
-                                      proxy: true
-                                    }
-                                  ],
-                                  null,
-                                  true
-                                )
-                              })
-                            }),
-                            1
-                          )
+                          _c("table-responsive", {
+                            scopedSlots: _vm._u([
+                              {
+                                key: "header",
+                                fn: function() {
+                                  return [
+                                    _c("tr", [
+                                      _c("th", {
+                                        staticClass:
+                                          "o_handle_cell o_column_sortable o_list_number_th",
+                                        staticStyle: {
+                                          "min-width": "33px",
+                                          width: "33px"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        { staticStyle: { width: "171px" } },
+                                        [_vm._v("Stage Name")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        { staticStyle: { width: "190px" } },
+                                        [_vm._v("Projects")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        { staticStyle: { width: "190px" } },
+                                        [_vm._v("Closing State")]
+                                      )
+                                    ])
+                                  ]
+                                },
+                                proxy: true
+                              },
+                              {
+                                key: "content",
+                                fn: function() {
+                                  return _vm._l(_vm.project.task_type, function(
+                                    task,
+                                    i
+                                  ) {
+                                    return _c(
+                                      "tr",
+                                      { key: i, staticClass: "data_row" },
+                                      [
+                                        _c(
+                                          "td",
+                                          { staticClass: "text-center" },
+                                          [_vm._v(_vm._s(i + 1))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v(_vm._s(task.name))]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(_vm.project.name))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(task.is_closed))
+                                        ])
+                                      ]
+                                    )
+                                  })
+                                },
+                                proxy: true
+                              }
+                            ])
+                          })
                         ]
                       },
                       proxy: true
@@ -90136,8 +90230,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/witech05/project/laravel_project_management/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/witech05/project/laravel_project_management/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/kelvinzxu/Project/Laravel/laravel_project_management/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/kelvinzxu/Project/Laravel/laravel_project_management/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

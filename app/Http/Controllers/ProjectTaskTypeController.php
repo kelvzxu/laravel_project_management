@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProjectTaskType;
+use App\Models\ProjectTaskTypeRel;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\Auth\InheritTeamController;
@@ -24,4 +25,14 @@ class ProjectTaskTypeController extends Controller
             'team' =>$team->load('owner', 'users'),
         ]);
      }
+
+     public function store(Request $request){
+        $data = $request->all();
+        $stage = ProjectTaskType::create($data);
+        $data['project_task_type_id'] = $stage->id;
+        $stage_rel = ProjectTaskTypeRel::create($data);
+        return back(303);
+     }
+
+
 }

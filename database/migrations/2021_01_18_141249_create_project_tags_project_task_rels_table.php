@@ -14,8 +14,10 @@ class CreateProjectTagsProjectTaskRelsTable extends Migration
     public function up()
     {
         Schema::create('project_tags_project_task_rels', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('project_task_id')->references('id')->on('project_tasks')->onDelete('cascade');
             $table->foreignId('project_tag_id')->references('id')->on('project_tags')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
