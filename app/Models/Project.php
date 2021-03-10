@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\user;
+use App\Models\Team;
 use App\Models\ProjectTaskType;
 
 class Project extends Model
@@ -24,6 +25,10 @@ class Project extends Model
     }
     
     public function task_type(){
-        return $this->belongsToMany(ProjectTaskType::class,'project_task_type_rels','project_id','project_task_type_id');
+        return $this->belongsToMany(ProjectTaskType::class,'project_task_type_rels','project_id','project_task_type_id')->orderBy('sequence');
+    }
+
+    public function team(){
+        return $this->hasOne(Team::class,'id','team_id');
     }
 }

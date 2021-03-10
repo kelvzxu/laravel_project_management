@@ -1912,7 +1912,6 @@ div#fancybox-buttons a:hover {
     -ms-flex-positive: 1;
     flex-grow: 1;
     height: 100%;
-    overflow: auto;
     position: relative
 }
 

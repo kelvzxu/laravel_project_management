@@ -34,13 +34,30 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function view(Request $request,$projectId){
+        $user = app(UsersController::class)->getUserbyID(Auth::id());
+        $response = $this-> getProjectDetail($projectId);
+        $team = app(InheritTeamController::class)->getTeam($response->team_id);
+        return Jetstream::inertia()->render($request, 'Project/View', [
+            'users' => $user,
+            'team' =>$team->load('owner', 'users'),
+            'project' =>$response
+        ]);
+    }
+
     public function getTeamProject($teamId){
         $response = Project::with('manager')->where('team_id','=',$teamId)->get();
         return $response;
     }
 
-    public function getProjectDetail($projectId){
-        $result = Project::with('task_type','task_type.tasks','manager')->findOrFail($projectId);
+    public function getProjectDetail($token){
+        $result = Project::with('task_type','task_type.tasks','manager','team')->where('access_token','=',$token)->first();
         return $result;
+    }
+
+    public function update(Request $request){
+        $project = Project::findOrFail($request->id);
+        $project->update($request->all());
+        return back(303);
     }
 }

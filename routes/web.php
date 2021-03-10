@@ -11,6 +11,7 @@ use App\Http\Controllers\UserFriendController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTaskController;
 use App\Http\Controllers\ProjectTaskTypeController;
+use App\Http\Controllers\IrAttachmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::get('/', function () {
 });
 Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
 Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
-Route::group(['middleware' => 'auth'], function (){
+Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/user/profile', [ProfileController::class, 'show'])
                     ->name('profile.show');
@@ -62,13 +63,21 @@ Route::group(['middleware' => 'auth'], function (){
                         ->name('project.store');
     Route::get('/project/{project}', [ProjectController::class, 'show'])
                         ->name('project.show');
+    Route::get('/project/view/{project}', [ProjectController::class, 'view'])
+                        ->name('project.detail');
     Route::get('/project/{project}/task', [ProjectTaskController::class, 'getTaskProject'])
                         ->name('project_task.show');
-    Route::get('/project/{project}/task/type', [ProjectController::class, 'getProjectDetail'])
-                        ->name('project_task_type.show');
+    Route::get('/project/{project}/stage', [ProjectTaskTypeController::class, 'show'])
+                        ->name('stage.show');
+    Route::post('/project/stage/store', [ProjectTaskTypeController::class, 'store'])
+                        ->name('stage.store');
     Route::post('/project/task/updatestage', [ProjectTaskController::class, 'UpdateStage'])
                         ->name('task_stage.update');
-                        
+    Route::post('/attachment/store', [IrAttachmentController::class, 'store'])
+                        ->name('attachment.store');
+    Route::post('/teams', [InheritTeamController::class, 'store'])->name('teams.store');
+    Route::post('/project/update', [ProjectController::class, 'update'])->name('project.update');   
+    Route::post('/project/task/store', [ProjectTaskController::class, 'store'])->name('project_task.store');               
 });  
 
 

@@ -2,7 +2,11 @@
   <div class="control_panel">
     <div class="cp_top">
       <div class="cp_top_left">
-        <ol role="navigation" class="breadcrumb mb-0" style="display: block">
+        <ol
+          role="navigation"
+          class="breadcrumb mb-0 ml-1"
+          style="display: block"
+        >
           <slot name="title"></slot>
         </ol>
       </div>

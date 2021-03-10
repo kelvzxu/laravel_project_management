@@ -14,8 +14,10 @@ class CreateProjectTaskTypeRelsTable extends Migration
     public function up()
     {
         Schema::create('project_task_type_rels', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('project_task_type_id')->constrained();
             $table->foreignId('project_id')->constrained();
+            $table->timestamps();
         });
     }
 

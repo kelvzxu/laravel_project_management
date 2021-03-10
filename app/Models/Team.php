@@ -6,8 +6,9 @@ use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
+use App\Models\ir_attachment;
 
-class Team extends JetstreamTeam
+class Team extends JetstreamTeam 
 {
     /**
      * The attributes that should be cast to native types.
@@ -26,6 +27,8 @@ class Team extends JetstreamTeam
     protected $fillable = [
         'name',
         'personal_team',
+        'banner_image_id',
+        'user_id',
     ];
 
     /**
@@ -38,4 +41,8 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    public function banner () {
+        return $this->belongsTo(ir_attachment::class, 'banner_image_id');
+    }
 }

@@ -19,9 +19,10 @@ class CreateIrAttachmentsTable extends Migration
             $table->text('description')->nullable();
             $table->string('res_model');
             $table->string('res_field');
-            $table->string('res_id');
+            $table->string('res_id')->nullable();
             $table->string('type');
             $table->string('url');
+            $table->string('size');
             $table->foreignId('create_uid')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('write_uid')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

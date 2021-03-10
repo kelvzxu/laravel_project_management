@@ -413,9 +413,12 @@ export default {
           team_id: this.team.id,
           create_uid: this.users.id,
           write_uid: this.users.id,
+          label_tasks:"Tasks",
+          visibility:"team",
         },
         {
           bag: "InviteUserModal",
+          resetOnSuccess: true,
         }
       ),
     };
@@ -472,7 +475,7 @@ export default {
       }
     },
     viewProject(row) {
-      this.$inertia.visit(route("project.show", row.id));
+      this.$inertia.visit(route("project.show", row.access_token));
     },
   },
 };
