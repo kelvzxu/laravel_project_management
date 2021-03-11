@@ -14,7 +14,7 @@ class UserFriendController extends Controller
             UserFriend::create($data);
             return back(303);
         }catch(\Exception $e){
-            echo"$e";
+            return abort(404);
         }
     }
     public function UnfollowUser(Request $request)
@@ -24,7 +24,7 @@ class UserFriendController extends Controller
             $friend_list->delete();
             return back(303);
         }catch(\Exception $e){
-            echo"$e";
+            return abort(404);
         }
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\InheritTeamController;
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserFriendController;
+use App\Http\Controllers\RequestJoinController;
 // Project Module
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTaskController;
@@ -77,7 +78,9 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                         ->name('attachment.store');
     Route::post('/teams', [InheritTeamController::class, 'store'])->name('teams.store');
     Route::post('/project/update', [ProjectController::class, 'update'])->name('project.update');   
-    Route::post('/project/task/store', [ProjectTaskController::class, 'store'])->name('project_task.store');               
+    Route::post('/project/task/store', [ProjectTaskController::class, 'store'])->name('project_task.store');      
+    Route::delete('/teams/{team}/members/{user}', [RequestJoinController::class, 'destroy'])->name('request_join.destroy');   
+    Route::get('/teams/{team}/request', [PageController::class, 'RequestJoin'])->name('request_join.show');       
 });  
 
 

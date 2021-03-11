@@ -179,83 +179,12 @@
             </jet-button>
           </template>
         </jet-dialog-modal>
-        <jet-dialog-modal
-          :show="AddProjectModal"
-          @close="AddProjectModal = false"
-        >
-          <template #title> CreateProject </template>
-
-          <template #content>
-            <div class="mt-4">
-              <div class="col-span-6 sm:col-span-4">
-                <jet-label for="name" value="Project Name" />
-                <jet-input
-                  id="name"
-                  type="text"
-                  ref="name"
-                  class="mt-1 block w-full"
-                  v-model="CreateProject.name"
-                />
-                <jet-input-error
-                  :message="CreateProject.error('email')"
-                  class="mt-2"
-                />
-              </div>
-              <div class="col-span-6 sm:col-span-4">
-                <label class="form-check-label" for="allow_timesheets"
-                  >Allow Timesheets
-                </label>
-                <input
-                  class="form-check-input ml-3"
-                  type="checkbox"
-                  v-model="CreateProject.allow_timesheets"
-                  name="private_profile"
-                  id="user_private_profile"
-                />
-                <jet-input-error
-                  :message="CreateProject.error('email')"
-                  class="mt-2"
-                />
-              </div>
-            </div>
-          </template>
-
-          <template #footer>
-            <jet-success-button
-              class="ml-2"
-              @click.native="CreateNewProjects"
-              :class="{ 'opacity-25': CreateProject.processing }"
-              :disabled="CreateProject.processing"
-            >
-              Create
-            </jet-success-button>
-          </template>
-        </jet-dialog-modal>
-        <jet-content-wrapper :users="users" :team="team" :projects="projects">
+        <jet-content-wrapper :users="users" :team="team">
           <template #board_name>{{ team.name }}</template>
           <template #board_description>{{ team.description }}</template>
           <template #board_subs_images_label>Owner </template>
           <template #board_subs_images>
             <img :src="team.owner.profile_photo_url" class="inner-image" />
-          </template>
-          <template #board_button>
-            <div class="monday-add-to-board-wrapper" @click="AddNewProject">
-              <div
-                class="monday-add-to-board-menu"
-                id="monday-add-to-board-menu-container"
-              >
-                <div class="ds-menu-button-container">
-                  <div class="monday-add-to-board-menu-button">
-                    <div class="monday-board-control">
-                      <div class="monday-board-control__icon">
-                        <i class="fa fa-plus-square"></i>
-                      </div>
-                      <div class="monday-board-control__text">Add Projects</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </template>
           <template #board_button_group>
             <jet-board-search
@@ -335,23 +264,40 @@
             </jet-board-dropdown>
           </template>
           <template #board_component>
-            <kanban-area>
-              <kanban-box
-                v-for="project in projects"
-                :key="project.access_token"
-                @click.native="viewProject(project)"
-              >
-                <template #jobs
-                  ><span>{{ project.name }}</span></template
-                >
-                <template #tags
-                  ><span class="field_tag tag_color_6"
-                    ><span></span>{{ project.manager.name }}</span
-                  ></template
-                >
-              </kanban-box>
-              <kanban-ghost v-for="n in 75" :key="n"></kanban-ghost>
-            </kanban-area>
+            <table-responsive>
+              <template #header>
+                <tr>
+                  <th
+                    class="o_handle_cell o_column_sortable o_list_number_th"
+                    style="min-width: 33px; width: 33px"
+                  ></th>
+                  <th style="width: 171px">Name</th>
+                  <th style="width: 190px">role</th>
+                  <th style="width: 190px">Request Date</th>
+                  <th style="width: 90px">Action</th>
+                </tr>
+              </template>
+              <template #content>
+                <tr class="data_row" v-for="(request, i) in requests" :key="i">
+                  <td class="text-center">{{ i + 1 }}</td>
+                  <td>{{ request.user.name }}</td>
+                  <td>{{ request.role }}</td>
+                  <td>{{ request.created_at | formatDate }}</td>
+                  <td>
+                    <form
+                      method="POST"
+                      @submit.prevent="
+                        AcceptRequest($request.user_id, request.team_id)
+                      "
+                    >
+                      <jet-Primary-button class="float-right">
+                        Accept
+                      </jet-Primary-button>
+                    </form>
+                  </td>
+                </tr>
+              </template>
+            </table-responsive>
           </template>
         </jet-content-wrapper>
       </template>
@@ -370,7 +316,7 @@ import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
 // Button Component
-import JetSuccessButton from "@/Jetstream/SuccessButton";
+import JetPrimaryButton from "@/Jetstream/PrimaryButton";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import JetButton from "@/Jetstream/Button";
 // Workspace Component
@@ -379,13 +325,11 @@ import JetBoardSorting from "@/Jetstream/BoardSorting";
 import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
-// Kanban Component
-import KanbanArea from "@/Jetstream/KanbanArea";
-import KanbanBox from "@/Jetstream/KanbanBox";
-import KanbanGhost from "@/Jetstream/KanbanGhost";
+// Table Reaponsive
+import TableResponsive from "@/Jetstream/TableResponsive";
 
 export default {
-  props: ["team", "users", "availableRoles", "permissions", "projects"],
+  props: ["team", "users", "availableRoles", "permissions", "requests"],
 
   components: {
     AppLayout,
@@ -396,24 +340,21 @@ export default {
     JetInputError,
     JetLabel,
     JetResponsiveNavLink,
-    JetSuccessButton,
+    JetPrimaryButton,
     JetSecondaryButton,
     JetButton,
-    KanbanArea,
-    KanbanBox,
-    KanbanGhost,
     JetBoardSorting,
     JetBoardSearch,
     JetBoardDropdown,
     JetBoardFilterDropdown,
     JetActionMessage,
+    TableResponsive,
   },
   data() {
     return {
       InviteModal: false,
       SidebarSecondary: false,
       ExpanceControl: true,
-      AddProjectModal: false,
       FilterDropdown: false,
       addTeamMemberForm: this.$inertia.form(
         {
@@ -422,24 +363,6 @@ export default {
         },
         {
           bag: "addTeamMember",
-          resetOnSuccess: true,
-        }
-      ),
-      CreateProject: this.$inertia.form(
-        {
-          name: "",
-          allow_timesheets: true,
-          access_token: Math.random().toString(36).substring(7),
-          sequence: Math.floor(Math.random() * 1000) + 1,
-          user_id: this.users.id,
-          team_id: this.team.id,
-          create_uid: this.users.id,
-          write_uid: this.users.id,
-          label_tasks: "Tasks",
-          visibility: "team",
-        },
-        {
-          bag: "InviteUserModal",
           resetOnSuccess: true,
         }
       ),
@@ -475,20 +398,6 @@ export default {
         this.$refs.name.focus();
       }, 250);
     },
-    CreateNewProjects() {
-      this.CreateProject.post(route("project.store"), {
-        preserveScroll: true,
-      }).then((response) => {
-        this.CreateProject.access_token = Math.random()
-          .toString(36)
-          .substring(7);
-        this.sequence = Math.floor(Math.random() * 1000) + 1;
-        if (!this.CreateProject.hasErrors()) {
-          this.AddProjectModal = false;
-        }
-        console.log(this.CreateProject);
-      });
-    },
     FilterData() {
       if (this.FilterDropdown == false) {
         this.FilterDropdown = true;
@@ -498,6 +407,9 @@ export default {
     },
     viewProject(row) {
       this.$inertia.visit(route("project.show", row.access_token));
+    },
+    AcceptRequest(user, team) {
+      console.log("_______________________");
     },
   },
 };

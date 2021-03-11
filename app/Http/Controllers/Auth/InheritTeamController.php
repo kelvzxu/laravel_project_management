@@ -17,8 +17,10 @@ use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\IrAttachmentController;
 use App\Http\Controllers\Auth\UsersController;
+use App\Http\Controllers\RequestJoinController;
 use App\Models\Team;
 use App\Models\Membership;
+use App\Models\RequestJoin;
 
 class InheritTeamController extends TeamController
 {
@@ -63,6 +65,9 @@ class InheritTeamController extends TeamController
         $response = team::addSelect(['join' => Membership::select('role')->whereColumn('team_id', 'teams.id')
                         ->where('user_id','=',$UserID)
                         ->limit(1)
+                    ])->addSelect(['request' => RequestJoin::select('role')->whereColumn('team_id', 'teams.id')
+                        ->where('user_id','=',$UserID)
+                        ->limit(1)
                     ])->where('user_id','!=',$UserID)->get();
         if ($response) {
             return response()->json([
@@ -80,12 +85,19 @@ class InheritTeamController extends TeamController
     {
         $team = Jetstream::newTeamModel()->findOrFail($teamId);
 
-        app(AddsTeamMembers::class)->join(
-            $request->user(),
-            $team,
-            $request->email ?: '',
-            $request->role
-        );
+        if ($team->team_type == 'public'){
+            app(AddsTeamMembers::class)->join(
+                $request->user(),
+                $team,
+                $request->email ?: '',
+                $request->role
+            );
+        }
+        else{
+            app(RequestJoinController::class)->request(
+                $request, $team
+            );
+        }
 
         return back(303);
     }

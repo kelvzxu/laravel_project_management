@@ -165,6 +165,7 @@ export default {
   data() {
     return {
       ViewMember: true,
+      ViewProject: false,
       form: this.$inertia.form(
         {
           name: this.team.name,
