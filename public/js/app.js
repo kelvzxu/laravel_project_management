@@ -6778,13 +6778,17 @@ __webpack_require__.r(__webpack_exports__);
         name: "",
         active: true,
         project_id: this.project.id,
-        is_closed: false,
+        team_id: this.project.team_id,
         create_uid: this.users.id,
         write_uid: this.users.id,
         stage_id: this.project.task_type[0].id,
         user_id: this.users.id
       }, {
         bag: "CreateStage"
+      }),
+      TaskUpdate: this.$inertia.form({
+        id: "",
+        stage_id: ""
       })
     };
   },
@@ -6798,10 +6802,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.$refs.name.focus();
       }, 250);
     },
-    CreateNewProjects: function CreateNewProjects() {
+    CreateNewStages: function CreateNewStages() {
       var _this2 = this;
 
-      this.form.post(route("project.store"), {
+      this.form.post(route("project_task.store"), {
         preserveScroll: true
       }).then(function (response) {
         _this2.form.access_token = Math.random().toString(36).substring(7);
@@ -6812,9 +6816,6 @@ __webpack_require__.r(__webpack_exports__);
 
         console.log(_this2.form);
       });
-    },
-    viewProject: function viewProject(row) {
-      this.$inertia.visit(route("project.show", row.id));
     },
     onAdd: function onAdd(event, stage) {
       this.TaskUpdate.id = event.item.getAttribute("data-id");
@@ -63880,7 +63881,10 @@ var render = function() {
                           "jet-responsive-nav-link",
                           {
                             attrs: {
-                              href: _vm.route("project.detail", _vm.project.id),
+                              href: _vm.route(
+                                "project.detail",
+                                _vm.project.access_token
+                              ),
                               active: _vm.route().current("project.detail")
                             }
                           },

@@ -72,7 +72,7 @@
             class="boards-list-header-component selected leftpane-workspace-header-redesign"
           >
             <jet-responsive-nav-link
-              :href="route('project.detail', project.id)"
+              :href="route('project.detail', project.access_token)"
               :active="route().current('project.detail')"
             >
               <div class="boards-filter-row-wrapper">
@@ -307,7 +307,7 @@ export default {
           name: "",
           active: true,
           project_id: this.project.id,
-          is_closed: false,
+          team_id: this.project.team_id,
           create_uid: this.users.id,
           write_uid: this.users.id,
           stage_id: this.project.task_type[0].id,
@@ -317,6 +317,10 @@ export default {
           bag: "CreateStage",
         }
       ),
+      TaskUpdate: this.$inertia.form({
+        id: "",
+        stage_id: "",
+      }),
     };
   },
   methods: {
@@ -329,9 +333,9 @@ export default {
         this.$refs.name.focus();
       }, 250);
     },
-    CreateNewProjects() {
+    CreateNewStages() {
       this.form
-        .post(route("project.store"), {
+        .post(route("project_task.store"), {
           preserveScroll: true,
         })
         .then((response) => {
@@ -341,9 +345,6 @@ export default {
           }
           console.log(this.form);
         });
-    },
-    viewProject(row) {
-      this.$inertia.visit(route("project.show", row.id));
     },
     onAdd(event, stage) {
       this.TaskUpdate.id = event.item.getAttribute("data-id");

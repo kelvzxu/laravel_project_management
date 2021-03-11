@@ -32,7 +32,7 @@ class CreateProjectTasksTable extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
             $table->foreignId('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->string('color')->nullable();
-            $table->foreignId('displayed_image_id')->references('id')->on('ir_attachments')->onDelete('cascade')->nullable();
+            $table->foreignId('displayed_image_id')->nullable()->references('id')->on('ir_attachments')->onDelete('cascade');
             $table->string('email_from')->nullable();
             $table->float('working_hours_open')->default(0);
             $table->float('working_hours_close')->default(0);

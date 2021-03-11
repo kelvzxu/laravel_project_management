@@ -22,4 +22,15 @@ class ProjectTaskController extends Controller
             echo"$e";
         }
     }
+
+    public function store(Request $request){
+        try{
+            echo $request;
+            $data=$request->all();
+            ProjectTask::create($data);
+            return back(303);
+        }catch(\Exception $e){
+            echo"$e";
+        }
+    }
 }
