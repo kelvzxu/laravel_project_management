@@ -215,6 +215,7 @@
                       :key="task.id"
                       :data-id="task.id"
                       :stage="stage.name"
+                      @click.native="ViewTask(task)"
                     >
                       <template #header>{{ task.name }}</template>
                       <template #button>
@@ -352,6 +353,9 @@ export default {
       this.TaskUpdate.post(route("task_stage.update"), {
         preserveScroll: true,
       });
+    },
+    ViewTask(row) {
+      this.$inertia.visit(route("project_task.view", row.id));
     },
   },
 };

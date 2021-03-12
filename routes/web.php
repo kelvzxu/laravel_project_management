@@ -34,32 +34,37 @@ Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallba
 Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
     Route::group(['prefix'=>'user'],function(){      
         Route::get('/profile', [ProfileController::class, 'show'])
-                        ->name('profile.show');
+                ->name('profile.show');
         Route::get('/sessions', [ProfileController::class, 'session'])
-                            ->name('profile.session');
+                ->name('profile.session');
         Route::get('/password', [ProfileController::class, 'updatePassword'])
-                            ->name('profile.password');
+                ->name('profile.password');
         Route::get('/preferences', [ProfileController::class, 'preference'])
-                            ->name('profile.preferences');
+                ->name('profile.preferences');
         Route::get('/team/all/', [InheritTeamController::class, 'getMyTeams'])
-                            ->name('team.myteam');
+                ->name('team.myteam');
         Route::post('/follow',[UserFriendController::class,'FollowUser'])
-                            ->name('user.follow'); 
+                ->name('user.follow'); 
         Route::post('/unfollow',[UserFriendController::class,'UnfollowUser'])
-        ->name('user.unfollow'); 
+                ->name('user.unfollow'); 
     });
     Route::group(['prefix'=>'teams'],function(){  
         //  InheritTeamController
         Route::get('/{team}', [InheritTeamController::class, 'show'])
-        ->name('teams.show');
-        Route::post('/store', [InheritTeamController::class, 'store'])->name('teams.store');
+                ->name('teams.show');
+        Route::post('/store', [InheritTeamController::class, 'store'])
+                ->name('teams.store');
         // RequestJoinController
-        Route::post('/{team}/approve/{user}', [RequestJoinController::class, 'Approve'])->name('request_join.approve');   
-        Route::delete('/{team}/request/{user}', [RequestJoinController::class, 'destroy'])->name('request_join.destroy');   
+        Route::post('/{team}/approve/{user}', [RequestJoinController::class, 'Approve'])
+                ->name('request_join.approve');   
+        Route::delete('/{team}/request/{user}', [RequestJoinController::class, 'destroy'])
+                ->name('request_join.destroy');   
         // Page Controller
-        Route::get('/{team}/request', [PageController::class, 'RequestJoin'])->name('request_join.show');     
+        Route::get('/{team}/request', [PageController::class, 'RequestJoin'])
+                ->name('request_join.show');     
         // Team Member Controller
-        Route::delete('/{team}/members/{user}', [TeamMemberController::class, 'destroy'])->name('team-members.destroy');
+        Route::delete('/{team}/members/{user}', [TeamMemberController::class, 'destroy'])
+                ->name('team-members.destroy');
     });
     Route::group(['prefix'=>'project'],function(){  
         Route::get('/{project}', [ProjectController::class, 'show'])
@@ -73,8 +78,13 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
     });
     Route::group(['prefix'=>'project/task'],function(){  
         Route::get('/{project}', [ProjectTaskController::class, 'getTaskProject'])
-                            ->name('project_task.show');
-
+        ->name('project_task.show');
+        Route::get('/view/{task}', [ProjectTaskController::class, 'view'])
+        ->name('project_task.view');    
+        Route::post('/updatestage', [ProjectTaskController::class, 'UpdateStage'])
+        ->name('task_stage.update');
+        Route::post('/store', [ProjectTaskController::class, 'store'])
+        ->name('project_task.store');                       
     });
     Route::group(['prefix'=>'{user}'],function(){ 
         Route::get('/view', [ProfileController::class, 'PublicProfile'])
@@ -95,11 +105,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                         ->name('stage.show');
     Route::post('/project/stage/store', [ProjectTaskTypeController::class, 'store'])
                         ->name('stage.store');
-    Route::post('/project/task/updatestage', [ProjectTaskController::class, 'UpdateStage'])
-                        ->name('task_stage.update');
     Route::post('/attachment/store', [IrAttachmentController::class, 'store'])
                         ->name('attachment.store');
-    Route::post('/project/task/store', [ProjectTaskController::class, 'store'])->name('project_task.store');      
 });  
 
 

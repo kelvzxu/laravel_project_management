@@ -33,4 +33,10 @@ class ProjectTaskController extends Controller
             echo"$e";
         }
     }
+
+    public function view(Request $request, $taskId){
+        echo"Hello";
+        echo"<br>";
+        echo $taskId;
+    }
 }
