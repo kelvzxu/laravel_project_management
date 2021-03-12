@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\RequestJoin;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Jetstream\RedirectsActions;
+use Laravel\Jetstream\Contracts\AddsTeamMembers;
 
 class RequestJoinController extends Controller
 {
@@ -27,13 +28,37 @@ class RequestJoinController extends Controller
 
     public function destroy(Request $request, $teamId, $userId)
     {
-        $requestjoin = RequestJoin::where('user_id',$userId)->where('team_id',$teamId)->first();
-        $requestjoin->delete();
+        $requestjoin = $this->getRequest($request, $teamId, $userId);
+        $this->remove($request,$requestjoin);
         return redirect(config('fortify.home'));
     }
 
     public function show(Request $request, $teamId){
         $requestjoin = RequestJoin::where('team_id',$teamId)->get();
+        return $requestjoin;
+    }
+
+    public function Approve(Request $request , $teamId, $userId){
+        $requestjoin = $this->getRequest($request, $teamId, $userId);
+        $response = $requestjoin->load('user','team');
+        // dd($response->user->email);
+        app(AddsTeamMembers::class)->join(
+                $response->user,
+                $response->team,
+                $response->user->email ?: '',
+                $response->role
+            );
+        $this->remove($request,$requestjoin);
+
+        return back(303);
+    }
+
+    public function remove(Request $request , $requestjoin){
+        $requestjoin->delete();
+    }
+
+    public function getRequest(Request $request , $teamId, $userId){
+        $requestjoin = RequestJoin::where('user_id',$userId)->where('team_id',$teamId)->first();
         return $requestjoin;
     }
 }

@@ -190,8 +190,6 @@
             <jet-board-search
               ><input placeholder="Search" value=""
             /></jet-board-search>
-            <jet-board-filter-dropdown @click.native="FilterData" />
-            <jet-board-sorting />
           </template>
           <template #board_header_action>
             <div class="board-header-view-actions">
@@ -215,55 +213,61 @@
               </div>
             </div>
           </template>
-          <template #dialog_node>
-            <jet-board-dropdown v-if="FilterDropdown">
-              <template #board_filter_item>
-                <div class="columns-list-item-wrapper">
-                  <div class="floating-columns-list-item-component floating">
-                    <div class="column-list-item-content">
-                      <i
-                        class="icon column-type-icon icon icon-dapulse-text-column"
-                      ></i
-                      ><span class="column-list-item-title"
-                        >Active Project</span
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div class="columns-list-item-wrapper">
-                  <div class="floating-columns-list-item-component">
-                    <div class="column-list-item-content">
-                      <i
-                        class="icon column-type-icon icon icon-dapulse-person-column"
-                      ></i
-                      ><span class="column-list-item-title">Followed</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="columns-list-item-wrapper">
-                  <div class="floating-columns-list-item-component">
-                    <div class="column-list-item-content">
-                      <i
-                        class="icon column-type-icon icon icon-dapulse-person-column"
-                      ></i
-                      ><span class="column-list-item-title">My Projects</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="columns-list-item-wrapper">
-                  <div class="floating-columns-list-item-component">
-                    <div class="column-list-item-content">
-                      <i
-                        class="icon column-type-icon icon icon-dapulse-person-column"
-                      ></i
-                      ><span class="column-list-item-title">Archived</span>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </jet-board-dropdown>
-          </template>
           <template #board_component>
+            <table-responsive>
+              <template #header>
+                <tr>
+                  <th
+                    class="o_handle_cell o_column_sortable o_list_number_th"
+                    style="min-width: 33px; width: 33px"
+                  ></th>
+                  <th style="width: 171px">Name</th>
+                  <th style="width: 190px">role</th>
+                  <th style="width: 190px">Request Date</th>
+                  <th style="width: 90px">Action</th>
+                </tr>
+              </template>
+              <template #content :list="'requests'">
+                <tr class="data_row" v-for="(request, i) in requests" :key="i">
+                  <td>
+                    <span
+                      class="row_handle fa fa-arrows ui-sortable-handle o_field_widget"
+                      name="sequence"
+                    ></span>
+                  </td>
+                  <td>{{ request.user.name }}</td>
+                  <td>{{ request.role }}</td>
+                  <td>{{ request.created_at | formatDate }}</td>
+                  <td>
+                    <form
+                      method="POST"
+                      @submit.prevent="
+                        AcceptRequest(request.user_id, request.team_id)
+                      "
+                    >
+                      <jet-Primary-button class="float-right">
+                        Accept
+                      </jet-Primary-button>
+                    </form>
+                  </td>
+                </tr>
+              </template>
+            </table-responsive>
+          </template>
+        </jet-content-wrapper>
+        <!-- <div
+          class="first-level-content-wrapper first-level-control-pinned"
+          id="first-level-content-wrapper"
+        >
+          <div
+            class="first-level-content react-board"
+            id="first-level-content"
+            style="margin-right: 0px"
+          >
+            <div
+              class="current-board-component"
+              id="current-board-component-id"
+            ></div>
             <table-responsive>
               <template #header>
                 <tr>
@@ -298,8 +302,8 @@
                 </tr>
               </template>
             </table-responsive>
-          </template>
-        </jet-content-wrapper>
+          </div>
+        </div> -->
       </template>
     </jet-application-control>
   </app-layout>
@@ -409,7 +413,7 @@ export default {
       this.$inertia.visit(route("project.show", row.access_token));
     },
     AcceptRequest(user, team) {
-      console.log("_______________________");
+      this.$inertia.post(route("request_join.approve", [team, user]));
     },
   },
 };

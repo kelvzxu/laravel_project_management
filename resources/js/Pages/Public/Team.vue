@@ -136,7 +136,7 @@
               >
                 <td>
                   <span
-                    class="o_row_handle fa fa-arrows ui-sortable-handle o_field_widget"
+                    class="row_handle fa fa-arrows ui-sortable-handle o_field_widget"
                     name="sequence"
                   ></span>
                 </td>

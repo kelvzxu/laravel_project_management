@@ -201,7 +201,12 @@
                   v-for="(task, i) in project.task_type"
                   :key="i"
                 >
-                  <td class="text-center">{{ i + 1 }}</td>
+                  <td>
+                    <span
+                      class="row_handle fa fa-arrows ui-sortable-handle o_field_widget"
+                      name="sequence"
+                    ></span>
+                  </td>
                   <td>{{ task.name }}</td>
                   <td>{{ project.name }}</td>
                   <td>{{ task.is_closed }}</td>

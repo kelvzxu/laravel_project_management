@@ -6,9 +6,28 @@
       <thead>
         <slot name="header"></slot>
       </thead>
-      <tbody class="ui-sortable">
+
+      <draggable
+        :list="list"
+        :element="'tbody'"
+        :options="{ animation: 250, handle: '.row_handle' }"
+        class="ui-sortable"
+      >
         <slot name="content"></slot>
-      </tbody>
+      </draggable>
     </table>
   </div>
 </template>
+
+<script>
+// Module
+import draggable from "vuedraggable";
+
+export default {
+  props: ["list"],
+
+  components: {
+    draggable,
+  },
+};
+</script>

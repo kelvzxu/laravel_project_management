@@ -4,25 +4,14 @@
     id="first-level-content-wrapper"
   >
     <div
-      class="first-level-content-header"
-      id="first-level-content-header"
-    ></div>
-    <div id="board-view-ui-container"></div>
-    <div
       class="first-level-content react-board"
       id="first-level-content"
       style="margin-right: 0px"
     >
       <div class="current-board-component" id="current-board-component-id">
         <div tabindex="-1" class="board-with-keyboard-navigation-component">
-          <div class="board-with-keyboard-overlay"></div>
           <div id="board-wrapper-first-level-content" class="board-wrapper">
-            <div>
-              <div class="board-subscribers-dialog-component"></div>
-              <div class="templates-creation-onboarding-dialog-component"></div>
-            </div>
             <div id="board-header" class="board-header collapse-mode-enabled">
-              <div class="board-header-top"></div>
               <div
                 class="board-header-content-wrapper monday-board-header-content-wrapper-v2"
               >
@@ -115,17 +104,14 @@
                 </div>
               </div>
             </div>
+            <slot name="board_component" />
             <div class="dialog-node">
               <slot name="dialog_node" />
             </div>
-            <slot name="board_component" />
           </div>
         </div>
       </div>
     </div>
-    <div id="thumbnail-container"></div>
-    <div id="video-center-button-container"></div>
-    <div id="monday-only-bug-button-container"></div>
   </div>
 </template>
 
