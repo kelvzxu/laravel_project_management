@@ -177,7 +177,7 @@
               <template #button>
                 <form
                   method="POST"
-                  v-if="team.join == null"
+                  v-if="team.join == null && team.request == null"
                   @submit.prevent="Join($page.user, team)"
                 >
                   <jet-Primary-button class="float-right">
@@ -186,7 +186,16 @@
                 </form>
                 <form
                   method="POST"
-                  v-else
+                  v-if="team.join == null && team.request != null"
+                  @submit.prevent="CancelRequest($page.user, team)"
+                >
+                  <jet-Primary-button class="float-right">
+                    Cancel Request
+                  </jet-Primary-button>
+                </form>
+                <form
+                  method="POST"
+                  v-if="team.join != null && team.request == null"
                   @submit.prevent="LeaveTeam($page.user, team)"
                 >
                   <jet-Primary-button class="float-right">
@@ -218,7 +227,7 @@ import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBox";
 import KanbanGhost from "@/Jetstream/KanbanGhost";
 // import { search } from "../../utils/index.js";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   props: ["teams", "users"],
@@ -248,48 +257,48 @@ export default {
 
   methods: {
     async search(query) {
-        const resources = {};
-        let cancel;
+      const resources = {};
+      let cancel;
 
-        // Check if we made a request
-        if(cancel){
-          // Cancel the previous request before making a new request
-          cancel.cancel()
+      // Check if we made a request
+      if (cancel) {
+        // Cancel the previous request before making a new request
+        cancel.cancel();
+      }
+      // Create a new CancelToken
+      cancel = axios.CancelToken.source();
+      try {
+        if (resources[query]) {
+          // Return result if it exists
+          return resources[query];
         }
-        // Create a new CancelToken
-        cancel = axios.CancelToken.source();
-        try{
-          if (resources[query]) {
-            // Return result if it exists
-            return resources[query];
-          }
-          console.log('cancel', cancel)
+        console.log("cancel", cancel);
 
-          const response = await axios.get(query, { cancelToken: cancel.token })
-          const result = response.data.results;
+        const response = await axios.get(query, { cancelToken: cancel.token });
+        const result = response.data.results;
 
-          resources[query] = result;
+        resources[query] = result;
 
-          return result;
-        } catch(error) {
-            if(axios.isCancel(error)) {
-              // Handle if request was cancelled
-              console.log('Request canceled', error.message);
-            } else {
-              // Handle usual errors
-              console.log('Something went wrong: ', error.message)
-            }
+        return result;
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          // Handle if request was cancelled
+          console.log("Request canceled", error.message);
+        } else {
+          // Handle usual errors
+          console.log("Something went wrong: ", error.message);
         }
+      }
 
       // return async (query) => {}
     },
 
-    async liveSearch (e) {
+    async liveSearch(e) {
       const query = await this.search(
         `https://api.themoviedb.org/3/search/movie?query=${e.target.value}&api_key=dbc0a6d62448554c27b6167ef7dabb1b`
       );
       // this.list = query;
-      console.log('query: ', query);
+      console.log("query: ", query);
       console.log("typing: ", e.target.value);
     },
     detectMob() {
@@ -323,6 +332,9 @@ export default {
         role: "editor",
         preserveScroll: true,
       });
+    },
+    CancelRequest(user, team) {
+      this.$inertia.delete(route("request_join.destroy", [team, user]));
     },
     LeaveTeam(user, team) {
       this.$inertia.delete(route("team-members.destroy", [team, user]));

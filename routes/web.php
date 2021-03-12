@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Http\Controllers\Inertia\TeamMemberController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\InheritTeamController;
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserFriendController;
+use App\Http\Controllers\RequestJoinController;
 // Project Module
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTaskController;
@@ -30,54 +32,81 @@ Route::get('/', function () {
 Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
 Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
 Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
+    Route::group(['prefix'=>'user'],function(){      
+        Route::get('/profile', [ProfileController::class, 'show'])
+                ->name('profile.show');
+        Route::get('/sessions', [ProfileController::class, 'session'])
+                ->name('profile.session');
+        Route::get('/password', [ProfileController::class, 'updatePassword'])
+                ->name('profile.password');
+        Route::get('/preferences', [ProfileController::class, 'preference'])
+                ->name('profile.preferences');
+        Route::get('/team/all/', [InheritTeamController::class, 'getMyTeams'])
+                ->name('team.myteam');
+        Route::post('/follow',[UserFriendController::class,'FollowUser'])
+                ->name('user.follow'); 
+        Route::post('/unfollow',[UserFriendController::class,'UnfollowUser'])
+                ->name('user.unfollow'); 
+    });
+    Route::group(['prefix'=>'teams'],function(){  
+        //  InheritTeamController
+        Route::get('/{team}', [InheritTeamController::class, 'show'])
+                ->name('teams.show');
+        Route::post('/store', [InheritTeamController::class, 'store'])
+                ->name('teams.store');
+        // RequestJoinController
+        Route::post('/{team}/approve/{user}', [RequestJoinController::class, 'Approve'])
+                ->name('request_join.approve');   
+        Route::delete('/{team}/request/{user}', [RequestJoinController::class, 'destroy'])
+                ->name('request_join.destroy');   
+        // Page Controller
+        Route::get('/{team}/request', [PageController::class, 'RequestJoin'])
+                ->name('request_join.show');     
+        // Team Member Controller
+        Route::delete('/{team}/members/{user}', [TeamMemberController::class, 'destroy'])
+                ->name('team-members.destroy');
+    });
+    Route::group(['prefix'=>'project'],function(){  
+        Route::get('/{project}', [ProjectController::class, 'show'])
+        ->name('project.show');
+        Route::get('/view/{project}', [ProjectController::class, 'view'])
+        ->name('project.detail');
+        Route::post('', [ProjectController::class, 'store'])
+        ->name('project.store');
+        Route::post('/update', [ProjectController::class, 'update'])
+        ->name('project.update');   
+    });
+    Route::group(['prefix'=>'project/task'],function(){  
+        Route::get('/{project}', [ProjectTaskController::class, 'getTaskProject'])
+        ->name('project_task.show');
+        Route::get('/view/{task}', [ProjectTaskController::class, 'view'])
+        ->name('project_task.view');    
+        Route::post('/updatestage', [ProjectTaskController::class, 'UpdateStage'])
+        ->name('task_stage.update');
+        Route::post('/store', [ProjectTaskController::class, 'store'])
+        ->name('project_task.store');                       
+    });
+    Route::group(['prefix'=>'{user}'],function(){ 
+        Route::get('/view', [ProfileController::class, 'PublicProfile'])
+                            ->name('profile.public');
+        Route::get('/followers', [ProfileController::class, 'Followers'])
+                            ->name('profile.followers');
+        Route::get('/following', [ProfileController::class, 'Following'])
+                            ->name('profile.following');
+        Route::get('/team/all/', [InheritTeamController::class, 'getTeams'])
+                            ->name('profile.teams');
+    });
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
-    Route::get('/user/profile', [ProfileController::class, 'show'])
-                    ->name('profile.show');
-    Route::get('/{user}/view/', [ProfileController::class, 'PublicProfile'])
-                        ->name('profile.public');
-    Route::get('/{user}/followers', [ProfileController::class, 'Followers'])
-                        ->name('profile.followers');
-    Route::get('/{user}/following', [ProfileController::class, 'Following'])
-                        ->name('profile.following');
-    Route::get('/user/sessions', [ProfileController::class, 'session'])
-                        ->name('profile.session');
-    Route::get('/user/password', [ProfileController::class, 'updatePassword'])
-                        ->name('profile.password');
-    Route::get('/user/preferences', [ProfileController::class, 'preference'])
-                        ->name('profile.preferences');
-    Route::get('/user/team/all/', [InheritTeamController::class, 'getMyTeams'])
-                        ->name('team.myteam');
-    Route::get('/{user}/team/all/', [InheritTeamController::class, 'getTeams'])
-                        ->name('profile.teams');
     Route::get('/search/{user}', [PageController::class, 'Search'])
                         ->name('user.search');
-    Route::post('/user/follow',[UserFriendController::class,'FollowUser'])
-                        ->name('user.follow'); 
-    Route::post('/user/unfollow',[UserFriendController::class,'UnfollowUser'])
-                        ->name('user.unfollow'); 
     Route::post('/join/teams/{team}/members', [InheritTeamController::class, 'Join'])
                         ->name('team.join');
-    Route::get('/teams/{team}', [InheritTeamController::class, 'show'])
-                        ->name('teams.show');
-    Route::post('/project', [ProjectController::class, 'store'])
-                        ->name('project.store');
-    Route::get('/project/{project}', [ProjectController::class, 'show'])
-                        ->name('project.show');
-    Route::get('/project/view/{project}', [ProjectController::class, 'view'])
-                        ->name('project.detail');
-    Route::get('/project/{project}/task', [ProjectTaskController::class, 'getTaskProject'])
-                        ->name('project_task.show');
     Route::get('/project/{project}/stage', [ProjectTaskTypeController::class, 'show'])
                         ->name('stage.show');
     Route::post('/project/stage/store', [ProjectTaskTypeController::class, 'store'])
                         ->name('stage.store');
-    Route::post('/project/task/updatestage', [ProjectTaskController::class, 'UpdateStage'])
-                        ->name('task_stage.update');
     Route::post('/attachment/store', [IrAttachmentController::class, 'store'])
                         ->name('attachment.store');
-    Route::post('/teams', [InheritTeamController::class, 'store'])->name('teams.store');
-    Route::post('/project/update', [ProjectController::class, 'update'])->name('project.update');   
-    Route::post('/project/task/store', [ProjectTaskController::class, 'store'])->name('project_task.store');               
 });  
 
 
