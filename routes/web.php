@@ -52,6 +52,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         //  InheritTeamController
         Route::get('/{team}', [InheritTeamController::class, 'show'])
                 ->name('teams.show');
+        Route::get('/project/{project}', [InheritTeamController::class, 'getProject'])
+                ->name('teams.project');
         Route::post('/store', [InheritTeamController::class, 'store'])
                 ->name('teams.store');
         // RequestJoinController
@@ -84,7 +86,9 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         Route::post('/updatestage', [ProjectTaskController::class, 'UpdateStage'])
         ->name('task_stage.update');
         Route::post('/store', [ProjectTaskController::class, 'store'])
-        ->name('project_task.store');                       
+        ->name('project_task.store');    
+        Route::delete('/destroy/{task}', [ProjectTaskController::class, 'destroy'])
+        ->name('project_task.destroy');                     
     });
     Route::group(['prefix'=>'{user}'],function(){ 
         Route::get('/view', [ProfileController::class, 'PublicProfile'])

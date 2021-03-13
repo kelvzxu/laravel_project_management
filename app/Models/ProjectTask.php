@@ -30,7 +30,7 @@ class ProjectTask extends Model
     }
 
     public function responsible(){
-        return $this->hasOne(user::class,'id','team_id');
+        return $this->hasOne(user::class,'id','user_id');
     }
 
     public function stage(){

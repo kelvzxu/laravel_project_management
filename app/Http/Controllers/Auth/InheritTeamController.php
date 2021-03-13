@@ -131,4 +131,10 @@ class InheritTeamController extends TeamController
         }
         return $this->redirectPath($creator);
     }
+
+    public function getProject(Request $request,$teamId){
+        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $project = $team->project();
+        dd($project);
+    }
 }

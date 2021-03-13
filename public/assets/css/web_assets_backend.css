@@ -2984,10 +2984,6 @@ input.pager_value:focus {
     }
 }
 
-. {
-    width: 100%;
-}
-
 .application-dialog_modal {
     z-index: 1000;
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\user;
 use App\Models\Team;
 use App\Models\ProjectTaskType;
+use App\Models\ProjectTag;
 
 class Project extends Model
 {
@@ -15,7 +16,7 @@ class Project extends Model
 
     protected $fillable = [
         'access_token','name','description','active','sequence','user_id',
-        'team_id','label_tasks','date_start','date_end','allow_subtasks',
+        'team_id','label_tasks','date_start','date_end','allow_subtasks','customer',
         'allow_recurring_tasks','rating_active' ,'rating_status','rating_status_period',
         'allow_timesheets','allow_timesheet_timer','create_uid','write_uid'
 
@@ -31,5 +32,9 @@ class Project extends Model
 
     public function team(){
         return $this->hasOne(Team::class,'id','team_id');
+    }
+
+    public function tags() {
+        return $this->hasMany(ProjectTag::class);
     }
 }

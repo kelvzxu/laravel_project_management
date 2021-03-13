@@ -22,6 +22,9 @@ class ProjectTaskController extends Controller
         try{
             $data=$request->all();
             $task = ProjectTask::findorFail($request->id);
+            if ($task->stage_id != $request->stage_id){
+                $data['date_last_stage_update']=date("Y-m-d h:i:s");
+            }
             $task->update($data);
             return back(303);
         }catch(\Exception $e){
@@ -33,6 +36,7 @@ class ProjectTaskController extends Controller
         try{
             $data=$request->all();
             $data['access_token'] = bin2hex(random_bytes(24));
+            $data['date_assign']=date("Y-m-d h:i:s");
             ProjectTask::create($data);
             return back(303);
         }catch(\Exception $e){
@@ -45,7 +49,23 @@ class ProjectTaskController extends Controller
         $task = $this->getTaskProject($request, $taskId);
         return Jetstream::inertia()->render($request, 'Task/View', [
             'users' => $user,
-            'task' => $task->load('team','team.users','responsible','stage','project','project.task_type'),
+            'task' => $task->load(
+                'team',
+                'team.users',
+                'team.project',
+                'team.owner',
+                'responsible',
+                'stage',
+                'project',
+                'project.tags',
+                'project.task_type',
+            ),
         ]);
+    }
+
+    public function destroy(Request $request, $taskId){
+       $task = ProjectTask::findorfail($taskId);
+       $task->delete();
+       return redirect(config('fortify.home'));
     }
 }

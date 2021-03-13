@@ -17,6 +17,7 @@ class CreateProjectTagsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('color');
+            $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->foreignId('create_uid')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('write_uid')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

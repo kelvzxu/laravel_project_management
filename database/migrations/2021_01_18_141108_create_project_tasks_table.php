@@ -24,7 +24,7 @@ class CreateProjectTasksTable extends Migration
             $table->integer('sequence')->nullable();
             $table->foreignId('stage_id')->references('id')->on('project_task_types')->onDelete('cascade');
             $table->string('kanban_state')->default('normal');
-            $table->timestamp('date_end')->nullable();
+            $table->date('date_end')->nullable();
             $table->timestamp('date_assign')->nullable();
             $table->timestamp('date_last_stage_update')->nullable();
             $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade');
@@ -44,6 +44,7 @@ class CreateProjectTasksTable extends Migration
             $table->float('progress')->default(0);
             $table->float('overtime')->default(0);
             $table->float('subtask_effective_hours')->default(0);
+            $table->foreignId('tag_id')->nullable()->references('id')->on('project_tags');
             $table->foreignId('create_uid')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('write_uid')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

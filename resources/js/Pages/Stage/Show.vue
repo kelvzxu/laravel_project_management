@@ -5,84 +5,55 @@
       <template #workspace_name>{{ project.name }}</template>
       <template #workspace_sub_header>
         <div class="home-workspace-items-content-sub-header-wrapper">
-          <div class="new-boards-list-button-component">
-            <jet-responsive-nav-link
-              :href="route('project.show', project.access_token)"
-              :active="route().current('teams.show')"
-            >
-              <div class="ds-menu-button-container">
-                <div>
-                  <div class="top-new-button-component default-icon">
-                    <div
-                      class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
-                    >
-                      <i class="fa fa-th-large main-icon"></i>Kanban Board
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
-          <div
-            class="boards-list-header-component selected leftpane-workspace-header-redesign"
+          <jet-responsive-nav-link
+            :href="route('project.show', project.access_token)"
+            :active="route().current('teams.show')"
           >
-            <jet-responsive-nav-link
-              :href="route('teams.show', team.id)"
-              :active="route().current('teams.show')"
-            >
-              <div class="boards-filter-row-wrapper">
-                <div class="boards-list-filter-button-component">
-                  <i class="far fa-stopwatch main-icon"></i
-                  ><span class="filters-text">Timesheet</span>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
-          <div
-            class="boards-list-header-component selected leftpane-workspace-header-redesign"
+            <jet-workspace-button>
+              <i class="fa fa-th-large main-icon"></i>Kanban Board
+            </jet-workspace-button>
+          </jet-responsive-nav-link>
+          <jet-responsive-nav-link
+            :href="route('project.show', project.access_token)"
+            :active="route().current('teams.show')"
           >
-            <jet-responsive-nav-link
-              :href="route('teams.show', team.id)"
-              :active="route().current('teams.show')"
-            >
-              <div class="boards-filter-row-wrapper">
-                <div class="boards-list-filter-button-component">
-                  <i class="fas fa-file-chart-line main-icon"></i
-                  ><span class="filters-text">Project Report</span>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
-          <div
-            class="boards-list-header-component selected leftpane-workspace-header-redesign bg-light"
+            <jet-workspace-button>
+              <i class="far fa-stopwatch main-icon"></i>Timesheets
+            </jet-workspace-button>
+          </jet-responsive-nav-link>
+          <jet-responsive-nav-link
+            :href="route('project.show', project.access_token)"
+            :active="route().current('teams.show')"
           >
-            <jet-responsive-nav-link
-              :href="route('stage.show', project.access_token)"
-              :active="route().current('stage.view')"
-            >
-              <div class="boards-filter-row-wrapper">
-                <div class="boards-list-filter-button-component">
-                  <i class="far fa-layer-group main-icon"></i
-                  ><span class="filters-text">Project Stage</span>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
-          <div
-            class="boards-list-header-component selected leftpane-workspace-header-redesign"
+            <jet-workspace-button>
+              <i class="fas fa-file-chart-line main-icon"></i>Project Report
+            </jet-workspace-button>
+          </jet-responsive-nav-link>
+          <jet-responsive-nav-link
+            :href="route('stage.show', project.access_token)"
+            :active="route().current('stage.view')"
           >
-            <jet-responsive-nav-link
-              :href="route('project.detail', project.access_token)"
-              :active="route().current('project.detail')"
-            >
-              <div class="boards-filter-row-wrapper">
-                <div class="boards-list-filter-button-component">
-                  <i class="fa fa-cog main-icon"></i
-                  ><span class="filters-text">Project Details</span>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
+            <jet-workspace-button class="bg-light">
+              <i class="far fa-layer-group main-icon main-icon"></i>Project
+              Stage
+            </jet-workspace-button>
+          </jet-responsive-nav-link>
+          <jet-responsive-nav-link
+            :href="route('stage.show', project.access_token)"
+            :active="route().current('stage.view')"
+          >
+            <jet-workspace-button>
+              <i class="fas fa-tags main-icon"></i>Project Tags
+            </jet-workspace-button>
+          </jet-responsive-nav-link>
+          <jet-responsive-nav-link
+            :href="route('project.detail', project.access_token)"
+            :active="route().current('project.detail')"
+          >
+            <jet-workspace-button>
+              <i class="fa fa-cog main-icon"></i>Project Details
+            </jet-workspace-button>
+          </jet-responsive-nav-link>
         </div>
       </template>
       <template #main_content>
@@ -151,7 +122,11 @@
           class="project_view"
         >
           <template #board_name>{{ project.name }}</template>
-          <template #board_description>{{ project.description }}</template>
+          <template #board_description
+            >Date Start : {{ project.date_start }}<br />Deadline:{{
+              project.date_end
+            }}</template
+          >
           <template #board_subs_images_label>Manager </template>
           <template #board_subs_images>
             <img :src="project.manager.profile_photo_url" class="inner-image" />
@@ -236,6 +211,7 @@ import JetBoardSorting from "@/Jetstream/BoardSorting";
 import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
+import JetWorkspaceButton from "@/Jetstream/WorkspaceButton";
 // List Component
 import TableResponsive from "@/Jetstream/TableResponsive";
 
@@ -262,6 +238,7 @@ export default {
     JetBoardFilterDropdown,
     draggable,
     TableResponsive,
+    JetWorkspaceButton,
   },
   data() {
     return {

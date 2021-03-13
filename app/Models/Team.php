@@ -7,6 +7,7 @@ use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
 use App\Models\ir_attachment;
+use App\Models\Project;
 
 class Team extends JetstreamTeam 
 {
@@ -44,5 +45,8 @@ class Team extends JetstreamTeam
 
     public function banner () {
         return $this->belongsTo(ir_attachment::class, 'banner_image_id');
+    }
+    public function project() {
+        return $this->hasMany(Project::class);
     }
 }
