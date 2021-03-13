@@ -355,7 +355,7 @@ export default {
       });
     },
     ViewTask(row) {
-      this.$inertia.visit(route("project_task.view", row.id));
+      this.$inertia.visit(route("project_task.view", row.access_token));
     },
   },
 };

@@ -16,6 +16,7 @@ class ProjectController extends Controller
     public function Store(Request $request){
         try{
             $data=$request->all();
+            $data['access_token']=bin2hex(random_bytes(24));
             Project::create($data);
             return back(303);
         }catch(\Exception $e){
