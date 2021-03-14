@@ -8963,6 +8963,163 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Jetstream_WrapperButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/WrapperButton */ "./resources/js/Jetstream/WrapperButton.vue");
+/* harmony import */ var _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/DialogModal */ "./resources/js/Jetstream/DialogModal.vue");
+/* harmony import */ var _Jetstream_SuccessButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/SuccessButton */ "./resources/js/Jetstream/SuccessButton.vue");
+/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
+/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
+/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
+/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["task", "users"],
+  components: {
+    JetWrapperButton: _Jetstream_WrapperButton__WEBPACK_IMPORTED_MODULE_0__["default"],
+    JetDialogModal: _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_1__["default"],
+    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_5__["default"],
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_6__["default"],
+    JetSuccessButton: _Jetstream_SuccessButton__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  data: function data() {
+    return {
+      AddNewTimesheet: false,
+      CreateTimesheet: this.$inertia.form({
+        date: "",
+        name: "",
+        project_id: this.task.project.id,
+        task_id: this.task.id,
+        user_id: this.users.id,
+        team_id: this.task.team.id,
+        create_uid: this.users.id,
+        write_uid: this.users.id,
+        hours: 0,
+        minutes: 0
+      }, {
+        bag: "CreateTimesheet",
+        resetOnSuccess: true
+      })
+    };
+  },
+  methods: {
+    AddTimesheet: function AddTimesheet() {
+      var _this = this;
+
+      this.CreateTimesheet.name = "";
+      this.AddNewTimesheet = true;
+      setTimeout(function () {
+        _this.$refs.name.focus();
+      }, 250);
+    },
+    CreateNewStages: function CreateNewStages() {
+      var _this2 = this;
+
+      this.CreateTimesheet.post(route("timesheet.store"), {
+        preserveScroll: true
+      }).then(function (response) {
+        if (Object.keys(_this2.$page.errors).length === 0) {
+          _this2.AddNewTimesheet = false;
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Task/View.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Task/View.vue?vue&type=script&lang=js& ***!
@@ -8973,19 +9130,18 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/ResponsiveNavLink */ "./resources/js/Jetstream/ResponsiveNavLink.vue");
-/* harmony import */ var _Jetstream_ApplicationControl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/ApplicationControl */ "./resources/js/Jetstream/ApplicationControl.vue");
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/DialogModal */ "./resources/js/Jetstream/DialogModal.vue");
-/* harmony import */ var _Jetstream_SuccessButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/SuccessButton */ "./resources/js/Jetstream/SuccessButton.vue");
-/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
-/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
-/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
-/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
-/* harmony import */ var _Jetstream_ContentWrapper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Jetstream/ContentWrapper */ "./resources/js/Jetstream/ContentWrapper.vue");
-/* harmony import */ var _Jetstream_BoardButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/Jetstream/BoardButton */ "./resources/js/Jetstream/BoardButton.vue");
-/* harmony import */ var _Jetstream_BoardFilterDropdown__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/Jetstream/BoardFilterDropdown */ "./resources/js/Jetstream/BoardFilterDropdown.vue");
-/* harmony import */ var _Jetstream_WorkspaceButton__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/Jetstream/WorkspaceButton */ "./resources/js/Jetstream/WorkspaceButton.vue");
-/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
+/* harmony import */ var _Jetstream_Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Dashboard */ "./resources/js/Jetstream/Dashboard.vue");
+/* harmony import */ var _Jetstream_BoardSorting__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/BoardSorting */ "./resources/js/Jetstream/BoardSorting.vue");
+/* harmony import */ var _Jetstream_BoardSearch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/BoardSearch */ "./resources/js/Jetstream/BoardSearch.vue");
+/* harmony import */ var _Jetstream_BoardDropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/BoardDropdown */ "./resources/js/Jetstream/BoardDropdown.vue");
+/* harmony import */ var _Jetstream_BoardFilterDropdown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/BoardFilterDropdown */ "./resources/js/Jetstream/BoardFilterDropdown.vue");
+/* harmony import */ var _Jetstream_WorkspaceButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/WorkspaceButton */ "./resources/js/Jetstream/WorkspaceButton.vue");
+/* harmony import */ var _Jetstream_BoardButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Jetstream/BoardButton */ "./resources/js/Jetstream/BoardButton.vue");
+/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
+/* harmony import */ var _CreateTimesheet__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CreateTimesheet */ "./resources/js/Pages/Task/CreateTimesheet.vue");
+/* harmony import */ var _Jetstream_TableResponsive__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/Jetstream/TableResponsive */ "./resources/js/Jetstream/TableResponsive.vue");
+/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
+/* harmony import */ var _Pages_Task_CreateTask__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/Pages/Task/CreateTask */ "./resources/js/Pages/Task/CreateTask.vue");
 //
 //
 //
@@ -9346,39 +9502,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
-
-
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // Workspace Component
 
 
 
 
+
+
+ // form Component
+
+ // Page
+
+ // List Component
+
  // external Library
+
+ // Page Component
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["task", "users"],
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_2__["default"],
-    JetContentWrapper: _Jetstream_ContentWrapper__WEBPACK_IMPORTED_MODULE_9__["default"],
-    JetApplicationControl: _Jetstream_ApplicationControl__WEBPACK_IMPORTED_MODULE_1__["default"],
-    JetDialogModal: _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_3__["default"],
-    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_6__["default"],
-    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_7__["default"],
-    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_8__["default"],
+    JetDashboard: _Jetstream_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"],
     JetResponsiveNavLink: _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_0__["default"],
-    JetSuccessButton: _Jetstream_SuccessButton__WEBPACK_IMPORTED_MODULE_4__["default"],
-    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_5__["default"],
-    JetBoardButton: _Jetstream_BoardButton__WEBPACK_IMPORTED_MODULE_10__["default"],
-    JetBoardFilterDropdown: _Jetstream_BoardFilterDropdown__WEBPACK_IMPORTED_MODULE_11__["default"],
-    JetWorkspaceButton: _Jetstream_WorkspaceButton__WEBPACK_IMPORTED_MODULE_12__["default"],
-    VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_13__["VueEditor"]
+    CreateTask: _Pages_Task_CreateTask__WEBPACK_IMPORTED_MODULE_12__["default"],
+    JetBoardSorting: _Jetstream_BoardSorting__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetBoardSearch: _Jetstream_BoardSearch__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetBoardDropdown: _Jetstream_BoardDropdown__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetBoardFilterDropdown: _Jetstream_BoardFilterDropdown__WEBPACK_IMPORTED_MODULE_5__["default"],
+    VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_11__["VueEditor"],
+    JetWorkspaceButton: _Jetstream_WorkspaceButton__WEBPACK_IMPORTED_MODULE_6__["default"],
+    CreateTimesheet: _CreateTimesheet__WEBPACK_IMPORTED_MODULE_9__["default"],
+    TableResponsive: _Jetstream_TableResponsive__WEBPACK_IMPORTED_MODULE_10__["default"],
+    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_8__["default"],
+    JetBoardButton: _Jetstream_BoardButton__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   data: function data() {
     return {
@@ -9457,6 +9637,30 @@ __webpack_require__.r(__webpack_exports__);
       this.ViewDescription = false;
       this.ViewTimesheet = false;
       this.ViewExtraInfo = true;
+    },
+    FormatHours: function FormatHours(value) {
+      var minutes = value * 60;
+      return this.time_convert(minutes);
+    },
+    time_convert: function time_convert(num) {
+      var hours = Math.floor(num / 60);
+
+      if (hours < 10) {
+        hours = "0".concat(hours);
+      }
+
+      var minutes = Math.round(num % 60);
+
+      if (minutes < 10) {
+        minutes = "0".concat(minutes);
+      }
+
+      return "".concat(hours, ":").concat(minutes);
+    },
+    DestroyTimesheet: function DestroyTimesheet(timesheet) {
+      this.form["delete"](route("timesheet.destroy", timesheet), {
+        preserveScroll: true
+      });
     }
   }
 });
@@ -83850,6 +84054,221 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=template&id=1aafbb95&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=template&id=1aafbb95& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "create_stage" } },
+    [
+      _c(
+        "jet-wrapper-button",
+        {
+          nativeOn: {
+            click: function($event) {
+              return _vm.AddTimesheet($event)
+            }
+          }
+        },
+        [_vm._v("\n    Add Timesheet\n  ")]
+      ),
+      _vm._v(" "),
+      _c("jet-dialog-modal", {
+        attrs: { show: _vm.AddNewTimesheet },
+        on: {
+          close: function($event) {
+            _vm.AddNewTimesheet = false
+          }
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "title",
+            fn: function() {
+              return [_vm._v(" Timesheet ")]
+            },
+            proxy: true
+          },
+          {
+            key: "content",
+            fn: function() {
+              return [
+                _c("div", { staticClass: "mt-4" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "date", value: "Date" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        ref: "date",
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "date", type: "date" },
+                        model: {
+                          value: _vm.CreateTimesheet.date,
+                          callback: function($$v) {
+                            _vm.$set(_vm.CreateTimesheet, "date", $$v)
+                          },
+                          expression: "CreateTimesheet.date"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.$page.errors.date }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4 mt-2" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "name", value: "Description" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        ref: "name",
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "name", type: "text", required: "" },
+                        model: {
+                          value: _vm.CreateTimesheet.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.CreateTimesheet, "name", $$v)
+                          },
+                          expression: "CreateTimesheet.name"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.$page.errors.name }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-span-6 sm:col-span-4 mt-2" },
+                  [
+                    _c("jet-label", {
+                      attrs: { for: "duration", value: "Duration" }
+                    }),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "form-check-label" }, [
+                      _vm._v("Hours ")
+                    ]),
+                    _vm._v(" "),
+                    _c("jet-input", {
+                      ref: "duration",
+                      staticClass: "mt-1",
+                      attrs: {
+                        id: "duration",
+                        type: "number",
+                        required: "",
+                        max: "23",
+                        min: "0"
+                      },
+                      model: {
+                        value: _vm.CreateTimesheet.hours,
+                        callback: function($$v) {
+                          _vm.$set(_vm.CreateTimesheet, "hours", $$v)
+                        },
+                        expression: "CreateTimesheet.hours"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "form-check-label" }, [
+                      _vm._v("Minutes ")
+                    ]),
+                    _vm._v(" "),
+                    _c("jet-input", {
+                      ref: "duration",
+                      staticClass: "mt-1",
+                      attrs: {
+                        id: "duration",
+                        type: "number",
+                        required: "",
+                        min: "0",
+                        max: "59"
+                      },
+                      model: {
+                        value: _vm.CreateTimesheet.minutes,
+                        callback: function($$v) {
+                          _vm.$set(_vm.CreateTimesheet, "minutes", $$v)
+                        },
+                        expression: "CreateTimesheet.minutes"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.$page.errors.hours }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.$page.errors.minutes }
+                    })
+                  ],
+                  1
+                )
+              ]
+            },
+            proxy: true
+          },
+          {
+            key: "footer",
+            fn: function() {
+              return [
+                _c(
+                  "jet-success-button",
+                  {
+                    staticClass: "ml-2",
+                    class: { "opacity-25": _vm.CreateTimesheet.processing },
+                    attrs: { disabled: _vm.CreateTimesheet.processing },
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.CreateNewStages($event)
+                      }
+                    }
+                  },
+                  [_vm._v("\n        Create\n      ")]
+                )
+              ]
+            },
+            proxy: true
+          }
+        ])
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Task/View.vue?vue&type=template&id=9c111394&":
 /*!*******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Task/View.vue?vue&type=template&id=9c111394& ***!
@@ -83865,1073 +84284,983 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "app-layout",
-    [
-      _c("jet-application-control", {
-        attrs: { users: _vm.users },
-        scopedSlots: _vm._u([
-          {
-            key: "workspace_icon",
-            fn: function() {
-              return [_vm._v(_vm._s(_vm.task.name[0]))]
-            },
-            proxy: true
-          },
-          {
-            key: "workspace_name",
-            fn: function() {
-              return [_vm._v(_vm._s(_vm.task.name))]
-            },
-            proxy: true
-          },
-          {
-            key: "workspace_sub_header",
-            fn: function() {
-              return [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "home-workspace-items-content-sub-header-wrapper"
-                  },
-                  [
-                    _vm.FormType == "view"
-                      ? _c(
-                          "jet-workspace-button",
-                          {
-                            nativeOn: {
-                              click: function($event) {
-                                return _vm.EditForms($event)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-edit main-icon" }),
-                            _vm._v("Edit Task\n        ")
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.FormType == "edit"
-                      ? _c(
-                          "jet-workspace-button",
-                          {
-                            nativeOn: {
-                              click: function($event) {
-                                return _vm.UpdateTask($event)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-save main-icon" }),
-                            _vm._v("Save Change\n        ")
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c(
+  return _c("jet-dashboard", {
+    scopedSlots: _vm._u([
+      {
+        key: "workspace_icon",
+        fn: function() {
+          return [_vm._v(_vm._s(_vm.task.name[0]))]
+        },
+        proxy: true
+      },
+      {
+        key: "workspace_name",
+        fn: function() {
+          return [_vm._v(_vm._s(_vm.task.name))]
+        },
+        proxy: true
+      },
+      {
+        key: "workspace_sub_header",
+        fn: function() {
+          return [
+            _c(
+              "div",
+              {
+                staticClass: "home-workspace-items-content-sub-header-wrapper"
+              },
+              [
+                _vm.FormType == "view"
+                  ? _c(
                       "jet-workspace-button",
                       {
                         nativeOn: {
                           click: function($event) {
-                            return _vm.DestroyTask($event)
+                            return _vm.EditForms($event)
                           }
                         }
                       },
                       [
-                        _c("i", { staticClass: "far fa-trash-alt main-icon" }),
-                        _vm._v("Delete Task\n        ")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "jet-workspace-button",
-                      {
-                        nativeOn: {
-                          click: function($event) {
-                            return _vm.BackMethods($event)
-                          }
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "fas fa-undo-alt main-icon" }),
-                        _vm._v("Back\n        ")
+                        _c("i", { staticClass: "far fa-edit main-icon" }),
+                        _vm._v("Edit Task\n      ")
                       ]
                     )
-                  ],
-                  1
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.FormType == "edit"
+                  ? _c(
+                      "jet-workspace-button",
+                      {
+                        nativeOn: {
+                          click: function($event) {
+                            return _vm.UpdateTask($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "far fa-save main-icon" }),
+                        _vm._v("Save Change\n      ")
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "jet-workspace-button",
+                  {
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.DestroyTask($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "far fa-trash-alt main-icon" }),
+                    _vm._v("Delete Task\n      ")
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "jet-workspace-button",
+                  {
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.BackMethods($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-undo-alt main-icon" }),
+                    _vm._v("Back\n      ")
+                  ]
                 )
+              ],
+              1
+            )
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "board_name",
+        fn: function() {
+          return [_vm._v(_vm._s(_vm.task.name))]
+        },
+        proxy: true
+      },
+      {
+        key: "board_description",
+        fn: function() {
+          return [_vm._v("Date Assign :" + _vm._s(_vm.task.date_assign))]
+        },
+        proxy: true
+      },
+      {
+        key: "board_subs_images_label",
+        fn: function() {
+          return [_vm._v("Responsible ")]
+        },
+        proxy: true
+      },
+      {
+        key: "board_subs_images",
+        fn: function() {
+          return [
+            _c("img", {
+              staticClass: "inner-image",
+              attrs: { src: _vm.task.responsible.profile_photo_url }
+            })
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "board_subs",
+        fn: function() {
+          return [
+            _vm._v(" Member / " + _vm._s(_vm.task.team.users.length + 1) + " ")
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "board_button",
+        fn: function() {
+          return [
+            _c("create-timesheet", {
+              attrs: { task: _vm.task, users: _vm.users }
+            })
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "board_button_group",
+        fn: function() {
+          return _vm._l(_vm.task.project.task_type, function(stage) {
+            return _c(
+              "jet-board-button",
+              {
+                key: stage.id,
+                class: {
+                  "bg-primary rounded text-white": stage.id == _vm.task.stage_id
+                },
+                attrs: { "data-id": stage.name },
+                nativeOn: {
+                  click: function($event) {
+                    return _vm.UpdateStage(stage.id)
+                  }
+                }
+              },
+              [
+                _c("span", { staticClass: "item-title ml-2" }, [
+                  _vm._v(_vm._s(stage.name))
+                ])
               ]
-            },
-            proxy: true
-          },
-          {
-            key: "main_content",
-            fn: function() {
-              return [
-                _c("jet-content-wrapper", {
-                  staticClass: "project_view",
-                  attrs: { users: _vm.users, team: _vm.task.team },
-                  scopedSlots: _vm._u([
+            )
+          })
+        },
+        proxy: true
+      },
+      {
+        key: "board_component",
+        fn: function() {
+          return [
+            _c("div", { staticClass: "container mt-3" }, [
+              _c("div", { staticClass: "oe_title" }, [
+                _c("div", { staticClass: "col-12" }, [
+                  _c(
+                    "label",
                     {
-                      key: "board_name",
-                      fn: function() {
-                        return [_vm._v(_vm._s(_vm.task.name))]
-                      },
-                      proxy: true
+                      staticClass: "o_form_label oe_edit_only",
+                      attrs: {
+                        for: "o_field_input_663",
+                        "data-original-title": "",
+                        title: ""
+                      }
                     },
-                    {
-                      key: "board_description",
-                      fn: function() {
-                        return [
-                          _vm._v("Date Assign :" + _vm._s(_vm.task.date_assign))
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "board_subs_images_label",
-                      fn: function() {
-                        return [_vm._v("Responsible ")]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "board_subs_images",
-                      fn: function() {
-                        return [
-                          _c("img", {
-                            staticClass: "inner-image",
-                            attrs: {
-                              src: _vm.task.responsible.profile_photo_url
-                            }
-                          })
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "board_button_group",
-                      fn: function() {
-                        return _vm._l(_vm.task.project.task_type, function(
-                          stage
-                        ) {
-                          return _c(
-                            "jet-board-button",
+                    [_vm._v("Task Name")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "h1",
+                    [
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: {
+                          id: "name",
+                          type: "text",
+                          disabled: _vm.FormType == "view"
+                        },
+                        model: {
+                          value: _vm.TaskForm.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.TaskForm, "name", $$v)
+                          },
+                          expression: "TaskForm.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "o_group" }, [
+                _c(
+                  "table",
+                  { staticClass: "o_group o_inner_group col-12 col-md-5" },
+                  [
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", { staticClass: "o_td_label" }, [
+                          _c(
+                            "label",
                             {
-                              key: stage.id,
-                              class: {
-                                "bg-primary rounded text-white":
-                                  stage.id == _vm.task.stage_id
-                              },
-                              attrs: { "data-id": stage.name },
-                              nativeOn: {
-                                click: function($event) {
-                                  return _vm.UpdateStage(stage.id)
+                              staticClass: "o_form_label",
+                              attrs: {
+                                for: "o_field_input_667",
+                                "data-original-title": "",
+                                title: ""
+                              }
+                            },
+                            [_vm._v("Project")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticStyle: { width: "100%" } }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.TaskForm.team_id,
+                                  expression: "TaskForm.team_id"
+                                }
+                              ],
+                              staticClass: "mt-1 block w-full",
+                              attrs: { disabled: _vm.FormType == "view" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.TaskForm,
+                                    "team_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            _vm._l(_vm.task.team.project, function(project) {
+                              return _c(
+                                "option",
+                                {
+                                  key: project.id,
+                                  attrs: {
+                                    select: project.id == _vm.TaskForm.team_id
+                                  },
+                                  domProps: { value: project.id }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(project.name) +
+                                      "\n                  "
+                                  )
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", { staticClass: "o_td_label" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "o_form_label",
+                              attrs: {
+                                for: "o_field_input_667",
+                                "data-original-title": "",
+                                title: ""
+                              }
+                            },
+                            [_vm._v("Responsible")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticStyle: { width: "100%" } }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.TaskForm.user_id,
+                                  expression: "TaskForm.user_id"
+                                }
+                              ],
+                              staticClass: "mt-1 block w-full",
+                              attrs: { disabled: _vm.FormType == "view" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.TaskForm,
+                                    "user_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
                                 }
                               }
                             },
                             [
-                              _c("span", { staticClass: "item-title ml-2" }, [
-                                _vm._v(_vm._s(stage.name))
-                              ])
-                            ]
-                          )
-                        })
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "board_component",
-                      fn: function() {
-                        return [
-                          _c("div", { staticClass: "container mt-3" }, [
-                            _c("div", { staticClass: "oe_title" }, [
-                              _c("div", { staticClass: "col-12" }, [
-                                _c(
-                                  "label",
+                              _vm._l(_vm.task.team.users, function(row) {
+                                return _c(
+                                  "option",
                                   {
-                                    staticClass: "o_form_label oe_edit_only",
+                                    key: row.id,
                                     attrs: {
-                                      for: "o_field_input_663",
-                                      "data-original-title": "",
-                                      title: ""
-                                    }
+                                      select: row.id == _vm.TaskForm.user_id
+                                    },
+                                    domProps: { value: row.id }
                                   },
-                                  [_vm._v("Task Name")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "h1",
                                   [
-                                    _c("jet-input", {
-                                      staticClass: "mt-1 block w-full",
-                                      attrs: {
-                                        id: "name",
-                                        type: "text",
-                                        disabled: _vm.FormType == "view"
-                                      },
-                                      model: {
-                                        value: _vm.TaskForm.name,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.TaskForm, "name", $$v)
-                                        },
-                                        expression: "TaskForm.name"
-                                      }
-                                    })
-                                  ],
-                                  1
+                                    _vm._v(
+                                      "\n                    " +
+                                        _vm._s(row.name) +
+                                        "\n                  "
+                                    )
+                                  ]
                                 )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "o_group" }, [
-                              _c(
-                                "table",
-                                {
-                                  staticClass:
-                                    "o_group o_inner_group col-12 col-md-5"
-                                },
-                                [
-                                  _c("tbody", [
-                                    _c("tr", [
-                                      _c("td", { staticClass: "o_td_label" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass: "o_form_label",
-                                            attrs: {
-                                              for: "o_field_input_667",
-                                              "data-original-title": "",
-                                              title: ""
-                                            }
-                                          },
-                                          [_vm._v("Project")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        { staticStyle: { width: "100%" } },
-                                        [
-                                          _c(
-                                            "select",
-                                            {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.TaskForm.team_id,
-                                                  expression: "TaskForm.team_id"
-                                                }
-                                              ],
-                                              staticClass: "mt-1 block w-full",
-                                              attrs: {
-                                                disabled: _vm.FormType == "view"
-                                              },
-                                              on: {
-                                                change: function($event) {
-                                                  var $$selectedVal = Array.prototype.filter
-                                                    .call(
-                                                      $event.target.options,
-                                                      function(o) {
-                                                        return o.selected
-                                                      }
-                                                    )
-                                                    .map(function(o) {
-                                                      var val =
-                                                        "_value" in o
-                                                          ? o._value
-                                                          : o.value
-                                                      return val
-                                                    })
-                                                  _vm.$set(
-                                                    _vm.TaskForm,
-                                                    "team_id",
-                                                    $event.target.multiple
-                                                      ? $$selectedVal
-                                                      : $$selectedVal[0]
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            _vm._l(
-                                              _vm.task.team.project,
-                                              function(project) {
-                                                return _c(
-                                                  "option",
-                                                  {
-                                                    key: project.id,
-                                                    attrs: {
-                                                      select:
-                                                        project.id ==
-                                                        _vm.TaskForm.team_id
-                                                    },
-                                                    domProps: {
-                                                      value: project.id
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                          " +
-                                                        _vm._s(project.name) +
-                                                        "\n                        "
-                                                    )
-                                                  ]
-                                                )
-                                              }
-                                            ),
-                                            0
-                                          )
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", { staticClass: "o_td_label" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass: "o_form_label",
-                                            attrs: {
-                                              for: "o_field_input_667",
-                                              "data-original-title": "",
-                                              title: ""
-                                            }
-                                          },
-                                          [_vm._v("Responsible")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        { staticStyle: { width: "100%" } },
-                                        [
-                                          _c(
-                                            "select",
-                                            {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.TaskForm.user_id,
-                                                  expression: "TaskForm.user_id"
-                                                }
-                                              ],
-                                              staticClass: "mt-1 block w-full",
-                                              attrs: {
-                                                disabled: _vm.FormType == "view"
-                                              },
-                                              on: {
-                                                change: function($event) {
-                                                  var $$selectedVal = Array.prototype.filter
-                                                    .call(
-                                                      $event.target.options,
-                                                      function(o) {
-                                                        return o.selected
-                                                      }
-                                                    )
-                                                    .map(function(o) {
-                                                      var val =
-                                                        "_value" in o
-                                                          ? o._value
-                                                          : o.value
-                                                      return val
-                                                    })
-                                                  _vm.$set(
-                                                    _vm.TaskForm,
-                                                    "user_id",
-                                                    $event.target.multiple
-                                                      ? $$selectedVal
-                                                      : $$selectedVal[0]
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._l(
-                                                _vm.task.team.users,
-                                                function(row) {
-                                                  return _c(
-                                                    "option",
-                                                    {
-                                                      key: row.id,
-                                                      attrs: {
-                                                        select:
-                                                          row.id ==
-                                                          _vm.TaskForm.user_id
-                                                      },
-                                                      domProps: {
-                                                        value: row.id
-                                                      }
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n                          " +
-                                                          _vm._s(row.name) +
-                                                          "\n                        "
-                                                      )
-                                                    ]
-                                                  )
-                                                }
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "option",
-                                                {
-                                                  attrs: {
-                                                    select:
-                                                      _vm.task.team.owner.id ==
-                                                      _vm.TaskForm.user_id
-                                                  },
-                                                  domProps: {
-                                                    value:
-                                                      _vm.task.team.owner.id
-                                                  }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                          " +
-                                                      _vm._s(
-                                                        _vm.task.team.owner.name
-                                                      ) +
-                                                      "\n                        "
-                                                  )
-                                                ]
-                                              )
-                                            ],
-                                            2
-                                          )
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", { staticClass: "o_td_label" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass: "o_form_label",
-                                            attrs: { for: "o_field_input_668" }
-                                          },
-                                          [_vm._v("Deadline")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        { staticStyle: { width: "100%" } },
-                                        [
-                                          _c("jet-input", {
-                                            staticClass: "mt-1 block w-full",
-                                            attrs: {
-                                              id: "date_end",
-                                              type: "date",
-                                              disabled: _vm.FormType == "view"
-                                            },
-                                            model: {
-                                              value: _vm.TaskForm.date_end,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.TaskForm,
-                                                  "date_end",
-                                                  $$v
-                                                )
-                                              },
-                                              expression: "TaskForm.date_end"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", { staticClass: "o_td_label" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass: "o_form_label",
-                                            attrs: {
-                                              for: "o_field_input_667",
-                                              "data-original-title": "",
-                                              title: ""
-                                            }
-                                          },
-                                          [_vm._v("Tags")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        { staticStyle: { width: "100%" } },
-                                        [
-                                          _c(
-                                            "select",
-                                            {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.TaskForm.tag_id,
-                                                  expression: "TaskForm.tag_id"
-                                                }
-                                              ],
-                                              staticClass: "mt-1 block w-full",
-                                              attrs: {
-                                                disabled: _vm.FormType == "view"
-                                              },
-                                              on: {
-                                                change: function($event) {
-                                                  var $$selectedVal = Array.prototype.filter
-                                                    .call(
-                                                      $event.target.options,
-                                                      function(o) {
-                                                        return o.selected
-                                                      }
-                                                    )
-                                                    .map(function(o) {
-                                                      var val =
-                                                        "_value" in o
-                                                          ? o._value
-                                                          : o.value
-                                                      return val
-                                                    })
-                                                  _vm.$set(
-                                                    _vm.TaskForm,
-                                                    "tag_id",
-                                                    $event.target.multiple
-                                                      ? $$selectedVal
-                                                      : $$selectedVal[0]
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            _vm._l(
-                                              _vm.task.project.tags,
-                                              function(project) {
-                                                return _c(
-                                                  "option",
-                                                  {
-                                                    key: project.id,
-                                                    attrs: {
-                                                      select:
-                                                        project.id ==
-                                                        _vm.TaskForm.tag_id
-                                                    },
-                                                    domProps: {
-                                                      value: project.id
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                          " +
-                                                        _vm._s(project.name) +
-                                                        "\n                        "
-                                                    )
-                                                  ]
-                                                )
-                                              }
-                                            ),
-                                            0
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ])
-                                ]
-                              ),
+                              }),
                               _vm._v(" "),
                               _c(
-                                "table",
+                                "option",
                                 {
-                                  staticClass:
-                                    "o_group o_inner_group col-12 col-md-5"
+                                  attrs: {
+                                    select:
+                                      _vm.task.team.owner.id ==
+                                      _vm.TaskForm.user_id
+                                  },
+                                  domProps: { value: _vm.task.team.owner.id }
                                 },
                                 [
-                                  _c("tbody", [
-                                    _c("tr", [
-                                      _c("td", { staticClass: "o_td_label" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass: "o_form_label",
-                                            attrs: { for: "o_field_input_668" }
-                                          },
-                                          [_vm._v("Customer")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        { staticStyle: { width: "100%" } },
-                                        [
-                                          _c("jet-input", {
-                                            staticClass: "mt-1 block w-full",
-                                            attrs: {
-                                              id: "team",
-                                              type: "text",
-                                              disabled: ""
-                                            },
-                                            model: {
-                                              value: _vm.task.project.customer,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.task.project,
-                                                  "customer",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "task.project.customer"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    ])
-                                  ])
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(_vm.task.team.owner.name) +
+                                      "\n                  "
+                                  )
                                 ]
                               )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass: "o_notebook",
-                                attrs: { "data-name": "_default_" }
+                            ],
+                            2
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", { staticClass: "o_td_label" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "o_form_label",
+                              attrs: { for: "o_field_input_668" }
+                            },
+                            [_vm._v("Deadline")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticStyle: { width: "100%" } },
+                          [
+                            _c("jet-input", {
+                              staticClass: "mt-1 block w-full",
+                              attrs: {
+                                id: "date_end",
+                                type: "date",
+                                disabled: _vm.FormType == "view"
                               },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "o_notebook_headers" },
-                                  [
-                                    _c("ul", { staticClass: "nav nav-tabs" }, [
-                                      _c("li", { staticClass: "nav-item" }, [
-                                        _c(
-                                          "a",
-                                          {
-                                            staticClass: "nav-link",
-                                            class: {
-                                              active:
-                                                _vm.ViewDescription == true
-                                            },
-                                            attrs: {
-                                              "data-toggle": "tab",
-                                              disable_anchor: "true",
-                                              role: "tab"
-                                            },
-                                            on: { click: _vm.TabDesc }
-                                          },
-                                          [_vm._v("Description")]
+                              model: {
+                                value: _vm.TaskForm.date_end,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.TaskForm, "date_end", $$v)
+                                },
+                                expression: "TaskForm.date_end"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", { staticClass: "o_td_label" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "o_form_label",
+                              attrs: {
+                                for: "o_field_input_667",
+                                "data-original-title": "",
+                                title: ""
+                              }
+                            },
+                            [_vm._v("Tags")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticStyle: { width: "100%" } }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.TaskForm.tag_id,
+                                  expression: "TaskForm.tag_id"
+                                }
+                              ],
+                              staticClass: "mt-1 block w-full",
+                              attrs: { disabled: _vm.FormType == "view" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.TaskForm,
+                                    "tag_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            _vm._l(_vm.task.project.tags, function(project) {
+                              return _c(
+                                "option",
+                                {
+                                  key: project.id,
+                                  attrs: {
+                                    select: project.id == _vm.TaskForm.tag_id
+                                  },
+                                  domProps: { value: project.id }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(project.name) +
+                                      "\n                  "
+                                  )
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ])
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  { staticClass: "o_group o_inner_group col-12 col-md-5" },
+                  [
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", { staticClass: "o_td_label" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "o_form_label",
+                              attrs: { for: "o_field_input_668" }
+                            },
+                            [_vm._v("Customer")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticStyle: { width: "100%" } },
+                          [
+                            _c("jet-input", {
+                              staticClass: "mt-1 block w-full",
+                              attrs: {
+                                id: "customer",
+                                type: "text",
+                                disabled: ""
+                              },
+                              model: {
+                                value: _vm.task.project.customer,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.task.project, "customer", $$v)
+                                },
+                                expression: "task.project.customer"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "o_notebook",
+                  attrs: { "data-name": "_default_" }
+                },
+                [
+                  _c("div", { staticClass: "o_notebook_headers" }, [
+                    _c("ul", { staticClass: "nav nav-tabs" }, [
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            class: { active: _vm.ViewDescription == true },
+                            attrs: {
+                              "data-toggle": "tab",
+                              disable_anchor: "true",
+                              role: "tab"
+                            },
+                            on: { click: _vm.TabDesc }
+                          },
+                          [_vm._v("Description")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm.task.project.allow_timesheets
+                        ? _c("li", { staticClass: "nav-item" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "nav-link",
+                                class: { active: _vm.ViewTimesheet == true },
+                                attrs: {
+                                  "data-toggle": "tab",
+                                  disable_anchor: "true",
+                                  role: "tab"
+                                },
+                                on: { click: _vm.TabTimesheet }
+                              },
+                              [_vm._v("Timesheet")]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            class: { active: _vm.ViewExtraInfo == true },
+                            attrs: {
+                              "data-toggle": "tab",
+                              disable_anchor: "true",
+                              role: "tab"
+                            },
+                            on: { click: _vm.TabInfo }
+                          },
+                          [_vm._v("Extra Info")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "tab-content" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "tab-pane",
+                        class: { active: _vm.ViewDescription == true },
+                        attrs: { id: "notebook_page_desc" }
+                      },
+                      [
+                        _vm.FormType == "view"
+                          ? _c("div", { staticClass: "container" }, [
+                              _c("div", {
+                                domProps: {
+                                  innerHTML: _vm._s(_vm.TaskForm.description)
+                                }
+                              })
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.FormType == "edit"
+                          ? _c("vue-editor", {
+                              model: {
+                                value: _vm.TaskForm.description,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.TaskForm, "description", $$v)
+                                },
+                                expression: "TaskForm.description"
+                              }
+                            })
+                          : _vm._e()
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "tab-pane",
+                        class: { active: _vm.ViewTimesheet == true },
+                        attrs: { id: "notebook_page_desc" }
+                      },
+                      [
+                        _c("table-responsive", {
+                          scopedSlots: _vm._u([
+                            {
+                              key: "header",
+                              fn: function() {
+                                return [
+                                  _c("tr", [
+                                    _c(
+                                      "th",
+                                      {
+                                        staticClass: "text-center",
+                                        staticStyle: { width: "100px" }
+                                      },
+                                      [_vm._v("Date")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "th",
+                                      { staticStyle: { width: "191px" } },
+                                      [_vm._v("Description")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "th",
+                                      { staticStyle: { width: "100px" } },
+                                      [_vm._v("Duration (Hours)")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("th", { staticStyle: { width: "20px" } })
+                                  ])
+                                ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "content",
+                              fn: function() {
+                                return _vm._l(_vm.task.timesheets, function(
+                                  timesheet,
+                                  i
+                                ) {
+                                  return _c(
+                                    "tr",
+                                    { key: i, staticClass: "data_row" },
+                                    [
+                                      _c("td", [
+                                        _c("span", [
+                                          _vm._v(_vm._s(timesheet.date))
+                                        ])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          "\n                    " +
+                                            _vm._s(timesheet.name) +
+                                            "\n                  "
                                         )
                                       ]),
                                       _vm._v(" "),
-                                      _vm.task.project.allow_timesheets
-                                        ? _c(
-                                            "li",
-                                            { staticClass: "nav-item" },
-                                            [
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass: "nav-link",
-                                                  class: {
-                                                    active:
-                                                      _vm.ViewTimesheet == true
-                                                  },
-                                                  attrs: {
-                                                    "data-toggle": "tab",
-                                                    disable_anchor: "true",
-                                                    role: "tab"
-                                                  },
-                                                  on: {
-                                                    click: _vm.TabTimesheet
-                                                  }
-                                                },
-                                                [_vm._v("Timesheet")]
+                                      _c("td", { staticClass: "text-center" }, [
+                                        _vm._v(
+                                          "\n                    " +
+                                            _vm._s(
+                                              _vm.FormatHours(
+                                                timesheet.unit_amount
                                               )
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _c("li", { staticClass: "nav-item" }, [
-                                        _c(
-                                          "a",
-                                          {
-                                            staticClass: "nav-link",
-                                            class: {
-                                              active: _vm.ViewExtraInfo == true
-                                            },
-                                            attrs: {
-                                              "data-toggle": "tab",
-                                              disable_anchor: "true",
-                                              role: "tab"
-                                            },
-                                            on: { click: _vm.TabInfo }
-                                          },
-                                          [_vm._v("Extra Info")]
+                                            ) +
+                                            "\n                  "
                                         )
-                                      ])
-                                    ])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "tab-content" }, [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass: "tab-pane",
-                                      class: {
-                                        active: _vm.ViewDescription == true
-                                      },
-                                      attrs: { id: "notebook_page_desc" }
-                                    },
-                                    [
-                                      _vm.FormType == "view"
-                                        ? _c(
-                                            "div",
-                                            { staticClass: "container" },
-                                            [
-                                              _c("div", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(
-                                                    _vm.TaskForm.description
-                                                  )
-                                                }
-                                              })
-                                            ]
-                                          )
-                                        : _vm._e(),
+                                      ]),
                                       _vm._v(" "),
-                                      _vm.FormType == "edit"
-                                        ? _c("vue-editor", {
-                                            model: {
-                                              value: _vm.TaskForm.description,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.TaskForm,
-                                                  "description",
-                                                  $$v
-                                                )
+                                      _c("td", { staticClass: "text-center" }, [
+                                        _vm.FormType == "edit"
+                                          ? _c(
+                                              "div",
+                                              {
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.DestroyTimesheet(
+                                                      timesheet
+                                                    )
+                                                  }
+                                                }
                                               },
-                                              expression: "TaskForm.description"
-                                            }
-                                          })
-                                        : _vm._e()
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass: "tab-pane",
-                                      class: {
-                                        active: _vm.ViewExtraInfo == true
-                                      },
-                                      attrs: { id: "notebook_page_info" }
-                                    },
-                                    [
-                                      _c("div", { staticClass: "container" }, [
-                                        _c("div", { staticClass: "o_group" }, [
-                                          _c(
-                                            "table",
-                                            {
-                                              staticClass:
-                                                "o_group o_inner_group col-12 col-md-5"
-                                            },
-                                            [
-                                              _c("tbody", [
-                                                _c("tr", [
-                                                  _c(
-                                                    "td",
-                                                    {
-                                                      staticClass: "o_td_label"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "label",
-                                                        {
-                                                          staticClass:
-                                                            "o_form_label",
-                                                          attrs: {
-                                                            for:
-                                                              "o_field_input_668"
-                                                          }
-                                                        },
-                                                        [_vm._v("Sequence")]
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "td",
-                                                    {
-                                                      staticStyle: {
-                                                        width: "100%"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("jet-input", {
-                                                        staticClass:
-                                                          "mt-1 block w-full",
-                                                        attrs: {
-                                                          id: "sequence",
-                                                          type: "number",
-                                                          disabled:
-                                                            _vm.FormType ==
-                                                            "view"
-                                                        },
-                                                        model: {
-                                                          value:
-                                                            _vm.TaskForm
-                                                              .sequence,
-                                                          callback: function(
-                                                            $$v
-                                                          ) {
-                                                            _vm.$set(
-                                                              _vm.TaskForm,
-                                                              "sequence",
-                                                              $$v
-                                                            )
-                                                          },
-                                                          expression:
-                                                            "TaskForm.sequence"
-                                                        }
-                                                      })
-                                                    ],
-                                                    1
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("tr", [
-                                                  _c(
-                                                    "td",
-                                                    {
-                                                      staticClass: "o_td_label"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "label",
-                                                        {
-                                                          staticClass:
-                                                            "o_form_label",
-                                                          attrs: {
-                                                            for:
-                                                              "o_field_input_668"
-                                                          }
-                                                        },
-                                                        [_vm._v("Email CC")]
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "td",
-                                                    {
-                                                      staticStyle: {
-                                                        width: "100%"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("jet-input", {
-                                                        staticClass:
-                                                          "mt-1 block w-full",
-                                                        attrs: {
-                                                          id: "sequence",
-                                                          type: "number",
-                                                          disabled:
-                                                            _vm.FormType ==
-                                                            "view"
-                                                        },
-                                                        model: {
-                                                          value:
-                                                            _vm.TaskForm
-                                                              .email_cc,
-                                                          callback: function(
-                                                            $$v
-                                                          ) {
-                                                            _vm.$set(
-                                                              _vm.TaskForm,
-                                                              "email_cc",
-                                                              $$v
-                                                            )
-                                                          },
-                                                          expression:
-                                                            "TaskForm.email_cc"
-                                                        }
-                                                      })
-                                                    ],
-                                                    1
-                                                  )
-                                                ])
-                                              ])
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "table",
-                                            {
-                                              staticClass:
-                                                "o_group o_inner_group col-12 col-md-5"
-                                            },
-                                            [
-                                              _c("tbody", [
-                                                _c("tr", [
-                                                  _c(
-                                                    "td",
-                                                    {
-                                                      staticClass: "o_td_label"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "label",
-                                                        {
-                                                          staticClass:
-                                                            "o_form_label",
-                                                          attrs: {
-                                                            for:
-                                                              "o_field_input_668"
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "Assigning Date"
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "td",
-                                                    {
-                                                      staticStyle: {
-                                                        width: "100%"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("jet-input", {
-                                                        staticClass:
-                                                          "mt-1 block w-full",
-                                                        attrs: {
-                                                          id: "team",
-                                                          type: "text",
-                                                          disabled: ""
-                                                        },
-                                                        model: {
-                                                          value:
-                                                            _vm.task
-                                                              .date_assign,
-                                                          callback: function(
-                                                            $$v
-                                                          ) {
-                                                            _vm.$set(
-                                                              _vm.task,
-                                                              "date_assign",
-                                                              $$v
-                                                            )
-                                                          },
-                                                          expression:
-                                                            "task.date_assign"
-                                                        }
-                                                      })
-                                                    ],
-                                                    1
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("tr", [
-                                                  _c(
-                                                    "td",
-                                                    {
-                                                      staticClass: "o_td_label"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "label",
-                                                        {
-                                                          staticClass:
-                                                            "o_form_label",
-                                                          attrs: {
-                                                            for:
-                                                              "o_field_input_668"
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "Last Stage Update"
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "td",
-                                                    {
-                                                      staticStyle: {
-                                                        width: "100%"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("jet-input", {
-                                                        staticClass:
-                                                          "mt-1 block w-full",
-                                                        attrs: {
-                                                          id: "team",
-                                                          type: "text",
-                                                          disabled: ""
-                                                        },
-                                                        model: {
-                                                          value:
-                                                            _vm.task
-                                                              .date_last_stage_update,
-                                                          callback: function(
-                                                            $$v
-                                                          ) {
-                                                            _vm.$set(
-                                                              _vm.task,
-                                                              "date_last_stage_update",
-                                                              $$v
-                                                            )
-                                                          },
-                                                          expression:
-                                                            "task.date_last_stage_update"
-                                                        }
-                                                      })
-                                                    ],
-                                                    1
-                                                  )
-                                                ])
-                                              ])
-                                            ]
-                                          )
-                                        ])
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fa fa-trash",
+                                                  attrs: {
+                                                    "aria-hidden": "true"
+                                                  }
+                                                })
+                                              ]
+                                            )
+                                          : _vm._e()
                                       ])
                                     ]
                                   )
+                                })
+                              },
+                              proxy: true
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "tab-pane",
+                        class: { active: _vm.ViewExtraInfo == true },
+                        attrs: { id: "notebook_page_info" }
+                      },
+                      [
+                        _c("div", { staticClass: "container" }, [
+                          _c("div", { staticClass: "o_group" }, [
+                            _c(
+                              "table",
+                              {
+                                staticClass:
+                                  "o_group o_inner_group col-12 col-md-5"
+                              },
+                              [
+                                _c("tbody", [
+                                  _c("tr", [
+                                    _c("td", { staticClass: "o_td_label" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "o_form_label",
+                                          attrs: { for: "o_field_input_668" }
+                                        },
+                                        [_vm._v("Sequence")]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticStyle: { width: "100%" } },
+                                      [
+                                        _c("jet-input", {
+                                          staticClass: "mt-1 block w-full",
+                                          attrs: {
+                                            id: "sequence",
+                                            type: "number",
+                                            disabled: _vm.FormType == "view"
+                                          },
+                                          model: {
+                                            value: _vm.TaskForm.sequence,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.TaskForm,
+                                                "sequence",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "TaskForm.sequence"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", { staticClass: "o_td_label" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "o_form_label",
+                                          attrs: { for: "o_field_input_668" }
+                                        },
+                                        [_vm._v("Email CC")]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticStyle: { width: "100%" } },
+                                      [
+                                        _c("jet-input", {
+                                          staticClass: "mt-1 block w-full",
+                                          attrs: {
+                                            id: "sequence",
+                                            type: "number",
+                                            disabled: _vm.FormType == "view"
+                                          },
+                                          model: {
+                                            value: _vm.TaskForm.email_cc,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.TaskForm,
+                                                "email_cc",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "TaskForm.email_cc"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "table",
+                              {
+                                staticClass:
+                                  "o_group o_inner_group col-12 col-md-5"
+                              },
+                              [
+                                _c("tbody", [
+                                  _c("tr", [
+                                    _c("td", { staticClass: "o_td_label" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "o_form_label",
+                                          attrs: { for: "o_field_input_668" }
+                                        },
+                                        [_vm._v("Assigning Date")]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticStyle: { width: "100%" } },
+                                      [
+                                        _c("jet-input", {
+                                          staticClass: "mt-1 block w-full",
+                                          attrs: {
+                                            id: "date_assign",
+                                            type: "text",
+                                            disabled: ""
+                                          },
+                                          model: {
+                                            value: _vm.task.date_assign,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.task,
+                                                "date_assign",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "task.date_assign"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", { staticClass: "o_td_label" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "o_form_label",
+                                          attrs: { for: "o_field_input_668" }
+                                        },
+                                        [_vm._v("Last Stage Update")]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticStyle: { width: "100%" } },
+                                      [
+                                        _c("jet-input", {
+                                          staticClass: "mt-1 block w-full",
+                                          attrs: {
+                                            id: "date_last_stage_update",
+                                            type: "text",
+                                            disabled: ""
+                                          },
+                                          model: {
+                                            value:
+                                              _vm.task.date_last_stage_update,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.task,
+                                                "date_last_stage_update",
+                                                $$v
+                                              )
+                                            },
+                                            expression:
+                                              "task.date_last_stage_update"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
                                 ])
                               ]
                             )
                           ])
-                        ]
-                      },
-                      proxy: true
-                    }
+                        ])
+                      ]
+                    )
                   ])
-                })
-              ]
-            },
-            proxy: true
-          }
-        ])
-      })
-    ],
-    1
-  )
+                ]
+              )
+            ])
+          ]
+        },
+        proxy: true
+      }
+    ])
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -107633,6 +107962,8 @@ var map = {
 	"./Stage/Show.vue": "./resources/js/Pages/Stage/Show.vue",
 	"./Task/CreateTask": "./resources/js/Pages/Task/CreateTask.vue",
 	"./Task/CreateTask.vue": "./resources/js/Pages/Task/CreateTask.vue",
+	"./Task/CreateTimesheet": "./resources/js/Pages/Task/CreateTimesheet.vue",
+	"./Task/CreateTimesheet.vue": "./resources/js/Pages/Task/CreateTimesheet.vue",
 	"./Task/View": "./resources/js/Pages/Task/View.vue",
 	"./Task/View.vue": "./resources/js/Pages/Task/View.vue",
 	"./Teams/Create": "./resources/js/Pages/Teams/Create.vue",
@@ -109123,6 +109454,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateTask_vue_vue_type_template_id_8391e91c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateTask_vue_vue_type_template_id_8391e91c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Task/CreateTimesheet.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/Pages/Task/CreateTimesheet.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateTimesheet_vue_vue_type_template_id_1aafbb95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateTimesheet.vue?vue&type=template&id=1aafbb95& */ "./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=template&id=1aafbb95&");
+/* harmony import */ var _CreateTimesheet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateTimesheet.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateTimesheet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateTimesheet_vue_vue_type_template_id_1aafbb95___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateTimesheet_vue_vue_type_template_id_1aafbb95___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Task/CreateTimesheet.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateTimesheet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateTimesheet.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateTimesheet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=template&id=1aafbb95&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=template&id=1aafbb95& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateTimesheet_vue_vue_type_template_id_1aafbb95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateTimesheet.vue?vue&type=template&id=1aafbb95& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Task/CreateTimesheet.vue?vue&type=template&id=1aafbb95&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateTimesheet_vue_vue_type_template_id_1aafbb95___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateTimesheet_vue_vue_type_template_id_1aafbb95___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

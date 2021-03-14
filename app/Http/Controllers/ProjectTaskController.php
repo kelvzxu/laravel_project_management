@@ -56,6 +56,7 @@ class ProjectTaskController extends Controller
                 'team.owner',
                 'responsible',
                 'stage',
+                'timesheets',
                 'project',
                 'project.tags',
                 'project.task_type',

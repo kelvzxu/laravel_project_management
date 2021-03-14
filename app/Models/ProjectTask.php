@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 // dependencies Models
+use App\Models\AccountAnalyticLine;
 use App\Models\Team;
 use App\Models\user;
 use App\Models\ProjectTaskType;
@@ -39,5 +40,9 @@ class ProjectTask extends Model
 
     public function project(){
         return $this->hasOne(Project::class,'id','team_id');
+    }
+
+    public function timesheets(){
+        return $this->hasmany(AccountAnalyticLine::class,'task_id','id');
     }
 }
