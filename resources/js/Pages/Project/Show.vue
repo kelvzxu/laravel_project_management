@@ -1,293 +1,207 @@
 <template>
-  <app-layout>
-    <jet-application-control :users="users" :team="team">
-      <template #workspace_icon>{{ project.name[0] }}</template>
-      <template #workspace_name>{{ project.name }}</template>
-      <template #workspace_sub_header>
-        <div class="home-workspace-items-content-sub-header-wrapper">
-          <div class="new-boards-list-button-component bg-light">
-            <jet-responsive-nav-link
-              :href="route('project.show', project.access_token)"
-              :active="route().current('teams.show')"
-            >
-              <div class="ds-menu-button-container">
-                <div>
-                  <div class="top-new-button-component default-icon">
-                    <div
-                      class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
-                    >
-                      <i class="fa fa-th-large main-icon"></i>Kanban Board
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
-          <div
-            class="boards-list-header-component selected leftpane-workspace-header-redesign"
-          >
-            <jet-responsive-nav-link
-              :href="route('teams.show', team.id)"
-              :active="route().current('teams.show')"
-            >
-              <div class="boards-filter-row-wrapper">
-                <div class="boards-list-filter-button-component">
-                  <i class="far fa-stopwatch main-icon"></i
-                  ><span class="filters-text">Timesheet</span>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
-          <div
-            class="boards-list-header-component selected leftpane-workspace-header-redesign"
-          >
-            <jet-responsive-nav-link
-              :href="route('teams.show', team.id)"
-              :active="route().current('teams.show')"
-            >
-              <div class="boards-filter-row-wrapper">
-                <div class="boards-list-filter-button-component">
-                  <i class="fas fa-file-chart-line main-icon"></i
-                  ><span class="filters-text">Project Report</span>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
-          <div
-            class="boards-list-header-component selected leftpane-workspace-header-redesign"
-          >
-            <jet-responsive-nav-link
-              :href="route('stage.show', project.access_token)"
-              :active="route().current('stage.view')"
-            >
-              <div class="boards-filter-row-wrapper">
-                <div class="boards-list-filter-button-component">
-                  <i class="far fa-layer-group main-icon"></i
-                  ><span class="filters-text">Project Stage</span>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
-          <div
-            class="boards-list-header-component selected leftpane-workspace-header-redesign"
-          >
-            <jet-responsive-nav-link
-              :href="route('project.detail', project.access_token)"
-              :active="route().current('project.detail')"
-            >
-              <div class="boards-filter-row-wrapper">
-                <div class="boards-list-filter-button-component">
-                  <i class="fa fa-cog main-icon"></i
-                  ><span class="filters-text">Project Details</span>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
-        </div>
-      </template>
-      <template #main_content>
-        <jet-dialog-modal :show="AddNewTask" @close="AddNewTask = false">
-          <template #title> New Stage </template>
-
-          <template #content>
-            <div class="mt-4">
-              <div class="col-span-6 sm:col-span-4">
-                <jet-label for="name" value="Task Name" />
-                <jet-input
-                  id="name"
-                  type="text"
-                  ref="name"
-                  class="mt-1 block w-full"
-                  v-model="form.name"
-                />
-                <jet-input-error :message="form.error('name')" class="mt-2" />
-              </div>
-              <div class="col-span-6 sm:col-span-4 mt-2">
-                <jet-label for="stage_id" value="Stage" />
-                <select v-model="form.stage_id" class="mt-1 block w-full">
-                  <option
-                    v-for="row in project.task_type"
-                    :select="row.id == form.stage_id"
-                    :key="row.id"
-                    :value="row.id"
-                  >
-                    {{ row.name }}
-                  </option>
-                </select>
-                <jet-input-error
-                  :message="form.error('stage_id')"
-                  class="mt-2"
-                />
-              </div>
-              <div class="col-span-6 sm:col-span-4 mt-2">
-                <jet-label for="user_id" value="Stage" />
-                <select v-model="form.user_id" class="mt-1 block w-full">
-                  <option
-                    :select="team.owner.id == form.user_id"
-                    :value="team.owner.id"
-                  >
-                    {{ team.owner.name }}
-                  </option>
-                  <option
-                    v-for="row in team.users"
-                    :select="row.id == form.user_id"
-                    :key="row.id"
-                    :value="row.id"
-                  >
-                    {{ row.name }}
-                  </option>
-                </select>
-                <jet-input-error
-                  :message="form.error('user_id')"
-                  class="mt-2"
-                />
-              </div>
-            </div>
-          </template>
-
-          <template #footer>
-            <jet-success-button
-              class="ml-2"
-              @click.native="CreateNewStages"
-              :class="{ 'opacity-25': form.processing }"
-              :disabled="form.processing"
-            >
-              Create
-            </jet-success-button>
-          </template>
-        </jet-dialog-modal>
-        <jet-content-wrapper
-          :users="users"
-          :team="team"
-          :projects="project"
-          class="project_view"
+  <jet-dashboard>
+    <template #workspace_icon>{{ project.name[0] }}</template>
+    <template #workspace_name>{{ project.name }}</template>
+    <template #workspace_sub_header>
+      <div class="home-workspace-items-content-sub-header-wrapper">
+        <jet-responsive-nav-link
+          :href="route('project.show', project.access_token)"
+          :active="route().current('teams.show')"
         >
-          <template #board_name>{{ project.name }}</template>
-          <template #board_description>{{ project.description }}</template>
-          <template #board_subs_images_label>Manager </template>
-          <template #board_subs_images>
-            <img :src="project.manager.profile_photo_url" class="inner-image" />
-          </template>
-          <template #board_button>
-            <div class="monday-add-to-board-wrapper" @click="AddStage">
-              <div
-                class="monday-add-to-board-menu"
-                id="monday-add-to-board-menu-container"
+          <jet-workspace-button class="workspace floating">
+            <i class="fa fa-th-large main-icon"></i>Kanban Board
+          </jet-workspace-button>
+        </jet-responsive-nav-link>
+        <jet-responsive-nav-link
+          :href="route('timesheet.show', project.access_token)"
+          :active="route().current('timesheet.show')"
+        >
+          <jet-workspace-button>
+            <i class="far fa-stopwatch main-icon"></i>Timesheets
+          </jet-workspace-button>
+        </jet-responsive-nav-link>
+        <jet-responsive-nav-link
+          :href="route('project.show', project.access_token)"
+          :active="route().current('teams.show')"
+        >
+          <jet-workspace-button>
+            <i class="fas fa-file-chart-line main-icon"></i>Project Report
+          </jet-workspace-button>
+        </jet-responsive-nav-link>
+        <jet-responsive-nav-link
+          :href="route('stage.show', project.access_token)"
+          :active="route().current('stage.view')"
+        >
+          <jet-workspace-button>
+            <i class="far fa-layer-group main-icon main-icon"></i>Project Stage
+          </jet-workspace-button>
+        </jet-responsive-nav-link>
+        <jet-responsive-nav-link
+          :href="route('stage.show', project.access_token)"
+          :active="route().current('stage.view')"
+        >
+          <jet-workspace-button>
+            <i class="fas fa-tags main-icon"></i>Project Tags
+          </jet-workspace-button>
+        </jet-responsive-nav-link>
+        <jet-responsive-nav-link
+          :href="route('project.detail', project.access_token)"
+          :active="route().current('project.detail')"
+        >
+          <jet-workspace-button>
+            <i class="fa fa-cog main-icon"></i>Project Details
+          </jet-workspace-button>
+        </jet-responsive-nav-link>
+      </div>
+    </template>
+    <template #page Modal>
+      <!-- <create-task :users="users" :project="project" /> -->
+    </template>
+    <template #board_name>{{ project.name }}</template>
+    <template #board_description
+      >Date Start : {{ project.date_start }}<br />Deadline:{{
+        project.date_end
+      }}</template
+    >
+    <template #board_subs_images_label>Manager </template>
+    <template #board_subs_images>
+      <img :src="project.manager.profile_photo_url" class="inner-image" />
+    </template>
+    <template #board_subs> Member / {{ team.users.length + 1 }} </template>
+    <template #board_button>
+      <create-task :users="users" :project="project" :team="team" />
+    </template>
+    <template #board_button_group>
+      <jet-board-search
+        ><input placeholder="Search... " value="" style="width: 100%"
+      /></jet-board-search>
+      <jet-board-filter-dropdown @click.native="FilterData" />
+    </template>
+    <template #board_component>
+      <kanban-area :type="'group'">
+        <kanban-progress
+          v-for="stage in project.task_type"
+          :key="stage.id"
+          :data-id="stage.name"
+        >
+          <template #title>{{ stage.name }}</template>
+          <template #counter>{{ stage.tasks.length }}</template>
+          <template #record>
+            <draggable
+              :list="stage.tasks"
+              group="tasks"
+              style="min-height: 500px"
+              @add="onAdd($event, stage.id)"
+            >
+              <kanban-box
+                v-for="task in stage.tasks"
+                :key="task.id"
+                :data-id="task.id"
+                :stage="stage.name"
+                @click.native="ViewTask(task)"
               >
-                <div class="ds-menu-button-container">
-                  <div class="monday-add-to-board-menu-button">
-                    <div class="monday-board-control">
-                      <div class="monday-board-control__icon">
-                        <i class="fa fa-plus-square"></i>
-                      </div>
-                      <div class="monday-board-control__text">Add Tasks</div>
-                    </div>
+                <template #header>{{ task.name }}</template>
+                <template #button>
+                  <div class="o_priority kanban_field_widget mr-2">
+                    <i class="o_priority_star far fa-star"></i>
                   </div>
-                </div>
+                  <div
+                    class="o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
+                  >
+                    <i
+                      class="far fa-fw o_activity_color_default fa-clock mt-1"
+                    ></i>
+                  </div>
+                </template>
+                <template #dateline v-if="task.date_end">{{
+                  task.date_end | formatDate
+                }}</template>
+                <template #picture>
+                  <img
+                    :src="$page.user.profile_photo_url"
+                    class="o_m2o_avatar rounded-circle"
+                  />
+                </template>
+              </kanban-box>
+            </draggable>
+          </template>
+        </kanban-progress>
+      </kanban-area>
+    </template>
+    <template #dialog_node>
+      <jet-board-dropdown v-if="FilterDropdown">
+        <template #board_filter_item>
+          <div class="columns-list-item-wrapper">
+            <div class="floating-columns-list-item-component">
+              <div class="column-list-item-content">
+                <i
+                  class="icon column-type-icon icon icon-dapulse-text-column"
+                ></i
+                ><span class="column-list-item-title">Active Project</span>
               </div>
             </div>
-          </template>
-          <template #board_button_group>
-            <jet-board-search
-              ><input placeholder="Search" value=""
-            /></jet-board-search>
-            <jet-board-filter-dropdown @click.native="FilterData" />
-            <jet-board-sorting />
-          </template>
-          <template #board_component>
-            <kanban-area :type="'group'">
-              <kanban-progress
-                v-for="stage in project.task_type"
-                :key="stage.id"
-                :data-id="stage.name"
-              >
-                <template #title>{{ stage.name }}</template>
-                <template #counter>{{ stage.tasks.length }}</template>
-                <template #record>
-                  <draggable
-                    :list="stage.tasks"
-                    group="tasks"
-                    style="min-height: 500px"
-                    @add="onAdd($event, stage.id)"
-                  >
-                    <kanban-box
-                      v-for="task in stage.tasks"
-                      :key="task.id"
-                      :data-id="task.id"
-                      :stage="stage.name"
-                      @click.native="ViewTask(task)"
-                    >
-                      <template #header>{{ task.name }}</template>
-                      <template #button>
-                        <div class="o_priority kanban_field_widget mr-2">
-                          <i class="o_priority_star far fa-star"></i>
-                        </div>
-                        <div
-                          class="o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
-                        >
-                          <i
-                            class="far fa-fw o_activity_color_default fa-clock mt-1"
-                          ></i>
-                        </div>
-                      </template>
-                      <template #dateline v-if="task.date_end">{{
-                        task.date_end | formatDate
-                      }}</template>
-                      <template #picture>
-                        <img
-                          :src="$page.user.profile_photo_url"
-                          class="o_m2o_avatar rounded-circle"
-                        />
-                      </template>
-                    </kanban-box>
-                  </draggable>
-                </template>
-              </kanban-progress>
-            </kanban-area>
-          </template>
-        </jet-content-wrapper>
-      </template>
-    </jet-application-control>
-  </app-layout>
+          </div>
+          <div class="columns-list-item-wrapper">
+            <div class="floating-columns-list-item-component">
+              <div class="column-list-item-content">
+                <i
+                  class="icon column-type-icon icon icon-dapulse-person-column"
+                ></i
+                ><span class="column-list-item-title">Followed</span>
+              </div>
+            </div>
+          </div>
+          <div class="columns-list-item-wrapper">
+            <div class="floating-columns-list-item-component">
+              <div class="column-list-item-content">
+                <i
+                  class="icon column-type-icon icon icon-dapulse-person-column"
+                ></i
+                ><span class="column-list-item-title">My Projects</span>
+              </div>
+            </div>
+          </div>
+          <div class="columns-list-item-wrapper">
+            <div class="floating-columns-list-item-component">
+              <div class="column-list-item-content">
+                <i
+                  class="icon column-type-icon icon icon-dapulse-person-column"
+                ></i
+                ><span class="column-list-item-title">Archived</span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </jet-board-dropdown>
+    </template>
+  </jet-dashboard>
 </template>
 
 <script>
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
-import JetApplicationControl from "@/Jetstream/ApplicationControl";
-import AppLayout from "@/Layouts/AppLayout";
-import JetDialogModal from "@/Jetstream/DialogModal";
-import JetSuccessButton from "@/Jetstream/SuccessButton";
-import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-import JetInput from "@/Jetstream/Input";
-import JetInputError from "@/Jetstream/InputError";
-import JetLabel from "@/Jetstream/Label";
+import JetDashboard from "@/Jetstream/Dashboard";
 // Workspace Component
-import JetContentWrapper from "@/Jetstream/ContentWrapper";
 import JetBoardSorting from "@/Jetstream/BoardSorting";
 import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
+import JetWorkspaceButton from "@/Jetstream/WorkspaceButton";
 // Kanban Component
 import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBoxGroup";
 import KanbanProgress from "@/Jetstream/KanbanProgress";
 // Module
 import draggable from "vuedraggable";
+// Page Component
+import CreateTask from "@/Pages/Task/CreateTask";
 
 export default {
   props: ["team", "users", "project"],
 
   components: {
-    AppLayout,
-    JetContentWrapper,
-    JetApplicationControl,
-    JetDialogModal,
-    JetInput,
-    JetInputError,
-    JetLabel,
+    JetDashboard,
     JetResponsiveNavLink,
-    JetSuccessButton,
-    JetSecondaryButton,
+    CreateTask,
     KanbanArea,
     KanbanBox,
     KanbanProgress,
@@ -296,28 +210,11 @@ export default {
     JetBoardDropdown,
     JetBoardFilterDropdown,
     draggable,
+    JetWorkspaceButton,
   },
   data() {
     return {
-      InviteModal: false,
-      SidebarSecondary: false,
-      ExpanceControl: true,
-      AddNewTask: false,
-      form: this.$inertia.form(
-        {
-          name: "",
-          active: true,
-          project_id: this.project.id,
-          team_id: this.project.team_id,
-          create_uid: this.users.id,
-          write_uid: this.users.id,
-          stage_id: this.project.task_type[0].id,
-          user_id: this.users.id,
-        },
-        {
-          bag: "CreateStage",
-        }
-      ),
+      FilterDropdown: false,
       TaskUpdate: this.$inertia.form({
         id: "",
         stage_id: "",
@@ -325,28 +222,6 @@ export default {
     };
   },
   methods: {
-    AddStage() {
-      this.form.name = "";
-
-      this.AddNewTask = true;
-
-      setTimeout(() => {
-        this.$refs.name.focus();
-      }, 250);
-    },
-    CreateNewStages() {
-      this.form
-        .post(route("project_task.store"), {
-          preserveScroll: true,
-        })
-        .then((response) => {
-          this.form.access_token = Math.random().toString(36).substring(7);
-          if (!this.form.hasErrors()) {
-            this.AddNewTask = false;
-          }
-          console.log(this.form);
-        });
-    },
     onAdd(event, stage) {
       this.TaskUpdate.id = event.item.getAttribute("data-id");
       this.TaskUpdate.stage_id = stage;
@@ -355,7 +230,14 @@ export default {
       });
     },
     ViewTask(row) {
-      this.$inertia.visit(route("project_task.view", row.id));
+      this.$inertia.visit(route("project_task.view", row.access_token));
+    },
+    FilterData() {
+      if (this.FilterDropdown == false) {
+        this.FilterDropdown = true;
+      } else {
+        this.FilterDropdown = false;
+      }
     },
   },
 };

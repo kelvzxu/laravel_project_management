@@ -429,7 +429,6 @@ export default {
         {
           name: "",
           allow_timesheets: true,
-          access_token: Math.random().toString(36).substring(7),
           sequence: Math.floor(Math.random() * 1000) + 1,
           user_id: this.users.id,
           team_id: this.team.id,
@@ -461,6 +460,7 @@ export default {
           preserveScroll: true,
         })
         .then((response) => {
+          console.log(this.addTeamMemberForm.hasErrors());
           if (!this.addTeamMemberForm.hasErrors()) {
             this.InviteModal = false;
           }
@@ -479,9 +479,6 @@ export default {
       this.CreateProject.post(route("project.store"), {
         preserveScroll: true,
       }).then((response) => {
-        this.CreateProject.access_token = Math.random()
-          .toString(36)
-          .substring(7);
         this.sequence = Math.floor(Math.random() * 1000) + 1;
         if (!this.CreateProject.hasErrors()) {
           this.AddProjectModal = false;

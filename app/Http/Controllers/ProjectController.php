@@ -16,6 +16,7 @@ class ProjectController extends Controller
     public function Store(Request $request){
         try{
             $data=$request->all();
+            $data['access_token']=bin2hex(random_bytes(24));
             Project::create($data);
             return back(303);
         }catch(\Exception $e){
@@ -56,7 +57,7 @@ class ProjectController extends Controller
     }
 
     public function getProjectDetail($token){
-        $result = Project::with('task_type','task_type.tasks','manager','team')->where('access_token','=',$token)->first();
+        $result = Project::with('task_type','task_type.tasks','manager','team','task')->where('access_token','=',$token)->first();
         return $result;
     }
 

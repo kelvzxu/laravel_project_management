@@ -165,15 +165,13 @@
                 id="notebook_page_team"
               >
                 <div class="col-12">
-                  <jet-label for="bio" value="Project Description" />
-                  <textarea
-                    rows="4"
-                    class="form-control"
+                  <div v-if="FormType == 'view'" class="container">
+                    <div v-html="ProjectForm.description"></div>
+                  </div>
+                  <vue-editor
+                    v-if="FormType == 'edit'"
                     v-model="ProjectForm.description"
-                    name="description"
-                    id="description"
-                    :disabled="FormType == 'view'"
-                  ></textarea>
+                  ></vue-editor>
                 </div>
               </div>
               <div
@@ -403,6 +401,7 @@ import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
 import JetRadio from "@/Jetstream/InputRadio";
+import { VueEditor } from "vue2-editor";
 
 export default {
   props: ["team", "users", "project"],
@@ -420,6 +419,7 @@ export default {
     JetInputError,
     JetLabel,
     JetRadio,
+    VueEditor,
   },
   data() {
     return {

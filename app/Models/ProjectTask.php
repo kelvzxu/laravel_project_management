@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+// dependencies Models
+use App\Models\AccountAnalyticLine;
+use App\Models\Team;
+use App\Models\user;
+use App\Models\ProjectTaskType;
+use App\Models\Project;
 
 class ProjectTask extends Model
 {
@@ -19,4 +25,24 @@ class ProjectTask extends Model
         'effective_hours','total_hours_spent','progress','overtime',
         'subtask_effective_hours','create_uid','write_uid',
     ];
+
+    public function team(){
+        return $this->hasOne(Team::class,'id','team_id');
+    }
+
+    public function responsible(){
+        return $this->hasOne(user::class,'id','user_id');
+    }
+
+    public function stage(){
+        return $this->hasOne(ProjectTaskType::class,'id','team_id');
+    }
+
+    public function project(){
+        return $this->hasOne(Project::class,'id','project_id');
+    }
+
+    public function timesheets(){
+        return $this->hasmany(AccountAnalyticLine::class,'task_id','id');
+    }
 }

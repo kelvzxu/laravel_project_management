@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\Auth\InheritTeamController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RequestJoinController;
+use App\Http\Controllers\AccountAnalyticLineController;
 
 class PageController extends Controller
 {
@@ -43,7 +44,7 @@ class PageController extends Controller
                 'canDeleteTeam' => Gate::check('delete', $team),
                 'canRemoveTeamMembers' => Gate::check('removeTeamMember', $team),
                 'canUpdateTeam' => Gate::check('update', $team),
-            ],
+            ], 
         ]);
     }
 
@@ -62,6 +63,19 @@ class PageController extends Controller
                 'canRemoveTeamMembers' => Gate::check('removeTeamMember', $team),
                 'canUpdateTeam' => Gate::check('update', $team),
             ],
+        ]);
+    }
+
+    public function Timesheet(Request $request, $token){
+        $user = app(UsersController::class)->getUserbyID(Auth::id());
+        $projects = app(ProjectController::class)->getProjectDetail($token);
+        $timesheet = app(AccountAnalyticLineController::class)->fetchAnalyticLine($request,$projects->id);
+        $team = app(InheritTeamController::class)->getTeam($projects->team_id);
+        return Jetstream::inertia()->render($request, 'Timesheet/Show', [
+            'users' => $user,
+            'team' =>$team->load('owner', 'users'),
+            'timesheets' =>$timesheet->load('team','responsible','task','project','project.task'),
+            'project' =>$projects,
         ]);
     }
 }

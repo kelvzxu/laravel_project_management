@@ -18969,6 +18969,8 @@ a.blue_btn.disabled {
 
 input[type="text"],
 input[type="password"],
+input[type="date"],
+input[type="number"],
 select {
     background-color: #ffffff;
     background-color: var(--primary-background-color);

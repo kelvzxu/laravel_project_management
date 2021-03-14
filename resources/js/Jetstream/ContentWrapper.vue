@@ -66,7 +66,7 @@
                               <i class="fa fa-users"></i>
                             </div>
                             <div class="monday-board-control__text">
-                              Member / {{ team.users.length + 1 }}
+                              <slot name="board_subs" />
                             </div>
                           </div>
                         </div>
