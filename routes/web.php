@@ -14,6 +14,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTaskController;
 use App\Http\Controllers\ProjectTaskTypeController;
 use App\Http\Controllers\IrAttachmentController;
+use App\Http\Controllers\AccountAnalyticLineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                 ->name('teams.show');
         Route::get('/project/{project}', [InheritTeamController::class, 'getProject'])
                 ->name('teams.project');
+        Route::post('/join/{team}/members', [InheritTeamController::class, 'Join'])
+                        ->name('team.join');
         Route::post('/store', [InheritTeamController::class, 'store'])
                 ->name('teams.store');
         // RequestJoinController
@@ -90,6 +93,16 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         Route::delete('/destroy/{task}', [ProjectTaskController::class, 'destroy'])
         ->name('project_task.destroy');                     
     });
+    Route::group(['prefix'=>'project/accountanalyticline'],function(){ 
+        Route::get('/{project}', [PageController::class, 'Timesheet'])
+                            ->name('timesheet.show');
+        Route::post('/store', [AccountAnalyticLineController::class, 'store'])
+                            ->name('timesheet.store');
+         Route::post('/update', [AccountAnalyticLineController::class, 'update'])
+                            ->name('timesheet.update');
+        Route::delete('/destroy/{timesheet}', [AccountAnalyticLineController::class, 'destroy'])
+                            ->name('timesheet.destroy');
+    });
     Route::group(['prefix'=>'{user}'],function(){ 
         Route::get('/view', [ProfileController::class, 'PublicProfile'])
                             ->name('profile.public');
@@ -100,15 +113,15 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         Route::get('/team/all/', [InheritTeamController::class, 'getTeams'])
                             ->name('profile.teams');
     });
+     Route::group(['prefix'=>'project/stage'],function(){ 
+        Route::get('/{project}', [ProjectTaskTypeController::class, 'show'])
+                                ->name('stage.show');
+        Route::post('/store', [ProjectTaskTypeController::class, 'store'])
+                                ->name('stage.store');
+    });
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/search/{user}', [PageController::class, 'Search'])
                         ->name('user.search');
-    Route::post('/join/teams/{team}/members', [InheritTeamController::class, 'Join'])
-                        ->name('team.join');
-    Route::get('/project/{project}/stage', [ProjectTaskTypeController::class, 'show'])
-                        ->name('stage.show');
-    Route::post('/project/stage/store', [ProjectTaskTypeController::class, 'store'])
-                        ->name('stage.store');
     Route::post('/attachment/store', [IrAttachmentController::class, 'store'])
                         ->name('attachment.store');
 });  

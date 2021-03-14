@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+// Base Dependencies
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 // Dependencies Models
 use App\Models\user;
 use App\Models\Team;
 use App\Models\ProjectTaskType;
+use App\Models\ProjectTask;
 use App\Models\ProjectTag;
 
 class Project extends Model
@@ -36,5 +38,9 @@ class Project extends Model
 
     public function tags() {
         return $this->hasMany(ProjectTag::class);
+    }
+
+    public function task() {
+        return $this->hasMany(ProjectTask::class);
     }
 }

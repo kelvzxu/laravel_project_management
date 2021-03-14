@@ -21029,7 +21029,7 @@ body a.button_link:focus {
 }
 
 .floating-columns-list-item-component.floating .column-list-item-content,
-.floating-columns-list-item-component.floating:hover .column-list-item-content {
+.floating-columns-list-item-component.floating:hover .column-list-item-content, .workspace.floating {
     background-color: #e5f4ff;
     background-color: var(--primary-selected-on-secondary-color);
 }
@@ -21037,7 +21037,8 @@ body a.button_link:focus {
 .floating-columns-list-item-component.floating .column-list-item-content .column-list-item-title,
 .floating-columns-list-item-component.floating .column-list-item-content .column-type-icon,
 .floating-columns-list-item-component.floating:hover .column-list-item-content .column-list-item-title,
-.floating-columns-list-item-component.floating:hover .column-list-item-content .column-type-icon {
+.floating-columns-list-item-component.floating:hover .column-list-item-content .column-type-icon,
+.workspace.floating {
     color: #0085ff;
     color: var(--primary-color);
 }
