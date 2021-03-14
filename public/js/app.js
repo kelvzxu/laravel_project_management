@@ -9570,6 +9570,7 @@ __webpack_require__.r(__webpack_exports__);
         id: this.task.id,
         name: this.task.name,
         team_id: this.task.team_id,
+        project_id: this.task.project_id,
         user_id: this.task.user_id,
         date_end: this.task.date_end,
         tag_id: this.task.tag_id,
@@ -11944,6 +11945,9 @@ __webpack_require__.r(__webpack_exports__);
         bag: "deleteTask"
       })
     };
+  },
+  created: function created() {
+    console.log(this);
   },
   methods: {
     onAdd: function onAdd(event, stage) {
@@ -84535,8 +84539,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.TaskForm.team_id,
-                                  expression: "TaskForm.team_id"
+                                  value: _vm.TaskForm.project_id,
+                                  expression: "TaskForm.project_id"
                                 }
                               ],
                               staticClass: "mt-1 block w-full",
@@ -84554,7 +84558,7 @@ var render = function() {
                                     })
                                   _vm.$set(
                                     _vm.TaskForm,
-                                    "team_id",
+                                    "project_id",
                                     $event.target.multiple
                                       ? $$selectedVal
                                       : $$selectedVal[0]
@@ -84568,7 +84572,8 @@ var render = function() {
                                 {
                                   key: project.id,
                                   attrs: {
-                                    select: project.id == _vm.TaskForm.team_id
+                                    select:
+                                      project.id == _vm.TaskForm.project_id
                                   },
                                   domProps: { value: project.id }
                                 },

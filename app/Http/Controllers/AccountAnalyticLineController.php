@@ -7,8 +7,8 @@ use App\Models\AccountAnalyticLine;
 
 class AccountAnalyticLineController extends Controller
 {
-    public function fetchAnalyticLine (Request $request){
-       $result = AccountAnalyticLine::get();
+    public function fetchAnalyticLine (Request $request,$ProjectId){
+       $result = AccountAnalyticLine::where("project_id",$ProjectId)->get();
        return $result;
     }
 

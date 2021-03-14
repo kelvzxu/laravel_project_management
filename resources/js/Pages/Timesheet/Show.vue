@@ -211,6 +211,9 @@ export default {
       ),
     };
   },
+  created() {
+    console.log(this);
+  },
   methods: {
     onAdd(event, stage) {
       this.TaskUpdate.id = event.item.getAttribute("data-id");

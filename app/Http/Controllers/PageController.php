@@ -67,9 +67,9 @@ class PageController extends Controller
     }
 
     public function Timesheet(Request $request, $token){
-        $timesheet = app(AccountAnalyticLineController::class)->fetchAnalyticLine($request);
         $user = app(UsersController::class)->getUserbyID(Auth::id());
         $projects = app(ProjectController::class)->getProjectDetail($token);
+        $timesheet = app(AccountAnalyticLineController::class)->fetchAnalyticLine($request,$projects->id);
         $team = app(InheritTeamController::class)->getTeam($projects->team_id);
         return Jetstream::inertia()->render($request, 'Timesheet/Show', [
             'users' => $user,

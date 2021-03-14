@@ -42,7 +42,7 @@ class AccountAnalyticLine extends Model
     }
 
     public function project(){
-        return $this->hasOne(Project::class,'id','team_id');
+        return $this->hasOne(Project::class,'id','project_id');
     }
 
 }

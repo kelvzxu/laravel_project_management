@@ -84,13 +84,13 @@
                 </td>
                 <td style="width: 100%">
                   <select
-                    v-model="TaskForm.team_id"
+                    v-model="TaskForm.project_id"
                     class="mt-1 block w-full"
                     :disabled="FormType == 'view'"
                   >
                     <option
                       v-for="project in task.team.project"
-                      :select="project.id == TaskForm.team_id"
+                      :select="project.id == TaskForm.project_id"
                       :key="project.id"
                       :value="project.id"
                     >
@@ -431,6 +431,7 @@ export default {
           id: this.task.id,
           name: this.task.name,
           team_id: this.task.team_id,
+          project_id: this.task.project_id,
           user_id: this.task.user_id,
           date_end: this.task.date_end,
           tag_id: this.task.tag_id,
