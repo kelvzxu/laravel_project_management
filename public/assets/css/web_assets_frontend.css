@@ -408,3 +408,21 @@ form.sign-in-form {
         left: 50%;
     }
 }
+
+.text-red-600 {
+  --text-opacity: 1;
+  color: #e02424;
+  color: rgba(224, 36, 36, var(--text-opacity));
+}
+
+.list-disc {
+    list-style-type: disc;
+  }
+
+  .list-inside {
+    list-style-position: inside;
+  }
+
+  .text-sm {
+    font-size: 0.875rem;
+  }

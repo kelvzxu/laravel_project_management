@@ -26,24 +26,10 @@
         <div role="search" class="cp_pager">
           <nav aria-label="Pager" class="o_pager">
             <span class="pager_counter"
-              ><span class="pager_value">1-2</span><span> / </span
-              ><span class="pager_limit">2</span></span
+              ><span class="pager_value"><slot name="pager_value"/></span><span> / </span
+              ><span class="pager_limit"><slot name="pager_limit"/></span></span
             ><span aria-atomic="true" class="btn-group"
-              ><button
-                type="button"
-                aria-label="Previous"
-                title="Previous"
-                tabindex="-1"
-                class="fa fa-chevron-left btn btn-secondary pager_previous"
-              ></button
-              ><button
-                type="button"
-                aria-label="Next"
-                title="Next"
-                tabindex="-1"
-                class="fa fa-chevron-right btn btn-secondary pager_next"
-              ></button
-            ></span>
+              ><slot name="pager_button"/></span>
           </nav>
         </div>
       </div>

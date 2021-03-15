@@ -6,6 +6,7 @@
             @csrf
             <img src="https://witech.co.id/web/image/res.company/1/favicon/" alt="" srcset="" class="application-logo">
             <h2 class="title">Sign in</h2>
+            <x-jet-validation-errors class="mb-4" />
             <div class="input-field">
                 <i class="fas fa-user"></i>
                 <x-jet-input type="email" name="email" placeholder="Email address"  :value="old('email')" required autofocus />

@@ -24,8 +24,8 @@
                     type="text"
                     placeholder="Search..."
                     role="searchbox"
+                    v-model="search"
                     class="searchview_input"
-                    @keyup="liveSearch"
                   />
                 </div>
               </div>
@@ -50,6 +50,24 @@
                 ></button>
               </div>
             </div>
+          </template>
+          <template #pager_value>{{pagination.from}}-{{pagination.to}}</template>
+          <template #pager_limit>{{pagination.total}}</template>
+          <template #pager_button>
+            <button
+            v-if="pagination.prevPage"
+                  @click="--pagination.currentPage"
+                type="button"
+                title="Previous"
+                class="btn btn-secondary pager_previous"
+              ><i class="fa fa-chevron-left"></i></button
+              >
+                <button
+                  v-if="pagination.nextPage"
+                  @click="++pagination.currentPage"
+                  type="button"
+                  class="btn btn-secondary o_pager_next"
+                ><i class="fa fa-chevron-right"></i></button>
           </template>
         </control-panel>
 
@@ -96,22 +114,30 @@
               </ul>
             </section>
           </div>
-          <kanban-area v-if="DataRow == 'users'">
+          <kanban-area  v-if="DataType == 'users'">
             <kanban-box
               class="data_row"
-              v-for="user in users.original.result"
+              v-for="user in DataRow"
               :key="user.email"
               @click.native="viewUser(user)"
             >
               <template #image
-                ><div
+                ><div v-if="user.profile_photo_path"
                   class="kanban_image_fill_left"
                   v-bind:style="{
                     'background-image':
                       'url(/storage/' + user.profile_photo_path + ')',
                   }"
                 ></div
-              ></template>
+              ><div v-else
+                  class="kanban_image_fill_left"
+                  v-bind:style="{
+                    'background-image':
+                      'url(https://ui-avatars.com/api/?name='+ user.profile_photo_url +'&color=7F9CF5&background=EBF4FF)',
+                  }"
+                ></div
+              >
+              </template>
               <template #name
                 ><span>{{ user.name }}</span></template
               >
@@ -150,12 +176,12 @@
               </template>
             </kanban-box>
             <kanban-ghost
-              v-for="n in 80 - teams.original.result.length"
+              v-for="n in 80 - DataRow.length"
               :key="n"
             ></kanban-ghost>
           </kanban-area>
           <kanban-area v-else>
-            <kanban-box v-for="team in teams.original.result" :key="team.name">
+            <kanban-box v-for="team in DataRow" :key="team.access_token">
               <template #image
                 ><div
                   class="kanban_image_fill_left"
@@ -205,7 +231,7 @@
               </template>
             </kanban-box>
             <kanban-ghost
-              v-for="n in 80 - teams.original.result.length"
+              v-for="n in 80 - DataRow.length"
               :key="n"
             ></kanban-ghost>
           </kanban-area>
@@ -243,64 +269,31 @@ export default {
     KanbanGhost,
   },
   data() {
+    let sortOrders = {};
     return {
       isMobile: true,
       fetchUser: false,
       fetchTeam: true,
-      list: [],
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: "",
+      },
     };
   },
   created() {
     this.detectMob();
-    // this.Follow();
   },
 
   methods: {
-    async search(query) {
-      const resources = {};
-      let cancel;
-
-      // Check if we made a request
-      if (cancel) {
-        // Cancel the previous request before making a new request
-        cancel.cancel();
-      }
-      // Create a new CancelToken
-      cancel = axios.CancelToken.source();
-      try {
-        if (resources[query]) {
-          // Return result if it exists
-          return resources[query];
-        }
-        console.log("cancel", cancel);
-
-        const response = await axios.get(query, { cancelToken: cancel.token });
-        const result = response.data.results;
-
-        resources[query] = result;
-
-        return result;
-      } catch (error) {
-        if (axios.isCancel(error)) {
-          // Handle if request was cancelled
-          console.log("Request canceled", error.message);
-        } else {
-          // Handle usual errors
-          console.log("Something went wrong: ", error.message);
-        }
-      }
-
-      // return async (query) => {}
-    },
-
-    async liveSearch(e) {
-      const query = await this.search(
-        `https://api.themoviedb.org/3/search/movie?query=${e.target.value}&api_key=dbc0a6d62448554c27b6167ef7dabb1b`
-      );
-      // this.list = query;
-      console.log("query: ", query);
-      console.log("typing: ", e.target.value);
-    },
     detectMob() {
       if (window.innerWidth <= 767) {
         this.isMobile = true;
@@ -333,6 +326,25 @@ export default {
         preserveScroll: true,
       });
     },
+    paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to =
+        pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage =
+        array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
+    },
+    resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
+    },
+    sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
+    },
     CancelRequest(user, team) {
       this.$inertia.delete(route("request_join.destroy", [team, user]));
     },
@@ -349,13 +361,68 @@ export default {
   computed: {
     _preparationData() {
       if (this.fetchUser == true) {
-        return "users";
+        return this.users.original.result;
       } else {
-        return "teams";
+        return this.teams.original.result;
       }
     },
+    CheckDataType() {
+      if (this.fetchUser == true) {
+        return "users";
+      } else {
+        return "team";
+      }
+    },
+    filterdata() {
+      this.resetPagination();
+      let value = this._preparationData;
+      if (this.search) {
+        value = value.filter((row) => {
+          return Object.keys(row).some((key) => {
+            return (
+              String(row[key])
+                .toLowerCase()
+                .indexOf(this.search.toLowerCase()) > -1
+            );
+          });
+        });
+      }
+      let sortKey = this.sortKey;
+      let order = this.sortOrders[sortKey] || 1;
+      if (sortKey) {
+        value = value.slice().sort((a, b) => {
+          let index = this.getIndex(this.columns, "name", sortKey);
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+          if (this.columns[index].type && this.columns[index].type === "date") {
+            return (
+              (a === b
+                ? 0
+                : new Date(a).getTime() > new Date(b).getTime()
+                ? 1
+                : -1) * order
+            );
+          } else if (
+            this.columns[index].type &&
+            this.columns[index].type === "number"
+          ) {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+      return value;
+    },
     DataRow() {
-      return this._preparationData;
+      return this.paginate(
+        this.filterdata,
+        this.length,
+        this.pagination.currentPage
+      );
+    },
+    DataType() {
+      return this.CheckDataType;
     },
   },
 };
