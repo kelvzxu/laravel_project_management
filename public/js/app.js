@@ -6883,53 +6883,28 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Jetstream_ApplicationContent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/ApplicationContent */ "./resources/js/Jetstream/ApplicationContent.vue");
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_ControlPanel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/ControlPanel */ "./resources/js/Jetstream/ControlPanel.vue");
-/* harmony import */ var _Jetstream_TableResponsive__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/TableResponsive */ "./resources/js/Jetstream/TableResponsive.vue");
-/* harmony import */ var _Jetstream_PrimaryButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/PrimaryButton */ "./resources/js/Jetstream/PrimaryButton.vue");
-/* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
-/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
-/* harmony import */ var _Jetstream_Form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Jetstream/Form */ "./resources/js/Jetstream/Form.vue");
-/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
-/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
-/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
-/* harmony import */ var _Jetstream_InputRadio__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/Jetstream/InputRadio */ "./resources/js/Jetstream/InputRadio.vue");
-/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/ResponsiveNavLink */ "./resources/js/Jetstream/ResponsiveNavLink.vue");
+/* harmony import */ var _Jetstream_Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Dashboard */ "./resources/js/Jetstream/Dashboard.vue");
+/* harmony import */ var _Jetstream_BoardSorting__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/BoardSorting */ "./resources/js/Jetstream/BoardSorting.vue");
+/* harmony import */ var _Jetstream_BoardSearch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/BoardSearch */ "./resources/js/Jetstream/BoardSearch.vue");
+/* harmony import */ var _Jetstream_BoardDropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/BoardDropdown */ "./resources/js/Jetstream/BoardDropdown.vue");
+/* harmony import */ var _Jetstream_BoardFilterDropdown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/BoardFilterDropdown */ "./resources/js/Jetstream/BoardFilterDropdown.vue");
+/* harmony import */ var _Jetstream_WorkspaceSubHeader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/WorkspaceSubHeader */ "./resources/js/Jetstream/WorkspaceSubHeader.vue");
+/* harmony import */ var _Jetstream_WorkspaceButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Jetstream/WorkspaceButton */ "./resources/js/Jetstream/WorkspaceButton.vue");
+/* harmony import */ var _Jetstream_KanbanArea__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Jetstream/KanbanArea */ "./resources/js/Jetstream/KanbanArea.vue");
+/* harmony import */ var _Jetstream_KanbanBoxGroup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Jetstream/KanbanBoxGroup */ "./resources/js/Jetstream/KanbanBoxGroup.vue");
+/* harmony import */ var _Jetstream_KanbanProgress__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/Jetstream/KanbanProgress */ "./resources/js/Jetstream/KanbanProgress.vue");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _Pages_Task_CreateTask__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/Pages/Task/CreateTask */ "./resources/js/Pages/Task/CreateTask.vue");
+/* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Jetstream_Form__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/Jetstream/Form */ "./resources/js/Jetstream/Form.vue");
+/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
+/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
+/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
+/* harmony import */ var _Jetstream_InputRadio__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/Jetstream/InputRadio */ "./resources/js/Jetstream/InputRadio.vue");
+/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
 //
 //
 //
@@ -7285,8 +7260,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+ // Workspace Component
 
 
+
+
+
+
+ // Kanban Component
+
+
+
+ // Module
+
+ // Page Component
 
  // Form Component
 
@@ -7301,23 +7288,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["team", "users", "project"],
   components: {
-    AppContent: _Jetstream_ApplicationContent__WEBPACK_IMPORTED_MODULE_0__["default"],
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
-    ControlPanel: _Jetstream_ControlPanel__WEBPACK_IMPORTED_MODULE_2__["default"],
-    TableResponsive: _Jetstream_TableResponsive__WEBPACK_IMPORTED_MODULE_3__["default"],
-    JetPrimaryButton: _Jetstream_PrimaryButton__WEBPACK_IMPORTED_MODULE_4__["default"],
-    JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_5__["default"],
-    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_6__["default"],
-    JetForm: _Jetstream_Form__WEBPACK_IMPORTED_MODULE_7__["default"],
-    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_8__["default"],
-    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_9__["default"],
-    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_10__["default"],
-    JetRadio: _Jetstream_InputRadio__WEBPACK_IMPORTED_MODULE_11__["default"],
-    VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_12__["VueEditor"]
+    JetDashboard: _Jetstream_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"],
+    CreateTask: _Pages_Task_CreateTask__WEBPACK_IMPORTED_MODULE_12__["default"],
+    JetResponsiveNavLink: _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_0__["default"],
+    KanbanArea: _Jetstream_KanbanArea__WEBPACK_IMPORTED_MODULE_8__["default"],
+    KanbanBox: _Jetstream_KanbanBoxGroup__WEBPACK_IMPORTED_MODULE_9__["default"],
+    KanbanProgress: _Jetstream_KanbanProgress__WEBPACK_IMPORTED_MODULE_10__["default"],
+    JetBoardSorting: _Jetstream_BoardSorting__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetBoardSearch: _Jetstream_BoardSearch__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetBoardDropdown: _Jetstream_BoardDropdown__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetBoardFilterDropdown: _Jetstream_BoardFilterDropdown__WEBPACK_IMPORTED_MODULE_5__["default"],
+    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_11___default.a,
+    JetWorkspaceSubHeader: _Jetstream_WorkspaceSubHeader__WEBPACK_IMPORTED_MODULE_6__["default"],
+    JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_13__["default"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_14__["default"],
+    JetForm: _Jetstream_Form__WEBPACK_IMPORTED_MODULE_15__["default"],
+    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_16__["default"],
+    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_17__["default"],
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_18__["default"],
+    JetRadio: _Jetstream_InputRadio__WEBPACK_IMPORTED_MODULE_19__["default"],
+    VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_20__["VueEditor"],
+    JetWorkspaceButton: _Jetstream_WorkspaceButton__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   data: function data() {
     return {
-      isMobile: true,
       ViewDescription: true,
       ViewSetting: false,
       FormType: "view",
@@ -7337,17 +7331,7 @@ __webpack_require__.r(__webpack_exports__);
       })
     };
   },
-  created: function created() {
-    this.detectMob();
-  },
   methods: {
-    detectMob: function detectMob() {
-      if (window.innerWidth <= 767) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    },
     DescriptionPage: function DescriptionPage() {
       this.ViewDescription = true;
       this.ViewSetting = false;
@@ -7362,7 +7346,7 @@ __webpack_require__.r(__webpack_exports__);
     VisibilityTeam: function VisibilityTeam() {
       this.ProjectForm.visibility = "team";
     },
-    UpdateProjectForms: function UpdateProjectForms() {
+    UpdateForms: function UpdateForms() {
       var _this = this;
 
       this.ProjectForm.post(route("project.update"), {
@@ -7373,9 +7357,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    EditProjectForms: function EditProjectForms() {
+    EditForms: function EditForms() {
       this.FormType = "edit";
-    }
+    },
+    BackMethods: function BackMethods() {
+      this.$inertia.visit(route("project.show", this.project.access_token));
+    },
+    DestroyProject: function DestroyProject() {}
   }
 });
 
@@ -79446,175 +79434,156 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "app-layout",
-    [
-      _c("app-content", [
-        _c(
-          "div",
-          { staticClass: "application-content" },
-          [
-            _c("control-panel", {
-              scopedSlots: _vm._u([
-                {
-                  key: "title",
-                  fn: function() {
-                    return [
-                      _vm.isMobile == false
-                        ? _c(
-                            "li",
-                            {
-                              staticClass:
-                                "breadcrumb-item active font-weight-bold text-black"
-                            },
-                            [
-                              _vm._v(
-                                "\n            " +
-                                  _vm._s(_vm.project.name) +
-                                  "\n          "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ]
+  return _c("jet-dashboard", {
+    scopedSlots: _vm._u([
+      {
+        key: "workspace_icon",
+        fn: function() {
+          return [_vm._v(_vm._s(_vm.project.name[0]))]
+        },
+        proxy: true
+      },
+      {
+        key: "workspace_name",
+        fn: function() {
+          return [_vm._v(_vm._s(_vm.project.name))]
+        },
+        proxy: true
+      },
+      {
+        key: "workspace_sub_header",
+        fn: function() {
+          return [
+            _c(
+              "div",
+              {
+                staticClass: "home-workspace-items-content-sub-header-wrapper"
+              },
+              [
+                _vm.FormType == "view"
+                  ? _c(
+                      "jet-workspace-button",
+                      {
+                        nativeOn: {
+                          click: function($event) {
+                            return _vm.EditForms($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "far fa-edit main-icon" }),
+                        _vm._v("Edit Project\n      ")
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.FormType == "edit"
+                  ? _c(
+                      "jet-workspace-button",
+                      {
+                        nativeOn: {
+                          click: function($event) {
+                            return _vm.UpdateForms($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "far fa-save main-icon" }),
+                        _vm._v("Save Change\n      ")
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "jet-workspace-button",
+                  {
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.DestroyProject($event)
+                      }
+                    }
                   },
-                  proxy: true
-                },
-                {
-                  key: "search",
-                  fn: function() {
-                    return [
-                      _vm.isMobile == false
-                        ? _c(
-                            "div",
-                            {
-                              staticClass: "cp_search_view mb-0",
-                              attrs: { role: "search" }
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "o_searchview",
-                                  attrs: { role: "search" }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "searchview_icon fa fa-search",
-                                    attrs: { role: "img" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass: "searchview_input_container"
-                                    },
-                                    [
-                                      _c("input", {
-                                        staticClass: "searchview_input",
-                                        attrs: {
-                                          type: "text",
-                                          placeholder: "Search...",
-                                          role: "searchbox"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]
-                          )
-                        : _c(
-                            "div",
-                            {
-                              staticClass: "cp_searchview o_searchview_quick",
-                              attrs: { role: "search" }
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "o_searchview",
-                                  attrs: { role: "search" }
-                                },
-                                [
-                                  _c("button", {
-                                    staticClass:
-                                      "enable_searchview btn btn-link fa fa-arrow-left",
-                                    attrs: { type: "button" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass: "searchview_input_container"
-                                    },
-                                    [
-                                      _c("input", {
-                                        staticClass: "searchview_input",
-                                        attrs: {
-                                          type: "text",
-                                          placeholder: "Search...",
-                                          role: "searchbox"
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("button", {
-                                    staticClass:
-                                      "toggle_searchview_full btn fa fa-filter",
-                                    attrs: { type: "button" }
-                                  })
-                                ]
-                              )
-                            ]
-                          )
-                    ]
+                  [
+                    _c("i", { staticClass: "far fa-trash-alt main-icon" }),
+                    _vm._v("Delete Project\n      ")
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "jet-workspace-button",
+                  {
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.BackMethods($event)
+                      }
+                    }
                   },
-                  proxy: true
-                },
-                {
-                  key: "button",
-                  fn: function() {
-                    return [
-                      _vm.FormType == "view"
-                        ? _c(
-                            "jet-primary-button",
-                            {
-                              attrs: { type: "button" },
-                              nativeOn: {
-                                click: function($event) {
-                                  return _vm.EditProjectForms($event)
-                                }
-                              }
-                            },
-                            [_vm._v("\n            Edit\n          ")]
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.FormType == "edit"
-                        ? _c(
-                            "jet-primary-button",
-                            {
-                              attrs: { type: "button" },
-                              nativeOn: {
-                                click: function($event) {
-                                  return _vm.UpdateProjectForms($event)
-                                }
-                              }
-                            },
-                            [_vm._v("\n            Save\n          ")]
-                          )
-                        : _vm._e()
-                    ]
-                  },
-                  proxy: true
-                }
-              ])
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "o_not_full oe_button_box mt-1" }, [
+                  [
+                    _c("i", { staticClass: "fas fa-undo-alt main-icon" }),
+                    _vm._v("Back\n      ")
+                  ]
+                )
+              ],
+              1
+            )
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "page",
+        fn: function() {
+          return undefined
+        },
+        proxy: true
+      },
+      {
+        key: "board_name",
+        fn: function() {
+          return [_vm._v(_vm._s(_vm.project.name))]
+        },
+        proxy: true
+      },
+      {
+        key: "board_description",
+        fn: function() {
+          return [_c("b", [_vm._v("Project Detail")])]
+        },
+        proxy: true
+      },
+      {
+        key: "board_subs_images_label",
+        fn: function() {
+          return [_vm._v("Manager ")]
+        },
+        proxy: true
+      },
+      {
+        key: "board_subs_images",
+        fn: function() {
+          return [
+            _c("img", {
+              staticClass: "inner-image",
+              attrs: { src: _vm.project.manager.profile_photo_url }
+            })
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "board_subs",
+        fn: function() {
+          return [
+            _vm._v(" Member / " + _vm._s(_vm.team.users.length + 1) + " ")
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "board_component",
+        fn: function() {
+          return [
+            _c("div", { staticClass: "o_not_full oe_button_box" }, [
               _c(
                 "button",
                 {
@@ -79686,7 +79655,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "mt-5 mt-md-4" }, [
+            _c("div", { staticClass: "container mt-1" }, [
               _c("div", { staticClass: "oe_title" }, [
                 _c("div", { staticClass: "col-12" }, [
                   _c(
@@ -79808,7 +79777,7 @@ var render = function() {
                           [
                             _vm.FormType == "view"
                               ? _c("div", { staticClass: "container" }, [
-                                  _c("div", {
+                                  _c("span", {
                                     domProps: {
                                       innerHTML: _vm._s(
                                         _vm.ProjectForm.description
@@ -79949,9 +79918,9 @@ var render = function() {
                                                 },
                                                 [
                                                   _vm._v(
-                                                    "\n                              " +
+                                                    "\n                            " +
                                                       _vm._s(row.name) +
-                                                      "\n                            "
+                                                      "\n                          "
                                                   )
                                                 ]
                                               )
@@ -79971,11 +79940,11 @@ var render = function() {
                                               },
                                               [
                                                 _vm._v(
-                                                  "\n                              " +
+                                                  "\n                            " +
                                                     _vm._s(
                                                       _vm.team.owner.name
                                                     ) +
-                                                    "\n                            "
+                                                    "\n                          "
                                                 )
                                               ]
                                             )
@@ -80433,7 +80402,7 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("div", { staticClass: "text-muted" }, [
                                         _vm._v(
-                                          "\n                        Track your time using a timer\n                      "
+                                          "\n                      Track your time using a timer\n                    "
                                         )
                                       ])
                                     ]
@@ -80449,13 +80418,12 @@ var render = function() {
                 ]
               )
             ])
-          ],
-          1
-        )
-      ])
-    ],
-    1
-  )
+          ]
+        },
+        proxy: true
+      }
+    ])
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
