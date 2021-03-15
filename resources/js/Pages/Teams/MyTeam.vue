@@ -132,7 +132,7 @@ export default {
       }
     },
     viewDetail(row) {
-      this.$inertia.visit(route("teams.show", row.id));
+      this.$inertia.visit(route("teams.show", row.access_token));
     },
   },
 };

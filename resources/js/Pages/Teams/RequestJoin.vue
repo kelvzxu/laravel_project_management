@@ -53,7 +53,7 @@
             class="boards-list-header-component selected leftpane-workspace-header-redesign"
           >
             <jet-responsive-nav-link
-              :href="route('teams.show', team.id)"
+              :href="route('teams.show', team.access_token)"
               :active="route().current('teams.show')"
             >
               <div class="boards-filter-row-wrapper">

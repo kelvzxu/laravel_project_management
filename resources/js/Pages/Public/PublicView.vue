@@ -138,5 +138,8 @@ export default {
     AppLayout,
     JetProfileHeader,
   },
+  created() {
+    console.log(this);
+  }
 };
 </script>

@@ -9,7 +9,7 @@
       <!-- <create-task :users="users" :project="project" /> -->
     </template>
     <template #board_name>{{ project.name }}</template>
-    <template #board_description><b>Project Stage</b></template>
+    <template #board_description><b>Project Tags</b></template>
     <template #board_subs_images_label>Manager </template>
     <template #board_subs_images>
       <img :src="project.manager.profile_photo_url" class="inner-image" />
@@ -31,9 +31,9 @@
               class="o_handle_cell o_column_sortable o_list_number_th"
               style="min-width: 33px; width: 33px"
             ></th>
-            <th style="width: 171px">Stage Name</th>
+            <th style="width: 171px">Tags Name</th>
             <th style="width: 190px">Projects</th>
-            <th style="width: 190px">Closing State</th>
+            <th style="width: 190px">Color</th>
             <th
               style="width: 20px"
               v-if="$page.user.id == project.manager.id"
@@ -45,7 +45,7 @@
           </tr>
         </template>
         <template #content>
-          <tr class="data_row" v-for="(stage, i) in project.task_type" :key="i">
+          <tr class="data_row" v-for="(tag, i) in tags" :key="i">
             <td>
               <span
                 class="row_handle fa fa-arrows ui-sortable-handle o_field_widget"
@@ -53,34 +53,27 @@
               ></span>
             </td>
             <td>
-              <span v-if="UpdateForm.id !== stage.id">{{ stage.name }}</span
-              ><input v-else type="text" class="w-full" v-model="stage.name" />
+              <span v-if="UpdateForm.id !== tag.id">{{ tag.name }}</span
+              ><input v-else type="text" class="w-full" v-model="tag.name" />
             </td>
             <td>{{ project.name }}</td>
             <td>
-              <span v-if="UpdateForm.id !== stage.id">{{
-                stage.is_closed
-              }}</span
-              ><input
-                v-else
-                class="form-check-input ml-3"
-                type="checkbox"
-                v-model="stage.is_closed"
-              />
+              <span
+                class="badge"
+                v-bind:style="{ 'background-color': tag.color }"
+                >{{ tag.color }}</span
+              >
             </td>
             <td class="text-center" v-if="$page.user.id == project.manager.id">
-              <div @click="editStage(stage)" v-if="UpdateForm.id !== stage.id">
+              <div @click="editTags(tag)" v-if="UpdateForm.id !== tag.id">
                 <i class="far fa-edit" aria-hidden="true"></i>
               </div>
-              <div @click="UpdateStage" v-else>
+              <div @click="UpdateTags" v-else>
                 <i class="far fa-save" aria-hidden="true"></i>
               </div>
             </td>
             <td class="text-center" v-if="$page.user.id == project.manager.id">
-              <div
-                @click="DestroyStage(stage)"
-                v-if="UpdateForm.id !== stage.id"
-              >
+              <div @click="DestroyTags(tag)" v-if="UpdateForm.id !== tag.id">
                 <i class="fa fa-trash" aria-hidden="true"></i>
               </div>
               <div @click="Discard" v-else>
@@ -110,7 +103,7 @@ import draggable from "vuedraggable";
 import CreateStage from "./CreateStage";
 
 export default {
-  props: ["team", "users", "project"],
+  props: ["team", "users", "project", "tags"],
 
   components: {
     JetDashboard,
@@ -167,20 +160,19 @@ export default {
         this.FilterDropdown = false;
       }
     },
-    DestroyStage(stage) {
-      this.form.delete(route("stage.destroy", stage), {
+    DestroyTags(stage) {
+      this.form.delete(route("tags.destroy", stage), {
         preserveScroll: true,
       });
     },
-    editStage(stage) {
+    editTags(stage) {
       this.UpdateForm = stage;
     },
-    UpdateStage() {
+    UpdateTags() {
       this.$inertia
-        .post(route("stage.update"), {
+        .post(route("tags.update"), {
           id: this.UpdateForm.id,
           name: this.UpdateForm.name,
-          is_closed: this.UpdateForm.is_closed,
           preserveScroll: true,
         })
         .then((response) => {

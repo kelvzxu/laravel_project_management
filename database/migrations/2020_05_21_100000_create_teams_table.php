@@ -15,6 +15,7 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->string('access_token')->unique();
             $table->foreignId('user_id')->index();
             $table->string('name');
             $table->longText('description')->nullable();

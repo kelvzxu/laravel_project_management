@@ -57,6 +57,7 @@ class GithubController extends Controller
     protected function createTeam(User $user)
     {
         $user->ownedTeams()->save(Team::forceCreate([
+            'access_token' => bin2hex(random_bytes(24)),
             'user_id' => $user->id,
             'name' => explode(' ', $user->name, 2)[0]."'s Team",
             'personal_team' => true,
