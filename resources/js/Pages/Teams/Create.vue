@@ -278,8 +278,10 @@ export default {
       BannerImage: null,
       form: this.$inertia.form(
         {
+          user_id: this.$page.user.id,
           name: "",
           attachment: "",
+          access_token: "",
           // owner: this.user.name,
         },
         {

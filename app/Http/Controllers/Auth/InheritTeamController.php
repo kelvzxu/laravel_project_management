@@ -19,6 +19,7 @@ use App\Http\Controllers\IrAttachmentController;
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\RequestJoinController;
 use App\Models\Team;
+use App\Models\User;
 use App\Models\Membership;
 use App\Models\RequestJoin;
 
@@ -118,17 +119,10 @@ class InheritTeamController extends TeamController
     public function store(Request $request)
     {
         $creator = app(CreatesTeams::class);
-        $team = $creator->create($request->user(), $request->all());
-        if ($request->attachment){
-            $params = $request->attachment;
-            $params['res_id']= $team->id;
-            $attachment = app(IrAttachmentController::class)->store($params);
-            $data = $request->all();
-            if ($attachment->id){
-                $data['banner_image_id'] = $attachment->id;
-            }
-            $data = $team->update($data);
-        }
+        $user = user::findorfail($request->user_id);
+
+        $this->createTeam($user, $request);
+
         return $this->redirectPath($creator);
     }
 
@@ -136,5 +130,25 @@ class InheritTeamController extends TeamController
         $team = Jetstream::newTeamModel()->findOrFail($teamId);
         $project = $team->project();
         dd($project);
+    }
+
+     protected function createTeam(User $user,$request)
+    {
+        $banner_image_id = null;
+        if ($request->attachment){
+            $params = $request->attachment;
+            $params['res_id']= $team->id;
+            $attachment = app(IrAttachmentController::class)->store($params);
+            if ($attachment->id){
+                $banner_image_id = $attachment->id;
+            }
+        }
+        $user->ownedTeams()->save(Team::forceCreate([
+            'access_token' => bin2hex(random_bytes(24)),
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'banner_image_id'=>$banner_image_id,
+            'personal_team' => true,
+        ]));
     }
 }
