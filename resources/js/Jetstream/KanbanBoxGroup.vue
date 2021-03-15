@@ -14,10 +14,7 @@
         </div>
       </div>
       <div class="kanban_record_body" modifiers="{}">
-        <div
-          class="o_field_many2manytags o_field_widget o_kanban_tags"
-          name="tag_ids"
-        ></div>
+        <slot name="body" />
       </div>
       <div class="kanban_record_bottom" modifiers="{}">
         <div class="oe_kanban_bottom_left" modifiers="{}">

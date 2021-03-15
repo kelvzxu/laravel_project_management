@@ -51,23 +51,28 @@
               </div>
             </div>
           </template>
-          <template #pager_value>{{pagination.from}}-{{pagination.to}}</template>
-          <template #pager_limit>{{pagination.total}}</template>
+          <template #pager_value
+            >{{ pagination.from }}-{{ pagination.to }}</template
+          >
+          <template #pager_limit>{{ pagination.total }}</template>
           <template #pager_button>
             <button
-            v-if="pagination.prevPage"
-                  @click="--pagination.currentPage"
-                type="button"
-                title="Previous"
-                class="btn btn-secondary pager_previous"
-              ><i class="fa fa-chevron-left"></i></button
-              >
-                <button
-                  v-if="pagination.nextPage"
-                  @click="++pagination.currentPage"
-                  type="button"
-                  class="btn btn-secondary o_pager_next"
-                ><i class="fa fa-chevron-right"></i></button>
+              v-if="pagination.prevPage"
+              @click="--pagination.currentPage"
+              type="button"
+              title="Previous"
+              class="btn btn-secondary pager_previous"
+            >
+              <i class="fa fa-chevron-left"></i>
+            </button>
+            <button
+              v-if="pagination.nextPage"
+              @click="++pagination.currentPage"
+              type="button"
+              class="btn btn-secondary o_pager_next"
+            >
+              <i class="fa fa-chevron-right"></i>
+            </button>
           </template>
         </control-panel>
 
@@ -114,7 +119,7 @@
               </ul>
             </section>
           </div>
-          <kanban-area  v-if="DataType == 'users'">
+          <kanban-area v-if="DataType == 'users'">
             <kanban-box
               class="data_row"
               v-for="user in DataRow"
@@ -122,21 +127,24 @@
               @click.native="viewUser(user)"
             >
               <template #image
-                ><div v-if="user.profile_photo_path"
+                ><div
+                  v-if="user.profile_photo_path"
                   class="kanban_image_fill_left"
                   v-bind:style="{
                     'background-image':
                       'url(/storage/' + user.profile_photo_path + ')',
                   }"
-                ></div
-              ><div v-else
+                ></div>
+                <div
+                  v-else
                   class="kanban_image_fill_left"
                   v-bind:style="{
                     'background-image':
-                      'url(https://ui-avatars.com/api/?name='+ user.profile_photo_url +'&color=7F9CF5&background=EBF4FF)',
+                      'url(https://ui-avatars.com/api/?name=' +
+                      user.profile_photo_url +
+                      '&color=7F9CF5&background=EBF4FF)',
                   }"
-                ></div
-              >
+                ></div>
               </template>
               <template #name
                 ><span>{{ user.name }}</span></template
@@ -301,9 +309,6 @@ export default {
         this.isMobile = false;
       }
     },
-    viewDetail(row) {
-      this.$inertia.visit(route("teams.show", row.id));
-    },
     Follow(uid, friend) {
       this.$inertia.post(route("user.follow"), {
         user_id: uid,
@@ -352,7 +357,7 @@ export default {
       this.$inertia.delete(route("team-members.destroy", [team, user]));
     },
     viewTeam(row) {
-      this.$inertia.visit(route("teams.show", row.id));
+      this.$inertia.visit(route("teams.show", row.access_token));
     },
     viewUser(row) {
       this.$inertia.visit(route("profile.public", row.email));

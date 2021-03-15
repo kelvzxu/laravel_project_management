@@ -3,56 +3,7 @@
     <template #workspace_icon>{{ project.name[0] }}</template>
     <template #workspace_name>{{ project.name }}</template>
     <template #workspace_sub_header>
-      <div class="home-workspace-items-content-sub-header-wrapper">
-        <jet-responsive-nav-link
-          :href="route('project.show', project.access_token)"
-          :active="route().current('teams.show')"
-        >
-          <jet-workspace-button class="workspace floating">
-            <i class="fa fa-th-large main-icon"></i>Kanban Board
-          </jet-workspace-button>
-        </jet-responsive-nav-link>
-        <jet-responsive-nav-link
-          :href="route('timesheet.show', project.access_token)"
-          :active="route().current('timesheet.show')"
-        >
-          <jet-workspace-button>
-            <i class="far fa-stopwatch main-icon"></i>Timesheets
-          </jet-workspace-button>
-        </jet-responsive-nav-link>
-        <jet-responsive-nav-link
-          :href="route('project.show', project.access_token)"
-          :active="route().current('teams.show')"
-        >
-          <jet-workspace-button>
-            <i class="fas fa-file-chart-line main-icon"></i>Project Report
-          </jet-workspace-button>
-        </jet-responsive-nav-link>
-        <jet-responsive-nav-link
-          :href="route('stage.show', project.access_token)"
-          :active="route().current('stage.view')"
-        >
-          <jet-workspace-button>
-            <i class="far fa-layer-group main-icon main-icon"></i>Project Stage
-          </jet-workspace-button>
-        </jet-responsive-nav-link>
-        <jet-responsive-nav-link
-          :href="route('stage.show', project.access_token)"
-          :active="route().current('stage.view')"
-        >
-          <jet-workspace-button>
-            <i class="fas fa-tags main-icon"></i>Project Tags
-          </jet-workspace-button>
-        </jet-responsive-nav-link>
-        <jet-responsive-nav-link
-          :href="route('project.detail', project.access_token)"
-          :active="route().current('project.detail')"
-        >
-          <jet-workspace-button>
-            <i class="fa fa-cog main-icon"></i>Project Details
-          </jet-workspace-button>
-        </jet-responsive-nav-link>
-      </div>
+      <jet-workspace-sub-header :project="project" />
     </template>
     <template #page Modal>
       <!-- <create-task :users="users" :project="project" /> -->
@@ -101,6 +52,13 @@
                 @click.native="ViewTask(task)"
               >
                 <template #header>{{ task.name }}</template>
+                <template #body v-if="task.tags"
+                  ><span
+                    class="badge"
+                    v-bind:style="{ 'background-color': task.tags.color }"
+                    >{{ task.tags.name }}</span
+                  ></template
+                >
                 <template #button>
                   <div class="o_priority kanban_field_widget mr-2">
                     <i class="o_priority_star far fa-star"></i>
@@ -178,14 +136,13 @@
 </template>
 
 <script>
-import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
 import JetDashboard from "@/Jetstream/Dashboard";
 // Workspace Component
 import JetBoardSorting from "@/Jetstream/BoardSorting";
 import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
-import JetWorkspaceButton from "@/Jetstream/WorkspaceButton";
+import JetWorkspaceSubHeader from "@/Jetstream/WorkspaceSubHeader";
 // Kanban Component
 import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBoxGroup";
@@ -200,7 +157,6 @@ export default {
 
   components: {
     JetDashboard,
-    JetResponsiveNavLink,
     CreateTask,
     KanbanArea,
     KanbanBox,
@@ -210,7 +166,7 @@ export default {
     JetBoardDropdown,
     JetBoardFilterDropdown,
     draggable,
-    JetWorkspaceButton,
+    JetWorkspaceSubHeader,
   },
   data() {
     return {

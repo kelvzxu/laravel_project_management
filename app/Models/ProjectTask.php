@@ -9,6 +9,7 @@ use App\Models\AccountAnalyticLine;
 use App\Models\Team;
 use App\Models\user;
 use App\Models\ProjectTaskType;
+use App\Models\ProjectTag;
 use App\Models\Project;
 
 class ProjectTask extends Model
@@ -22,7 +23,7 @@ class ProjectTask extends Model
         'planned_hours','user_id','team_id','color','displayed_image_id',
         'email_from','working_hours_open','working_hours_close',
         'working_days_open','working_days_close','remaining_hours',
-        'effective_hours','total_hours_spent','progress','overtime',
+        'effective_hours','total_hours_spent','progress','overtime','tag_id',
         'subtask_effective_hours','create_uid','write_uid',
     ];
 
@@ -36,6 +37,10 @@ class ProjectTask extends Model
 
     public function stage(){
         return $this->hasOne(ProjectTaskType::class,'id','team_id');
+    }
+
+     public function tags(){
+        return $this->hasOne(ProjectTag::class,'id','tag_id');
     }
 
     public function project(){

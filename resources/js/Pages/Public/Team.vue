@@ -170,7 +170,7 @@ export default {
   },
   methods: {
     viewDetail(row) {
-      this.$inertia.visit(route("teams.show", row.id));
+      this.$inertia.visit(route("teams.show", row.access_token));
     },
   },
 };

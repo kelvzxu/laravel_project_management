@@ -17,14 +17,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // try{
+        try{
             $this->UserJapan();
             $this->UserIndonesia();
             $this->UserChina();
             $this->UserKorea();
             $this->UserUs();
-        // }catch(\Exception $e){
-        // }
+        }catch(\Exception $e){
+        }
     }
 
     public function UserJapan(){

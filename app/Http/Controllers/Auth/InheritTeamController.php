@@ -26,7 +26,7 @@ class InheritTeamController extends TeamController
 {
     public function show(Request $request, $teamId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $team = Jetstream::newTeamModel()->where('access_token',$teamId)->firstOrFail();
         $projects = app(ProjectController::class)->getTeamProject($team->id);
 
         return Jetstream::inertia()->render($request, 'Teams/Show', [
