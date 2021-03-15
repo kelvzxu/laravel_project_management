@@ -8752,6 +8752,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // Workspace Component
 
@@ -8786,6 +8817,16 @@ __webpack_require__.r(__webpack_exports__);
       TaskUpdate: this.$inertia.form({
         id: "",
         stage_id: ""
+      }),
+      form: this.$inertia.form({
+        id: "",
+        name: ""
+      }, {
+        bag: "deleteTask"
+      }),
+      UpdateForm: this.$inertia.form({//
+      }, {
+        bag: "deleteTask"
       })
     };
   },
@@ -8806,6 +8847,32 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.FilterDropdown = false;
       }
+    },
+    DestroyTimesheet: function DestroyTimesheet(stage) {
+      this.form["delete"](route("stage.destroy", stage), {
+        preserveScroll: true
+      });
+    },
+    editStage: function editStage(stage) {
+      this.UpdateForm = stage;
+    },
+    UpdateStage: function UpdateStage() {
+      var _this = this;
+
+      this.$inertia.post(route("stage.update"), {
+        id: this.UpdateForm.id,
+        name: this.UpdateForm.name,
+        is_closed: this.UpdateForm.is_closed,
+        preserveScroll: true
+      }).then(function (response) {
+        _this.Discard();
+      });
+    },
+    Discard: function Discard() {
+      this.UpdateForm = this.$inertia.form({//
+      }, {
+        bag: "deleteTask"
+      });
     }
   }
 });
@@ -83046,7 +83113,15 @@ var render = function() {
                         _vm._v(" "),
                         _c("th", { staticStyle: { width: "190px" } }, [
                           _vm._v("Closing State")
-                        ])
+                        ]),
+                        _vm._v(" "),
+                        _vm.$page.user.id == _vm.project.manager.id
+                          ? _c("th", { staticStyle: { width: "20px" } })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.$page.user.id == _vm.project.manager.id
+                          ? _c("th", { staticStyle: { width: "20px" } })
+                          : _vm._e()
                       ])
                     ]
                   },
@@ -83055,7 +83130,7 @@ var render = function() {
                 {
                   key: "content",
                   fn: function() {
-                    return _vm._l(_vm.project.task_type, function(task, i) {
+                    return _vm._l(_vm.project.task_type, function(stage, i) {
                       return _c("tr", { key: i, staticClass: "data_row" }, [
                         _c("td", [
                           _c("span", {
@@ -83065,11 +83140,153 @@ var render = function() {
                           })
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(task.name))]),
+                        _c("td", [
+                          _vm.UpdateForm.id !== stage.id
+                            ? _c("span", [_vm._v(_vm._s(stage.name))])
+                            : _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: stage.name,
+                                    expression: "stage.name"
+                                  }
+                                ],
+                                staticClass: "w-full",
+                                attrs: { type: "text" },
+                                domProps: { value: stage.name },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(stage, "name", $event.target.value)
+                                  }
+                                }
+                              })
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(_vm.project.name))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(task.is_closed))])
+                        _c("td", [
+                          _vm.UpdateForm.id !== stage.id
+                            ? _c("span", [_vm._v(_vm._s(stage.is_closed))])
+                            : _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: stage.is_closed,
+                                    expression: "stage.is_closed"
+                                  }
+                                ],
+                                staticClass: "form-check-input ml-3",
+                                attrs: { type: "checkbox" },
+                                domProps: {
+                                  checked: Array.isArray(stage.is_closed)
+                                    ? _vm._i(stage.is_closed, null) > -1
+                                    : stage.is_closed
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = stage.is_closed,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = null,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            stage,
+                                            "is_closed",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            stage,
+                                            "is_closed",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(stage, "is_closed", $$c)
+                                    }
+                                  }
+                                }
+                              })
+                        ]),
+                        _vm._v(" "),
+                        _vm.$page.user.id == _vm.project.manager.id
+                          ? _c("td", { staticClass: "text-center" }, [
+                              _vm.UpdateForm.id !== stage.id
+                                ? _c(
+                                    "div",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.editStage(stage)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "far fa-edit",
+                                        attrs: { "aria-hidden": "true" }
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.UpdateForm.id === stage.id
+                                ? _c(
+                                    "div",
+                                    { on: { click: _vm.UpdateStage } },
+                                    [
+                                      _c("i", {
+                                        staticClass: "far fa-save",
+                                        attrs: { "aria-hidden": "true" }
+                                      })
+                                    ]
+                                  )
+                                : _vm._e()
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.$page.user.id == _vm.project.manager.id
+                          ? _c("td", { staticClass: "text-center" }, [
+                              _vm.UpdateForm.id !== stage.id
+                                ? _c(
+                                    "div",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.DestroyTimesheet(stage)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fa fa-trash",
+                                        attrs: { "aria-hidden": "true" }
+                                      })
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.UpdateForm.id === stage.id
+                                ? _c("div", { on: { click: _vm.Discard } }, [
+                                    _c("i", {
+                                      staticClass: "fas fa-undo-alt",
+                                      attrs: { "aria-hidden": "true" }
+                                    })
+                                  ])
+                                : _vm._e()
+                            ])
+                          : _vm._e()
                       ])
                     })
                   },

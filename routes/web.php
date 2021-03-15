@@ -118,6 +118,10 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                                 ->name('stage.show');
         Route::post('/store', [ProjectTaskTypeController::class, 'store'])
                                 ->name('stage.store');
+        Route::post('/update', [ProjectTaskTypeController::class, 'upgrade'])
+                                ->name('stage.update');
+        Route::delete('/destroy/{stage}', [ProjectTaskTypeController::class, 'destroy'])
+                                ->name('stage.destroy');
     });
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/search/{user}', [PageController::class, 'Search'])

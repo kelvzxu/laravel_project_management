@@ -87,19 +87,50 @@
             <th style="width: 171px">Stage Name</th>
             <th style="width: 190px">Projects</th>
             <th style="width: 190px">Closing State</th>
+            <th style="width: 20px" v-if="$page.user.id == project.manager.id"></th>
+            <th style="width: 20px" v-if="$page.user.id == project.manager.id"></th>
           </tr>
         </template>
         <template #content>
-          <tr class="data_row" v-for="(task, i) in project.task_type" :key="i">
+          <tr class="data_row" v-for="(stage, i) in project.task_type" :key="i">
             <td>
               <span
                 class="row_handle fa fa-arrows ui-sortable-handle o_field_widget"
                 name="sequence"
               ></span>
             </td>
-            <td>{{ task.name }}</td>
+            <td><span v-if="UpdateForm.id !== stage.id">{{ stage.name }}</span><input v-else type="text" class="w-full" v-model="stage.name" /></td>
             <td>{{ project.name }}</td>
-            <td>{{ task.is_closed }}</td>
+            <td><span v-if="UpdateForm.id !== stage.id">{{ stage.is_closed }}</span><input v-else
+              class="form-check-input ml-3"
+              type="checkbox"
+              v-model="stage.is_closed"
+            /></td>
+            <td class="text-center" v-if="$page.user.id == project.manager.id">
+              <div
+                @click="editStage(stage)"
+                v-if="UpdateForm.id !== stage.id"
+              >
+                <i class="far fa-edit" aria-hidden="true"></i>
+              </div>
+              <div
+                @click="UpdateStage"
+                v-if="UpdateForm.id === stage.id"
+              >
+                <i class="far fa-save" aria-hidden="true"></i>
+              </div>
+            </td>
+            <td class="text-center" v-if="$page.user.id == project.manager.id">
+              <div
+                @click="DestroyTimesheet(stage)"
+                v-if="UpdateForm.id !== stage.id"
+              >
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </div>
+              <div @click="Discard" v-if="UpdateForm.id === stage.id">
+                <i class="fas fa-undo-alt" aria-hidden="true"></i>
+              </div>
+            </td>
           </tr>
         </template>
       </table-responsive>
@@ -145,6 +176,23 @@ export default {
         id: "",
         stage_id: "",
       }),
+      form: this.$inertia.form(
+        {
+          id: "",
+          name: "",
+        },
+        {
+          bag: "deleteTask",
+        }
+      ),
+      UpdateForm: this.$inertia.form(
+        {
+          //
+        },
+        {
+          bag: "deleteTask",
+        }
+      ),
     };
   },
   methods: {
@@ -164,6 +212,36 @@ export default {
       } else {
         this.FilterDropdown = false;
       }
+    },
+    DestroyTimesheet(stage) {
+      this.form.delete(route("stage.destroy", stage), {
+        preserveScroll: true,
+      });
+    },
+    editStage(stage) {
+      this.UpdateForm = stage;
+    },
+    UpdateStage() {
+      this.$inertia
+        .post(route("stage.update"), {
+          id : this.UpdateForm.id,
+          name : this.UpdateForm.name,
+          is_closed: this.UpdateForm.is_closed,
+          preserveScroll: true,
+        })
+        .then((response) => {
+          this.Discard();
+        });
+    },
+    Discard() {
+      this.UpdateForm = this.$inertia.form(
+        {
+          //
+        },
+        {
+          bag: "deleteTask",
+        }
+      );
     },
   },
 };

@@ -69,4 +69,9 @@ class ProjectTaskController extends Controller
        $task->delete();
        return redirect(config('fortify.home'));
     }
+
+    public function getStageTask(Request $request, $StageId){
+        $task = ProjectTask::where('stage_id',$StageId)->count();
+        return $task;
+    }
 }
