@@ -222,52 +222,6 @@
                       </tr>
                       <tr>
                         <td class="o_td_label">
-                          <jet-label>Visibility</jet-label>
-                        </td>
-                        <td style="width: 100%">
-                          <div
-                            class="o_field_radio o_vertical o_field_widget o_required_modifier"
-                            name="privacy_visibility"
-                            role="radiogroup"
-                            aria-label="Visibility"
-                            id="o_field_input_674"
-                          >
-                            <div
-                              class="custom-control custom-radio o_radio_item"
-                              @click="VisibilityFollow"
-                            >
-                              <jet-radio
-                                name="radio712"
-                                id="invite_user"
-                                :checked="ProjectForm.visibility == 'follow'"
-                              />
-                              <jet-label
-                                class="custom-control-label"
-                                for="invite_user"
-                                >Invited Team User</jet-label
-                              >
-                            </div>
-
-                            <div
-                              class="custom-control custom-radio o_radio_item"
-                              @click="VisibilityTeam"
-                            >
-                              <jet-radio
-                                name="radio712"
-                                id="all_team_user"
-                                :checked="ProjectForm.visibility == 'team'"
-                              />
-                              <jet-label
-                                class="custom-control-label"
-                                for="all_team_user"
-                                >All Team Users</jet-label
-                              >
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="o_td_label">
                           <label class="o_form_label" for="o_field_input_668"
                             >Team</label
                           >

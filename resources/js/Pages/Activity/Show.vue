@@ -5,18 +5,17 @@
     <template #workspace_sub_header>
       <jet-workspace-sub-header :project="project" />
     </template>
-    <template #page Modal>
-      <!-- <create-task :users="users" :project="project" /> -->
-    </template>
     <template #board_name>{{ project.name }}</template>
-    <template #board_description><b>Project Stage</b></template>
+    <template #board_description><b>Project Activity</b></template>
     <template #board_subs_images_label>Manager </template>
     <template #board_subs_images>
       <img :src="project.manager.profile_photo_url" class="inner-image" />
     </template>
     <template #board_subs> Member / {{ team.users.length + 1 }} </template>
     <template #board_button>
-      <create-stage :users="users" :project="project" :team="team" />
+      <jet-wrapper-button @click.native="AddActivity">
+        Scedule New
+      </jet-wrapper-button>
     </template>
     <template #board_button_group>
       <jet-board-search
@@ -50,9 +49,14 @@
               class="o_handle_cell o_column_sortable o_list_number_th"
               style="min-width: 33px; width: 33px"
             ></th>
-            <th style="width: 171px">Stage Name</th>
-            <th style="width: 190px">Projects</th>
-            <th style="width: 190px">Closing State</th>
+            <th style="width: 171px">Activity Name</th>
+            <th style="width: 190px">Activity Type</th>
+            <th style="width: 190px">Responsible</th>
+            <th style="width: 190px">Due Date</th>
+            <th
+              style="width: 20px"
+              v-if="$page.user.id == project.manager.id"
+            ></th>
             <th
               style="width: 20px"
               v-if="$page.user.id == project.manager.id"
@@ -64,7 +68,7 @@
           </tr>
         </template>
         <template #content>
-          <tr class="data_row" v-for="(stage, i) in DataRow" :key="i">
+          <tr class="data_row" v-for="(activity, i) in DataRow" :key="i">
             <td>
               <span
                 class="row_handle fa fa-arrows ui-sortable-handle o_field_widget"
@@ -72,38 +76,37 @@
               ></span>
             </td>
             <td>
-              <span v-if="UpdateForm.id !== stage.id">{{ stage.name }}</span
-              ><input v-else type="text" class="w-full" v-model="stage.name" />
+              <span>{{ activity.name }}</span>
             </td>
-            <td>{{ project.name }}</td>
+            <td>{{ activity.activity_type }}</td>
             <td>
-              <span v-if="UpdateForm.id !== stage.id">{{
-                stage.is_closed
-              }}</span
-              ><input
-                v-else
-                class="form-check-input ml-3"
-                type="checkbox"
-                v-model="stage.is_closed"
-              />
+              {{ activity.responsible.name }}
+            </td>
+            <td>
+              {{ activity.due_date }}
+            </td>
+            <td class="text-center" v-if="activity.state == 'draft'">
+              <div
+                v-if="
+                  $page.user.id == project.manager.id ||
+                  $page.user.id == activity.responsible.id
+                "
+                @click="ActionDone(activity)"
+              >
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+              </div>
+            </td>
+            <td class="text-center" v-if="activity.state == 'done'">
+              <span class="badge badge-pill badge-success">Done</span>
             </td>
             <td class="text-center" v-if="$page.user.id == project.manager.id">
-              <div @click="editStage(stage)" v-if="UpdateForm.id !== stage.id">
+              <div @click="editActivity(activity)">
                 <i class="far fa-edit" aria-hidden="true"></i>
               </div>
-              <div @click="UpdateStage" v-else>
-                <i class="far fa-save" aria-hidden="true"></i>
-              </div>
             </td>
             <td class="text-center" v-if="$page.user.id == project.manager.id">
-              <div
-                @click="DestroyStage(stage)"
-                v-if="UpdateForm.id !== stage.id"
-              >
+              <div @click="DestroyActivity(activity)">
                 <i class="fa fa-trash" aria-hidden="true"></i>
-              </div>
-              <div @click="Discard" v-else>
-                <i class="fas fa-undo-alt" aria-hidden="true"></i>
               </div>
             </td>
           </tr>
@@ -121,19 +124,18 @@ import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
 import JetWorkspaceSubHeader from "@/Jetstream/WorkspaceSubHeader";
+import JetWrapperButton from "@/Jetstream/WrapperButton";
 // List Component
 import TableResponsive from "@/Jetstream/TableResponsive";
 // Module
 import draggable from "vuedraggable";
-// Page Component
-import CreateStage from "./CreateStage";
 
 export default {
-  props: ["team", "users", "project"],
+  props: ["team", "users", "project", "activities"],
 
   components: {
     JetDashboard,
-    CreateStage,
+    JetWrapperButton,
     JetBoardSorting,
     JetBoardSearch,
     JetBoardDropdown,
@@ -158,27 +160,6 @@ export default {
         from: "",
         to: "",
       },
-      TaskUpdate: this.$inertia.form({
-        id: "",
-        stage_id: "",
-      }),
-      form: this.$inertia.form(
-        {
-          id: "",
-          name: "",
-        },
-        {
-          bag: "deleteTask",
-        }
-      ),
-      UpdateForm: this.$inertia.form(
-        {
-          //
-        },
-        {
-          bag: "deleteTask",
-        }
-      ),
     };
   },
   methods: {
@@ -201,41 +182,36 @@ export default {
       this.sortKey = key;
       this.sortOrders[key] = this.sortOrders[key] * -1;
     },
-    FilterData() {
-      if (this.FilterDropdown == false) {
-        this.FilterDropdown = true;
-      } else {
-        this.FilterDropdown = false;
-      }
-    },
-    DestroyStage(stage) {
-      this.form.delete(route("stage.destroy", stage), {
+    AddActivity() {
+      this.$inertia.get(route("activity.create", this.project.access_token), {
         preserveScroll: true,
       });
     },
-    editStage(stage) {
-      this.UpdateForm = stage;
+    ActionDone(activity) {
+      console.log("okkk");
+      this.$inertia.post(route("activity.update"), {
+        id: activity.id,
+        name: activity.name,
+        due_date: activity.due_date,
+        state: "done",
+        preserveScroll: true,
+      });
     },
-    UpdateStage() {
-      this.$inertia
-        .post(route("stage.update"), {
-          id: this.UpdateForm.id,
-          name: this.UpdateForm.name,
-          is_closed: this.UpdateForm.is_closed,
-          preserveScroll: true,
-        })
-        .then((response) => {
-          this.Discard();
-        });
+    DestroyActivity(activity) {
+      this.$inertia.delete(route("activity.destroy", activity), {
+        preserveScroll: true,
+      });
     },
-    Discard() {
-      this.UpdateForm = [];
+    editActivity(activity) {
+      this.$inertia.get(route("activity.edit", activity.access_token), {
+        preserveScroll: true,
+      });
     },
   },
   computed: {
     filterdata() {
       this.resetPagination();
-      let value = this.project.task_type;
+      let value = this.activities;
       if (this.search) {
         value = value.filter((row) => {
           return Object.keys(row).some((key) => {
