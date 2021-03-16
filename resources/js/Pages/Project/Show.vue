@@ -21,12 +21,12 @@
     </template>
     <template #board_button_group>
       <jet-board-search
-        ><input placeholder="Search... " value="" style="width: 100%"
+        ><input placeholder="Search... " v-model="search" style="width: 100%"
       /></jet-board-search>
       <jet-board-filter-dropdown @click.native="FilterData" />
     </template>
     <template #board_component>
-      <kanban-area :type="'group'">
+      <kanban-area :type="'group'" v-if="isMobile == false">
         <kanban-progress
           v-for="stage in project.task_type"
           :key="stage.id"
@@ -51,7 +51,7 @@
                 <template #header>{{ task.name }}</template>
                 <template #body v-if="task.tags"
                   ><span
-                    class="badge"
+                    class="badge badge-pill"
                     v-bind:style="{ 'background-color': task.tags.color }"
                     >{{ task.tags.name }}</span
                   ></template
@@ -166,15 +166,40 @@ export default {
     JetWorkspaceSubHeader,
   },
   data() {
+    let sortOrders = {};
     return {
+      isMobile: true,
       FilterDropdown: false,
       TaskUpdate: this.$inertia.form({
         id: "",
         stage_id: "",
       }),
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: "",
+      },
     };
   },
+  created() {
+    this.detectMob();
+  },
   methods: {
+    detectMob() {
+      if (window.innerWidth <= 767) {
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+      }
+    },
     onAdd(event, stage) {
       this.TaskUpdate.id = event.item.getAttribute("data-id");
       this.TaskUpdate.stage_id = stage;
@@ -191,6 +216,75 @@ export default {
       } else {
         this.FilterDropdown = false;
       }
+    },
+    paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to =
+        pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage =
+        array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
+    },
+    resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
+    },
+    sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
+    },
+  },
+  computed: {
+    filterdata() {
+      this.resetPagination();
+      let value = this.activities;
+      if (this.search) {
+        value = value.filter((row) => {
+          return Object.keys(row).some((key) => {
+            return (
+              String(row[key])
+                .toLowerCase()
+                .indexOf(this.search.toLowerCase()) > -1
+            );
+          });
+        });
+      }
+      let sortKey = this.sortKey;
+      let order = this.sortOrders[sortKey] || 1;
+      if (sortKey) {
+        value = value.slice().sort((a, b) => {
+          let index = this.getIndex(this.columns, "name", sortKey);
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+          if (this.columns[index].type && this.columns[index].type === "date") {
+            return (
+              (a === b
+                ? 0
+                : new Date(a).getTime() > new Date(b).getTime()
+                ? 1
+                : -1) * order
+            );
+          } else if (
+            this.columns[index].type &&
+            this.columns[index].type === "number"
+          ) {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+      return value;
+    },
+    DataRow() {
+      return this.paginate(
+        this.filterdata,
+        this.length,
+        this.pagination.currentPage
+      );
     },
   },
 };

@@ -20,8 +20,27 @@
     </template>
     <template #board_button_group>
       <jet-board-search
-        ><input placeholder="Search... " value="" style="width: 100%"
+        ><input placeholder="Search... " v-model="search" style="width: 100%"
       /></jet-board-search>
+    </template>
+    <template #board_header_action>
+      <button
+        v-if="pagination.prevPage"
+        @click="--pagination.currentPage"
+        type="button"
+        title="Previous"
+        class="btn btn-secondary pager_previous"
+      >
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button
+        v-if="pagination.nextPage"
+        @click="++pagination.currentPage"
+        type="button"
+        class="btn btn-secondary o_pager_next"
+      >
+        <i class="fa fa-chevron-right"></i>
+      </button>
     </template>
     <template #board_component>
       <table-responsive>
@@ -45,7 +64,7 @@
           </tr>
         </template>
         <template #content>
-          <tr class="data_row" v-for="(tag, i) in tags" :key="i">
+          <tr class="data_row" v-for="(tag, i) in DataRow" :key="i">
             <td>
               <span
                 class="row_handle fa fa-arrows ui-sortable-handle o_field_widget"
@@ -117,8 +136,21 @@ export default {
     JetWorkspaceSubHeader,
   },
   data() {
+    let sortOrders = {};
     return {
-      FilterDropdown: false,
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: "",
+      },
       TaskUpdate: this.$inertia.form({
         id: "",
         stage_id: "",
@@ -143,22 +175,24 @@ export default {
     };
   },
   methods: {
-    onAdd(event, stage) {
-      this.TaskUpdate.id = event.item.getAttribute("data-id");
-      this.TaskUpdate.stage_id = stage;
-      this.TaskUpdate.post(route("task_stage.update"), {
-        preserveScroll: true,
-      });
+    paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to =
+        pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage =
+        array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
     },
-    ViewTask(row) {
-      this.$inertia.visit(route("project_task.view", row.access_token));
+    resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
     },
-    FilterData() {
-      if (this.FilterDropdown == false) {
-        this.FilterDropdown = true;
-      } else {
-        this.FilterDropdown = false;
-      }
+    sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
     },
     DestroyTags(stage) {
       this.form.delete(route("tags.destroy", stage), {
@@ -187,6 +221,56 @@ export default {
         {
           bag: "deleteTask",
         }
+      );
+    },
+  },
+  computed: {
+    filterdata() {
+      this.resetPagination();
+      let value = this.tags;
+      if (this.search) {
+        value = value.filter((row) => {
+          return Object.keys(row).some((key) => {
+            return (
+              String(row[key])
+                .toLowerCase()
+                .indexOf(this.search.toLowerCase()) > -1
+            );
+          });
+        });
+      }
+      let sortKey = this.sortKey;
+      let order = this.sortOrders[sortKey] || 1;
+      if (sortKey) {
+        value = value.slice().sort((a, b) => {
+          let index = this.getIndex(this.columns, "name", sortKey);
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+          if (this.columns[index].type && this.columns[index].type === "date") {
+            return (
+              (a === b
+                ? 0
+                : new Date(a).getTime() > new Date(b).getTime()
+                ? 1
+                : -1) * order
+            );
+          } else if (
+            this.columns[index].type &&
+            this.columns[index].type === "number"
+          ) {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+      return value;
+    },
+    DataRow() {
+      return this.paginate(
+        this.filterdata,
+        this.length,
+        this.pagination.currentPage
       );
     },
   },

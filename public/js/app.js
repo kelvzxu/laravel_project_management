@@ -2919,6 +2919,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 // Base Component
 
  // Workspace Component
@@ -5167,6 +5170,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // Workspace Component
 
 
@@ -5193,21 +5233,53 @@ __webpack_require__.r(__webpack_exports__);
     JetWorkspaceSubHeader: _Jetstream_WorkspaceSubHeader__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
+    var sortOrders = {};
     return {
-      FilterDropdown: false,
-      TaskUpdate: this.$inertia.form({
-        id: "",
-        stage_id: ""
-      }),
-      UpdateForm: this.$inertia.form({//
-      }, {
-        bag: "deleteTask"
-      })
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: ""
+      }
     };
   },
   methods: {
+    paginate: function paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to = pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage = array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
+    },
+    resetPagination: function resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
+    },
+    sortBy: function sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
+    },
     AddActivity: function AddActivity() {
       this.$inertia.get(route("activity.create", this.project.access_token), {
+        preserveScroll: true
+      });
+    },
+    ActionDone: function ActionDone(activity) {
+      console.log("okkk");
+      this.$inertia.post(route("activity.update"), {
+        id: activity.id,
+        name: activity.name,
+        due_date: activity.due_date,
+        state: "done",
         preserveScroll: true
       });
     },
@@ -5220,6 +5292,47 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.get(route("activity.edit", activity.access_token), {
         preserveScroll: true
       });
+    }
+  },
+  computed: {
+    filterdata: function filterdata() {
+      var _this = this;
+
+      this.resetPagination();
+      var value = this.activities;
+
+      if (this.search) {
+        value = value.filter(function (row) {
+          return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(_this.search.toLowerCase()) > -1;
+          });
+        });
+      }
+
+      var sortKey = this.sortKey;
+      var order = this.sortOrders[sortKey] || 1;
+
+      if (sortKey) {
+        value = value.slice().sort(function (a, b) {
+          var index = _this.getIndex(_this.columns, "name", sortKey);
+
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+
+          if (_this.columns[index].type && _this.columns[index].type === "date") {
+            return (a === b ? 0 : new Date(a).getTime() > new Date(b).getTime() ? 1 : -1) * order;
+          } else if (_this.columns[index].type && _this.columns[index].type === "number") {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+
+      return value;
+    },
+    DataRow: function DataRow() {
+      return this.paginate(this.filterdata, this.length, this.pagination.currentPage);
     }
   }
 });
@@ -5939,6 +6052,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
  // Form & Modal Component
@@ -5986,7 +6102,21 @@ __webpack_require__.r(__webpack_exports__);
     JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
+    var sortOrders = {};
     return {
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: ""
+      },
       InviteModal: false,
       SidebarSecondary: false,
       ExpanceControl: true,
@@ -6016,6 +6146,23 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    paginate: function paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to = pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage = array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
+    },
+    resetPagination: function resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
+    },
+    sortBy: function sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
+    },
     InviteNewUser: function InviteNewUser() {
       var _this = this;
 
@@ -6071,6 +6218,47 @@ __webpack_require__.r(__webpack_exports__);
     },
     viewProject: function viewProject(row) {
       this.$inertia.visit(route("project.show", row.access_token));
+    }
+  },
+  computed: {
+    filterdata: function filterdata() {
+      var _this5 = this;
+
+      this.resetPagination();
+      var value = this.projects;
+
+      if (this.search) {
+        value = value.filter(function (row) {
+          return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(_this5.search.toLowerCase()) > -1;
+          });
+        });
+      }
+
+      var sortKey = this.sortKey;
+      var order = this.sortOrders[sortKey] || 1;
+
+      if (sortKey) {
+        value = value.slice().sort(function (a, b) {
+          var index = _this5.getIndex(_this5.columns, "name", sortKey);
+
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+
+          if (_this5.columns[index].type && _this5.columns[index].type === "date") {
+            return (a === b ? 0 : new Date(a).getTime() > new Date(b).getTime() ? 1 : -1) * order;
+          } else if (_this5.columns[index].type && _this5.columns[index].type === "number") {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+
+      return value;
+    },
+    DataRow: function DataRow() {
+      return this.paginate(this.filterdata, this.length, this.pagination.currentPage);
     }
   }
 });
@@ -7616,15 +7804,40 @@ __webpack_require__.r(__webpack_exports__);
     JetWorkspaceSubHeader: _Jetstream_WorkspaceSubHeader__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
+    var sortOrders = {};
     return {
+      isMobile: true,
       FilterDropdown: false,
       TaskUpdate: this.$inertia.form({
         id: "",
         stage_id: ""
-      })
+      }),
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: ""
+      }
     };
   },
+  created: function created() {
+    this.detectMob();
+  },
   methods: {
+    detectMob: function detectMob() {
+      if (window.innerWidth <= 767) {
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+      }
+    },
     onAdd: function onAdd(event, stage) {
       this.TaskUpdate.id = event.item.getAttribute("data-id");
       this.TaskUpdate.stage_id = stage;
@@ -7641,6 +7854,64 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.FilterDropdown = false;
       }
+    },
+    paginate: function paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to = pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage = array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
+    },
+    resetPagination: function resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
+    },
+    sortBy: function sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
+    }
+  },
+  computed: {
+    filterdata: function filterdata() {
+      var _this = this;
+
+      this.resetPagination();
+      var value = this.activities;
+
+      if (this.search) {
+        value = value.filter(function (row) {
+          return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(_this.search.toLowerCase()) > -1;
+          });
+        });
+      }
+
+      var sortKey = this.sortKey;
+      var order = this.sortOrders[sortKey] || 1;
+
+      if (sortKey) {
+        value = value.slice().sort(function (a, b) {
+          var index = _this.getIndex(_this.columns, "name", sortKey);
+
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+
+          if (_this.columns[index].type && _this.columns[index].type === "date") {
+            return (a === b ? 0 : new Date(a).getTime() > new Date(b).getTime() ? 1 : -1) * order;
+          } else if (_this.columns[index].type && _this.columns[index].type === "number") {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+
+      return value;
+    },
+    DataRow: function DataRow() {
+      return this.paginate(this.filterdata, this.length, this.pagination.currentPage);
     }
   }
 });
@@ -7678,52 +7949,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
 /* harmony import */ var _Jetstream_InputRadio__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/Jetstream/InputRadio */ "./resources/js/Jetstream/InputRadio.vue");
 /* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -9545,6 +9770,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // Workspace Component
 
 
@@ -9572,8 +9816,21 @@ __webpack_require__.r(__webpack_exports__);
     JetWorkspaceSubHeader: _Jetstream_WorkspaceSubHeader__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
+    var sortOrders = {};
     return {
-      FilterDropdown: false,
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: ""
+      },
       TaskUpdate: this.$inertia.form({
         id: "",
         stage_id: ""
@@ -9591,15 +9848,22 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    onAdd: function onAdd(event, stage) {
-      this.TaskUpdate.id = event.item.getAttribute("data-id");
-      this.TaskUpdate.stage_id = stage;
-      this.TaskUpdate.post(route("task_stage.update"), {
-        preserveScroll: true
-      });
+    paginate: function paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to = pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage = array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
     },
-    ViewTask: function ViewTask(row) {
-      this.$inertia.visit(route("project_task.view", row.access_token));
+    resetPagination: function resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
+    },
+    sortBy: function sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
     },
     FilterData: function FilterData() {
       if (this.FilterDropdown == false) {
@@ -9629,10 +9893,48 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     Discard: function Discard() {
-      this.UpdateForm = this.$inertia.form({//
-      }, {
-        bag: "deleteTask"
-      });
+      this.UpdateForm = [];
+    }
+  },
+  computed: {
+    filterdata: function filterdata() {
+      var _this2 = this;
+
+      this.resetPagination();
+      var value = this.project.task_type;
+
+      if (this.search) {
+        value = value.filter(function (row) {
+          return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(_this2.search.toLowerCase()) > -1;
+          });
+        });
+      }
+
+      var sortKey = this.sortKey;
+      var order = this.sortOrders[sortKey] || 1;
+
+      if (sortKey) {
+        value = value.slice().sort(function (a, b) {
+          var index = _this2.getIndex(_this2.columns, "name", sortKey);
+
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+
+          if (_this2.columns[index].type && _this2.columns[index].type === "date") {
+            return (a === b ? 0 : new Date(a).getTime() > new Date(b).getTime() ? 1 : -1) * order;
+          } else if (_this2.columns[index].type && _this2.columns[index].type === "number") {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+
+      return value;
+    },
+    DataRow: function DataRow() {
+      return this.paginate(this.filterdata, this.length, this.pagination.currentPage);
     }
   }
 });
@@ -9864,6 +10166,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // Workspace Component
 
 
@@ -9891,8 +10212,21 @@ __webpack_require__.r(__webpack_exports__);
     JetWorkspaceSubHeader: _Jetstream_WorkspaceSubHeader__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
+    var sortOrders = {};
     return {
-      FilterDropdown: false,
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: ""
+      },
       TaskUpdate: this.$inertia.form({
         id: "",
         stage_id: ""
@@ -9910,22 +10244,22 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    onAdd: function onAdd(event, stage) {
-      this.TaskUpdate.id = event.item.getAttribute("data-id");
-      this.TaskUpdate.stage_id = stage;
-      this.TaskUpdate.post(route("task_stage.update"), {
-        preserveScroll: true
-      });
+    paginate: function paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to = pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage = array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
     },
-    ViewTask: function ViewTask(row) {
-      this.$inertia.visit(route("project_task.view", row.access_token));
+    resetPagination: function resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
     },
-    FilterData: function FilterData() {
-      if (this.FilterDropdown == false) {
-        this.FilterDropdown = true;
-      } else {
-        this.FilterDropdown = false;
-      }
+    sortBy: function sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
     },
     DestroyTags: function DestroyTags(stage) {
       this.form["delete"](route("tags.destroy", stage), {
@@ -9951,6 +10285,47 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         bag: "deleteTask"
       });
+    }
+  },
+  computed: {
+    filterdata: function filterdata() {
+      var _this2 = this;
+
+      this.resetPagination();
+      var value = this.tags;
+
+      if (this.search) {
+        value = value.filter(function (row) {
+          return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(_this2.search.toLowerCase()) > -1;
+          });
+        });
+      }
+
+      var sortKey = this.sortKey;
+      var order = this.sortOrders[sortKey] || 1;
+
+      if (sortKey) {
+        value = value.slice().sort(function (a, b) {
+          var index = _this2.getIndex(_this2.columns, "name", sortKey);
+
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+
+          if (_this2.columns[index].type && _this2.columns[index].type === "date") {
+            return (a === b ? 0 : new Date(a).getTime() > new Date(b).getTime() ? 1 : -1) * order;
+          } else if (_this2.columns[index].type && _this2.columns[index].type === "number") {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+
+      return value;
+    },
+    DataRow: function DataRow() {
+      return this.paginate(this.filterdata, this.length, this.pagination.currentPage);
     }
   }
 });
@@ -11866,7 +12241,21 @@ __webpack_require__.r(__webpack_exports__);
     TableResponsive: _Jetstream_TableResponsive__WEBPACK_IMPORTED_MODULE_16__["default"]
   },
   data: function data() {
+    var sortOrders = {};
     return {
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: ""
+      },
       InviteModal: false,
       SidebarSecondary: false,
       ExpanceControl: true,
@@ -11881,6 +12270,23 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    paginate: function paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to = pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage = array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
+    },
+    resetPagination: function resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
+    },
+    sortBy: function sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
+    },
     InviteNewUser: function InviteNewUser() {
       var _this = this;
 
@@ -11922,6 +12328,47 @@ __webpack_require__.r(__webpack_exports__);
     },
     AcceptRequest: function AcceptRequest(user, team) {
       this.$inertia.post(route("request_join.approve", [team, user]));
+    }
+  },
+  computed: {
+    filterdata: function filterdata() {
+      var _this4 = this;
+
+      this.resetPagination();
+      var value = this.requests;
+
+      if (this.search) {
+        value = value.filter(function (row) {
+          return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(_this4.search.toLowerCase()) > -1;
+          });
+        });
+      }
+
+      var sortKey = this.sortKey;
+      var order = this.sortOrders[sortKey] || 1;
+
+      if (sortKey) {
+        value = value.slice().sort(function (a, b) {
+          var index = _this4.getIndex(_this4.columns, "name", sortKey);
+
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+
+          if (_this4.columns[index].type && _this4.columns[index].type === "date") {
+            return (a === b ? 0 : new Date(a).getTime() > new Date(b).getTime() ? 1 : -1) * order;
+          } else if (_this4.columns[index].type && _this4.columns[index].type === "number") {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+
+      return value;
+    },
+    DataRow: function DataRow() {
+      return this.paginate(this.filterdata, this.length, this.pagination.currentPage);
     }
   }
 });
@@ -13070,6 +13517,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // Workspace Component
 
 
@@ -13097,7 +13563,21 @@ __webpack_require__.r(__webpack_exports__);
     JetWorkspaceSubHeader: _Jetstream_WorkspaceSubHeader__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
+    var sortOrders = {};
     return {
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: ""
+      },
       form: this.$inertia.form({
         id: "",
         name: ""
@@ -13114,15 +13594,22 @@ __webpack_require__.r(__webpack_exports__);
     console.log(this);
   },
   methods: {
-    onAdd: function onAdd(event, stage) {
-      this.TaskUpdate.id = event.item.getAttribute("data-id");
-      this.TaskUpdate.stage_id = stage;
-      this.TaskUpdate.post(route("task_stage.update"), {
-        preserveScroll: true
-      });
+    paginate: function paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to = pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage = array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
     },
-    ViewTask: function ViewTask(row) {
-      this.$inertia.visit(route("project_task.view", row.access_token));
+    resetPagination: function resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
+    },
+    sortBy: function sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
     },
     FormatHours: function FormatHours(value) {
       var minutes = value * 60;
@@ -13178,6 +13665,47 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         bag: "deleteTask"
       });
+    }
+  },
+  computed: {
+    filterdata: function filterdata() {
+      var _this2 = this;
+
+      this.resetPagination();
+      var value = this.timesheets;
+
+      if (this.search) {
+        value = value.filter(function (row) {
+          return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(_this2.search.toLowerCase()) > -1;
+          });
+        });
+      }
+
+      var sortKey = this.sortKey;
+      var order = this.sortOrders[sortKey] || 1;
+
+      if (sortKey) {
+        value = value.slice().sort(function (a, b) {
+          var index = _this2.getIndex(_this2.columns, "name", sortKey);
+
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+
+          if (_this2.columns[index].type && _this2.columns[index].type === "date") {
+            return (a === b ? 0 : new Date(a).getTime() > new Date(b).getTime() ? 1 : -1) * order;
+          } else if (_this2.columns[index].type && _this2.columns[index].type === "number") {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+
+      return value;
+    },
+    DataRow: function DataRow() {
+      return this.paginate(this.filterdata, this.length, this.pagination.currentPage);
     }
   }
 });
@@ -72704,6 +73232,13 @@ var render = function() {
                           proxy: true
                         },
                         {
+                          key: "board_header_action",
+                          fn: function() {
+                            return [_vm._t("board_header_action")]
+                          },
+                          proxy: true
+                        },
+                        {
                           key: "board_component",
                           fn: function() {
                             return [_vm._t("board_component")]
@@ -77013,10 +77548,66 @@ var render = function() {
           return [
             _c("jet-board-search", [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search,
+                    expression: "search"
+                  }
+                ],
                 staticStyle: { width: "100%" },
-                attrs: { placeholder: "Search... ", value: "" }
+                attrs: { placeholder: "Search... " },
+                domProps: { value: _vm.search },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search = $event.target.value
+                  }
+                }
               })
             ])
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "board_header_action",
+        fn: function() {
+          return [
+            _vm.pagination.prevPage
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary pager_previous",
+                    attrs: { type: "button", title: "Previous" },
+                    on: {
+                      click: function($event) {
+                        --_vm.pagination.currentPage
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-chevron-left" })]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.pagination.nextPage
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary o_pager_next",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        ++_vm.pagination.currentPage
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-chevron-right" })]
+                )
+              : _vm._e()
           ]
         },
         proxy: true
@@ -77060,6 +77651,10 @@ var render = function() {
                         _vm._v(" "),
                         _vm.$page.user.id == _vm.project.manager.id
                           ? _c("th", { staticStyle: { width: "20px" } })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.$page.user.id == _vm.project.manager.id
+                          ? _c("th", { staticStyle: { width: "20px" } })
                           : _vm._e()
                       ])
                     ]
@@ -77069,7 +77664,7 @@ var render = function() {
                 {
                   key: "content",
                   fn: function() {
-                    return _vm._l(_vm.activities, function(activity, i) {
+                    return _vm._l(_vm.DataRow, function(activity, i) {
                       return _c("tr", { key: i, staticClass: "data_row" }, [
                         _c("td", [
                           _c("span", {
@@ -77098,6 +77693,42 @@ var render = function() {
                               "\n          "
                           )
                         ]),
+                        _vm._v(" "),
+                        activity.state == "draft"
+                          ? _c("td", { staticClass: "text-center" }, [
+                              _vm.$page.user.id == _vm.project.manager.id ||
+                              _vm.$page.user.id == activity.responsible.id
+                                ? _c(
+                                    "div",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.ActionDone(activity)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-check-circle",
+                                        attrs: { "aria-hidden": "true" }
+                                      })
+                                    ]
+                                  )
+                                : _vm._e()
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        activity.state == "done"
+                          ? _c("td", { staticClass: "text-center" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "badge badge-pill badge-success"
+                                },
+                                [_vm._v("Done")]
+                              )
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm.$page.user.id == _vm.project.manager.id
                           ? _c("td", { staticClass: "text-center" }, [
@@ -78440,7 +79071,25 @@ var render = function() {
                         return [
                           _c("jet-board-search", [
                             _c("input", {
-                              attrs: { placeholder: "Search", value: "" }
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.search,
+                                  expression: "search"
+                                }
+                              ],
+                              staticStyle: { width: "100%" },
+                              attrs: { placeholder: "Search... " },
+                              domProps: { value: _vm.search },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.search = $event.target.value
+                                }
+                              }
                             })
                           ]),
                           _vm._v(" "),
@@ -78461,72 +79110,42 @@ var render = function() {
                       key: "board_header_action",
                       fn: function() {
                         return [
-                          _c(
-                            "div",
-                            { staticClass: "board-header-view-actions" },
-                            [
-                              _c(
-                                "div",
+                          _vm.pagination.prevPage
+                            ? _c(
+                                "button",
                                 {
                                   staticClass:
-                                    "board-filter-item-component active"
+                                    "btn btn-secondary pager_previous",
+                                  attrs: { type: "button", title: "Previous" },
+                                  on: {
+                                    click: function($event) {
+                                      --_vm.pagination.currentPage
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "fa fa-chevron-left" })]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.pagination.nextPage
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-secondary o_pager_next",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      ++_vm.pagination.currentPage
+                                    }
+                                  }
                                 },
                                 [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "board-filter-item-content-wrapper"
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "board-filter-item-content without-additional-data"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "item-icon fa fa-lg fa-th-large"
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "board-filter-item-component" },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "board-filter-item-content-wrapper"
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "board-filter-item-content without-additional-data"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "item-icon fa fa-lg fa-list-ul"
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
+                                  _c("i", {
+                                    staticClass: "fa fa-chevron-right"
+                                  })
                                 ]
                               )
-                            ]
-                          )
+                            : _vm._e()
                         ]
                       },
                       proxy: true
@@ -78728,7 +79347,7 @@ var render = function() {
                           _c(
                             "kanban-area",
                             [
-                              _vm._l(_vm.projects, function(project) {
+                              _vm._l(_vm.DataRow, function(project) {
                                 return _c("kanban-box", {
                                   key: project.access_token,
                                   nativeOn: {
@@ -78777,7 +79396,7 @@ var render = function() {
                                 })
                               }),
                               _vm._v(" "),
-                              _vm._l(75, function(n) {
+                              _vm._l(80 - _vm.DataRow.length, function(n) {
                                 return _c("kanban-ghost", { key: n })
                               })
                             ],
@@ -81091,8 +81710,25 @@ var render = function() {
           return [
             _c("jet-board-search", [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search,
+                    expression: "search"
+                  }
+                ],
                 staticStyle: { width: "100%" },
-                attrs: { placeholder: "Search... ", value: "" }
+                attrs: { placeholder: "Search... " },
+                domProps: { value: _vm.search },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search = $event.target.value
+                  }
+                }
               })
             ]),
             _vm._v(" "),
@@ -81111,179 +81747,185 @@ var render = function() {
         key: "board_component",
         fn: function() {
           return [
-            _c(
-              "kanban-area",
-              { attrs: { type: "group" } },
-              _vm._l(_vm.project.task_type, function(stage) {
-                return _c("kanban-progress", {
-                  key: stage.id,
-                  attrs: { "data-id": stage.name },
-                  scopedSlots: _vm._u(
-                    [
-                      {
-                        key: "title",
-                        fn: function() {
-                          return [_vm._v(_vm._s(stage.name))]
-                        },
-                        proxy: true
-                      },
-                      {
-                        key: "counter",
-                        fn: function() {
-                          return [_vm._v(_vm._s(stage.tasks.length))]
-                        },
-                        proxy: true
-                      },
-                      {
-                        key: "record",
-                        fn: function() {
-                          return [
-                            _c(
-                              "draggable",
-                              {
-                                staticStyle: { "min-height": "500px" },
-                                attrs: { list: stage.tasks, group: "tasks" },
-                                on: {
-                                  add: function($event) {
-                                    return _vm.onAdd($event, stage.id)
-                                  }
-                                }
-                              },
-                              _vm._l(stage.tasks, function(task) {
-                                return _c("kanban-box", {
-                                  key: task.id,
-                                  attrs: {
-                                    "data-id": task.id,
-                                    stage: stage.name
-                                  },
-                                  nativeOn: {
-                                    click: function($event) {
-                                      return _vm.ViewTask(task)
+            _vm.isMobile == false
+              ? _c(
+                  "kanban-area",
+                  { attrs: { type: "group" } },
+                  _vm._l(_vm.project.task_type, function(stage) {
+                    return _c("kanban-progress", {
+                      key: stage.id,
+                      attrs: { "data-id": stage.name },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "title",
+                            fn: function() {
+                              return [_vm._v(_vm._s(stage.name))]
+                            },
+                            proxy: true
+                          },
+                          {
+                            key: "counter",
+                            fn: function() {
+                              return [_vm._v(_vm._s(stage.tasks.length))]
+                            },
+                            proxy: true
+                          },
+                          {
+                            key: "record",
+                            fn: function() {
+                              return [
+                                _c(
+                                  "draggable",
+                                  {
+                                    staticStyle: { "min-height": "500px" },
+                                    attrs: {
+                                      list: stage.tasks,
+                                      group: "tasks"
+                                    },
+                                    on: {
+                                      add: function($event) {
+                                        return _vm.onAdd($event, stage.id)
+                                      }
                                     }
                                   },
-                                  scopedSlots: _vm._u(
-                                    [
-                                      {
-                                        key: "header",
-                                        fn: function() {
-                                          return [_vm._v(_vm._s(task.name))]
-                                        },
-                                        proxy: true
+                                  _vm._l(stage.tasks, function(task) {
+                                    return _c("kanban-box", {
+                                      key: task.id,
+                                      attrs: {
+                                        "data-id": task.id,
+                                        stage: stage.name
                                       },
-                                      task.tags
-                                        ? {
-                                            key: "body",
+                                      nativeOn: {
+                                        click: function($event) {
+                                          return _vm.ViewTask(task)
+                                        }
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "header",
+                                            fn: function() {
+                                              return [_vm._v(_vm._s(task.name))]
+                                            },
+                                            proxy: true
+                                          },
+                                          task.tags
+                                            ? {
+                                                key: "body",
+                                                fn: function() {
+                                                  return [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "badge badge-pill",
+                                                        style: {
+                                                          "background-color":
+                                                            task.tags.color
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(task.tags.name)
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                },
+                                                proxy: true
+                                              }
+                                            : null,
+                                          {
+                                            key: "button",
                                             fn: function() {
                                               return [
                                                 _c(
-                                                  "span",
+                                                  "div",
                                                   {
-                                                    staticClass: "badge",
-                                                    style: {
-                                                      "background-color":
-                                                        task.tags.color
-                                                    }
+                                                    staticClass:
+                                                      "o_priority kanban_field_widget mr-2"
                                                   },
                                                   [
-                                                    _vm._v(
-                                                      _vm._s(task.tags.name)
-                                                    )
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "o_priority_star far fa-star"
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "far fa-fw o_activity_color_default fa-clock mt-1"
+                                                    })
                                                   ]
                                                 )
                                               ]
                                             },
                                             proxy: true
-                                          }
-                                        : null,
-                                      {
-                                        key: "button",
-                                        fn: function() {
-                                          return [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "o_priority kanban_field_widget mr-2"
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass:
-                                                    "o_priority_star far fa-star"
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass:
-                                                    "far fa-fw o_activity_color_default fa-clock mt-1"
-                                                })
-                                              ]
-                                            )
-                                          ]
-                                        },
-                                        proxy: true
-                                      },
-                                      task.date_end
-                                        ? {
-                                            key: "dateline",
+                                          },
+                                          task.date_end
+                                            ? {
+                                                key: "dateline",
+                                                fn: function() {
+                                                  return [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm._f("formatDate")(
+                                                          task.date_end
+                                                        )
+                                                      )
+                                                    )
+                                                  ]
+                                                },
+                                                proxy: true
+                                              }
+                                            : null,
+                                          {
+                                            key: "picture",
                                             fn: function() {
                                               return [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm._f("formatDate")(
-                                                      task.date_end
-                                                    )
-                                                  )
-                                                )
+                                                _c("img", {
+                                                  staticClass:
+                                                    "o_m2o_avatar rounded-circle",
+                                                  attrs: {
+                                                    src:
+                                                      _vm.$page.user
+                                                        .profile_photo_url
+                                                  }
+                                                })
                                               ]
                                             },
                                             proxy: true
                                           }
-                                        : null,
-                                      {
-                                        key: "picture",
-                                        fn: function() {
-                                          return [
-                                            _c("img", {
-                                              staticClass:
-                                                "o_m2o_avatar rounded-circle",
-                                              attrs: {
-                                                src:
-                                                  _vm.$page.user
-                                                    .profile_photo_url
-                                              }
-                                            })
-                                          ]
-                                        },
-                                        proxy: true
-                                      }
-                                    ],
-                                    null,
-                                    true
-                                  )
-                                })
-                              }),
-                              1
-                            )
-                          ]
-                        },
-                        proxy: true
-                      }
-                    ],
-                    null,
-                    true
-                  )
-                })
-              }),
-              1
-            )
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    })
+                                  }),
+                                  1
+                                )
+                              ]
+                            },
+                            proxy: true
+                          }
+                        ],
+                        null,
+                        true
+                      )
+                    })
+                  }),
+                  1
+                )
+              : _vm._e()
           ]
         },
         proxy: true
@@ -82063,106 +82705,6 @@ var render = function() {
                                     _c("td", { staticClass: "o_td_label" }),
                                     _vm._v(" "),
                                     _c("td", { staticStyle: { width: "100%" } })
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c(
-                                      "td",
-                                      { staticClass: "o_td_label" },
-                                      [_c("jet-label", [_vm._v("Visibility")])],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      { staticStyle: { width: "100%" } },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "o_field_radio o_vertical o_field_widget o_required_modifier",
-                                            attrs: {
-                                              name: "privacy_visibility",
-                                              role: "radiogroup",
-                                              "aria-label": "Visibility",
-                                              id: "o_field_input_674"
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "custom-control custom-radio o_radio_item",
-                                                on: {
-                                                  click: _vm.VisibilityFollow
-                                                }
-                                              },
-                                              [
-                                                _c("jet-radio", {
-                                                  attrs: {
-                                                    name: "radio712",
-                                                    id: "invite_user",
-                                                    checked:
-                                                      _vm.ProjectForm
-                                                        .visibility == "follow"
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "jet-label",
-                                                  {
-                                                    staticClass:
-                                                      "custom-control-label",
-                                                    attrs: {
-                                                      for: "invite_user"
-                                                    }
-                                                  },
-                                                  [_vm._v("Invited Team User")]
-                                                )
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "custom-control custom-radio o_radio_item",
-                                                on: {
-                                                  click: _vm.VisibilityTeam
-                                                }
-                                              },
-                                              [
-                                                _c("jet-radio", {
-                                                  attrs: {
-                                                    name: "radio712",
-                                                    id: "all_team_user",
-                                                    checked:
-                                                      _vm.ProjectForm
-                                                        .visibility == "team"
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "jet-label",
-                                                  {
-                                                    staticClass:
-                                                      "custom-control-label",
-                                                    attrs: {
-                                                      for: "all_team_user"
-                                                    }
-                                                  },
-                                                  [_vm._v("All Team Users")]
-                                                )
-                                              ],
-                                              1
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
@@ -85259,10 +85801,66 @@ var render = function() {
           return [
             _c("jet-board-search", [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search,
+                    expression: "search"
+                  }
+                ],
                 staticStyle: { width: "100%" },
-                attrs: { placeholder: "Search... ", value: "" }
+                attrs: { placeholder: "Search... " },
+                domProps: { value: _vm.search },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search = $event.target.value
+                  }
+                }
               })
             ])
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "board_header_action",
+        fn: function() {
+          return [
+            _vm.pagination.prevPage
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary pager_previous",
+                    attrs: { type: "button", title: "Previous" },
+                    on: {
+                      click: function($event) {
+                        --_vm.pagination.currentPage
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-chevron-left" })]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.pagination.nextPage
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary o_pager_next",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        ++_vm.pagination.currentPage
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-chevron-right" })]
+                )
+              : _vm._e()
           ]
         },
         proxy: true
@@ -85311,7 +85909,7 @@ var render = function() {
                 {
                   key: "content",
                   fn: function() {
-                    return _vm._l(_vm.project.task_type, function(stage, i) {
+                    return _vm._l(_vm.DataRow, function(stage, i) {
                       return _c("tr", { key: i, staticClass: "data_row" }, [
                         _c("td", [
                           _c("span", {
@@ -85748,10 +86346,66 @@ var render = function() {
           return [
             _c("jet-board-search", [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search,
+                    expression: "search"
+                  }
+                ],
                 staticStyle: { width: "100%" },
-                attrs: { placeholder: "Search... ", value: "" }
+                attrs: { placeholder: "Search... " },
+                domProps: { value: _vm.search },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search = $event.target.value
+                  }
+                }
               })
             ])
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "board_header_action",
+        fn: function() {
+          return [
+            _vm.pagination.prevPage
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary pager_previous",
+                    attrs: { type: "button", title: "Previous" },
+                    on: {
+                      click: function($event) {
+                        --_vm.pagination.currentPage
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-chevron-left" })]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.pagination.nextPage
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary o_pager_next",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        ++_vm.pagination.currentPage
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-chevron-right" })]
+                )
+              : _vm._e()
           ]
         },
         proxy: true
@@ -85800,7 +86454,7 @@ var render = function() {
                 {
                   key: "content",
                   fn: function() {
-                    return _vm._l(_vm.tags, function(tag, i) {
+                    return _vm._l(_vm.DataRow, function(tag, i) {
                       return _c("tr", { key: i, staticClass: "data_row" }, [
                         _c("td", [
                           _c("span", {
@@ -88972,7 +89626,25 @@ var render = function() {
                         return [
                           _c("jet-board-search", [
                             _c("input", {
-                              attrs: { placeholder: "Search", value: "" }
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.search,
+                                  expression: "search"
+                                }
+                              ],
+                              staticStyle: { width: "100%" },
+                              attrs: { placeholder: "Search... " },
+                              domProps: { value: _vm.search },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.search = $event.target.value
+                                }
+                              }
                             })
                           ])
                         ]
@@ -88983,72 +89655,42 @@ var render = function() {
                       key: "board_header_action",
                       fn: function() {
                         return [
-                          _c(
-                            "div",
-                            { staticClass: "board-header-view-actions" },
-                            [
-                              _c(
-                                "div",
+                          _vm.pagination.prevPage
+                            ? _c(
+                                "button",
                                 {
                                   staticClass:
-                                    "board-filter-item-component active"
+                                    "btn btn-secondary pager_previous",
+                                  attrs: { type: "button", title: "Previous" },
+                                  on: {
+                                    click: function($event) {
+                                      --_vm.pagination.currentPage
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "fa fa-chevron-left" })]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.pagination.nextPage
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-secondary o_pager_next",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      ++_vm.pagination.currentPage
+                                    }
+                                  }
                                 },
                                 [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "board-filter-item-content-wrapper"
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "board-filter-item-content without-additional-data"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "item-icon fa fa-lg fa-th-large"
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "board-filter-item-component" },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "board-filter-item-content-wrapper"
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "board-filter-item-content without-additional-data"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "item-icon fa fa-lg fa-list-ul"
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
+                                  _c("i", {
+                                    staticClass: "fa fa-chevron-right"
+                                  })
                                 ]
                               )
-                            ]
-                          )
+                            : _vm._e()
                         ]
                       },
                       proxy: true
@@ -89104,7 +89746,7 @@ var render = function() {
                               {
                                 key: "content",
                                 fn: function() {
-                                  return _vm._l(_vm.requests, function(
+                                  return _vm._l(_vm.DataRow, function(
                                     request,
                                     i
                                   ) {
@@ -90735,10 +91377,66 @@ var render = function() {
           return [
             _c("jet-board-search", [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search,
+                    expression: "search"
+                  }
+                ],
                 staticStyle: { width: "100%" },
-                attrs: { placeholder: "Search... ", value: "" }
+                attrs: { placeholder: "Search... " },
+                domProps: { value: _vm.search },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search = $event.target.value
+                  }
+                }
               })
             ])
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "board_header_action",
+        fn: function() {
+          return [
+            _vm.pagination.prevPage
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary pager_previous",
+                    attrs: { type: "button", title: "Previous" },
+                    on: {
+                      click: function($event) {
+                        --_vm.pagination.currentPage
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-chevron-left" })]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.pagination.nextPage
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary o_pager_next",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        ++_vm.pagination.currentPage
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-chevron-right" })]
+                )
+              : _vm._e()
           ]
         },
         proxy: true
@@ -90790,7 +91488,7 @@ var render = function() {
                 {
                   key: "content",
                   fn: function() {
-                    return _vm._l(_vm.timesheets, function(timesheet, i) {
+                    return _vm._l(_vm.DataRow, function(timesheet, i) {
                       return _c("tr", { key: i, staticClass: "data_row" }, [
                         _vm.UpdateForm.id !== timesheet.id
                           ? _c("td", [
