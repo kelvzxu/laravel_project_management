@@ -74,4 +74,29 @@ class ProjectTaskController extends Controller
         $task = ProjectTask::where('stage_id',$StageId)->count();
         return $task;
     }
+
+    public function UpdateProgress(Request $request, $taskId, $timesheet){
+        $task = ProjectTask::findorfail($taskId);
+        echo$task;
+        $effective_hours = $task->effective_hours - $timesheet['old_unit_amount'];
+        $effective_hours += $timesheet['unit_amount'];
+        if ($task->planned_hours > $effective_hours){
+            $progress = $this->computePercentace($effective_hours,$task->planned_hours);
+            $remaining_hours = 0;
+        }
+        else{
+            $progress = 100;
+            $remaining_hours = $effective_hours-$task->planned_hours;
+        }
+        $task->update([
+            'effective_hours'=>$effective_hours,
+            'progress'=>$progress,
+            'remaining_hours'=>$remaining_hours,
+        ]);
+    }
+
+    public function computePercentace($part,$total){
+        $percentace = round($part/$total * 100);
+        return $percentace;
+    }
 }

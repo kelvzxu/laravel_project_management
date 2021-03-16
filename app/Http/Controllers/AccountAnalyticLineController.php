@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AccountAnalyticLine;
+use App\Http\Controllers\ProjectTaskController;
 
 class AccountAnalyticLineController extends Controller
 {
     public function fetchAnalyticLine (Request $request,$ProjectId){
-       $result = AccountAnalyticLine::where("project_id",$ProjectId)->get();
+       $result = AccountAnalyticLine::where("project_id",$ProjectId)->orderByDESC('updated_at')->get();
        return $result;
     }
 
@@ -25,6 +26,8 @@ class AccountAnalyticLineController extends Controller
             $data['unit_amount']=$this->convertToFloat($request->hours,$request->minutes);
             $data['amount']=$data['unit_amount'];
             $data['validate']=true;
+            $data['old_unit_amount'] = 0;
+            app(ProjectTaskController::class)->UpdateProgress($request,$request->task_id,$data);
             AccountAnalyticLine::create($data);
             return back(303);
         }catch(\Exception $e){
@@ -34,6 +37,9 @@ class AccountAnalyticLineController extends Controller
 
     public function destroy(Request $request,$timeId){
         $timesheet = AccountAnalyticLine::findorfail($timeId);
+        $data['unit_amount']=0;
+        $data['old_unit_amount'] = $timesheet->unit_amount;
+        app(ProjectTaskController::class)->UpdateProgress($request,$timesheet->task_id,$data);
         $timesheet->delete();
         return back(303);
     }
@@ -53,11 +59,13 @@ class AccountAnalyticLineController extends Controller
            'minutes' => ['required'],
         ]);
         try{
+            $timesheet = AccountAnalyticLine::findorfail($request->id);
             $data=$request->all();
             $data['unit_amount']=$this->convertToFloat($request->hours,$request->minutes);
             $data['amount']=$data['unit_amount'];
             $data['validate']=true;
-            $timesheet = AccountAnalyticLine::findorfail($request->id);
+            $data['old_unit_amount'] = $timesheet->unit_amount;
+            app(ProjectTaskController::class)->UpdateProgress($request,$timesheet->task_id,$data);
             $timesheet->update($data);
             return back(303);
         }catch(\Exception $e){

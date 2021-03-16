@@ -68,40 +68,41 @@ class MailActivityController extends Controller
              return abort(500);
          }
     }
-
+ 
     public function edit(Request $request,$token)
     {
         $user = app(UsersController::class)->getUserbyID(Auth::id());
         $activity = mail_activity::where('access_token',$token)->firstOrFail();
-        $team = app(InheritTeamController::class)->getTeam($project->team_id);
+        $team = app(InheritTeamController::class)->getTeam($user->current_team_id);
 
         return Jetstream::inertia()->render($request, 'Activity/View', [
             'users' => $user,
-            'activity' => $activity->load('responsible'),
+            'activity' => $activity->load('responsible','project'),
             'team' =>$team->load('owner', 'users'),
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\mail_activity  $mail_activity
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, mail_activity $mail_activity)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required'],
+            'due_date' => ['required'],
+         ]);
+         try{
+             $data = $request->all();
+             $activity = mail_activity::findorfail($request->id);
+             $activity->update($data);
+             return back(303);
+         }catch(\Exception $e){
+             return abort(500);
+         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\mail_activity  $mail_activity
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(mail_activity $mail_activity)
+    public function destroy(Request $request, $ActivityId)
     {
-        //
+        $data = $request->all();
+        $activity = mail_activity::find($ActivityId);
+        $activity->delete();
+        return redirect(config('fortify.home'));
     }
 }

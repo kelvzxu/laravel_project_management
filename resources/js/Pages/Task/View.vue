@@ -255,6 +255,45 @@
               :class="{ active: ViewTimesheet == true }"
               id="notebook_page_desc"
             >
+              <div class="o_group">
+                <table class="o_group o_inner_group col-12 col-md-6">
+                  <tbody>
+                    <tr>
+                      <td class="o_td_label">
+                        <label class="o_form_label" for="o_field_input_668"
+                          >Plan Hours</label
+                        >
+                      </td>
+                      <td style="width: 100%">
+                        <jet-input
+                          id="planned_hours"
+                          type="number"
+                          class="mt-1 block w-full"
+                          v-model="TaskForm.planned_hours"
+                          :disabled="FormType == 'view'"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="o_group o_inner_group col-12 col-md-5">
+                  <tbody>
+                    <tr>
+                      <td class="o_td_label">
+                        <label class="o_form_label" for="o_field_input_668"
+                          >Progress</label
+                        >
+                      </td>
+                      <td style="width: 100%">
+                        <progress-bar
+                          :options="options"
+                          :value="parseInt(task.progress)"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               <table-responsive>
                 <template #header>
                   <tr>
@@ -398,6 +437,7 @@ import CreateTimesheet from "./CreateTimesheet";
 import TableResponsive from "@/Jetstream/TableResponsive";
 // external Library
 import { VueEditor } from "vue2-editor";
+import ProgressBar from "vuejs-progress-bar";
 // Page Component
 import CreateTask from "@/Pages/Task/CreateTask";
 
@@ -418,6 +458,7 @@ export default {
     TableResponsive,
     JetInput,
     JetBoardButton,
+    ProgressBar,
   },
 
   data() {
@@ -438,6 +479,7 @@ export default {
           description: this.task.description,
           sequence: this.task.sequence,
           email_cc: this.task.email_cc,
+          planned_hours: this.task.planned_hours,
         },
         {
           bag: "UpdateTask",
@@ -456,6 +498,31 @@ export default {
           bag: "deleteTask",
         }
       ),
+      options: {
+        text: {
+          color: "#FFFFFF",
+          shadowEnable: true,
+          shadowColor: "#000000",
+          fontSize: 14,
+          fontFamily: "Helvetica",
+          dynamicPosition: false,
+          hideText: false,
+        },
+        progress: {
+          color: "#2dbd2d",
+          backgroundColor: "gray",
+        },
+        layout: {
+          height: 18,
+          width: 150,
+          verticalTextAlign: 61,
+          horizontalTextAlign: 43,
+          zeroOffset: 0,
+          strokeWidth: 30,
+          progressPadding: 0,
+          type: "line",
+        },
+      },
     };
   },
   created() {

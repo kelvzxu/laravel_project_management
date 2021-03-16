@@ -13,7 +13,9 @@
     </template>
     <template #board_subs> Member / {{ team.users.length + 1 }} </template>
     <template #board_button>
-      <jet-wrapper-button @click.native="AddActivity"> Scedule New </jet-wrapper-button>
+      <jet-wrapper-button @click.native="AddActivity">
+        Scedule New
+      </jet-wrapper-button>
     </template>
     <template #board_button_group>
       <jet-board-search
@@ -51,30 +53,23 @@
               ></span>
             </td>
             <td>
-              <span v-if="UpdateForm.id !== activity.id">{{ activity.name }}</span
-              ><input v-else type="text" class="w-full" v-model="activity.name" />
+              <span>{{ activity.name }}</span>
             </td>
             <td>{{ activity.activity_type }}</td>
             <td>
-              {{ activity.responsible.name}}
+              {{ activity.responsible.name }}
             </td>
             <td>
-              {{ activity.due_date}}
+              {{ activity.due_date }}
             </td>
             <td class="text-center" v-if="$page.user.id == project.manager.id">
-              <div @click="editActivity(activity)" v-if="UpdateForm.id !== activity.id">
+              <div @click="editActivity(activity)">
                 <i class="far fa-edit" aria-hidden="true"></i>
               </div>
-              <div @click="UpdateActivity" v-else>
-                <i class="far fa-save" aria-hidden="true"></i>
-              </div>
             </td>
             <td class="text-center" v-if="$page.user.id == project.manager.id">
-              <div @click="DestroyActivity(activity)" v-if="UpdateForm.id !== activity.id">
+              <div @click="DestroyActivity(activity)">
                 <i class="fa fa-trash" aria-hidden="true"></i>
-              </div>
-              <div @click="Discard" v-else>
-                <i class="fas fa-undo-alt" aria-hidden="true"></i>
               </div>
             </td>
           </tr>
@@ -119,15 +114,6 @@ export default {
         id: "",
         stage_id: "",
       }),
-      form: this.$inertia.form(
-        {
-          id: "",
-          name: "",
-        },
-        {
-          bag: "deleteTask",
-        }
-      ),
       UpdateForm: this.$inertia.form(
         {
           //
@@ -139,57 +125,20 @@ export default {
     };
   },
   methods: {
-    AddActivity(){
-      this.$inertia
-        .get(route("activity.create",this.project.access_token), {
-          preserveScroll: true,
-        });
-    },
-    onAdd(event, stage) {
-      this.TaskUpdate.id = event.item.getAttribute("data-id");
-      this.TaskUpdate.stage_id = stage;
-      this.TaskUpdate.post(route("task_stage.update"), {
+    AddActivity() {
+      this.$inertia.get(route("activity.create", this.project.access_token), {
         preserveScroll: true,
       });
     },
-    ViewTask(row) {
-      this.$inertia.visit(route("project_task.view", row.access_token));
-    },
-    FilterData() {
-      if (this.FilterDropdown == false) {
-        this.FilterDropdown = true;
-      } else {
-        this.FilterDropdown = false;
-      }
-    },
-    DestroyActivity(stage) {
-      this.form.delete(route("Activity.destroy", stage), {
+    DestroyActivity(activity) {
+      this.$inertia.delete(route("activity.destroy", activity), {
         preserveScroll: true,
       });
     },
-    editActivity(stage) {
-      this.UpdateForm = stage;
-    },
-    UpdateActivity() {
-      this.$inertia
-        .post(route("Activity.update"), {
-          id: this.UpdateForm.id,
-          name: this.UpdateForm.name,
-          preserveScroll: true,
-        })
-        .then((response) => {
-          this.Discard();
-        });
-    },
-    Discard() {
-      this.UpdateForm = this.$inertia.form(
-        {
-          //
-        },
-        {
-          bag: "deleteTask",
-        }
-      );
+    editActivity(activity) {
+      this.$inertia.get(route("activity.edit", activity.access_token), {
+        preserveScroll: true,
+      });
     },
   },
 };

@@ -5,9 +5,6 @@
     <template #workspace_sub_header>
       <jet-workspace-sub-header :project="project" />
     </template>
-    <template #page Modal>
-      <!-- <create-task :users="users" :project="project" /> -->
-    </template>
     <template #board_name>{{ project.name }}</template>
     <template #board_description
       >Date Start : {{ project.date_start }}<br />Deadline:{{
