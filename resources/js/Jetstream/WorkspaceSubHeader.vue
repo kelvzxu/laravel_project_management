@@ -48,6 +48,15 @@
         <i class="fas fa-tags main-icon"></i>Project Tags
       </jet-workspace-button>
     </jet-responsive-nav-link>
+    <jet-responsive-nav-link :href="route('activity.show', project.access_token)">
+      <jet-workspace-button
+        :class="{
+          'workspace floating': route().current('activity.show') == true,
+        }"
+      >
+        <i class="fas fa-calendar-alt main-icon"></i>Schedule Activity
+      </jet-workspace-button>
+    </jet-responsive-nav-link>
     <jet-responsive-nav-link
       :href="route('project.detail', project.access_token)"
       :active="route().current('project.detail')"

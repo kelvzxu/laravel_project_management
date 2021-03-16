@@ -16,6 +16,7 @@ use App\Http\Controllers\ProjectTaskTypeController;
 use App\Http\Controllers\IrAttachmentController;
 use App\Http\Controllers\AccountAnalyticLineController;
 use App\Http\Controllers\ProjectTagController;
+use App\Http\Controllers\MailActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,6 +104,19 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         ->name('tags.update'); 
         Route::delete('/destroy/{tags}', [ProjectTagController::class, 'destroy'])
         ->name('tags.destroy');                      
+    });
+    Route::group(['prefix'=>'project/activity'],function(){
+        Route::get('/{project}', [MailActivityController::class, 'show'])
+        ->name('activity.show');
+        Route::get('/create/{project}', [MailActivityController::class, 'create'])
+        ->name('activity.create'); 
+        Route::post('/store', [MailActivityController::class, 'store'])
+        ->name('activity.store'); 
+        Route::post('/upgrade', [MailActivityController::class, 'update'])
+        ->name('activity.update'); 
+        Route::delete('/destroy/{activity}', [MailActivityController::class, 'destroy'])
+        ->name('activity.destroy');  
+
     });
     Route::group(['prefix'=>'project/accountanalyticline'],function(){ 
         Route::get('/{project}', [PageController::class, 'Timesheet'])
