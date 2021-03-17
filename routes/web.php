@@ -110,6 +110,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         ->name('activity.show');
         Route::get('/create/{project}', [MailActivityController::class, 'create'])
         ->name('activity.create'); 
+        Route::get('/views/{project}', [MailActivityController::class, 'edit'])
+        ->name('activity.edit'); 
         Route::post('/store', [MailActivityController::class, 'store'])
         ->name('activity.store'); 
         Route::post('/upgrade', [MailActivityController::class, 'update'])

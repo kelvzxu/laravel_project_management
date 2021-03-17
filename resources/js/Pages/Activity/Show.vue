@@ -13,12 +13,33 @@
     </template>
     <template #board_subs> Member / {{ team.users.length + 1 }} </template>
     <template #board_button>
-      <jet-wrapper-button @click.native="AddActivity"> Scedule New </jet-wrapper-button>
+      <jet-wrapper-button @click.native="AddActivity">
+        Scedule New
+      </jet-wrapper-button>
     </template>
     <template #board_button_group>
       <jet-board-search
-        ><input placeholder="Search... " value="" style="width: 100%"
+        ><input placeholder="Search... " v-model="search" style="width: 100%"
       /></jet-board-search>
+    </template>
+    <template #board_header_action>
+      <button
+        v-if="pagination.prevPage"
+        @click="--pagination.currentPage"
+        type="button"
+        title="Previous"
+        class="btn btn-secondary pager_previous"
+      >
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button
+        v-if="pagination.nextPage"
+        @click="++pagination.currentPage"
+        type="button"
+        class="btn btn-secondary o_pager_next"
+      >
+        <i class="fa fa-chevron-right"></i>
+      </button>
     </template>
     <template #board_component>
       <table-responsive>
@@ -40,10 +61,14 @@
               style="width: 20px"
               v-if="$page.user.id == project.manager.id"
             ></th>
+            <th
+              style="width: 20px"
+              v-if="$page.user.id == project.manager.id"
+            ></th>
           </tr>
         </template>
         <template #content>
-          <tr class="data_row" v-for="(activity, i) in activities" :key="i">
+          <tr class="data_row" v-for="(activity, i) in DataRow" :key="i">
             <td>
               <span
                 class="row_handle fa fa-arrows ui-sortable-handle o_field_widget"
@@ -51,30 +76,37 @@
               ></span>
             </td>
             <td>
-              <span v-if="UpdateForm.id !== activity.id">{{ activity.name }}</span
-              ><input v-else type="text" class="w-full" v-model="activity.name" />
+              <span>{{ activity.name }}</span>
             </td>
             <td>{{ activity.activity_type }}</td>
             <td>
-              {{ activity.responsible.name}}
+              {{ activity.responsible.name }}
             </td>
             <td>
-              {{ activity.due_date}}
+              {{ activity.due_date }}
+            </td>
+            <td class="text-center" v-if="activity.state == 'draft'">
+              <div
+                v-if="
+                  $page.user.id == project.manager.id ||
+                  $page.user.id == activity.responsible.id
+                "
+                @click="ActionDone(activity)"
+              >
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+              </div>
+            </td>
+            <td class="text-center" v-if="activity.state == 'done'">
+              <span class="badge badge-pill badge-success">Done</span>
             </td>
             <td class="text-center" v-if="$page.user.id == project.manager.id">
-              <div @click="editActivity(activity)" v-if="UpdateForm.id !== activity.id">
+              <div @click="editActivity(activity)">
                 <i class="far fa-edit" aria-hidden="true"></i>
               </div>
-              <div @click="UpdateActivity" v-else>
-                <i class="far fa-save" aria-hidden="true"></i>
-              </div>
             </td>
             <td class="text-center" v-if="$page.user.id == project.manager.id">
-              <div @click="DestroyActivity(activity)" v-if="UpdateForm.id !== activity.id">
+              <div @click="DestroyActivity(activity)">
                 <i class="fa fa-trash" aria-hidden="true"></i>
-              </div>
-              <div @click="Discard" v-else>
-                <i class="fas fa-undo-alt" aria-hidden="true"></i>
               </div>
             </td>
           </tr>
@@ -113,82 +145,116 @@ export default {
     JetWorkspaceSubHeader,
   },
   data() {
+    let sortOrders = {};
     return {
-      FilterDropdown: false,
-      TaskUpdate: this.$inertia.form({
-        id: "",
-        stage_id: "",
-      }),
-      form: this.$inertia.form(
-        {
-          id: "",
-          name: "",
-        },
-        {
-          bag: "deleteTask",
-        }
-      ),
-      UpdateForm: this.$inertia.form(
-        {
-          //
-        },
-        {
-          bag: "deleteTask",
-        }
-      ),
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: "",
+      },
     };
   },
   methods: {
-    AddActivity(){
-      this.$inertia
-        .get(route("activity.create",this.project.access_token), {
-          preserveScroll: true,
-        });
+    paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to =
+        pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage =
+        array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
     },
-    onAdd(event, stage) {
-      this.TaskUpdate.id = event.item.getAttribute("data-id");
-      this.TaskUpdate.stage_id = stage;
-      this.TaskUpdate.post(route("task_stage.update"), {
+    resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
+    },
+    sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
+    },
+    AddActivity() {
+      this.$inertia.get(route("activity.create", this.project.access_token), {
         preserveScroll: true,
       });
     },
-    ViewTask(row) {
-      this.$inertia.visit(route("project_task.view", row.access_token));
+    ActionDone(activity) {
+      console.log("okkk");
+      this.$inertia.post(route("activity.update"), {
+        id: activity.id,
+        name: activity.name,
+        due_date: activity.due_date,
+        state: "done",
+        preserveScroll: true,
+      });
     },
-    FilterData() {
-      if (this.FilterDropdown == false) {
-        this.FilterDropdown = true;
-      } else {
-        this.FilterDropdown = false;
+    DestroyActivity(activity) {
+      this.$inertia.delete(route("activity.destroy", activity), {
+        preserveScroll: true,
+      });
+    },
+    editActivity(activity) {
+      this.$inertia.get(route("activity.edit", activity.access_token), {
+        preserveScroll: true,
+      });
+    },
+  },
+  computed: {
+    filterdata() {
+      this.resetPagination();
+      let value = this.activities;
+      if (this.search) {
+        value = value.filter((row) => {
+          return Object.keys(row).some((key) => {
+            return (
+              String(row[key])
+                .toLowerCase()
+                .indexOf(this.search.toLowerCase()) > -1
+            );
+          });
+        });
       }
-    },
-    DestroyActivity(stage) {
-      this.form.delete(route("Activity.destroy", stage), {
-        preserveScroll: true,
-      });
-    },
-    editActivity(stage) {
-      this.UpdateForm = stage;
-    },
-    UpdateActivity() {
-      this.$inertia
-        .post(route("Activity.update"), {
-          id: this.UpdateForm.id,
-          name: this.UpdateForm.name,
-          preserveScroll: true,
-        })
-        .then((response) => {
-          this.Discard();
+      let sortKey = this.sortKey;
+      let order = this.sortOrders[sortKey] || 1;
+      if (sortKey) {
+        value = value.slice().sort((a, b) => {
+          let index = this.getIndex(this.columns, "name", sortKey);
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+          if (this.columns[index].type && this.columns[index].type === "date") {
+            return (
+              (a === b
+                ? 0
+                : new Date(a).getTime() > new Date(b).getTime()
+                ? 1
+                : -1) * order
+            );
+          } else if (
+            this.columns[index].type &&
+            this.columns[index].type === "number"
+          ) {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
         });
+      }
+      return value;
     },
-    Discard() {
-      this.UpdateForm = this.$inertia.form(
-        {
-          //
-        },
-        {
-          bag: "deleteTask",
-        }
+    DataRow() {
+      return this.paginate(
+        this.filterdata,
+        this.length,
+        this.pagination.currentPage
       );
     },
   },

@@ -259,32 +259,32 @@
           </template>
           <template #board_button_group>
             <jet-board-search
-              ><input placeholder="Search" value=""
+              ><input
+                placeholder="Search... "
+                v-model="search"
+                style="width: 100%"
             /></jet-board-search>
             <jet-board-filter-dropdown @click.native="FilterData" />
             <jet-board-sorting />
           </template>
           <template #board_header_action>
-            <div class="board-header-view-actions">
-              <div class="board-filter-item-component active">
-                <div class="board-filter-item-content-wrapper">
-                  <div
-                    class="board-filter-item-content without-additional-data"
-                  >
-                    <i class="item-icon fa fa-lg fa-th-large"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="board-filter-item-component">
-                <div class="board-filter-item-content-wrapper">
-                  <div
-                    class="board-filter-item-content without-additional-data"
-                  >
-                    <i class="item-icon fa fa-lg fa-list-ul"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <button
+              v-if="pagination.prevPage"
+              @click="--pagination.currentPage"
+              type="button"
+              title="Previous"
+              class="btn btn-secondary pager_previous"
+            >
+              <i class="fa fa-chevron-left"></i>
+            </button>
+            <button
+              v-if="pagination.nextPage"
+              @click="++pagination.currentPage"
+              type="button"
+              class="btn btn-secondary o_pager_next"
+            >
+              <i class="fa fa-chevron-right"></i>
+            </button>
           </template>
           <template #dialog_node>
             <jet-board-dropdown v-if="FilterDropdown">
@@ -337,7 +337,7 @@
           <template #board_component>
             <kanban-area>
               <kanban-box
-                v-for="project in projects"
+                v-for="project in DataRow"
                 :key="project.access_token"
                 @click.native="viewProject(project)"
               >
@@ -350,7 +350,10 @@
                   ></template
                 >
               </kanban-box>
-              <kanban-ghost v-for="n in 75" :key="n"></kanban-ghost>
+              <kanban-ghost
+                v-for="n in 80 - DataRow.length"
+                :key="n"
+              ></kanban-ghost>
             </kanban-area>
           </template>
         </jet-content-wrapper>
@@ -409,7 +412,21 @@ export default {
     JetActionMessage,
   },
   data() {
+    let sortOrders = {};
     return {
+      // search and Paginate
+      sortKey: "",
+      sortOrders: sortOrders,
+      search: "",
+      length: 30,
+      pagination: {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: "",
+      },
       InviteModal: false,
       SidebarSecondary: false,
       ExpanceControl: true,
@@ -445,6 +462,25 @@ export default {
     };
   },
   methods: {
+    paginate(array, length, pageNumber) {
+      this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
+      this.pagination.to =
+        pageNumber * length > array.length ? array.length : pageNumber * length;
+      this.pagination.prevPage = pageNumber > 1 ? pageNumber : "";
+      this.pagination.nextPage =
+        array.length > this.pagination.to ? pageNumber + 1 : "";
+      return array.slice((pageNumber - 1) * length, pageNumber * length);
+    },
+    resetPagination() {
+      this.pagination.currentPage = 1;
+      this.pagination.prevPage = "";
+      this.pagination.nextPage = "";
+    },
+    sortBy(key) {
+      this.resetPagination();
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
+    },
     InviteNewUser() {
       this.addTeamMemberForm.email = "";
 
@@ -495,6 +531,56 @@ export default {
     },
     viewProject(row) {
       this.$inertia.visit(route("project.show", row.access_token));
+    },
+  },
+  computed: {
+    filterdata() {
+      this.resetPagination();
+      let value = this.projects;
+      if (this.search) {
+        value = value.filter((row) => {
+          return Object.keys(row).some((key) => {
+            return (
+              String(row[key])
+                .toLowerCase()
+                .indexOf(this.search.toLowerCase()) > -1
+            );
+          });
+        });
+      }
+      let sortKey = this.sortKey;
+      let order = this.sortOrders[sortKey] || 1;
+      if (sortKey) {
+        value = value.slice().sort((a, b) => {
+          let index = this.getIndex(this.columns, "name", sortKey);
+          a = String(a[sortKey]).toLowerCase();
+          b = String(b[sortKey]).toLowerCase();
+          if (this.columns[index].type && this.columns[index].type === "date") {
+            return (
+              (a === b
+                ? 0
+                : new Date(a).getTime() > new Date(b).getTime()
+                ? 1
+                : -1) * order
+            );
+          } else if (
+            this.columns[index].type &&
+            this.columns[index].type === "number"
+          ) {
+            return (+a === +b ? 0 : +a > +b ? 1 : -1) * order;
+          } else {
+            return (a === b ? 0 : a > b ? 1 : -1) * order;
+          }
+        });
+      }
+      return value;
+    },
+    DataRow() {
+      return this.paginate(
+        this.filterdata,
+        this.length,
+        this.pagination.currentPage
+      );
     },
   },
 };

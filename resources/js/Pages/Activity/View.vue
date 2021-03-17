@@ -3,7 +3,26 @@
     <template #workspace_icon>{{ activity.name[0] }}</template>
     <template #workspace_name>{{ activity.name }}</template>
     <template #workspace_sub_header>
-      <jet-workspace-sub-header :project="project" />
+      <div class="home-workspace-items-content-sub-header-wrapper">
+        <jet-workspace-button
+          v-if="FormType == 'view'"
+          @click.native="EditForms"
+        >
+          <i class="far fa-edit main-icon"></i>Edit Project
+        </jet-workspace-button>
+        <jet-workspace-button
+          v-if="FormType == 'edit'"
+          @click.native="UpdateForms"
+        >
+          <i class="far fa-save main-icon"></i>Save Change
+        </jet-workspace-button>
+        <jet-workspace-button @click.native="DestroyActivity">
+          <i class="far fa-trash-alt main-icon"></i>Delete Activity
+        </jet-workspace-button>
+        <jet-workspace-button @click.native="BackMethods">
+          <i class="fas fa-undo-alt main-icon"></i>Back
+        </jet-workspace-button>
+      </div>
     </template>
     <template #board_name>{{ activity.name }}</template>
     <template #board_description><b>Project Activity</b></template>
@@ -34,8 +53,12 @@
                       type="text"
                       class="mt-1 block w-full"
                       v-model="form.name"
+                      :disabled="FormType == 'view'"
                     />
-                    <jet-input-error :message="$page.errors.name" class="mt-2" />
+                    <jet-input-error
+                      :message="$page.errors.name"
+                      class="mt-2"
+                    />
                   </div>
                 </td>
               </tr>
@@ -51,16 +74,20 @@
                 </td>
                 <td style="width: 100%">
                   <div class="o_input_dropdown">
-                     <select v-model="form.activity_type" class="mt-1 block w-full">
-                    <option
-                      v-for="row in activity_types"
-                      :select="row.id == form.activity_type"
-                      :key="row.id"
-                      :value="row.id"
+                    <select
+                      v-model="form.activity_type"
+                      class="mt-1 block w-full"
+                      :disabled="FormType == 'view'"
                     >
-                      {{ row.name }}
-                    </option>
-                  </select>
+                      <option
+                        v-for="row in activity_types"
+                        :select="row.id == form.activity_type"
+                        :key="row.id"
+                        :value="row.id"
+                      >
+                        {{ row.name }}
+                      </option>
+                    </select>
                   </div>
                 </td>
               </tr>
@@ -85,8 +112,12 @@
                       type="date"
                       class="mt-1 block w-full"
                       v-model="form.due_date"
+                      :disabled="FormType == 'view'"
                     />
-                    <jet-input-error :message="$page.errors.due_date" class="mt-2" />
+                    <jet-input-error
+                      :message="$page.errors.due_date"
+                      class="mt-2"
+                    />
                   </div>
                 </td>
               </tr>
@@ -101,21 +132,25 @@
                   >
                 </td>
                 <td style="width: 100%">
-                  <select v-model="form.user_id" class="mt-1 block w-full">
+                  <select
+                    v-model="form.user_id"
+                    class="mt-1 block w-full"
+                    :disabled="FormType == 'view'"
+                  >
                     <option
-                :select="team.owner.id == form.user_id"
-                :value="team.owner.id"
-              >
-                {{ team.owner.name }}
-              </option>
-              <option
-                v-for="row in team.users"
-                :select="row.id == form.user_id"
-                :key="row.id"
-                :value="row.id"
-              >
-                {{ row.name }}
-              </option>
+                      :select="team.owner.id == form.user_id"
+                      :value="team.owner.id"
+                    >
+                      {{ team.owner.name }}
+                    </option>
+                    <option
+                      v-for="row in team.users"
+                      :select="row.id == form.user_id"
+                      :key="row.id"
+                      :value="row.id"
+                    >
+                      {{ row.name }}
+                    </option>
                   </select>
                 </td>
               </tr>
@@ -137,12 +172,13 @@
             </ul>
           </div>
           <div class="tab-content">
-            <div
-              class="tab-pane active"
-              id="notebook_page_team"
-            >
+            <div class="tab-pane active" id="notebook_page_team">
               <div class="col-12">
+                <div v-if="FormType == 'view'" class="container mt-1">
+                  <span v-html="form.note"></span>
+                </div>
                 <vue-editor
+                  v-if="FormType == 'edit'"
                   v-model="form.note"
                 ></vue-editor>
               </div>
@@ -163,6 +199,7 @@ import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
 import JetWorkspaceSubHeader from "@/Jetstream/WorkspaceSubHeader";
 import JetWrapperButton from "@/Jetstream/WrapperButton";
+import JetWorkspaceButton from "@/Jetstream/WorkspaceButton";
 // List Component
 import TableResponsive from "@/Jetstream/TableResponsive";
 // form
@@ -192,6 +229,10 @@ export default {
     JetSuccessButton,
     JetSecondaryButton,
     VueEditor,
+    JetWorkspaceButton,
+  },
+  created() {
+    console.log(this);
   },
   data() {
     let activity_type = [
@@ -204,9 +245,10 @@ export default {
       { id: "Exeption", name: "Exeption" },
     ];
 
-    return { 
+    return {
+      FormType: "view",
       activity_types: activity_type,
-      FilterDropdown: false,
+      ProjectToken: this.activity.project.access_token,
       form: this.$inertia.form(
         {
           id: this.activity.id,
@@ -214,7 +256,7 @@ export default {
           activity_type: this.activity.activity_type,
           due_date: this.activity.due_date,
           user_id: this.activity.responsible.id,
-          note:this.activity.note,
+          note: this.activity.note,
         },
         {
           bag: "UpdateActivity",
@@ -223,65 +265,27 @@ export default {
     };
   },
   methods: {
-    StoreActivity(){
+    EditForms() {
+      this.FormType = "edit";
+    },
+    UpdateForms() {
       this.form
-        .post(route("activity.store"), {
+        .post(route("activity.update"), {
           preserveScroll: true,
         })
         .then((response) => {
           if (Object.keys(this.$page.errors).length === 0) {
-            this.$inertia
-              .get(route("activity.show",this.project.access_token), {
-                preserveScroll: true,
-              });
+            this.Discard();
           }
         });
     },
-    onAdd(event, stage) {
-      this.TaskUpdate.id = event.item.getAttribute("data-id");
-      this.TaskUpdate.stage_id = stage;
-      this.TaskUpdate.post(route("task_stage.update"), {
+    DestroyActivity() {
+      this.form.delete(route("activity.destroy", this.activity), {
         preserveScroll: true,
       });
-    },
-    ViewTask(row) {
-      this.$inertia.visit(route("project_task.view", row.access_token));
-    },
-    FilterData() {
-      if (this.FilterDropdown == false) {
-        this.FilterDropdown = true;
-      } else {
-        this.FilterDropdown = false;
-      }
-    },
-    DestroyActivity(stage) {
-      this.form.delete(route("Activity.destroy", stage), {
-        preserveScroll: true,
-      });
-    },
-    editActivity(stage) {
-      this.UpdateForm = stage;
-    },
-    UpdateActivity() {
-      this.$inertia
-        .post(route("Activity.update"), {
-          id: this.UpdateForm.id,
-          name: this.UpdateForm.name,
-          preserveScroll: true,
-        })
-        .then((response) => {
-          this.Discard();
-        });
     },
     Discard() {
-      this.UpdateForm = this.$inertia.form(
-        {
-          //
-        },
-        {
-          bag: "deleteTask",
-        }
-      );
+      this.$inertia.visit(route("activity.show", this.ProjectToken));
     },
   },
 };

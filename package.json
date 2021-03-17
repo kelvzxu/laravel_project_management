@@ -38,6 +38,7 @@
         "moment": "^2.29.1",
         "vue-chartjs": "^3.5.1",
         "vue2-editor": "^2.10.2",
-        "vuedraggable": "^2.24.3"
+        "vuedraggable": "^2.24.3",
+        "vuejs-progress-bar": "^1.2.4"
     }
 }

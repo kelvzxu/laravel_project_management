@@ -13,12 +13,9 @@
     </template>
     <template #board_subs> Member / {{ team.users.length + 1 }} </template>
     <template #board_button>
-      <jet-wrapper-button @click.native="StoreActivity"> Scedule New </jet-wrapper-button>
-    </template>
-    <template #board_button_group>
-      <jet-board-search
-        ><input placeholder="Search... " value="" style="width: 100%"
-      /></jet-board-search>
+      <jet-wrapper-button @click.native="StoreActivity">
+        Save
+      </jet-wrapper-button>
     </template>
     <template #board_component>
       <div class="container">
@@ -43,7 +40,10 @@
                       class="mt-1 block w-full"
                       v-model="form.name"
                     />
-                    <jet-input-error :message="$page.errors.name" class="mt-2" />
+                    <jet-input-error
+                      :message="$page.errors.name"
+                      class="mt-2"
+                    />
                   </div>
                 </td>
               </tr>
@@ -59,16 +59,19 @@
                 </td>
                 <td style="width: 100%">
                   <div class="o_input_dropdown">
-                     <select v-model="form.activity_type" class="mt-1 block w-full">
-                    <option
-                      v-for="row in activity_types"
-                      :select="row.id == form.activity_type"
-                      :key="row.id"
-                      :value="row.id"
+                    <select
+                      v-model="form.activity_type"
+                      class="mt-1 block w-full"
                     >
-                      {{ row.name }}
-                    </option>
-                  </select>
+                      <option
+                        v-for="row in activity_types"
+                        :select="row.id == form.activity_type"
+                        :key="row.id"
+                        :value="row.id"
+                      >
+                        {{ row.name }}
+                      </option>
+                    </select>
                   </div>
                 </td>
               </tr>
@@ -94,7 +97,10 @@
                       class="mt-1 block w-full"
                       v-model="form.due_date"
                     />
-                    <jet-input-error :message="$page.errors.due_date" class="mt-2" />
+                    <jet-input-error
+                      :message="$page.errors.due_date"
+                      class="mt-2"
+                    />
                   </div>
                 </td>
               </tr>
@@ -111,19 +117,19 @@
                 <td style="width: 100%">
                   <select v-model="form.user_id" class="mt-1 block w-full">
                     <option
-                :select="team.owner.id == form.user_id"
-                :value="team.owner.id"
-              >
-                {{ team.owner.name }}
-              </option>
-              <option
-                v-for="row in team.users"
-                :select="row.id == form.user_id"
-                :key="row.id"
-                :value="row.id"
-              >
-                {{ row.name }}
-              </option>
+                      :select="team.owner.id == form.user_id"
+                      :value="team.owner.id"
+                    >
+                      {{ team.owner.name }}
+                    </option>
+                    <option
+                      v-for="row in team.users"
+                      :select="row.id == form.user_id"
+                      :key="row.id"
+                      :value="row.id"
+                    >
+                      {{ row.name }}
+                    </option>
                   </select>
                 </td>
               </tr>
@@ -145,14 +151,9 @@
             </ul>
           </div>
           <div class="tab-content">
-            <div
-              class="tab-pane active"
-              id="notebook_page_team"
-            >
+            <div class="tab-pane active" id="notebook_page_team">
               <div class="col-12">
-                <vue-editor
-                  v-model="form.note"
-                ></vue-editor>
+                <vue-editor v-model="form.note"></vue-editor>
               </div>
             </div>
           </div>
@@ -212,7 +213,7 @@ export default {
       { id: "Exeption", name: "Exeption" },
     ];
 
-    return { 
+    return {
       activity_types: activity_type,
       FilterDropdown: false,
       form: this.$inertia.form(
@@ -223,9 +224,9 @@ export default {
           due_date: "",
           user_id: this.users.id,
           project_id: this.project.id,
-          note:"",
-          create_uid:this.users.id,
-          write_uid:this.users.id,
+          note: "",
+          create_uid: this.users.id,
+          write_uid: this.users.id,
         },
         {
           bag: "CreateActivity",
@@ -234,17 +235,19 @@ export default {
     };
   },
   methods: {
-    StoreActivity(){
+    StoreActivity() {
       this.form
         .post(route("activity.store"), {
           preserveScroll: true,
         })
         .then((response) => {
           if (Object.keys(this.$page.errors).length === 0) {
-            this.$inertia
-              .get(route("activity.show",this.project.access_token), {
+            this.$inertia.get(
+              route("activity.show", this.project.access_token),
+              {
                 preserveScroll: true,
-              });
+              }
+            );
           }
         });
     },

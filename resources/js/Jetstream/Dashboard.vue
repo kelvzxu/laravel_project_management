@@ -28,6 +28,9 @@
           <template #board_button_group>
             <slot name="board_button_group" />
           </template>
+          <template #board_header_action>
+            <slot name="board_header_action" />
+          </template>
           <template #board_component>
             <slot name="board_component" />
           </template>

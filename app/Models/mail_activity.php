@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 // Dependencies Models
 use App\Models\user;
+use App\Models\Project;
 
 class mail_activity extends Model
 {
@@ -26,5 +27,9 @@ class mail_activity extends Model
 
     public function responsible(){
         return $this->hasOne(User::class,'id','user_id');
+    }
+
+    public function project(){
+        return $this->hasOne(Project::class,'id','project_id');
     }
 }

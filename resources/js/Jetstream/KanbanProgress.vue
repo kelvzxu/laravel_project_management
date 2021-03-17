@@ -39,39 +39,6 @@
             role="progressbar"
             style=""
           ></div>
-
-          <div
-            class="progress-bar bg-danger-full"
-            data-filter="blocked"
-            data-original-title="0 Blocked"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="0"
-            role="progressbar"
-            style=""
-          ></div>
-
-          <div
-            class="progress-bar bg-muted-full progress-bar-animated progress-bar-striped o_bar_has_records"
-            data-filter="normal"
-            data-original-title="1 In Progress"
-            aria-valuemin="0"
-            aria-valuemax="1"
-            aria-valuenow="1"
-            role="progressbar"
-            style="width: 100%; max-width: 100%; min-width: 6%"
-          ></div>
-
-          <div
-            class="progress-bar bg-muted-full"
-            data-filter="__false"
-            data-original-title="0 Other"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="0"
-            role="progressbar"
-            style=""
-          ></div>
         </div>
         <div class="o_kanban_counter_side">
           <b><slot name="counter" /></b>
