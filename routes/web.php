@@ -148,6 +148,10 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         Route::delete('/destroy/{stage}', [ProjectTaskTypeController::class, 'destroy'])
                                 ->name('stage.destroy');
     });
+    Route::group(['prefix'=>'project/Report'],function(){ 
+        Route::get('/{project}/TaskAnalysisReport', [ReportController::class, 'TaskAnalysisReport'])
+                                ->name('report.task_analysis');
+    });
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/search/{user}', [PageController::class, 'Search'])
                         ->name('user.search');

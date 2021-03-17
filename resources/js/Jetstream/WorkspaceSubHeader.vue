@@ -23,8 +23,8 @@
       </jet-workspace-button>
     </jet-responsive-nav-link>
     <jet-responsive-nav-link
-      :href="route('project.show', project.access_token)"
-      :active="route().current('project.show')"
+      :href="route('project.report', project.access_token)"
+      :active="route().current('project.report')"
     >
       <jet-workspace-button>
         <i class="fas fa-file-chart-line main-icon"></i>Project Report

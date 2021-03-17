@@ -75208,8 +75208,8 @@ var render = function() {
         "jet-responsive-nav-link",
         {
           attrs: {
-            href: _vm.route("project.show", _vm.project.access_token),
-            active: _vm.route().current("project.show")
+            href: _vm.route("project.report", _vm.project.access_token),
+            active: _vm.route().current("project.report")
           }
         },
         [
@@ -110033,6 +110033,8 @@ var map = {
 	"./Public/PublicView.vue": "./resources/js/Pages/Public/PublicView.vue",
 	"./Public/Team": "./resources/js/Pages/Public/Team.vue",
 	"./Public/Team.vue": "./resources/js/Pages/Public/Team.vue",
+	"./Report/TaskAnlysis": "./resources/js/Pages/Report/TaskAnlysis.vue",
+	"./Report/TaskAnlysis.vue": "./resources/js/Pages/Report/TaskAnlysis.vue",
 	"./Search/Search": "./resources/js/Pages/Search/Search.vue",
 	"./Search/Search.vue": "./resources/js/Pages/Search/Search.vue",
 	"./Stage/CreateStage": "./resources/js/Pages/Stage/CreateStage.vue",
@@ -111470,6 +111472,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Team_vue_vue_type_template_id_75b5446c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Report/TaskAnlysis.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Report/TaskAnlysis.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/Pages/Report/TaskAnlysis.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
