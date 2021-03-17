@@ -17,6 +17,7 @@ use App\Http\Controllers\IrAttachmentController;
 use App\Http\Controllers\AccountAnalyticLineController;
 use App\Http\Controllers\ProjectTagController;
 use App\Http\Controllers\MailActivityController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,7 +153,7 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
     });
     Route::group(['prefix'=>'project/Report'],function(){ 
         Route::get('/{project}/TaskAnalysisReport', [ReportController::class, 'TaskAnalysisReport'])
-                                ->name('report.task_analysis');
+                                ->name('project.report');
     });
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/search/{user}', [PageController::class, 'Search'])
