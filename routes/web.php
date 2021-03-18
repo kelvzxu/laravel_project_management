@@ -158,8 +158,10 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
     Route::group(['prefix'=>'project/Report'],function(){ 
         Route::get('/{project}/overview', [ReportController::class, 'OverviewReport'])
                                 ->name('report.overview');
-        Route::get('/{project}/TaskAnalysisReport', [ReportController::class, 'TaskAnalysisReport'])
+        Route::get('/{project}/Task/AnalysisReport', [ReportController::class, 'TaskAnalysisReport'])
                                 ->name('report.task_analysis');
+        Route::get('/{project}/PlanningTimesheet/AnalysisReport', [ReportController::class, 'TimesheetPlanningAnalysisReport'])
+                                ->name('report.planning_analysis');
     });
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/search/{user}', [PageController::class, 'Search'])

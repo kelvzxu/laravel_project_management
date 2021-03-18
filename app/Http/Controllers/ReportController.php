@@ -39,4 +39,17 @@ class ReportController extends Controller
             'task_analysis' => $responsible
         ]);
     }
+    public function TimesheetPlanningAnalysisReport(Request $request,$token)
+    {
+        $project = app(ProjectController::class)->getProjectDetail($token);
+        $team = app(InheritTeamController::class)->getTeam($project->team_id);
+        
+        $responsible = app(ProjectController::class)->getParticipants($project->id);
+
+        return Jetstream::inertia()->render($request, 'Report/TaskAnalysis', [
+            'project' =>$project,
+            'team' =>$team->load('owner', 'users'),
+            'task_analysis' => $responsible
+        ]);
+    }
 }

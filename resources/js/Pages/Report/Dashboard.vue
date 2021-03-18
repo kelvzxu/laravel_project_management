@@ -28,11 +28,12 @@
           </jet-workspace-button>
         </jet-responsive-nav-link>
         <jet-responsive-nav-link
-          :href="route('report.overview', project.access_token)"
+          :href="route('report.planning_analysis', project.access_token)"
         >
           <jet-workspace-button
             :class="{
-              'workspace floating': route().current('report.overview') == true,
+              'workspace floating':
+                route().current('report.planning_analysis') == true,
             }"
           >
             <i class="fas fa-chart-line main-icon"></i>Timesheet and Planning
