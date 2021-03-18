@@ -21,13 +21,11 @@ class ReportController extends Controller
         $team = app(InheritTeamController::class)->getTeam($project->team_id);
         
         $responsible = app(ProjectController::class)->getParticipants($project->id);
-        // $sales = sales_order::select(DB::raw('date(created_at) as date,sum(grand_total) as total'))
-        // ->where('created_at', 'LIKE', '%' . $filter . '%')
-        // ->groupBy(DB::raw('date(created_at)'))->get();
-        // echo $responsible;
-        // return Jetstream::inertia()->render($request, 'Report/TaskAnalysis', [
-        //     'project' =>$project,
-        //     'team' =>$team->load('owner', 'users'),
-        // ]);
+
+        return Jetstream::inertia()->render($request, 'Report/TaskAnalysis', [
+            'project' =>$project,
+            'team' =>$team->load('owner', 'users'),
+            'task_analysis' => $responsible
+        ]);
     }
 }

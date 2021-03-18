@@ -11,6 +11,8 @@ use Inertia\Inertia;
 use Laravel\Jetstream\Jetstream;
 use App\Models\Project;
 use App\Models\ProjectUser;
+use App\Models\ProjectTask;
+use DB;
 
 class ProjectController extends Controller
 {
@@ -92,7 +94,18 @@ class ProjectController extends Controller
     }
 
     public function getParticipants($projectId){
-        $result = ProjectUser::where('project_id',$projectId)->get();
-        return $result;
+        $result = ProjectUser::with('user','project')->addSelect(['task' => ProjectTask::select(DB::raw("COUNT(*)"))
+            ->whereColumn('project_id', 'project_users.project_id')
+            ->whereColumn('user_id','=','project_users.user_id')
+            ->limit(1)])->where('project_id',$projectId)->get();
+        $data = [];
+        foreach ($result as $participant){
+            $data[] = [
+                'name' => $participant->user->name,
+                'project'=> $participant->project->name,
+                'task' => $participant->task,
+            ];
+        }
+        return $data;
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Models\User;
 use App\Models\Team;
-use DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->email,
                 'email_verified_at' => now(),
-                'password' => sha1($faker->password),
+                'password' => Hash::make('demo123456'),
                 'job_title' => $faker->jobTitle,
                 'show_public_email' => $faker->numberBetween(0,1),
                 'website_url' => $faker->url,
@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
     			'name' => $faker->name,
                 'email' => $faker->email,
                 'email_verified_at' => now(),
-                'password' => sha1($faker->password),
+                'password' => Hash::make('demo123456'),
     			'job_title' => $faker->jobTitle,
     			'show_public_email' => $faker->numberBetween(0,1),
     			'website_url' => $faker->url,
@@ -86,7 +86,7 @@ class UserSeeder extends Seeder
     			'name' => $faker->name,
                 'email' => $faker->email,
                 'email_verified_at' => now(),
-                'password' => sha1($faker->password),
+                'password' => Hash::make('demo123456'),
     			'job_title' => $faker->jobTitle,
     			'show_public_email' => $faker->numberBetween(0,1),
     			'website_url' => $faker->url,
@@ -110,7 +110,7 @@ class UserSeeder extends Seeder
     			'name' => $faker->name,
                 'email' => $faker->email,
                 'email_verified_at' => now(),
-                'password' => sha1($faker->password),
+                'password' => Hash::make('demo123456'),
     			'job_title' => $faker->jobTitle,
     			'show_public_email' => $faker->numberBetween(0,1),
     			'website_url' => $faker->url,
@@ -133,7 +133,7 @@ class UserSeeder extends Seeder
     			'name' => $faker->name,
                 'email' => $faker->email,
                 'email_verified_at' => now(),
-                'password' => sha1($faker->password),
+                'password' => Hash::make('demo123456'),
     			'job_title' => $faker->jobTitle,
     			'show_public_email' => $faker->numberBetween(0,1),
     			'website_url' => $faker->url,
