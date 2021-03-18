@@ -34,6 +34,7 @@ class CreateProjectsTable extends Migration
             $table->string('rating_status_period')->nullable();
             $table->boolean('allow_timesheets')->nullable();
             $table->boolean('allow_timesheet_timer')->nullable();
+            $table->float('cost_hours')->default(0);
             $table->foreignId('create_uid')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('write_uid')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

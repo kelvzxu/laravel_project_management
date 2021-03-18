@@ -83,6 +83,10 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         ->name('project.store');
         Route::post('/update', [ProjectController::class, 'update'])
         ->name('project.update');   
+        Route::post('/AddParicipants/{project}', [ProjectController::class, 'StoreProjectUsers'])
+        ->name('project.newuser'); 
+        Route::delete('/destroy/{project}', [ProjectController::class, 'destroyParticipants'])
+        ->name('project_user.destroy');    
     });
     Route::group(['prefix'=>'project/task'],function(){  
         Route::get('/{project}', [ProjectTaskController::class, 'getTaskProject'])

@@ -530,7 +530,12 @@ export default {
       }
     },
     viewProject(row) {
-      this.$inertia.visit(route("project.show", row.access_token));
+      if (row.user){
+        this.$inertia.visit(route("project.show", row.access_token));
+      }
+      else{
+        alert('Access Denied')
+      }
     },
   },
   computed: {
