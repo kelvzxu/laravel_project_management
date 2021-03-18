@@ -156,8 +156,10 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                                 ->name('stage.destroy');
     });
     Route::group(['prefix'=>'project/Report'],function(){ 
+        Route::get('/{project}/overview', [ReportController::class, 'OverviewReport'])
+                                ->name('report.overview');
         Route::get('/{project}/TaskAnalysisReport', [ReportController::class, 'TaskAnalysisReport'])
-                                ->name('project.report');
+                                ->name('report.task_analysis');
     });
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/search/{user}', [PageController::class, 'Search'])

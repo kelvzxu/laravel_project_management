@@ -15,6 +15,17 @@ use App\Http\Controllers\ProjectTaskController;
 
 class ReportController extends Controller
 {
+    public function OverviewReport(Request $request,$token)
+    {
+        $project = app(ProjectController::class)->getProjectDetail($token);
+        $team = app(InheritTeamController::class)->getTeam($project->team_id);
+        
+
+        return Jetstream::inertia()->render($request, 'Report/Overview', [
+            'project' =>$project,
+            'team' =>$team->load('owner', 'users'),
+        ]);
+    }
     public function TaskAnalysisReport(Request $request,$token)
     {
         $project = app(ProjectController::class)->getProjectDetail($token);

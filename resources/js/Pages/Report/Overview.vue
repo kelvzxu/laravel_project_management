@@ -1,6 +1,6 @@
 <template>
   <jet-dashboard :team="team" :project="project">
-    <template #report_name>Task Analysis</template>
+    <template #report_name>Report Overview</template>
     <template #project_name>{{ project.name }}</template>
     <template #report> </template>
   </jet-dashboard>
@@ -15,15 +15,6 @@ export default {
 
   components: {
     JetDashboard,
-  },
-  data() {
-    return {
-      datacollection: null,
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-      },
-    };
   },
 };
 </script>

@@ -5,44 +5,45 @@
     <template #workspace_sub_header>
       <div class="home-workspace-items-content-sub-header-wrapper">
         <jet-responsive-nav-link
-          :href="route('project.report', project.access_token)"
+          :href="route('report.overview', project.access_token)"
         >
           <jet-workspace-button
             :class="{
-              'workspace floating': route().current('project.report') == true,
+              'workspace floating': route().current('report.overview') == true,
             }"
           >
             <i class="fa fa-puzzle-piece main-icon"></i>Overview
           </jet-workspace-button>
         </jet-responsive-nav-link>
         <jet-responsive-nav-link
-          :href="route('project.report', project.access_token)"
+          :href="route('report.task_analysis', project.access_token)"
         >
           <jet-workspace-button
             :class="{
-              'workspace floating': route().current('project.report') == true,
+              'workspace floating':
+                route().current('report.task_analysis') == true,
             }"
           >
             <i class="fad fa-analytics main-icon"></i>Task Analysis
           </jet-workspace-button>
         </jet-responsive-nav-link>
         <jet-responsive-nav-link
-          :href="route('project.report', project.access_token)"
+          :href="route('report.overview', project.access_token)"
         >
           <jet-workspace-button
             :class="{
-              'workspace floating': route().current('project.report') == true,
+              'workspace floating': route().current('report.overview') == true,
             }"
           >
             <i class="fas fa-chart-line main-icon"></i>Timesheet and Planning
           </jet-workspace-button>
         </jet-responsive-nav-link>
         <jet-responsive-nav-link
-          :href="route('project.report', project.access_token)"
+          :href="route('report.overview', project.access_token)"
         >
           <jet-workspace-button
             :class="{
-              'workspace floating': route().current('project.report') == true,
+              'workspace floating': route().current('report.overview') == true,
             }"
           >
             <i class="fas fa-dollar-sign main-icon"></i>Cost and Revenues
