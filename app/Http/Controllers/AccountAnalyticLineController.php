@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\AccountAnalyticLine;
 use App\Http\Controllers\ProjectTaskController;
 use App\Models\Project;
+use DB;
 
 class AccountAnalyticLineController extends Controller
 {
@@ -74,5 +75,10 @@ class AccountAnalyticLineController extends Controller
         }catch(\Exception $e){
             return abort(500);
         }
+    }
+    public function getTimesheetAnalysis($ProjectId){
+        $query = "to_char(date(date),'YYYY-MM') as Month, sum(unit_amount) as time";
+        $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(date),'YYYY-MM')"))->get();
+        return $result;
     }
 }

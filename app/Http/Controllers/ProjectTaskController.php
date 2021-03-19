@@ -10,6 +10,7 @@ use Laravel\Jetstream\Jetstream;
 use App\Http\Controllers\Auth\UsersController;
 // Dependencies Models
 use App\Models\ProjectTask;
+use DB;
 
 class ProjectTaskController extends Controller
 {
@@ -98,5 +99,11 @@ class ProjectTaskController extends Controller
     public function computePercentace($part,$total){
         $percentace = round($part/$total * 100);
         return $percentace;
+    }
+
+    public function getPlannedAnalysis($ProjectId){
+        $query = "to_char(date(created_at),'YYYY-MM') as Month, sum(planned_hours) as time";
+        $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(created_at),'YYYY-MM')"))->get();
+        return $result;
     }
 }

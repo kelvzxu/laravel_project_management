@@ -15,7 +15,7 @@ import JetDashboard from "./Dashboard";
 import JetLineChart from "@/Graphic/LineChart";
 
 export default {
-  props: ["project", "team", "task_analysis"],
+  props: ["project", "team", "analysis"],
 
   components: {
     JetDashboard,
@@ -36,18 +36,31 @@ export default {
   methods: {
     fillData() {
       this.datacollection = {
-        labels: ["Odoo 14"],
-        datasets: [],
+        labels: [],
+        datasets: [{
+          label: "Planned",
+          backgroundColor: "#" + ((Math.random() * 0xffffff) << 0).toString(16),
+          data: [],
+        },
+        {
+          label: "Timesheet",
+          backgroundColor: "#" + ((Math.random() * 0xffffff) << 0).toString(16),
+          data: [],
+        },
+        ],
       };
-      let data = this.task_analysis;
+      let data = this.analysis;
       let i;
       for (i in data) {
-        console.log(data[i].name);
-        this.datacollection.datasets.push({
-          label: data[i].name,
-          backgroundColor: "#" + ((Math.random() * 0xffffff) << 0).toString(16),
-          data: [data[i].task],
-        });
+        this.datacollection.labels.push(
+          data[i].month,
+        )
+        this.datacollection.datasets[0].data.push(
+          data[i].planned,
+        )
+        this.datacollection.datasets[1].data.push(
+          data[i].timesheet,
+        )
       }
     },
     increase() {
