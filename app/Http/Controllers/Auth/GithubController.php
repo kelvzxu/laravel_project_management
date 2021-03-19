@@ -36,6 +36,7 @@ class GithubController extends Controller
                     'name' => $user['name'],
                     'email' => $user['email'],
                     'github_id'=> $user['id'],
+                    'email_verified_at' =>date("Y-m-d h:i:s"),
                     'password' => encrypt('123456dummy'),
                     'website_url' => $user['blog'],
                     'location' => $user['location'],

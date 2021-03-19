@@ -28,7 +28,7 @@ class CreateProjectTasksTable extends Migration
             $table->timestamp('date_assign')->nullable();
             $table->timestamp('date_last_stage_update')->nullable();
             $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade');
-            $table->float('planned_hours')->nullable();
+            $table->float('planned_hours')->default(0);
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
             $table->foreignId('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->string('color')->nullable();

@@ -33,6 +33,9 @@
     <template #board_subs_images>
       <img :src="project.manager.profile_photo_url" class="inner-image" />
     </template>
+    <template #board_button>
+      <add-participants :users="users" :project="project" :team="team" />
+    </template>
     <template #board_subs> Member / {{ team.users.length + 1 }} </template>
     <template #board_component>
       <div class="o_not_full oe_button_box">
@@ -118,6 +121,17 @@
                   data-toggle="tab"
                   disable_anchor="true"
                   class="nav-link"
+                  :class="{ active: ViewParticipants == true }"
+                  role="tab"
+                  @click="ParticipantsPage"
+                  >Participants</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  data-toggle="tab"
+                  disable_anchor="true"
+                  class="nav-link"
                   :class="{ active: ViewSetting == true }"
                   role="tab"
                   @click="SettingPage"
@@ -141,6 +155,43 @@
                   v-model="ProjectForm.description"
                 ></vue-editor>
               </div>
+            </div>
+            <div
+              class="tab-pane"
+              :class="{ active: ViewParticipants == true }"
+              id="notebook_page_team"
+            >
+            <table-responsive>
+                <template #header>
+                  <tr>
+                    <th class="text-center" style="width: 20px">No.</th>
+                    <th style="width: 191px">Participants Name</th>
+                    <th style="width: 20px"></th>
+                  </tr>
+                </template>
+                <template #content>
+                  <tr
+                    class="data_row"
+                    v-for="(participant, i) in project.participants"
+                    :key="i"
+                  >
+                    <td class="text-center">
+                      <span>{{ i+1 }}</span>
+                    </td>
+                    <td>
+                      {{ participant.user.name }}
+                    </td>
+                    <td class="text-center">
+                      <div
+                        v-if="FormType == 'edit'"
+                        @click="Destroyparticipant(participant)"
+                      >
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </div>
+                    </td>
+                  </tr>
+                </template>
+              </table-responsive>
             </div>
             <div
               class="tab-pane"
@@ -236,11 +287,26 @@
                           />
                         </td>
                       </tr>
+                      <tr>
+                        <td class="o_td_label">
+                          <label class="o_form_label" for="o_field_input_668"
+                            >Cost Hours</label
+                          >
+                        </td>
+                        <td style="width: 100%">
+                          <jet-input
+                            id="team"
+                            type="text"
+                            class="mt-1 block w-full"
+                            v-model="ProjectForm.cost_hours"
+                          />
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
                 <div class="mt16 o_settings_container">
-                  <div class="col-lg-5 o_setting_box" id="timesheet_settings">
+                  <div class="col-lg-5 o_setting_box" id="participant_settings">
                     <div class="o_setting_left_pane">
                       <div
                         class="custom-control custom-checkbox o_field_boolean o_field_widget"
@@ -323,7 +389,8 @@ import KanbanProgress from "@/Jetstream/KanbanProgress";
 // Module
 import draggable from "vuedraggable";
 // Page Component
-import CreateTask from "@/Pages/Task/CreateTask";
+import AddParticipants from "./AddParticipants";
+import TableResponsive from "@/Jetstream/TableResponsive";
 // Form Component
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
@@ -339,7 +406,7 @@ export default {
 
   components: {
     JetDashboard,
-    CreateTask,
+    AddParticipants,
     JetResponsiveNavLink,
     KanbanArea,
     KanbanBox,
@@ -359,11 +426,13 @@ export default {
     JetRadio,
     VueEditor,
     JetWorkspaceButton,
+    TableResponsive,
   },
   data() {
     return {
       ViewDescription: true,
       ViewSetting: false,
+      ViewParticipants:false,
       FormType: "view",
       ProjectForm: this.$inertia.form(
         {
@@ -376,6 +445,7 @@ export default {
           allow_timesheets: this.project.allow_timesheets,
           allow_timesheet_timer: this.project.allow_timesheet_timer,
           description: this.project.description,
+          cost_hours: this.project.cost_hours,
         },
         {
           bag: "createTeam",
@@ -388,10 +458,17 @@ export default {
     DescriptionPage() {
       this.ViewDescription = true;
       this.ViewSetting = false;
+      this.ViewParticipants = false;
     },
     SettingPage() {
       this.ViewDescription = false;
       this.ViewSetting = true;
+      this.ViewParticipants = false;
+    },
+    ParticipantsPage() {
+      this.ViewDescription = false;
+      this.ViewSetting = false;
+      this.ViewParticipants = true;
     },
     VisibilityFollow() {
       this.ProjectForm.visibility = "follow";
@@ -413,6 +490,11 @@ export default {
     },
     BackMethods() {
       this.$inertia.visit(route("project.show", this.project.access_token));
+    },
+    Destroyparticipant(data){
+      this.$inertia.delete(route("project_user.destroy", data), {
+        preserveScroll: true,
+      });
     },
     DestroyProject() {},
   },

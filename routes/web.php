@@ -17,6 +17,7 @@ use App\Http\Controllers\IrAttachmentController;
 use App\Http\Controllers\AccountAnalyticLineController;
 use App\Http\Controllers\ProjectTagController;
 use App\Http\Controllers\MailActivityController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,10 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         ->name('project.store');
         Route::post('/update', [ProjectController::class, 'update'])
         ->name('project.update');   
+        Route::post('/AddParicipants/{project}', [ProjectController::class, 'StoreProjectUsers'])
+        ->name('project.newuser'); 
+        Route::delete('/destroy/{project}', [ProjectController::class, 'destroyParticipants'])
+        ->name('project_user.destroy');    
     });
     Route::group(['prefix'=>'project/task'],function(){  
         Route::get('/{project}', [ProjectTaskController::class, 'getTaskProject'])
@@ -149,6 +154,16 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                                 ->name('stage.update');
         Route::delete('/destroy/{stage}', [ProjectTaskTypeController::class, 'destroy'])
                                 ->name('stage.destroy');
+    });
+    Route::group(['prefix'=>'project/Report'],function(){ 
+        Route::get('/{project}/overview', [ReportController::class, 'OverviewReport'])
+                                ->name('report.overview');
+        Route::get('/{project}/Task/AnalysisReport', [ReportController::class, 'TaskAnalysisReport'])
+                                ->name('report.task_analysis');
+        Route::get('/{project}/PlanningTimesheet/AnalysisReport', [ReportController::class, 'TimesheetPlanningAnalysisReport'])
+                                ->name('report.planning_analysis');
+        Route::get('/{project}/ProjectCost', [ReportController::class, 'ProjectCostReport'])
+                                ->name('report.cost');
     });
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/search/{user}', [PageController::class, 'Search'])

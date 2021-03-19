@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AccountAnalyticLine;
 use App\Http\Controllers\ProjectTaskController;
+use App\Models\Project;
+use DB;
 
 class AccountAnalyticLineController extends Controller
 {
@@ -22,9 +24,10 @@ class AccountAnalyticLineController extends Controller
            'minutes' => ['required'],
         ]);
         try{
+            $project = Project::findorfail($request->project_id);
             $data=$request->all();
             $data['unit_amount']=$this->convertToFloat($request->hours,$request->minutes);
-            $data['amount']=$data['unit_amount'];
+            $data['amount']=$data['unit_amount']*$project->cost_hours;
             $data['validate']=true;
             $data['old_unit_amount'] = 0;
             app(ProjectTaskController::class)->UpdateProgress($request,$request->task_id,$data);
@@ -60,9 +63,10 @@ class AccountAnalyticLineController extends Controller
         ]);
         try{
             $timesheet = AccountAnalyticLine::findorfail($request->id);
+            $project = Project::findorfail($timesheet->project_id);
             $data=$request->all();
             $data['unit_amount']=$this->convertToFloat($request->hours,$request->minutes);
-            $data['amount']=$data['unit_amount'];
+            $data['amount']=$data['unit_amount']*$project->cost_hours;
             $data['validate']=true;
             $data['old_unit_amount'] = $timesheet->unit_amount;
             app(ProjectTaskController::class)->UpdateProgress($request,$timesheet->task_id,$data);
@@ -71,5 +75,22 @@ class AccountAnalyticLineController extends Controller
         }catch(\Exception $e){
             return abort(500);
         }
+    }
+    public function getTimesheetAnalysis($ProjectId){
+        $query = "to_char(date(date),'YYYY-MM') as Month, sum(unit_amount) as time";
+        $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(date),'YYYY-MM')"))->get();
+        return $result;
+    }
+
+    public function getProjectCost($ProjectId){
+        $query = "to_char(date(date),'YYYY-MM') as Month, sum(amount) as amount";
+        $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(date),'YYYY-MM')"))->get();
+        return $result;
+    }
+
+    public function getParticipants($ProjectId){
+        $query = "user_id, sum(unit_amount) as hours";
+        $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy('user_id')->get();
+        return $result;
     }
 }

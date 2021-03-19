@@ -10,6 +10,9 @@ use App\Http\Controllers\Auth\InheritTeamController;
 use Inertia\Inertia;
 use Laravel\Jetstream\Jetstream;
 use App\Models\Project;
+use App\Models\ProjectUser;
+use App\Models\ProjectTask;
+use DB;
 
 class ProjectController extends Controller
 {
@@ -17,10 +20,27 @@ class ProjectController extends Controller
         try{
             $data=$request->all();
             $data['access_token']=bin2hex(random_bytes(24));
-            Project::create($data);
+            $project=Project::create($data);
+            $this->StoreProjectUsers($request,$project->id);
             return back(303);
         }catch(\Exception $e){
             echo"$e";
+        }
+    }
+
+    public function StoreProjectUsers(Request $request,$projectId){
+        try{
+            $projectuser = ProjectUser::where('team_id',$request->team_id)
+                                        ->where('user_id',$request->user_id)
+                                        ->where('project_id',$projectId)->first();
+            if (!$projectuser){
+                echo"okk";
+                $data=$request->all();
+                $data['project_id']=$projectId;
+                $project=ProjectUser::create($data);
+            }
+            return back(303);
+        }catch(\Exception $e){
         }
     }
 
@@ -44,7 +64,7 @@ class ProjectController extends Controller
             return Jetstream::inertia()->render($request, 'Project/View', [
                 'users' => $user,
                 'team' =>$team->load('owner', 'users'),
-                'project' =>$response
+                'project' =>$response->load('participants','participants.user')
             ]);
         }catch(\Exception $e){
             return abort(404);
@@ -52,7 +72,7 @@ class ProjectController extends Controller
     }
 
     public function getTeamProject($teamId){
-        $response = Project::with('manager')->where('team_id','=',$teamId)->get();
+        $response = Project::with('manager','user')->where('team_id','=',$teamId)->get();
         return $response;
     }
 
@@ -65,5 +85,27 @@ class ProjectController extends Controller
         $project = Project::findOrFail($request->id);
         $project->update($request->all());
         return back(303);
+    }
+
+    public function destroyParticipants(Request $request,$Id){
+        $result = ProjectUser::findOrFail($Id);
+        $result->delete();
+        return back(303);
+    }
+
+    public function getParticipants($projectId){
+        $result = ProjectUser::with('user','project')->addSelect(['task' => ProjectTask::select(DB::raw("COUNT(*)"))
+            ->whereColumn('project_id', 'project_users.project_id')
+            ->whereColumn('user_id','=','project_users.user_id')
+            ->limit(1)])->where('project_id',$projectId)->get();
+        $data = [];
+        foreach ($result as $participant){
+            $data[] = [
+                'name' => $participant->user->name,
+                'project'=> $participant->project->name,
+                'task' => $participant->task,
+            ];
+        }
+        return $data;
     }
 }

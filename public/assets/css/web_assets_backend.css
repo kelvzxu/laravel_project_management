@@ -3231,3 +3231,40 @@ div.kanban_area div.o_kanban_group.ui-sortable.o_kanban_has_progressbar div#kanb
     border-left: 1px solid #bbbbbb;
     padding-left: 10px;
 }
+
+.o_profitability_wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex: 1;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.o_profitability_wrapper .o_profitability_section {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex: 1;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+}
+
+.o_profitability_wrapper .o_profitability_section .table {
+    margin-top: 25px;
+}
+
+#report.project_overview_report .table>tbody>tr>td,
+#report.project_overview_report .table>tbody>tr>th,
+#report.project_overview_report .table>thead>tr>th {
+    border: none;
+}
+
+#report.project_overview_report .table>tbody>tr>td.o_timesheet_plan_dashboard_total {
+    border-top: 1px solid;
+    text-align: right;
+}
+
+#time_by_people.table>tbody>tr>td {
+    padding: 0px;
+}
