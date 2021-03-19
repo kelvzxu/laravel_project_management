@@ -87,4 +87,10 @@ class AccountAnalyticLineController extends Controller
         $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(date),'YYYY-MM')"))->get();
         return $result;
     }
+
+    public function getParticipants($ProjectId){
+        $query = "user_id, sum(unit_amount) as hours";
+        $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy('user_id')->get();
+        return $result;
+    }
 }

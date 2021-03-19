@@ -21,11 +21,12 @@ class ReportController extends Controller
         $project = app(ProjectController::class)->getProjectDetail($token);
         $team = app(InheritTeamController::class)->getTeam($project->team_id);
         $hours = app(ProjectTaskController::class)->getHoursRecorded($project->id);
-
+        $participants = app(AccountAnalyticLineController::class)->getParticipants($project->id);
         return Jetstream::inertia()->render($request, 'Report/Overview', [
             'project' =>$project,
             'team' =>$team->load('owner', 'users'),
             'hours' => $hours,
+            'participants'=>$participants->load('responsible')
         ]);
     }
     public function TaskAnalysisReport(Request $request,$token)
