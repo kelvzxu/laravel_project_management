@@ -106,4 +106,10 @@ class ProjectTaskController extends Controller
         $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(created_at),'YYYY-MM')"))->get();
         return $result;
     }
+
+    public function getHoursRecorded($ProjectId){
+        $query = "project_id, sum(remaining_hours) as overtime, sum(effective_hours) as effective, sum(planned_hours) as planned";
+        $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy('project_id')->first();
+        return $result;
+    }
 }

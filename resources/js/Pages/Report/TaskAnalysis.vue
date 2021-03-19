@@ -1,7 +1,7 @@
 <template>
   <jet-dashboard :team="team" :project="project">
-    <template #report_name>Task Analysis</template>
-    <template #project_name>{{ project.name }}</template>
+    <template #report_name>{{ project.name }}</template>
+    <template #project_name>Task Analysis Report</template>
     <template #report>
       <jet-line-chart :chart-data="datacollection" :options="chartOptions" />
     </template>

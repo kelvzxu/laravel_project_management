@@ -40,14 +40,14 @@
           </jet-workspace-button>
         </jet-responsive-nav-link>
         <jet-responsive-nav-link
-          :href="route('report.overview', project.access_token)"
+          :href="route('report.cost', project.access_token)"
         >
           <jet-workspace-button
             :class="{
-              'workspace floating': route().current('report.overview') == true,
+              'workspace floating': route().current('report.cost') == true,
             }"
           >
-            <i class="fas fa-dollar-sign main-icon"></i>Cost and Revenues
+            <i class="fas fa-dollar-sign main-icon"></i>&nbsp;Project Costs
           </jet-workspace-button>
         </jet-responsive-nav-link>
         <jet-responsive-nav-link

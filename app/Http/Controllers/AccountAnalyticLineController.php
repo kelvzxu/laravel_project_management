@@ -81,4 +81,10 @@ class AccountAnalyticLineController extends Controller
         $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(date),'YYYY-MM')"))->get();
         return $result;
     }
+
+    public function getProjectCost($ProjectId){
+        $query = "to_char(date(date),'YYYY-MM') as Month, sum(amount) as amount";
+        $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(date),'YYYY-MM')"))->get();
+        return $result;
+    }
 }

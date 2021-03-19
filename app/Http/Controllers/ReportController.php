@@ -20,11 +20,12 @@ class ReportController extends Controller
     {
         $project = app(ProjectController::class)->getProjectDetail($token);
         $team = app(InheritTeamController::class)->getTeam($project->team_id);
-        
+        $hours = app(ProjectTaskController::class)->getHoursRecorded($project->id);
 
         return Jetstream::inertia()->render($request, 'Report/Overview', [
             'project' =>$project,
             'team' =>$team->load('owner', 'users'),
+            'hours' => $hours,
         ]);
     }
     public function TaskAnalysisReport(Request $request,$token)
@@ -56,6 +57,20 @@ class ReportController extends Controller
         ]);
     }
 
+    public function ProjectCostReport(Request $request,$token)
+    {
+        $project = app(ProjectController::class)->getProjectDetail($token);
+        $team = app(InheritTeamController::class)->getTeam($project->team_id);
+        
+        $projectcost = app(AccountAnalyticLineController::class)->getProjectCost($project->id);
+        $cost = $this->prepareProjectCost($projectcost);
+        return Jetstream::inertia()->render($request, 'Report/CostAnalysis', [
+            'project' =>$project,
+            'team' =>$team->load('owner', 'users'),
+            'costs' => $cost,
+        ]);
+    }
+
     public function prepareTimesheetPlanningAnalysis($planned_hours,$timesheets){
         $data = [];
         for ($i = 0; $i <= 12; $i++) {
@@ -63,12 +78,27 @@ class ReportController extends Controller
             $timesheet = $timesheets->firstWhere('month', $month);
             $planned = $planned_hours->firstWhere('month', $month);
             $month=date("F",strtotime($month));
+            $year=date("Y",strtotime($month));
             $data[] = [
-                'month' =>$month,
+                'month' =>"$month $year",
                 'timesheet' => $timesheet ? $timesheet->time:0,
                 'planned' => $planned ? $planned->time:0,
             ];
-            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+        }        
+        return $data;
+    }
+
+    public function prepareProjectCost($costs){
+        $data = [];
+        for ($i = 0; $i <= 12; $i++) {
+            $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+            $cost = $costs->firstWhere('month', $month);
+            $month=date("F",strtotime($month));
+            $year=date("Y",strtotime($month));
+            $data[] = [
+                'month' =>"$month $year" ,
+                'cost' => $cost ? $cost->amount:0,
+            ];
         }        
         return $data;
     }

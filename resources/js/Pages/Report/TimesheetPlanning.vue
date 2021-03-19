@@ -1,7 +1,7 @@
 <template>
   <jet-dashboard :team="team" :project="project">
-    <template #report_name>Task Analysis</template>
-    <template #project_name>{{ project.name }}</template>
+    <template #report_name>{{ project.name }}</template>
+    <template #project_name>Timesheet and Planning Analysis Report</template>
     <template #report>
       <jet-line-chart :chart-data="datacollection" :options="chartOptions" />
     </template>
@@ -37,30 +37,27 @@ export default {
     fillData() {
       this.datacollection = {
         labels: [],
-        datasets: [{
-          label: "Planned",
-          backgroundColor: "#" + ((Math.random() * 0xffffff) << 0).toString(16),
-          data: [],
-        },
-        {
-          label: "Timesheet",
-          backgroundColor: "#" + ((Math.random() * 0xffffff) << 0).toString(16),
-          data: [],
-        },
+        datasets: [
+          {
+            label: "Planned",
+            backgroundColor:
+              "#" + ((Math.random() * 0xffffff) << 0).toString(16),
+            data: [],
+          },
+          {
+            label: "Timesheet",
+            backgroundColor:
+              "#" + ((Math.random() * 0xffffff) << 0).toString(16),
+            data: [],
+          },
         ],
       };
       let data = this.analysis;
       let i;
       for (i in data) {
-        this.datacollection.labels.push(
-          data[i].month,
-        )
-        this.datacollection.datasets[0].data.push(
-          data[i].planned,
-        )
-        this.datacollection.datasets[1].data.push(
-          data[i].timesheet,
-        )
+        this.datacollection.labels.push(data[i].month);
+        this.datacollection.datasets[0].data.push(data[i].planned);
+        this.datacollection.datasets[1].data.push(data[i].timesheet);
       }
     },
     increase() {

@@ -162,6 +162,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                                 ->name('report.task_analysis');
         Route::get('/{project}/PlanningTimesheet/AnalysisReport', [ReportController::class, 'TimesheetPlanningAnalysisReport'])
                                 ->name('report.planning_analysis');
+        Route::get('/{project}/ProjectCost', [ReportController::class, 'ProjectCostReport'])
+                                ->name('report.cost');
     });
     Route::get('/dashboard', [PageController::class, 'Dashboard'])->name('dashboard');
     Route::get('/search/{user}', [PageController::class, 'Search'])
