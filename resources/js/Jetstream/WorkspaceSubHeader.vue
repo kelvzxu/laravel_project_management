@@ -67,6 +67,11 @@
         <i class="fa fa-cog main-icon"></i>Project Details
       </jet-workspace-button>
     </jet-responsive-nav-link>
+    <jet-responsive-nav-link :href="route('dashboard')">
+      <jet-workspace-button>
+        <i class="fas fa-undo-alt main-icon"></i>Back
+      </jet-workspace-button>
+    </jet-responsive-nav-link>
   </div>
 </template>
 

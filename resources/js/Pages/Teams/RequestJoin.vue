@@ -10,70 +10,42 @@
       <template #workspace_name>{{ team.name }}</template>
       <template #workspace_sub_header>
         <div class="home-workspace-items-content-sub-header-wrapper">
+          <jet-responsive-nav-link :href="route('dashboard')">
+            <jet-workspace-button
+              :class="{
+                'workspace floating': route().current('dashboard') == true,
+              }"
+            >
+              <i class="fa fa-th-large main-icon"></i>Kanban Board
+            </jet-workspace-button>
+          </jet-responsive-nav-link>
           <div
             v-if="permissions.canAddTeamMembers"
             class="new-boards-list-button-component"
             @click="InviteNewUser"
           >
-            <div class="ds-menu-button-container">
-              <div>
-                <div class="top-new-button-component default-icon">
-                  <div
-                    class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
-                  >
-                    <i class="fa fa-user-plus main-icon"></i>Invite
-                  </div>
-                </div>
-              </div>
-            </div>
+            <jet-workspace-button>
+              <i class="fa fa-user-plus main-icon"></i>Invite
+            </jet-workspace-button>
           </div>
-          <div
-            v-if="permissions.canAddTeamMembers"
-            class="new-boards-list-button-component"
-          >
-            <jet-responsive-nav-link
-              :href="route('request_join.show', team.id)"
-              :active="route().current('request_join.show')"
+          <jet-responsive-nav-link :href="route('request_join.show', team.id)">
+            <jet-workspace-button
+              v-if="permissions.canAddTeamMembers"
+              :class="{
+                'workspace floating':
+                  route().current('request_join.show') == true,
+              }"
             >
-              <div class="ds-menu-button-container">
-                <div>
-                  <div class="top-new-button-component default-icon">
-                    <div
-                      class="new-boards-list-button add_new_board_btn leftpane-workspace-header-redesign"
-                    >
-                      <i class="fas fa-comment-exclamation main-icon"></i
-                      >Request Join
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-          </div>
-          <div
-            class="boards-list-header-component selected leftpane-workspace-header-redesign"
+              <i class="fas fa-comment-exclamation main-icon"></i>Request Join
+            </jet-workspace-button>
+          </jet-responsive-nav-link>
+          <jet-responsive-nav-link
+            :href="route('teams.show', team.access_token)"
           >
-            <jet-responsive-nav-link
-              :href="route('teams.show', team.access_token)"
-              :active="route().current('teams.show')"
-            >
-              <div class="boards-filter-row-wrapper">
-                <div class="boards-list-filter-button-component">
-                  <i class="fa fa-cog main-icon"></i
-                  ><span class="filters-text">Team Details</span>
-                </div>
-              </div>
-            </jet-responsive-nav-link>
-            <div class="unified-boards-search-input-wrapper empty">
-              <i class="fa fa-search search-icon"></i
-              ><input
-                id="boards-list-search-input"
-                class="unified-boards-search-input"
-                placeholder="Search"
-                autocomplete="off"
-                value=""
-              />
-            </div>
-          </div>
+            <jet-workspace-button v-if="permissions.canAddTeamMembers">
+              <i class="fa fa-cog main-icon"></i> Details
+            </jet-workspace-button>
+          </jet-responsive-nav-link>
         </div>
       </template>
       <template #main_content>
@@ -329,6 +301,7 @@ import JetBoardSorting from "@/Jetstream/BoardSorting";
 import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
+import JetWorkspaceButton from "@/Jetstream/WorkspaceButton";
 // Table Reaponsive
 import TableResponsive from "@/Jetstream/TableResponsive";
 
@@ -352,6 +325,7 @@ export default {
     JetBoardDropdown,
     JetBoardFilterDropdown,
     JetActionMessage,
+    JetWorkspaceButton,
     TableResponsive,
   },
   data() {

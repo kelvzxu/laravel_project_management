@@ -50,6 +50,13 @@
             <i class="fas fa-dollar-sign main-icon"></i>Cost and Revenues
           </jet-workspace-button>
         </jet-responsive-nav-link>
+        <jet-responsive-nav-link
+          :href="route('project.show', project.access_token)"
+        >
+          <jet-workspace-button>
+            <i class="fas fa-undo-alt main-icon"></i>Back
+          </jet-workspace-button>
+        </jet-responsive-nav-link>
       </div>
     </template>
     <template #board_name><slot name="report_name" /></template>
