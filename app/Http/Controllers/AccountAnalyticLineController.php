@@ -89,8 +89,14 @@ class AccountAnalyticLineController extends Controller
     }
 
     public function getParticipants($ProjectId){
-        $query = "user_id, sum(unit_amount) as hours";
-        $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy('user_id')->get();
+        $query = "account_analytic_lines.user_id, sum(account_analytic_lines.unit_amount) as hours, sum(project_tasks.progress) as progress, count(project_tasks.progress) as count";
+        $result = AccountAnalyticLine::select(DB::raw($query))->join('project_tasks','project_tasks.id','account_analytic_lines.task_id')->where('account_analytic_lines.project_id',$ProjectId)->groupBy('account_analytic_lines.user_id')->get();
+        return $result;
+    }
+
+    public function getTimesheetTask($ProjectId){
+        $query = "to_char(date(date),'YYYY-MM') as Month, sum(unit_amount) as time, task_id ";
+        $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(date),'YYYY-MM'),task_id"))->get();
         return $result;
     }
 }

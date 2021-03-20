@@ -68,7 +68,10 @@
       <img :src="project.manager.profile_photo_url" class="inner-image" />
     </template>
     <template #board_subs> Member / {{ team.users.length + 1 }} </template>
-    <template #board_button> </template>
+    <template #board_button></template>
+    <template #board_header_action>
+      <slot name="button" />
+    </template>
     <template #board_component><slot name="report" /></template>
   </jet-dashboard>
 </template>

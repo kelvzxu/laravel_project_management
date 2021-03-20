@@ -63,7 +63,7 @@
             <td v-if="UpdateForm.id !== timesheet.id">
               {{ timesheet.name }}
             </td>
-            <td v-if="UpdateForm.name === timesheet.name">
+            <td v-if="UpdateForm.id === timesheet.id">
               <input type="text" class="w-full" v-model="UpdateForm.name" />
             </td>
             <td>{{ timesheet.project.name }}</td>
@@ -85,7 +85,7 @@
             <td v-if="UpdateForm.id !== timesheet.id" class="text-center">
               {{ FormatHours(timesheet.unit_amount) }}
             </td>
-            <td v-if="UpdateForm.name === timesheet.name">
+            <td v-if="UpdateForm.id === timesheet.id">
               <input
                 type="number"
                 style="display: inline; width: 50"

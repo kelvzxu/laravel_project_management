@@ -22,11 +22,18 @@ class ReportController extends Controller
         $team = app(InheritTeamController::class)->getTeam($project->team_id);
         $hours = app(ProjectTaskController::class)->getHoursRecorded($project->id);
         $participants = app(AccountAnalyticLineController::class)->getParticipants($project->id);
+        $progressdetails = $this->prepareTimesheetPlanning($project);
+        for ($i = 0; $i <= 3; $i++) {
+            $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+            $months[] = $month=date("F",strtotime($month));
+        }
         return Jetstream::inertia()->render($request, 'Report/Overview', [
             'project' =>$project,
             'team' =>$team->load('owner', 'users'),
             'hours' => $hours,
-            'participants'=>$participants->load('responsible')
+            'participants'=>$participants->load('responsible'),
+            'analysis'=>$progressdetails,
+            'months' => $months
         ]);
     }
     public function TaskAnalysisReport(Request $request,$token)
@@ -78,8 +85,8 @@ class ReportController extends Controller
             $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
             $timesheet = $timesheets->firstWhere('month', $month);
             $planned = $planned_hours->firstWhere('month', $month);
-            $month=date("F",strtotime($month));
             $year=date("Y",strtotime($month));
+            $month=date("F",strtotime($month));
             $data[] = [
                 'month' =>"$month $year",
                 'timesheet' => $timesheet ? $timesheet->time:0,
@@ -94,13 +101,36 @@ class ReportController extends Controller
         for ($i = 0; $i <= 12; $i++) {
             $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
             $cost = $costs->firstWhere('month', $month);
-            $month=date("F",strtotime($month));
             $year=date("Y",strtotime($month));
+            $month=date("F",strtotime($month));
             $data[] = [
                 'month' =>"$month $year" ,
                 'cost' => $cost ? $cost->amount:0,
             ];
         }        
         return $data;
+    }
+
+    public function prepareTimesheetPlanning($project){
+        $tasks = app(ProjectTaskController::class)->getTasks($project->id);
+        $timesheets = app(AccountAnalyticLineController::class)->getTimesheetTask($project->id);
+        foreach ($tasks as $task){
+            $progress = [];
+            $time_id ="";
+            for ($i = 0; $i <= 3; $i++) {
+                $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+
+                $timesheet = $timesheets->Where('month', $month)->where('task_id',$task->id)->first();
+                $month=date("F",strtotime($month));
+                $time_id = $timesheet ? $timesheet->task_id:0;
+                $progress[] = [
+                    'month' =>$month,
+                    'time' => $timesheet ? $timesheet->time:0,
+                ];
+            }
+            $task->detail = $progress;
+            
+        }
+        return $tasks;
     }
 }

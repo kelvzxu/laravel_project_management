@@ -2,8 +2,30 @@
   <jet-dashboard :team="team" :project="project">
     <template #report_name>{{ project.name }}</template>
     <template #project_name>Project Costs Report</template>
+    <template #button>
+      <button
+        type="button"
+        title="Bar Chart"
+        class="btn btn-secondary"
+        @click="BarChart"
+      >
+        <i class="fas fa-chart-bar"></i>
+      </button>
+      <button type="button" class="btn btn-secondary" @click="LineChart">
+        <i class="fas fa-chart-area"></i>
+      </button>
+    </template>
     <template #report>
-      <jet-line-chart :chart-data="datacollection" :options="chartOptions" />
+      <jet-bar-chart
+        v-if="barchart"
+        :chart-data="datacollection"
+        :options="chartOptions"
+      />
+      <jet-line-chart
+        v-if="linechart"
+        :chart-data="datacollection"
+        :options="chartOptions"
+      />
     </template>
   </jet-dashboard>
 </template>
@@ -12,6 +34,7 @@
 // Dependence Page
 import JetDashboard from "./Dashboard";
 // Component
+import JetBarChart from "@/Graphic/BarChart";
 import JetLineChart from "@/Graphic/LineChart";
 
 export default {
@@ -20,9 +43,12 @@ export default {
   components: {
     JetDashboard,
     JetLineChart,
+    JetBarChart,
   },
   data() {
     return {
+      barchart: true,
+      linechart: false,
       datacollection: null,
       chartOptions: {
         responsive: true,
@@ -40,21 +66,28 @@ export default {
         datasets: [
           {
             label: "Project Cost",
+            fill: false,
             backgroundColor:
               "#" + ((Math.random() * 0xffffff) << 0).toString(16),
+            borderColor: "#" + ((Math.random() * 0xffffff) << 0).toString(16),
             data: [],
           },
         ],
       };
-      let data = this.costs;
+      let data = this.costs.reverse();
       let i;
       for (i in data) {
         this.datacollection.labels.push(data[i].month);
         this.datacollection.datasets[0].data.push(data[i].cost);
       }
     },
-    increase() {
-      this.height += 10;
+    LineChart() {
+      this.barchart = false;
+      this.linechart = true;
+    },
+    BarChart() {
+      this.barchart = true;
+      this.linechart = false;
     },
   },
 };
