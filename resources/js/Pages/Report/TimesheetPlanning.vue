@@ -12,7 +12,7 @@
 // Dependence Page
 import JetDashboard from "./Dashboard";
 // Component
-import JetLineChart from "@/Graphic/LineChart";
+import JetLineChart from "@/Graphic/BarChart";
 
 export default {
   props: ["project", "team", "analysis"],

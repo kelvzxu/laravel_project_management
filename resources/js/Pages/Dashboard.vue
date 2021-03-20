@@ -50,6 +50,25 @@
       /></jet-board-search>
       <jet-board-filter-dropdown @click.native="FilterData" />
     </template>
+    <template #board_header_action>
+      <button
+        v-if="pagination.prevPage"
+        @click="--pagination.currentPage"
+        type="button"
+        title="Previous"
+        class="btn btn-secondary pager_previous"
+      >
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button
+        v-if="pagination.nextPage"
+        @click="++pagination.currentPage"
+        type="button"
+        class="btn btn-secondary o_pager_next"
+      >
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </template>
     <template #board_component>
       <jet-dialog-modal :show="InviteModal" @close="InviteModal = false">
         <template #title> Add Team Member </template>
