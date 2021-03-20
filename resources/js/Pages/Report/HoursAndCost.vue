@@ -65,11 +65,7 @@
                   class="o_timesheet_plan_dashboard_cell"
                   style="text-align: right"
                 >
-                  {{
-                    formatPrice(
-                      (overtime + effective) * -project.cost_hours
-                    )
-                  }}
+                  {{ formatPrice(effective * -project.cost_hours) }}
                 </td>
                 <td title="Revenues linked to Timesheets already invoiced.">
                   Timesheet Cost
@@ -81,8 +77,7 @@
                     {{
                       formatPrice(
                         planned * project.cost_hours +
-                          (overtime + effective) *
-                            -project.cost_hours
+                          effective * -project.cost_hours
                       )
                     }}
                   </b>
@@ -99,22 +94,23 @@
 <script>
 export default {
   props: ["project", "hours"],
-  data(){
-    return{
+  data() {
+    return {
       planned: 0,
-      overtime:0,
-      effective:0
+      overtime: 0,
+      effective: 0,
+      timesheet: 0,
     };
   },
   created() {
-    this.prepareReportValue(this.hours)
+    this.prepareReportValue(this.hours);
   },
   methods: {
-    prepareReportValue(params){
-      if (params){
-        this.planned = params.planned
-        this.overtime = params.overtime
-        this.effective = params.effective
+    prepareReportValue(params) {
+      if (params) {
+        this.planned = params.planned;
+        this.overtime = parseFloat(params.overtime);
+        this.effective = parseFloat(params.effective);
       }
     },
     FormatHours(value) {

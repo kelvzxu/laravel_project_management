@@ -23,12 +23,18 @@ class ReportController extends Controller
         $hours = app(ProjectTaskController::class)->getHoursRecorded($project->id);
         $participants = app(AccountAnalyticLineController::class)->getParticipants($project->id);
         $progressdetails = $this->prepareTimesheetPlanning($project);
-        // return Jetstream::inertia()->render($request, 'Report/Overview', [
-        //     'project' =>$project,
-        //     'team' =>$team->load('owner', 'users'),
-        //     'hours' => $hours,
-        //     'participants'=>$participants->load('responsible')
-        // ]);
+        for ($i = 0; $i <= 3; $i++) {
+            $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+            $months[] = $month=date("F",strtotime($month));
+        }
+        return Jetstream::inertia()->render($request, 'Report/Overview', [
+            'project' =>$project,
+            'team' =>$team->load('owner', 'users'),
+            'hours' => $hours,
+            'participants'=>$participants->load('responsible'),
+            'analysis'=>$progressdetails,
+            'months' => $months
+        ]);
     }
     public function TaskAnalysisReport(Request $request,$token)
     {
@@ -108,20 +114,31 @@ class ReportController extends Controller
     public function prepareTimesheetPlanning($project){
         $tasks = app(ProjectTaskController::class)->getTasks($project->id);
         $timesheets = app(AccountAnalyticLineController::class)->getTimesheetTask($project->id);
-        $data = [];
+
         foreach ($tasks as $task){
             $progress = [];
+            $time_id ="";
             for ($i = 0; $i <= 3; $i++) {
                 $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+
                 $timesheet = $timesheets->firstWhere('month', $month);
                 $month=date("F",strtotime($month));
-                $time_id = $timesheet->id;
-                $progress = [
-                    'month' =>$month,
-                    'time' => $timesheet ? $timesheet->time:0,
-                ];
-            }  
+                $time_id = $timesheet ? $timesheet->task_id:0;
+                if ($time_id == $task->id){
+                    $progress[] = [
+                        'month' =>$month,
+                        'time' => $timesheet ? $timesheet->time:0,
+                    ];
+                }else{
+                    $progress[] = [
+                        'month' =>$month,
+                        'time' => 0,
+                    ];
+                }
+            }
+            $task->detail = $progress;
             
         }
+        return $tasks;
     }
 }

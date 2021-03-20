@@ -5,8 +5,9 @@
     <template #report>
       <div id="report" class="container project_overview_report">
         <hours-and-project-cost :project="project" :hours="hours" />
-        <time-people :participants="participants"/>
+        <time-people :participants="participants" />
       </div>
+      <time-planning :analysis="analysis" :months="months" />
     </template>
   </jet-dashboard>
 </template>
@@ -16,18 +17,20 @@
 import JetDashboard from "./Dashboard";
 import HoursAndProjectCost from "./HoursAndCost";
 import TimePeople from "./TimeByPeople";
+import TimePlanning from "./TimeAndPlan";
 
 export default {
-  props: ["project", "team", "hours", "participants"],
+  props: ["project", "team", "hours", "participants", "analysis", "months"],
 
   components: {
     JetDashboard,
     HoursAndProjectCost,
     TimePeople,
+    TimePlanning,
   },
   data() {
     return {
-       options: {
+      options: {
         text: {
           color: "#FFFFFF",
           shadowEnable: true,
@@ -72,6 +75,11 @@ export default {
         minutes = `0${minutes}`;
       }
       return `${hours}:${minutes}`;
+    },
+    TotalTime(values) {
+      return values.reduce((acc, val) => {
+        return acc + parseFloat(val.time);
+      }, 0);
     },
   },
 };

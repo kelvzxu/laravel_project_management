@@ -114,7 +114,7 @@ class ProjectTaskController extends Controller
     }
 
     public function getTasks($ProjectId){
-        $query = "id,name,planned_hours as planned,created_at";
+        $query = "id,name,planned_hours as planned,remaining_hours as remaining,created_at";
         $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->get();
         return $result;
     }

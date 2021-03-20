@@ -3268,3 +3268,8 @@ div.kanban_area div.o_kanban_group.ui-sortable.o_kanban_has_progressbar div#kanb
 #time_by_people.table>tbody>tr>td {
     padding: 0px;
 }
+
+.o_right_bordered {
+    border-right: 2px solid #00A09D;
+    text-align: center;
+}
