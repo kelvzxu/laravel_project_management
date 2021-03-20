@@ -23,6 +23,7 @@
       </jet-workspace-button>
     </jet-responsive-nav-link>
     <jet-responsive-nav-link
+      v-if="project.manager.id == $page.user.id"
       :href="route('report.overview', project.access_token)"
       :active="route().current('report.overview')"
     >
@@ -30,7 +31,10 @@
         <i class="fas fa-file-chart-line main-icon"></i>Project Report
       </jet-workspace-button>
     </jet-responsive-nav-link>
-    <jet-responsive-nav-link :href="route('stage.show', project.access_token)">
+    <jet-responsive-nav-link
+      v-if="project.manager.id == $page.user.id"
+      :href="route('stage.show', project.access_token)"
+    >
       <jet-workspace-button
         :class="{
           'workspace floating': route().current('stage.show') == true,
@@ -39,7 +43,10 @@
         <i class="far fa-layer-group main-icon main-icon"></i>Project Stage
       </jet-workspace-button>
     </jet-responsive-nav-link>
-    <jet-responsive-nav-link :href="route('tags.show', project.access_token)">
+    <jet-responsive-nav-link
+      v-if="project.manager.id == $page.user.id"
+      :href="route('tags.show', project.access_token)"
+    >
       <jet-workspace-button
         :class="{
           'workspace floating': route().current('tags.show') == true,

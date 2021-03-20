@@ -26,6 +26,7 @@ class ProjectTaskController extends Controller
             if ($task->stage_id != $request->stage_id){
                 $data['date_last_stage_update']=date("Y-m-d h:i:s");
             }
+            $data['progress'] = $this->computePercentace($task->effective_hours,$request->planned_hours);
             $task->update($data);
             return back(303);
         }catch(\Exception $e){

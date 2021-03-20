@@ -79,7 +79,6 @@ export default {
       let data = this.task_analysis;
       let i;
       for (i in data) {
-        console.log(data[i].name);
         this.datacollection.datasets.push({
           label: data[i].name,
           backgroundColor: "#" + ((Math.random() * 0xffffff) << 0).toString(16),

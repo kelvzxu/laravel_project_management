@@ -193,9 +193,6 @@ export default {
       ),
     };
   },
-  created() {
-    console.log(this);
-  },
   methods: {
     paginate(array, length, pageNumber) {
       this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
@@ -240,11 +237,8 @@ export default {
       delete this.$page.errors[`Timesheet.${timesheet.id}`];
       this.UpdateForm = timesheet;
       let minutes = timesheet.unit_amount * 60;
-      console.log(timesheet.unit_amount);
-      console.log(Math.floor(minutes / 60));
       this.UpdateForm.hours = Math.floor(minutes / 60);
       this.UpdateForm.minutes = Math.round(minutes % 60);
-      console.log(this.UpdateForm);
     },
     UpdateTimesheet() {
       this.$inertia

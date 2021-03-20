@@ -127,16 +127,12 @@ export default {
         }
       );
     },
-    changePage(val) {
-      console.log(val.target.value);
-    },
   },
 
   created() {
     const closeOnEscape = (e) => {
       if (this.showingProfileDialog && e.keyCode === 27) {
         this.showingProfileDialog = false;
-        console.log(this.showingProfileDialog);
       }
     };
   },

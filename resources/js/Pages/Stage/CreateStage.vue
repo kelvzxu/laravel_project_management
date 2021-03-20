@@ -122,7 +122,6 @@ export default {
           if (!this.form.hasErrors()) {
             this.AddNewStage = false;
           }
-          console.log(this.form);
         });
     },
   },

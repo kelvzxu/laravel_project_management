@@ -73,7 +73,7 @@
                 }}</template>
                 <template #picture>
                   <img
-                    :src="$page.user.profile_photo_url"
+                    :src="task.responsible.profile_photo_url"
                     class="o_m2o_avatar rounded-circle"
                   />
                 </template>

@@ -1,61 +1,61 @@
 <template>
-    <div id="time_by_people">
-        <div class="o_title mt-2">
-          <h2><b>Time by people</b></h2>
-        </div>
-        <div class="o_timesheet_plan_sale_timesheet_people_time">
-          <div class="table-responsive">
-            <table id="time_by_people" class="table">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Member</th>
-                  <th class="text-nowrap text-right pr-5">Hours Spent</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(data, i) in participants" :key="i">
-                  <td style="width: 3%; vertical-align: middle">
-                    <img
-                      class="img rounded-circle pr-1 mb-2"
-                      width="25"
-                      height="25"
-                      :src="data.responsible.profile_photo_url"
-                      :title="data.responsible.name"
-                      loading="lazy"
-                    />
-                  </td>
-                  <td style="width: 15%; vertical-align: middle">
-                    <a
-                      type="action"
-                      data-model="account.analytic.line"
-                      data-views='[[0, "list"]]'
-                      tabindex="-1"
-                      data-domain='[["project_id", "in", [9]]]'
-                      data-context='{"search_default_employee_id": 1}'
-                    >
-                      {{ data.responsible.name }}
-                    </a>
-                  </td>
-                  <td
-                    class="text-right pr-5"
-                    style="width: 10%; vertical-align: middle"
-                  >
-                    {{ FormatHours(data.hours) }}
-                  </td>
-                  <td style="vertical-align: middle">
-                    <progress-bar
-                          :options="options"
-                          :value="parseInt(data.progress)/data.count"
-                        />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <div id="time_by_people">
+    <div class="o_title mt-2">
+      <h2><b>Time by people</b></h2>
     </div>
+    <div class="o_timesheet_plan_sale_timesheet_people_time">
+      <div class="table-responsive">
+        <table id="time_by_people" class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Member</th>
+              <th class="text-nowrap text-right pr-5">Hours Spent</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(data, i) in participants" :key="i">
+              <td style="width: 3%; vertical-align: middle">
+                <img
+                  class="img rounded-circle pr-1 mb-2"
+                  width="25"
+                  height="25"
+                  :src="data.responsible.profile_photo_url"
+                  :title="data.responsible.name"
+                  loading="lazy"
+                />
+              </td>
+              <td style="width: 15%; vertical-align: middle">
+                <a
+                  type="action"
+                  data-model="account.analytic.line"
+                  data-views='[[0, "list"]]'
+                  tabindex="-1"
+                  data-domain='[["project_id", "in", [9]]]'
+                  data-context='{"search_default_employee_id": 1}'
+                >
+                  {{ data.responsible.name }}
+                </a>
+              </td>
+              <td
+                class="text-right pr-5"
+                style="width: 10%; vertical-align: middle"
+              >
+                {{ FormatHours(data.hours) }}
+              </td>
+              <td style="vertical-align: middle">
+                <progress-bar
+                  :options="options"
+                  :value="parseInt(data.progress) / data.count"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -70,7 +70,7 @@ export default {
   },
   data() {
     return {
-       options: {
+      options: {
         text: {
           color: "#FFFFFF",
           shadowEnable: true,
@@ -96,9 +96,6 @@ export default {
         },
       },
     };
-  },
-  created() {
-    console.log(this);
   },
   methods: {
     FormatHours(value) {
