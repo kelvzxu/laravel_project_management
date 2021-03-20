@@ -14,14 +14,14 @@
                 </th>
               </tr>
               <tr>
-                <td>{{ FormatHours(hours.planned) }}</td>
+                <td>{{ FormatHours(planned) }}</td>
                 <td title="Total Planned Hours on project task">
                   Planned Hours
                 </td>
               </tr>
               <tr>
                 <td class="o_timesheet_plan_dashboard_cell">
-                  {{ FormatHours(hours.overtime) }}
+                  {{ FormatHours(overtime) }}
                 </td>
                 <td title="total overtime hours on working task">
                   Overtime Hours
@@ -30,7 +30,7 @@
 
               <tr>
                 <td class="o_timesheet_plan_dashboard_cell">
-                  {{ FormatHours(hours.effective) }}
+                  {{ FormatHours(effective) }}
                 </td>
                 <td title="total effective hours on working task">
                   Effective Hours
@@ -54,7 +54,7 @@
                   class="o_timesheet_plan_dashboard_cell"
                   style="text-align: right"
                 >
-                  {{ formatPrice(hours.planned * project.cost_hours) }}
+                  {{ formatPrice(planned * project.cost_hours) }}
                 </td>
                 <td title="Revenues linked to Timesheets already invoiced.">
                   Planning Cost
@@ -67,7 +67,7 @@
                 >
                   {{
                     formatPrice(
-                      (hours.overtime + hours.effective) * -project.cost_hours
+                      (overtime + effective) * -project.cost_hours
                     )
                   }}
                 </td>
@@ -80,8 +80,8 @@
                   <b>
                     {{
                       formatPrice(
-                        hours.planned * project.cost_hours +
-                          (hours.overtime + hours.effective) *
+                        planned * project.cost_hours +
+                          (overtime + effective) *
                             -project.cost_hours
                       )
                     }}
@@ -99,8 +99,24 @@
 <script>
 export default {
   props: ["project", "hours"],
-
+  data(){
+    return{
+      planned: 0,
+      overtime:0,
+      effective:0
+    };
+  },
+  created() {
+    this.prepareReportValue(this.hours)
+  },
   methods: {
+    prepareReportValue(params){
+      if (params){
+        this.planned = params.planned
+        this.overtime = params.overtime
+        this.effective = params.effective
+      }
+    },
     FormatHours(value) {
       let minutes = value * 60;
       return this.time_convert(minutes);

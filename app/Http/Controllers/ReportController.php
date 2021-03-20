@@ -22,12 +22,13 @@ class ReportController extends Controller
         $team = app(InheritTeamController::class)->getTeam($project->team_id);
         $hours = app(ProjectTaskController::class)->getHoursRecorded($project->id);
         $participants = app(AccountAnalyticLineController::class)->getParticipants($project->id);
-        return Jetstream::inertia()->render($request, 'Report/Overview', [
-            'project' =>$project,
-            'team' =>$team->load('owner', 'users'),
-            'hours' => $hours,
-            'participants'=>$participants->load('responsible')
-        ]);
+        $progressdetails = $this->prepareTimesheetPlanning($project);
+        // return Jetstream::inertia()->render($request, 'Report/Overview', [
+        //     'project' =>$project,
+        //     'team' =>$team->load('owner', 'users'),
+        //     'hours' => $hours,
+        //     'participants'=>$participants->load('responsible')
+        // ]);
     }
     public function TaskAnalysisReport(Request $request,$token)
     {
@@ -102,5 +103,25 @@ class ReportController extends Controller
             ];
         }        
         return $data;
+    }
+
+    public function prepareTimesheetPlanning($project){
+        $tasks = app(ProjectTaskController::class)->getTasks($project->id);
+        $timesheets = app(AccountAnalyticLineController::class)->getTimesheetTask($project->id);
+        $data = [];
+        foreach ($tasks as $task){
+            $progress = [];
+            for ($i = 0; $i <= 3; $i++) {
+                $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+                $timesheet = $timesheets->firstWhere('month', $month);
+                $month=date("F",strtotime($month));
+                $time_id = $timesheet->id;
+                $progress = [
+                    'month' =>$month,
+                    'time' => $timesheet ? $timesheet->time:0,
+                ];
+            }  
+            
+        }
     }
 }

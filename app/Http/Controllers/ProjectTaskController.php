@@ -112,4 +112,10 @@ class ProjectTaskController extends Controller
         $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy('project_id')->first();
         return $result;
     }
+
+    public function getTasks($ProjectId){
+        $query = "id,name,planned_hours as planned,created_at";
+        $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->get();
+        return $result;
+    }
 }
