@@ -114,27 +114,19 @@ class ReportController extends Controller
     public function prepareTimesheetPlanning($project){
         $tasks = app(ProjectTaskController::class)->getTasks($project->id);
         $timesheets = app(AccountAnalyticLineController::class)->getTimesheetTask($project->id);
-
         foreach ($tasks as $task){
             $progress = [];
             $time_id ="";
             for ($i = 0; $i <= 3; $i++) {
                 $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
 
-                $timesheet = $timesheets->firstWhere('month', $month);
+                $timesheet = $timesheets->Where('month', $month)->where('task_id',$task->id)->first();
                 $month=date("F",strtotime($month));
                 $time_id = $timesheet ? $timesheet->task_id:0;
-                if ($time_id == $task->id){
-                    $progress[] = [
-                        'month' =>$month,
-                        'time' => $timesheet ? $timesheet->time:0,
-                    ];
-                }else{
-                    $progress[] = [
-                        'month' =>$month,
-                        'time' => 0,
-                    ];
-                }
+                $progress[] = [
+                    'month' =>$month,
+                    'time' => $timesheet ? $timesheet->time:0,
+                ];
             }
             $task->detail = $progress;
             

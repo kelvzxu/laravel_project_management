@@ -34,7 +34,7 @@
               <th>
                 <span
                   title="What is still to deliver based on sold hours and hours already done. Equals to sold hours - done hours."
-                  >Remaining</span
+                  >Overtime</span
                 >
               </th>
             </tr>

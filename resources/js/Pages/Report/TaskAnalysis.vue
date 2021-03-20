@@ -92,9 +92,6 @@ export default {
         );
       }
     },
-    increase() {
-      this.height += 10;
-    },
     DoughnutChart() {
       this.barchart = false;
       this.doughnutchart = true;
