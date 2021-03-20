@@ -85,8 +85,8 @@ class ReportController extends Controller
             $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
             $timesheet = $timesheets->firstWhere('month', $month);
             $planned = $planned_hours->firstWhere('month', $month);
-            $month=date("F",strtotime($month));
             $year=date("Y",strtotime($month));
+            $month=date("F",strtotime($month));
             $data[] = [
                 'month' =>"$month $year",
                 'timesheet' => $timesheet ? $timesheet->time:0,
@@ -101,8 +101,8 @@ class ReportController extends Controller
         for ($i = 0; $i <= 12; $i++) {
             $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
             $cost = $costs->firstWhere('month', $month);
-            $month=date("F",strtotime($month));
             $year=date("Y",strtotime($month));
+            $month=date("F",strtotime($month));
             $data[] = [
                 'month' =>"$month $year" ,
                 'cost' => $cost ? $cost->amount:0,
