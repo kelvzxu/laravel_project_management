@@ -161,7 +161,7 @@
               :class="{ active: ViewParticipants == true }"
               id="notebook_page_team"
             >
-            <table-responsive>
+              <table-responsive>
                 <template #header>
                   <tr>
                     <th class="text-center" style="width: 20px">No.</th>
@@ -176,7 +176,7 @@
                     :key="i"
                   >
                     <td class="text-center">
-                      <span>{{ i+1 }}</span>
+                      <span>{{ i + 1 }}</span>
                     </td>
                     <td>
                       {{ participant.user.name }}
@@ -206,7 +206,7 @@
                         <td class="o_td_label"></td>
                         <td style="width: 100%"></td>
                       </tr>
-                      <tr>
+                      <tr v-if="project.manager.id == $page.user.id">
                         <td class="o_td_label">
                           <label
                             class="o_form_label"
@@ -227,20 +227,34 @@
                               :value="null"
                             ></option>
                             <option
-                              v-for="row in team.users"
-                              :select="row.id == ProjectForm.user_id"
-                              :key="row.id"
-                              :value="row.id"
+                              v-for="row in project.participants"
+                              :select="row.user_id == ProjectForm.user_id"
+                              :key="row.user_id"
+                              :value="row.user_id"
                             >
-                              {{ row.name }}
-                            </option>
-                            <option
-                              :select="team.owner.id == ProjectForm.user_id"
-                              :value="team.owner.id"
-                            >
-                              {{ team.owner.name }}
+                              {{ row.user.name }}
                             </option>
                           </select>
+                        </td>
+                      </tr>
+                      <tr v-else>
+                        <td class="o_td_label">
+                          <label
+                            class="o_form_label"
+                            for="o_field_input_667"
+                            data-original-title=""
+                            title=""
+                            >Manager</label
+                          >
+                        </td>
+                        <td style="width: 100%">
+                          <jet-input
+                            id="customer"
+                            type="text"
+                            class="mt-1 block w-full"
+                            v-model="project.manager.name"
+                            disabled
+                          />
                         </td>
                       </tr>
                       <tr>
@@ -432,7 +446,7 @@ export default {
     return {
       ViewDescription: true,
       ViewSetting: false,
-      ViewParticipants:false,
+      ViewParticipants: false,
       FormType: "view",
       ProjectForm: this.$inertia.form(
         {
@@ -491,7 +505,7 @@ export default {
     BackMethods() {
       this.$inertia.visit(route("project.show", this.project.access_token));
     },
-    Destroyparticipant(data){
+    Destroyparticipant(data) {
       this.$inertia.delete(route("project_user.destroy", data), {
         preserveScroll: true,
       });

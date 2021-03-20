@@ -57,9 +57,6 @@ export default {
       },
     };
   },
-  created() {
-    console.log(this);
-  },
   methods: {
     FormatHours(value) {
       let minutes = value * 60;

@@ -33,8 +33,5 @@ export default {
       isMobile: true,
     };
   },
-  created() {
-    console.log(this);
-  },
 };
 </script>

@@ -308,7 +308,6 @@ export default {
         this.StoreBanner.size = this.$refs.photo.files[0].size;
         this.form.attachment = this.StoreBanner;
       }
-      console.log(this.StoreBanner);
       this.form.post(route("teams.store"), {
         preserveScroll: true,
       });

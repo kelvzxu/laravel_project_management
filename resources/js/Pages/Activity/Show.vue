@@ -188,7 +188,6 @@ export default {
       });
     },
     ActionDone(activity) {
-      console.log("okkk");
       this.$inertia.post(route("activity.update"), {
         id: activity.id,
         name: activity.name,

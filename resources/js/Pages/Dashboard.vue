@@ -354,7 +354,6 @@ export default {
           preserveScroll: true,
         })
         .then((response) => {
-          console.log(this.addTeamMemberForm.hasErrors());
           if (!this.addTeamMemberForm.hasErrors()) {
             this.InviteModal = false;
           }

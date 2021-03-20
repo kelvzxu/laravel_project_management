@@ -36,18 +36,12 @@
             <jet-label for="user_id" value="Responsibility" />
             <select v-model="form.user_id" class="mt-1 block w-full">
               <option
-                :select="team.owner.id == form.user_id"
-                :value="team.owner.id"
+                v-for="row in project.participants"
+                :select="row.user_id == form.user_id"
+                :key="row.user_id"
+                :value="row.user_id"
               >
-                {{ team.owner.name }}
-              </option>
-              <option
-                v-for="row in team.users"
-                :select="row.id == form.user_id"
-                :key="row.id"
-                :value="row.id"
-              >
-                {{ row.name }}
+                {{ row.user.name }}
               </option>
             </select>
             <jet-input-error :message="form.error('user_id')" class="mt-2" />
@@ -129,7 +123,6 @@ export default {
           if (!this.form.hasErrors()) {
             this.AddNewTask = false;
           }
-          console.log(this.form);
         });
     },
   },

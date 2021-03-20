@@ -105,7 +105,6 @@ export default {
       this.form.password = "";
 
       this.confirmingUserDeletion = true;
-      console.log(this)
       setTimeout(() => {
         this.$refs.password.focus();
       }, 250);

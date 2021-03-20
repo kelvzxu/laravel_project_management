@@ -525,9 +525,6 @@ export default {
       },
     };
   },
-  created() {
-    console.log(this);
-  },
   methods: {
     EditForms() {
       this.FormType = "edit";
