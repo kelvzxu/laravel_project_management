@@ -28,7 +28,7 @@
           </jet-workspace-button>
         </jet-responsive-nav-link>
         <jet-responsive-nav-link :href="route('teams.show', team.access_token)">
-          <jet-workspace-button v-if="permissions.canAddTeamMembers">
+          <jet-workspace-button>
             <i class="fa fa-cog main-icon"></i> Details
           </jet-workspace-button>
         </jet-responsive-nav-link>

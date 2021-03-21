@@ -18,7 +18,21 @@ class RequestJoinController extends Controller
                 'user_id'=> $request->user()->id,
                 'role'=>$request->role,
             ]);
+
+            $this->prepareRequestEmailData($request,$team);
         }
+    }
+
+    public function prepareRequestEmailData($request, $team){
+        $data = [
+            'admin' => $team->owner->name,
+            'admin_mail' => $team->owner->email,
+            'email' => $request->user()->email,
+            'name' => $request->user()->name,
+            'team' => $team->name,
+        ];
+        app(MailController::class)->SendRequestJoinEmail($data);
+        
     }
 
     public function validateUser(Request $request, $team){
@@ -28,9 +42,12 @@ class RequestJoinController extends Controller
 
     public function destroy(Request $request, $teamId, $userId)
     {
-        $requestjoin = $this->getRequest($request, $teamId, $userId);
-        $this->remove($request,$requestjoin);
-        return redirect(config('fortify.home'));
+        try{
+            $requestjoin = $this->getRequest($request, $teamId, $userId);
+            $this->remove($request,$requestjoin);
+            return redirect(config('fortify.home'));
+        }catch(\Exception $e){
+        }
     }
 
     public function show(Request $request, $teamId){
@@ -41,16 +58,27 @@ class RequestJoinController extends Controller
     public function Approve(Request $request , $teamId, $userId){
         $requestjoin = $this->getRequest($request, $teamId, $userId);
         $response = $requestjoin->load('user','team');
-        // dd($response->user->email);
         app(AddsTeamMembers::class)->join(
                 $response->user,
                 $response->team,
                 $response->user->email ?: '',
                 $response->role
             );
+        $this->prepareApprovedEmailData($response);
         $this->remove($request,$requestjoin);
 
         return back(303);
+    }
+
+    public function prepareApprovedEmailData($request){
+        $data = [
+            'email' => $request->user->email,
+            'name' => $request->user->name,
+            'team' => $request->team->name,
+        ];
+
+        app(MailController::class)->SendApproveJoinEmail($data);
+        
     }
 
     public function remove(Request $request , $requestjoin){

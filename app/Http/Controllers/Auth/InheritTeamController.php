@@ -85,7 +85,7 @@ class InheritTeamController extends TeamController
     public function Join(Request $request, $teamId)
     {
         $team = Jetstream::newTeamModel()->findOrFail($teamId);
-
+        
         if ($team->team_type == 'public'){
             app(AddsTeamMembers::class)->join(
                 $request->user(),

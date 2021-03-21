@@ -99,12 +99,13 @@
         </jet-sidebar-primary>
         <jet-sidebar-secondary style="display: none">
           <template v-for="team in $page.user.all_teams">
-            <!-- <div class="flex items-center">
-                  <div>{{ team.name }}</div>
-                </div> -->
-            <div class="surface-workspace-list-item" id="workspace_item_-1">
+            <div
+              class="surface-workspace-list-item"
+              id="workspace_item_-1"
+              :key="team.id"
+            >
               <div class="workspace-icon-wrapper selected">
-                <form @submit.prevent="switchToTeam(team)" :key="team.id">
+                <form @submit.prevent="switchToTeam(team)">
                   <jet-dropdown-link as="button">
                     <div
                       class="workspace-icon-container workspace-size-sm hover-effect"
@@ -196,7 +197,6 @@ export default {
     const closeOnEscape = (e) => {
       if (this.showingProfileDialog && e.keyCode === 27) {
         this.showingProfileDialog = false;
-        console.log(this.showingProfileDialog);
       }
     };
   },
