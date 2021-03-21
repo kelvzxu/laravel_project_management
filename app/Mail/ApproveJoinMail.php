@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RequestJoinMail extends Mailable
+class ApproveJoinMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -30,7 +30,7 @@ class RequestJoinMail extends Mailable
     public function build()
     {
         return $this->from('no-reply@kltech-intl.technology',env('APP_NAME'))
-                    ->subject('Request Join')
-                    ->view('Mail.RequestJoinMail');
+                    ->subject('Approved Join')
+                    ->view('Mail.ApproveJoinMail');
     }
 }
