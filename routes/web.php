@@ -5,6 +5,7 @@ use Laravel\Jetstream\Http\Controllers\Inertia\TeamMemberController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\InheritTeamController;
+use App\Http\Controllers\Auth\InheritTeamMemberController;
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserFriendController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\AccountAnalyticLineController;
 use App\Http\Controllers\ProjectTagController;
 use App\Http\Controllers\MailActivityController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +75,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         // Team Member Controller
         Route::delete('/{team}/members/{user}', [TeamMemberController::class, 'destroy'])
                 ->name('team-members.destroy');
+        Route::post('/teams/{team}/members', [InheritTeamMemberController::class, 'store'])
+                ->name('team-members.store');
     });
     Route::group(['prefix'=>'project'],function(){  
         Route::get('/{project}', [ProjectController::class, 'show'])
@@ -171,6 +175,10 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
     Route::post('/attachment/store', [IrAttachmentController::class, 'store'])
                         ->name('attachment.store');
 });  
+
+Route::get('sendbasicemail',[MailController::class, 'basic_email']);
+Route::get('sendhtmlemail',[MailController::class, 'html_email']);
+Route::get('sendattachmentemail','MailController@attachment_email');
 
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
