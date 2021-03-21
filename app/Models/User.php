@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\user_friends;
+use App\Models\ProjectTask;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -70,5 +71,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function Following()
     {
         return $this->hasMany(UserFriend::class,'user_id','id');
+    }
+
+    public function tasks(){
+        return $this->hasMany(ProjectTask::class,'user_id','id')->where('active',true);
     }
 }

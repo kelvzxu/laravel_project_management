@@ -19,7 +19,6 @@ use App\Http\Controllers\AccountAnalyticLineController;
 use App\Http\Controllers\ProjectTagController;
 use App\Http\Controllers\MailActivityController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -176,9 +175,7 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                         ->name('attachment.store');
 });  
 
-Route::get('sendbasicemail',[MailController::class, 'basic_email']);
-Route::get('sendhtmlemail',[MailController::class, 'html_email']);
-Route::get('sendattachmentemail','MailController@attachment_email');
+Route::get('test',[ProjectTaskController::class, 'notification']);
 
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

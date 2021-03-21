@@ -8,8 +8,10 @@ use Inertia\Inertia;
 use Laravel\Jetstream\Jetstream;
 // Dependencies Controllers
 use App\Http\Controllers\Auth\UsersController;
+use App\Http\Controllers\ProjectTaskTypeController;
 // Dependencies Models
 use App\Models\ProjectTask;
+use App\Models\User;
 use DB;
 
 class ProjectTaskController extends Controller
@@ -23,14 +25,26 @@ class ProjectTaskController extends Controller
         try{
             $data=$request->all();
             $task = ProjectTask::findorFail($request->id);
-            if ($task->stage_id != $request->stage_id){
-                $data['date_last_stage_update']=date("Y-m-d h:i:s");
+            echo($request->stage_id);
+            if ($request->stage_id){
+                if (intval($task->stage_id) != intval($request->stage_id)){
+                    $data['date_last_stage_update']=date("Y-m-d h:i:s");
+                }
+                $closed =app(ProjectTaskTypeController::class)->checkCloseState($request->stage_id);
+                if ($closed){
+                    $data['active']=false;
+                }
+                else{
+                    $data['active']=true;
+                }
             }
-            $data['progress'] = $this->computePercentace($task->effective_hours,$request->planned_hours);
+            if ($request->planned_hours){
+                $data['progress'] = $this->computePercentace($task->effective_hours,$request->planned_hours);
+            }
             $task->update($data);
             return back(303);
         }catch(\Exception $e){
-            return abort(404);
+            return abort(500);
         }
     }
 
@@ -98,8 +112,12 @@ class ProjectTaskController extends Controller
     }
 
     public function computePercentace($part,$total){
-        $percentace = round($part/$total * 100);
-        return $percentace;
+        try{
+            $percentace = round($part/$total * 100);
+            return $percentace;
+        }catch(\Exception $e){
+            return 0;
+        }
     }
 
     public function getPlannedAnalysis($ProjectId){
@@ -118,5 +136,14 @@ class ProjectTaskController extends Controller
         $query = "id,name,planned_hours as planned,remaining_hours as remaining,created_at";
         $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->get();
         return $result;
+    }
+    public function notification(){
+        $results = User::with('tasks','tasks.project')->get();
+        foreach( $results as $result){
+            if ( count($result->tasks) != 0){
+                app(MailController::class)->SendNotificationEmail($result);
+            }
+        }
+        
     }
 }

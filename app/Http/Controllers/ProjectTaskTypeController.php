@@ -53,10 +53,15 @@ class ProjectTaskTypeController extends Controller
      }
 
      public function RemoveRelationsTaskRel(Request $request,$StageId){
-      $stage_rels = ProjectTaskTypeRel::where('project_task_type_id',$StageId)->get();
-      foreach($stage_rels as $e => $data){
-         $data->delete();
+        $stage_rels = ProjectTaskTypeRel::where('project_task_type_id',$StageId)->get();
+        foreach($stage_rels as $e => $data){
+            $data->delete();
+        }
      }
+     
+     public function checkCloseState($StageId){
+        $result = ProjectTaskType::find($StageId);
+        return $result->is_closed;
      }
 
 }
