@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Mail\InvitationMail;
 use App\Mail\RequestJoinMail;
 use App\Mail\ApproveJoinMail;
+use App\Mail\NotificationMail;
 use Mail;
 
 class MailController extends Controller
@@ -38,6 +39,13 @@ class MailController extends Controller
         $data->team = $request['team'];
         
         Mail::to($request['email'],$request['name'])->send(new ApproveJoinMail($data));
+   }
+
+   public function  SendNotificationEmail($request) {
+        try{
+             Mail::to($request['email'],$request['name'])->send(new NotificationMail($request));
+        }catch(\Exception $e){
+        }
    }
 
 }
