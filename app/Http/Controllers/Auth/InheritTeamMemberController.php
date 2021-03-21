@@ -42,7 +42,7 @@ class InheritTeamMemberController extends TeamMemberController
             'name' => $user->name,
             'team' => $team->name,
         ];
-        app(MailController::class)->SendInvitationEmaill($data);
+        app(MailController::class)->SendInvitationEmail($data);
         
     }
 

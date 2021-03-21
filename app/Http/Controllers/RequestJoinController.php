@@ -18,7 +18,22 @@ class RequestJoinController extends Controller
                 'user_id'=> $request->user()->id,
                 'role'=>$request->role,
             ]);
+
+            $this->prepareEmailData($request,$team);
         }
+    }
+
+    public function prepareEmailData($request, $team){
+        $user = Jetstream::findUserByIdOrFail($team->user_id);
+        $data = [
+            'admin' => $user->name,
+            'admin_mail' => $user->email,
+            'email' => $request->user()->email,
+            'name' => $request->user()->name,
+            'team' => $team->name,
+        ];
+        app(MailController::class)->SendRequestJoinEmail($data);
+        
     }
 
     public function validateUser(Request $request, $team){

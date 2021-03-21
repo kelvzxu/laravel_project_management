@@ -231,9 +231,6 @@ export default {
     VueEditor,
     JetWorkspaceButton,
   },
-  created() {
-    console.log(this);
-  },
   data() {
     let activity_type = [
       { id: "Email", name: "Email" },

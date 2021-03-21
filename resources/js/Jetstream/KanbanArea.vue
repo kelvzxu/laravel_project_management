@@ -15,8 +15,5 @@
 <script>
 export default {
   props: ["type"],
-  created() {
-    console.log(this);
-  },
 };
 </script>
