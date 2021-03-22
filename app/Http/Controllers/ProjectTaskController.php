@@ -11,7 +11,6 @@ use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\ProjectTaskTypeController;
 // Dependencies Models
 use App\Models\ProjectTask;
-use App\Models\User;
 use DB;
 
 class ProjectTaskController extends Controller
@@ -136,14 +135,5 @@ class ProjectTaskController extends Controller
         $query = "id,name,planned_hours as planned,remaining_hours as remaining,created_at";
         $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->get();
         return $result;
-    }
-    public function notification(){
-        $results = User::with('tasks','tasks.project')->get();
-        foreach( $results as $result){
-            if ( count($result->tasks) != 0){
-                app(MailController::class)->SendNotificationEmail($result);
-            }
-        }
-        
     }
 }

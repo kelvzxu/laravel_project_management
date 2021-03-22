@@ -42,10 +42,10 @@ class MailController extends Controller
    }
 
    public function  SendNotificationEmail($request) {
-        try{
+     //    try{
              Mail::to($request['email'],$request['name'])->send(new NotificationMail($request));
-        }catch(\Exception $e){
-        }
+     //    }catch(\Exception $e){
+     //    }
    }
 
 }
