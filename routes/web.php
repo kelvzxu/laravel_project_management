@@ -86,6 +86,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
         ->name('project.store');
         Route::post('/update', [ProjectController::class, 'update'])
         ->name('project.update');   
+        Route::delete('/archive/{project}', [ProjectController::class, 'archive'])
+        ->name('project.archive');  
         Route::post('/AddParicipants/{project}', [ProjectController::class, 'StoreProjectUsers'])
         ->name('project.newuser'); 
         Route::delete('/destroy/{project}', [ProjectController::class, 'destroyParticipants'])
@@ -147,6 +149,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                             ->name('profile.following');
         Route::get('/team/all/', [InheritTeamController::class, 'getTeams'])
                             ->name('profile.teams');
+        Route::get('/contribute/Projects', [ProfileController::class, 'getProjects'])
+                            ->name('profile.projects');
     });
      Route::group(['prefix'=>'project/stage'],function(){ 
         Route::get('/{project}', [ProjectTaskTypeController::class, 'show'])

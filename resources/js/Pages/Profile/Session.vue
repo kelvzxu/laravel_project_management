@@ -1,26 +1,7 @@
 <template>
   <app-layout>
     <app-content>
-      <jumbotron>
-        <template #followers>
-          <i class="fa fa-users" aria-hidden="true"></i>
-          <inertia-link
-            :href="route('profile.followers', $page.user.email)"
-            :active="route().current('profile.followers')"
-            >{{ users.original.result.followers.length }} followers
-          </inertia-link></template
-        >
-        <template #following>
-          <i class="fa fa-users" aria-hidden="true"></i>
-          <inertia-link
-            :href="route('profile.following', $page.user.email)"
-            :active="route().current('profile.following')"
-            >{{
-              users.original.result.following.length
-            }}
-            Following</inertia-link
-          ></template
-        >
+      <jumbotron :users="users">
         <template #main>
           <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">

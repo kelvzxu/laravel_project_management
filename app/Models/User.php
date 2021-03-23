@@ -12,6 +12,7 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\user_friends;
 use App\Models\ProjectTask;
+use App\Models\ProjectUser;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -68,6 +69,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(UserFriend::class,'friend_id','id');
     }
+
     public function Following()
     {
         return $this->hasMany(UserFriend::class,'user_id','id');
@@ -75,5 +77,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function tasks(){
         return $this->hasMany(ProjectTask::class,'user_id','id')->where('active',true);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(ProjectUser::class,'user_id','id');
     }
 }

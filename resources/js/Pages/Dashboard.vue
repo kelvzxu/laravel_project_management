@@ -48,7 +48,6 @@
       <jet-board-search
         ><input placeholder="Search... " v-model="search" style="width: 100%"
       /></jet-board-search>
-      <jet-board-filter-dropdown @click.native="FilterData" />
     </template>
     <template #board_header_action>
       <button
@@ -187,52 +186,6 @@
         </kanban-box>
         <kanban-ghost v-for="n in 80 - DataRow.length" :key="n"></kanban-ghost>
       </kanban-area>
-    </template>
-    <template #dialog_node>
-      <jet-board-dropdown v-if="FilterDropdown">
-        <template #board_filter_item>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-text-column"
-                ></i
-                ><span class="column-list-item-title">Active Project</span>
-              </div>
-            </div>
-          </div>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-person-column"
-                ></i
-                ><span class="column-list-item-title">Followed</span>
-              </div>
-            </div>
-          </div>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-person-column"
-                ></i
-                ><span class="column-list-item-title">My Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-person-column"
-                ></i
-                ><span class="column-list-item-title">Archived</span>
-              </div>
-            </div>
-          </div>
-        </template>
-      </jet-board-dropdown>
     </template>
   </jet-dashboard>
 </template>

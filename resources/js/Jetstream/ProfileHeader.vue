@@ -1,17 +1,6 @@
 <template>
   <div class="user-profile">
     <div class="cover-block user-cover-block">
-      <div class="cover-controls d-flex px-2 pb-4 d-sm-block p-sm-0">
-        <a
-          class="flex-grow-1 mx-1 btn gl-button btn-default btn-icon has-tooltip"
-          title="Subscribe"
-          data-toggle="tooltip"
-          data-placement="bottom"
-          data-container="body"
-          href="/kelvzxu.atom"
-          ><i class="fa fa-plus-square-o" aria-hidden="true"></i>
-        </a>
-      </div>
       <div class="profile-header">
         <div class="avatar-holder">
           <slot name="avatar"></slot>

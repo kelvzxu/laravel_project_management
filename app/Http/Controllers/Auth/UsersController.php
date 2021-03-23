@@ -37,7 +37,7 @@ class UsersController extends UserProfileController
     public function getUser($user)
     {
         $user = $this->findUser($user);
-        $response = user::with('followers.userfollowers','following.userfollowing')->where('email','=',$user->email)->first();
+        $response = user::with('followers.userfollowers','following.userfollowing','projects','projects.project','projects.project.manager')->where('email','=',$user->email)->first();
 
         if ($response) {
             return response()->json([

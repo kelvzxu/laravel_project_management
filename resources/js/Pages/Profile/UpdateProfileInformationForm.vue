@@ -127,19 +127,6 @@
                 uploaded</small
               >
             </div>
-            <div class="form-group">
-              <label class="required" for="user_public_email"
-                >Public email</label
-              >
-              <select class="custom-select">
-                <option selected>Do not show on profile</option>
-                <option value="ceokelvin12@gmail.com">
-                  ceokelvin12@gmail.com
-                </option></select
-              ><small class="form-text text-muted"
-                >This email will be displayed on your public profile</small
-              >
-            </div>
 
             <div class="form-group">
               <jet-label for="skype" value="Skype" />

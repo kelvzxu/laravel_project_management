@@ -101,4 +101,11 @@ class ProfileController extends UserProfileController
             'users' => $data,
         ]);
     }
+
+    public function getProjects(Request $request, $mail){
+        $data = app(UsersController::class)->getUser($mail);
+        return Jetstream::inertia()->render($request, 'Public/Projects', [
+            'users' => $data,
+        ]);
+    }
 }
