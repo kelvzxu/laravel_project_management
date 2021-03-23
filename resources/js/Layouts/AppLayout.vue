@@ -24,26 +24,6 @@
                 <div class="selected-view-indication"></div>
               </div>
             </inertia-link>
-            <a href="/public_profile.html">
-              <div class="surface-action-icon-wrapper">
-                <div class="surface-notifications-component">
-                  <span>
-                    <div
-                      class="surface-navigation-dialog-item-component"
-                      tabindex="0"
-                      aria-label="Notifications"
-                      role="button"
-                    >
-                      <span
-                        class="navigation-dialog-item-icon fas fa-bell text-white"
-                      ></span>
-                    </div>
-                  </span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="permanent-navigation-items-area">
             <inertia-link
               :href="route('user.search', $page.user.id)"
               :active="route().current('user.search', $page.user.id)"
@@ -62,18 +42,8 @@
                 </div>
               </div>
             </inertia-link>
-            <div class="surface-action-icon-wrapper surface-help-wrapper">
-              <div
-                class="surface-navigation-action-item-component"
-                tabindex="0"
-                aria-label="Help"
-                role="button"
-              >
-                <span
-                  class="navigation-action-item-icon fas fa-question text-white"
-                ></span>
-              </div>
-            </div>
+          </div>
+          <div class="permanent-navigation-items-area">
             <div
               @click="showingProfileDialog = !showingProfileDialog"
               class="surface-avatar-menu-connector-wrapper"

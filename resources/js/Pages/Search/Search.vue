@@ -15,7 +15,6 @@
             <div
               role="search"
               class="cp_search_view mb-0"
-              v-if="isMobile == false"
             >
               <div role="search" class="o_searchview">
                 <i role="img" class="searchview_icon fa fa-search"></i>
@@ -28,26 +27,6 @@
                     class="searchview_input"
                   />
                 </div>
-              </div>
-            </div>
-            <div role="search" class="cp_searchview o_searchview_quick" v-else>
-              <div role="search" class="o_searchview">
-                <button
-                  type="button"
-                  class="enable_searchview btn btn-link fa fa-arrow-left"
-                ></button>
-                <div class="searchview_input_container">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    role="searchbox"
-                    class="searchview_input"
-                  />
-                </div>
-                <button
-                  type="button"
-                  class="toggle_searchview_full btn fa fa-filter"
-                ></button>
               </div>
             </div>
           </template>

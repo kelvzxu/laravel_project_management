@@ -87,6 +87,12 @@ class ProjectController extends Controller
         return back(303);
     }
 
+    public function archive(Request $request,$id){
+        $project = Project::findOrFail($id);
+        $project->delete();
+        return redirect(config('fortify.home'));
+    }
+
     public function destroyParticipants(Request $request,$Id){
         $result = ProjectUser::findOrFail($Id);
         $result->delete();

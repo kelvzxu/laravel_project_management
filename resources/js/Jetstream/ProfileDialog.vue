@@ -70,13 +70,7 @@
                       <span class="ds-title">Developers</span>
                     </div>
                   </jet-responsive-nav-link>
-
-                  <a href="/recycle_bin" class="button_link">
-                    <div class="ds-menu-item">
-                      <div class="ds-icon"><i class="far fa-trash"></i></div>
-                      <span class="ds-title">Recycle bin</span>
-                    </div> </a
-                  ><a href="/archived_boards" class="button_link">
+                  <a href="/archived_boards" class="button_link">
                     <div class="ds-menu-item">
                       <div class="ds-icon"><i class="fal fa-archive"></i></div>
                       <span class="ds-title">Archived boards</span>
@@ -91,10 +85,15 @@
                       <span class="ds-title">teams</span>
                     </div>
                   </jet-responsive-nav-link>
+                  <jet-responsive-nav-link
+                    :href="route('profile.password')"
+                    :active="route().current('profile.password')"
+                  >
                   <div class="ds-menu-item">
                     <div class="ds-icon"><i class="fal fa-lock-alt"></i></div>
                     <span class="ds-title">Security</span>
                   </div>
+                  </jet-responsive-nav-link>
                 </div>
               </div>
               <div class="ds-menu-column menu-section-short-divider">

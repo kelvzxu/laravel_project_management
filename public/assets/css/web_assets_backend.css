@@ -2975,7 +2975,7 @@ input.pager_value:focus {
 }
 
 .profile-dialog-component {
-    top: 213px
+    top: 293px
 }
 
 @media (min-height: 700px) {
@@ -3269,7 +3269,111 @@ div.kanban_area div.o_kanban_group.ui-sortable.o_kanban_has_progressbar div#kanb
     padding: 0px;
 }
 
-.o_right_bordered {
+.right_bordered {
     border-right: 2px solid #00A09D;
     text-align: center;
+}
+
+.personal-info-field {
+    margin: 6px 0;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.contact_information_container h2 {
+    margin-bottom: 0;
+}
+
+.contact_information_container .get_in_touch_spacer {
+    margin-left: 20px;
+}
+
+.contact_information_container i.copy_icon {
+    color: #0085ff;
+    color: var(--primary-color);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.contact_information_container .dark_grey {
+    color: #0071d9;
+    color: var(--primary-hover-color);
+}
+
+.personal-info-field .icon-container {
+    color: #676879;
+    color: var(--icon-color);
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    background-color: var(--primary-background-color);
+    border-radius: 50%;
+    border: 1px solid;
+    border-color: #c5c7d0;
+    border-color: var(--ui-border-color);
+    text-align: center;
+    font-size: 18px;
+}
+
+.personal-info-field .icon-container {
+    color: #676879;
+    color: var(--icon-color);
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    background-color: var(--primary-background-color);
+    border-radius: 50%;
+    border: 1px solid;
+    border-color: #c5c7d0;
+    border-color: var(--ui-border-color);
+    text-align: center;
+    font-size: 18px;
+}
+
+.personal-info-field .data_container.popup_edit_link {
+    border: 1px solid transparent;
+}
+
+.personal-info-field .data_container {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2px 14px 2px 5px;
+    position: relative;
+    margin-left: 5px;
+}
+
+.personal-info-field .data_container .data_row_container {
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+
+.personal-info-field .data_container .data_row_container .profile-field-title {
+    flex: 0 1 auto;
+    max-width: 200px;
+    white-space: nowrap;
+    margin-right: 5px;
+    color: #323338;
+    color: var(--primary-text-color);
+}
+
+.personal-info-field .data_container .data_row_container .profile-field-content {
+    flex: 1 1 auto;
+    max-width: 80%;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.personal-info-field .data_container .data_row_container .profile-field-content .profile-field-content-missing {
+    color: #676879;
+    color: var(--placeholder-color);
+}
+
+.user_inner_container {
+    max-width: 550px;
+    margin: 0 auto auto auto;
 }

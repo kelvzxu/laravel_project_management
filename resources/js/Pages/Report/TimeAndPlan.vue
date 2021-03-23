@@ -10,10 +10,10 @@
             <tr>
               <th></th>
 
-              <th class="o_right_bordered">
+              <th class="right_bordered">
                 <h3>Planning</h3>
               </th>
-              <th colspan="5" id="table_plan_title" class="o_right_bordered">
+              <th colspan="5" id="table_plan_title" class="right_bordered">
                 <h3>Timesheets</h3>
               </th>
               <th id="table_plan_total"></th>
@@ -22,13 +22,13 @@
               <th>
                 <span title="">Project Task</span>
               </th>
-              <th class="o_right_bordered">
+              <th class="right_bordered">
                 <span title="">Total</span>
               </th>
               <th v-for="month in months" :key="month">
                 <span title="">{{ month }}</span>
               </th>
-              <th class="o_right_bordered">
+              <th class="right_bordered">
                 <span title="">Total</span>
               </th>
               <th>
@@ -45,7 +45,7 @@
                 <span>{{ data.name }}</span>
               </td>
 
-              <td class="o_right_bordered">
+              <td class="right_bordered">
                 <span class="text-muted">{{ FormatHours(data.planned) }}</span>
               </td>
 
@@ -53,7 +53,7 @@
                 <span class="text-muted">{{ FormatHours(row.time) }} </span>
               </td>
 
-              <td class="o_right_bordered">
+              <td class="right_bordered">
                 <span class="">{{ FormatHours(TotalTime(data.detail)) }} </span>
               </td>
 

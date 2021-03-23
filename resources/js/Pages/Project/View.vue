@@ -55,22 +55,6 @@
             <span class="o_stat_text">{{ project.label_tasks }}</span>
           </div>
         </button>
-        <button
-          type="button"
-          class="btn oe_stat_button"
-          name="attachment_tree_view"
-        >
-          <i class="fa fa-fw o_button_icon fa-file-text-o"></i>
-          <div
-            name="doc_count"
-            class="o_field_widget o_stat_info o_readonly_modifier"
-            data-original-title=""
-            title=""
-          >
-            <span class="o_stat_value">1</span>
-            <span class="o_stat_text">Documents</span>
-          </div>
-        </button>
       </div>
       <div class="container mt-1">
         <div class="oe_title">
@@ -510,7 +494,11 @@ export default {
         preserveScroll: true,
       });
     },
-    DestroyProject() {},
+    DestroyProject() {
+      this.$inertia.delete(route("project.archive", this.project), {
+        preserveScroll: true,
+      });
+    },
   },
 };
 </script>
