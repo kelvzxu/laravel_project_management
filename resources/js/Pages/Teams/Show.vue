@@ -6,18 +6,19 @@
           <div class="workspace-cover-component-wrapper">
             <div
               class="workspace-cover-component"
-              style="
-                background-image: url('https://cdn7.monday.com/images/workspaces_cover_photos/full/photo-1559251606-c623743a6d76.jpeg');
-                background-size: 100%;
-                background-position: center center;
-              "
-            >
-              <div class="add-cover-button-component-wrapper">
-                <div class="add-cover-button-component">
-                  <div class="add-cover-button">+ Add cover</div>
-                </div>
-              </div>
-            </div>
+              v-bind:style="[
+                team.banner
+                  ? {
+                      'background-image':
+                        'url(/storage/' + team.banner.url + ')',
+                    }
+                  : {
+                      'background-image':
+                        'url(/assets/img/standartbanner.jpeg)',
+                    },
+              ]"
+              style="background-size: 100%; background-position: center center"
+            ></div>
           </div>
           <div class="workspace-header">
             <div class="workspace-page-icon">
@@ -127,6 +128,18 @@ export default {
     JetSectionBorder,
     TeamMemberManager,
     UpdateTeamInformation,
+  },
+  methods: {
+    updateBanner() {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.BannerImage = e.target.result;
+      };
+      reader.readAsDataURL(this.$refs.photo.files[0]);
+    },
+    selectBanner() {
+      this.$refs.photo.click();
+    },
   },
 };
 </script>

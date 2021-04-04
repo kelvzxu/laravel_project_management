@@ -61,13 +61,18 @@
                 >
               </td>
               <td style="width: 100%">
-                <jet-input
-                  id="name1"
-                  type="text"
-                  class="mt-1 block w-full"
-                  v-model="form.name"
-                  :disabled="!permissions.canUpdateTeam"
-                />
+                <div class="o_input_dropdown">
+                  <select v-model="form.team_type" class="mt-1 block w-full">
+                    <option
+                      v-for="row in team_types"
+                      :select="row.id == form.team_type"
+                      :key="row.id"
+                      :value="row.id"
+                    >
+                      {{ row.name }}
+                    </option>
+                  </select>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -163,12 +168,18 @@ export default {
   props: ["team", "permissions", "availableRoles", "projects"],
 
   data() {
+    let team_type = [
+      { id: "public", name: "Public" },
+      { id: "private", name: "Private" },
+    ];
     return {
+      team_types: team_type,
       ViewMember: true,
       ViewProject: false,
       form: this.$inertia.form(
         {
           name: this.team.name,
+          team_type: this.team.team_type,
         },
         {
           bag: "updateTeamName",
