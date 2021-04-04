@@ -32,7 +32,6 @@ class CreateUsersTable extends Migration
             $table->string('organization')->nullable();
             $table->string('bio')->nullable();
             $table->boolean('private_profile')->default(true);
-            $table->boolean('include_private_contributions')->default(true);
             $table->timestamps();
         });
     }

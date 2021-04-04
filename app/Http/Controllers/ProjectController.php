@@ -20,6 +20,7 @@ class ProjectController extends Controller
         try{
             $data=$request->all();
             $data['access_token']=bin2hex(random_bytes(24));
+            $data['date_start']=date("Y-m-d");
             $project=Project::create($data);
             $this->StoreProjectUsers($request,$project->id);
             return back(303);
@@ -34,7 +35,6 @@ class ProjectController extends Controller
                                         ->where('user_id',$request->user_id)
                                         ->where('project_id',$projectId)->first();
             if (!$projectuser){
-                echo"okk";
                 $data=$request->all();
                 $data['project_id']=$projectId;
                 $project=ProjectUser::create($data);
@@ -77,7 +77,7 @@ class ProjectController extends Controller
     }
 
     public function getProjectDetail($token){
-        $result = Project::with('task_type','task_type.tasks','task_type.tasks.tags','task_type.tasks.responsible','manager','team','task','participants','participants.user')->where('access_token','=',$token)->first();
+        $result = Project::with('task_type','task_type.tasks','task_type.tasks.tags','task_type.tasks.responsible','task.responsible','manager','team','task','participants','participants.user')->where('access_token','=',$token)->first();
         return $result;
     }
 

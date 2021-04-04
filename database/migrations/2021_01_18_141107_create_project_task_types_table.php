@@ -22,13 +22,12 @@ class CreateProjectTaskTypesTable extends Migration
             $table->string('legend_blocked')->default('Blocked');
             $table->string('legend_done')->default('Ready');
             $table->string('legend_normal')->default('In Progress');
-            $table->string('mail_template_id')->nullable();
             $table->boolean('fold')->nullable();
-            $table->boolean('auto_validation_kanban_state')->nullable();
             $table->boolean('is_closed')->default(false);
             $table->foreignId('create_uid')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('write_uid')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -5,7 +5,7 @@
     <template #workspace_sub_header>
       <div class="home-workspace-items-content-sub-header-wrapper">
         <jet-workspace-button
-          v-if="FormType == 'view'"
+          v-if="project.manager.id == $page.user.id && FormType == 'view'"
           @click.native="EditForms"
         >
           <i class="far fa-edit main-icon"></i>Edit Project
@@ -16,7 +16,10 @@
         >
           <i class="far fa-save main-icon"></i>Save Change
         </jet-workspace-button>
-        <jet-workspace-button @click.native="DestroyProject">
+        <jet-workspace-button
+          @click.native="DestroyProject"
+          v-if="project.manager.id == $page.user.id"
+        >
           <i class="far fa-trash-alt main-icon"></i>Delete Project
         </jet-workspace-button>
         <jet-workspace-button @click.native="BackMethods">
@@ -34,9 +37,16 @@
       <img :src="project.manager.profile_photo_url" class="inner-image" />
     </template>
     <template #board_button>
-      <add-participants :users="users" :project="project" :team="team" />
+      <add-participants
+        :users="users"
+        :project="project"
+        :team="team"
+        v-if="project.manager.id == $page.user.id"
+      />
     </template>
-    <template #board_subs> Member / {{ team.users.length + 1 }} </template>
+    <template #board_subs>
+      Member / {{ project.participants.length }}
+    </template>
     <template #board_component>
       <div class="o_not_full oe_button_box">
         <button
@@ -51,7 +61,7 @@
             data-original-title=""
             title=""
           >
-            <span class="o_stat_value">1</span>
+            <span class="o_stat_value">{{ project.task.length }}</span>
             <span class="o_stat_text">{{ project.label_tasks }}</span>
           </div>
         </button>
@@ -261,6 +271,46 @@
                           />
                         </td>
                       </tr>
+                      <tr>
+                        <td class="o_td_label">
+                          <label
+                            class="o_form_label"
+                            for="o_field_input_668"
+                            data-original-title=""
+                            title=""
+                            >Date Start</label
+                          >
+                        </td>
+                        <td style="width: 100%">
+                          <jet-input
+                            id="date_start"
+                            type="date"
+                            class="mt-1 block w-full"
+                            v-model="ProjectForm.date_start"
+                            :disabled="FormType == 'view'"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="o_td_label">
+                          <label
+                            class="o_form_label"
+                            for="o_field_input_668"
+                            data-original-title=""
+                            title=""
+                            >Deadline</label
+                          >
+                        </td>
+                        <td style="width: 100%">
+                          <jet-input
+                            id="date_end"
+                            type="date"
+                            class="mt-1 block w-full"
+                            v-model="ProjectForm.date_end"
+                            :disabled="FormType == 'view'"
+                          />
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                   <table class="o_group o_inner_group col-12 col-md-5">
@@ -294,9 +344,10 @@
                         <td style="width: 100%">
                           <jet-input
                             id="team"
-                            type="text"
+                            type="number"
                             class="mt-1 block w-full"
                             v-model="ProjectForm.cost_hours"
+                            :disabled="FormType == 'view'"
                           />
                         </td>
                       </tr>
@@ -444,6 +495,8 @@ export default {
           allow_timesheet_timer: this.project.allow_timesheet_timer,
           description: this.project.description,
           cost_hours: this.project.cost_hours,
+          date_start: this.project.date_start,
+          date_end: this.project.date_end,
         },
         {
           bag: "createTeam",

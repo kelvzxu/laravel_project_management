@@ -30,6 +30,7 @@ class Team extends JetstreamTeam
         'personal_team',
         'banner_image_id',
         'user_id',
+        'team_type',
     ];
 
     /**

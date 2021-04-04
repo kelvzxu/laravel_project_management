@@ -34,13 +34,8 @@ class CreateProjectTasksTable extends Migration
             $table->string('color')->nullable();
             $table->foreignId('displayed_image_id')->nullable()->references('id')->on('ir_attachments')->onDelete('cascade');
             $table->string('email_from')->nullable();
-            $table->float('working_hours_open')->default(0);
-            $table->float('working_hours_close')->default(0);
-            $table->float('working_days_open')->default(0);
-            $table->float('working_days_close')->default(0);
             $table->float('remaining_hours')->default(0);
             $table->float('effective_hours')->default(0);
-            $table->float('total_hours_spent')->default(0);
             $table->float('progress')->default(0);
             $table->float('overtime')->default(0);
             $table->float('subtask_effective_hours')->default(0);

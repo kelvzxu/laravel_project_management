@@ -15,15 +15,22 @@
     <template #board_subs_images>
       <img :src="project.manager.profile_photo_url" class="inner-image" />
     </template>
-    <template #board_subs> Member / {{ team.users.length + 1 }} </template>
+    <template #board_subs>
+      Member / {{ project.participants.length }}
+    </template>
     <template #board_button>
-      <create-task :users="users" :project="project" :team="team" />
+      <create-task
+        :users="users"
+        :project="project"
+        :team="team"
+        v-if="project.task_type.length > 0"
+      />
+      <jet-wrapper-button v-else> Add Participants </jet-wrapper-button>
     </template>
     <template #board_button_group>
       <jet-board-search
         ><input placeholder="Search... " v-model="search" style="width: 100%"
       /></jet-board-search>
-      <jet-board-filter-dropdown @click.native="FilterData" />
     </template>
     <template #board_component>
       <kanban-area :type="'group'" v-if="isMobile == false">
@@ -57,7 +64,14 @@
                   ></template
                 >
                 <template #button>
-                  <div class="o_priority kanban_field_widget mr-2">
+                  <div
+                    v-if="task.priority"
+                    style="color: gold"
+                    class="o_priority kanban_field_widget mr-2"
+                  >
+                    <i class="o_priority_star fas fa-star"></i>
+                  </div>
+                  <div v-else class="o_priority kanban_field_widget mr-2">
                     <i class="o_priority_star far fa-star"></i>
                   </div>
                   <div
@@ -82,52 +96,53 @@
           </template>
         </kanban-progress>
       </kanban-area>
-    </template>
-    <template #dialog_node>
-      <jet-board-dropdown v-if="FilterDropdown">
-        <template #board_filter_item>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-text-column"
-                ></i
-                ><span class="column-list-item-title">Active Project</span>
-              </div>
+      <kanban-area v-else>
+        <kanban-box
+          v-for="task in project.task"
+          :key="task.id"
+          :data-id="task.id"
+          @click.native="ViewTask(task)"
+        >
+          <template #header>{{ task.name }}</template>
+          <template #body v-if="task.tags"
+            ><span
+              class="badge badge-pill"
+              v-bind:style="{ 'background-color': task.tags.color }"
+              >{{ task.tags.name }}</span
+            ></template
+          >
+          <template #button>
+            <div
+              v-if="task.priority"
+              style="color: gold"
+              class="o_priority kanban_field_widget mr-2"
+            >
+              <i class="o_priority_star fas fa-star"></i>
             </div>
-          </div>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-person-column"
-                ></i
-                ><span class="column-list-item-title">Followed</span>
-              </div>
+            <div v-else class="o_priority kanban_field_widget mr-2">
+              <i class="o_priority_star far fa-star"></i>
             </div>
-          </div>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-person-column"
-                ></i
-                ><span class="column-list-item-title">My Projects</span>
-              </div>
+            <div
+              class="o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
+            >
+              <i class="far fa-fw o_activity_color_default fa-clock mt-1"></i>
             </div>
-          </div>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-person-column"
-                ></i
-                ><span class="column-list-item-title">Archived</span>
-              </div>
-            </div>
-          </div>
-        </template>
-      </jet-board-dropdown>
+          </template>
+          <template #dateline v-if="task.date_end">{{
+            task.date_end | formatDate
+          }}</template>
+          <template #picture>
+            <img
+              :src="task.responsible.profile_photo_url"
+              class="o_m2o_avatar rounded-circle"
+            />
+          </template>
+        </kanban-box>
+        <kanban-ghost
+          v-for="n in 30 - project.task.length"
+          :key="n"
+        ></kanban-ghost>
+      </kanban-area>
     </template>
   </jet-dashboard>
 </template>
@@ -140,10 +155,12 @@ import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
 import JetWorkspaceSubHeader from "@/Jetstream/WorkspaceSubHeader";
+import JetWrapperButton from "@/Jetstream/WrapperButton";
 // Kanban Component
 import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBoxGroup";
 import KanbanProgress from "@/Jetstream/KanbanProgress";
+import KanbanGhost from "@/Jetstream/KanbanGhost";
 // Module
 import draggable from "vuedraggable";
 // Page Component
@@ -158,12 +175,14 @@ export default {
     KanbanArea,
     KanbanBox,
     KanbanProgress,
+    KanbanGhost,
     JetBoardSorting,
     JetBoardSearch,
     JetBoardDropdown,
     JetBoardFilterDropdown,
     draggable,
     JetWorkspaceSubHeader,
+    JetWrapperButton,
   },
   data() {
     let sortOrders = {};
@@ -191,6 +210,7 @@ export default {
   },
   created() {
     this.detectMob();
+    console.log(this);
   },
   methods: {
     detectMob() {
@@ -209,13 +229,6 @@ export default {
     },
     ViewTask(row) {
       this.$inertia.visit(route("project_task.view", row.access_token));
-    },
-    FilterData() {
-      if (this.FilterDropdown == false) {
-        this.FilterDropdown = true;
-      } else {
-        this.FilterDropdown = false;
-      }
     },
     paginate(array, length, pageNumber) {
       this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";

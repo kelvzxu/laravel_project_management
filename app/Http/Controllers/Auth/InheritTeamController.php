@@ -126,10 +126,18 @@ class InheritTeamController extends TeamController
         return $this->redirectPath($creator);
     }
 
+    public function update(Request $request, $teamId)
+    {
+        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $data = $request->all();
+        $team->update($data);
+
+        return back(303);
+    }
+
     public function getProject(Request $request,$teamId){
         $team = Jetstream::newTeamModel()->findOrFail($teamId);
         $project = $team->project();
-        dd($project);
     }
 
      protected function createTeam(User $user,$request)
@@ -137,7 +145,8 @@ class InheritTeamController extends TeamController
         $banner_image_id = null;
         if ($request->attachment){
             $params = $request->attachment;
-            $params['res_id']= $team->id;
+            // dd($params);
+            // $params['res_id']= $team->id;
             $attachment = app(IrAttachmentController::class)->store($params);
             if ($attachment->id){
                 $banner_image_id = $attachment->id;

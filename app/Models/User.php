@@ -30,8 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name','username', 'email_verified_at','email', 'password', 'github_id','show_public_email',
-        'skype','linkedin','twitter','website_url','location','job_title',
-        'organization','bio','private_profile','include_private_contributions',
+        'skype','linkedin','twitter','website_url','location','job_title','profile_photo_path',
+        'organization','bio','private_profile','include_private_contributions','linkedin_id'
     ];
 
     /**

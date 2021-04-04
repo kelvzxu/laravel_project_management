@@ -23,7 +23,9 @@
           </jet-workspace-button>
         </div>
         <jet-responsive-nav-link :href="route('request_join.show', team.id)">
-          <jet-workspace-button v-if="permissions.canAddTeamMembers">
+          <jet-workspace-button
+            v-if="permissions.canAddTeamMembers && team.team_type == 'private'"
+          >
             <i class="fas fa-comment-exclamation main-icon"></i>Request Join
           </jet-workspace-button>
         </jet-responsive-nav-link>
@@ -42,7 +44,11 @@
     </template>
     <template #board_subs> Member / {{ team.users.length + 1 }} </template>
     <template #board_button>
-      <create-project :users="users" :team="team" />
+      <create-project
+        :users="users"
+        :team="team"
+        v-if="permissions.canUpdateTeam"
+      />
     </template>
     <template #board_button_group>
       <jet-board-search

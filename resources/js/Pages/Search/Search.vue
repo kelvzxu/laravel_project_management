@@ -1,256 +1,198 @@
 <template>
-  <app-layout>
-    <app-content>
-      <div class="application-content">
-        <control-panel>
-          <template #title
-            ><li
-              class="breadcrumb-item active font-weight-bold text-black"
-              v-if="isMobile == false"
-            >
-              Search Page
-            </li></template
-          >
-          <template #search>
+  <jet-dashboard>
+    <template #filter>
+      <jet-workspace-button
+        :class="{
+          'workspace floating': DataType == 'team',
+        }"
+        @click.native="
+          (fetchTeams = true), (fetchUser = false), (currentUser = $page.user)
+        "
+      >
+        <i class="fas fa-users main-icon"></i>Teams
+      </jet-workspace-button>
+      <jet-workspace-button
+        :class="{
+          'workspace floating': DataType == 'users',
+        }"
+        @click.native="
+          (fetchTeams = false), (fetchUser = true), (currentUser = $page.user)
+        "
+      >
+        <i class="fas fa-user main-icon"></i>Users
+      </jet-workspace-button>
+    </template>
+    <template #page_name>Search Teams</template>
+    <template #page
+      >{{ pagination.from }}-{{ pagination.to }} /
+      {{ pagination.total }}</template
+    >
+    <template #board_button_group>
+      <jet-board-search
+        ><input placeholder="Search... " v-model="search" style="width: 100%"
+      /></jet-board-search>
+    </template>
+    <template #board_header_action>
+      <button
+        v-if="pagination.prevPage"
+        @click="--pagination.currentPage"
+        type="button"
+        title="Previous"
+        class="btn btn-secondary pager_previous"
+      >
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button
+        v-if="pagination.nextPage"
+        @click="++pagination.currentPage"
+        type="button"
+        class="btn btn-secondary o_pager_next"
+      >
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </template>
+    <template #record>
+      <kanban-area v-if="DataType == 'users'">
+        <kanban-box
+          class="data_row"
+          v-for="user in DataRow"
+          :key="user.email"
+          @click.native="viewUser(user)"
+        >
+          <template #image
+            ><div
+              v-if="user.profile_photo_path"
+              class="kanban_image_fill_left"
+              v-bind:style="{
+                'background-image':
+                  'url(/storage/' + user.profile_photo_path + ')',
+              }"
+            ></div>
             <div
-              role="search"
-              class="cp_search_view mb-0"
-            >
-              <div role="search" class="o_searchview">
-                <i role="img" class="searchview_icon fa fa-search"></i>
-                <div class="searchview_input_container">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    role="searchbox"
-                    v-model="search"
-                    class="searchview_input"
-                  />
-                </div>
-              </div>
-            </div>
+              v-else
+              class="kanban_image_fill_left"
+              v-bind:style="{
+                'background-image': 'url(' + user.profile_photo_url + ')',
+              }"
+            ></div>
           </template>
-          <template #pager_value
-            >{{ pagination.from }}-{{ pagination.to }}</template
+          <template #name
+            ><span>{{ user.name }}</span></template
           >
-          <template #pager_limit>{{ pagination.total }}</template>
-          <template #pager_button>
-            <button
-              v-if="pagination.prevPage"
-              @click="--pagination.currentPage"
-              type="button"
-              title="Previous"
-              class="btn btn-secondary pager_previous"
+          <template #jobs
+            ><span>{{ user.job_title }}</span></template
+          >
+          <template #tags v-if="user.location != null"
+            ><span class="field_tag tag_color_6"
+              ><span></span>{{ user.location }}</span
+            ></template
+          >
+          <template #email
+            ><span
+              ><small>{{ user.email }}</small></span
+            ></template
+          >
+          <template #button>
+            <form
+              method="POST"
+              v-if="user.state == null"
+              @submit.prevent="Follow($page.user.id, user.id)"
             >
-              <i class="fa fa-chevron-left"></i>
-            </button>
-            <button
-              v-if="pagination.nextPage"
-              @click="++pagination.currentPage"
-              type="button"
-              class="btn btn-secondary o_pager_next"
+              <jet-Primary-button class="float-right">
+                Follow
+              </jet-Primary-button>
+            </form>
+            <form
+              method="POST"
+              v-else
+              @submit.prevent="Unfollow($page.user.id, user.id)"
             >
-              <i class="fa fa-chevron-right"></i>
-            </button>
+              <jet-Primary-button class="float-right">
+                Unfollow
+              </jet-Primary-button>
+            </form>
           </template>
-        </control-panel>
+        </kanban-box>
+        <kanban-ghost v-for="n in 80 - DataRow.length" :key="n"></kanban-ghost>
+      </kanban-area>
+      <kanban-area v-else>
+        <kanban-box v-for="team in DataRow" :key="team.access_token">
+          <template #image
+            ><div
+              class="kanban_image_fill_left"
+              style="
+                background-image: url('https://erp.kltech-intl.technology/images/icons/avatar.png');
+              "
+              @click="viewTeam(team)"
+            ></div
+          ></template>
+          <template #jobs
+            ><span @click="viewTeam(team)">{{ team.name }}</span></template
+          >
+          <template #tags
+            ><span class="field_tag tag_color_6"
+              ><span></span>{{ team.team_type }}</span
+            ></template
+          >
 
-        <div class="controller_with_searchpanel">
-          <div class="search_panel d-none d-md-block" style="height: 100vh">
-            <section class="search_panel_section search_panel_category">
-              <header class="search_panel_section_header">
-                <i
-                  class="mr-1 fa fa-filter search_panel_section_icon"
-                  style
-                ></i>
-                <b>Filter By</b>
-              </header>
-
-              <ul class="list-group d-block search_panel_field">
-                <li
-                  class="search_panel_category_value border-0 list-group-item"
-                  @click="
-                    (fetchTeams = true),
-                      (fetchUser = false),
-                      (currentUser = $page.user)
-                  "
-                >
-                  <header class="list-group-item-action">
-                    <label for="Merchandise" class="search_panel_label mb0">
-                      <span class="search_panel_label_title">Teams</span>
-                    </label>
-                  </header>
-                </li>
-                <li
-                  class="search_panel_category_value border-0 list-group-item"
-                  @click="
-                    (fetchTeams = false),
-                      (fetchUser = true),
-                      (currentUser = $page.user)
-                  "
-                >
-                  <header class="list-group-item-action">
-                    <label for="Administration" class="search_panel_label mb0">
-                      <span class="search_panel_label_title">Users</span>
-                    </label>
-                  </header>
-                </li>
-              </ul>
-            </section>
-          </div>
-          <kanban-area v-if="DataType == 'users'">
-            <kanban-box
-              class="data_row"
-              v-for="user in DataRow"
-              :key="user.email"
-              @click.native="viewUser(user)"
+          <template #button>
+            <form
+              method="POST"
+              v-if="team.join == null && team.request == null"
+              @submit.prevent="Join($page.user, team)"
             >
-              <template #image
-                ><div
-                  v-if="user.profile_photo_path"
-                  class="kanban_image_fill_left"
-                  v-bind:style="{
-                    'background-image':
-                      'url(/storage/' + user.profile_photo_path + ')',
-                  }"
-                ></div>
-                <div
-                  v-else
-                  class="kanban_image_fill_left"
-                  v-bind:style="{
-                    'background-image':
-                      'url(https://ui-avatars.com/api/?name=' +
-                      user.profile_photo_url +
-                      '&color=7F9CF5&background=EBF4FF)',
-                  }"
-                ></div>
-              </template>
-              <template #name
-                ><span>{{ user.name }}</span></template
-              >
-              <template #jobs
-                ><span>{{ user.job_title }}</span></template
-              >
-              <template #tags v-if="user.location != null"
-                ><span class="field_tag tag_color_6"
-                  ><span></span>{{ user.location }}</span
-                ></template
-              >
-              <template #email
-                ><span
-                  ><small>{{ user.email }}</small></span
-                ></template
-              >
-              <template #button>
-                <form
-                  method="POST"
-                  v-if="user.state == null"
-                  @submit.prevent="Follow($page.user.id, user.id)"
-                >
-                  <jet-Primary-button class="float-right">
-                    Follow
-                  </jet-Primary-button>
-                </form>
-                <form
-                  method="POST"
-                  v-else
-                  @submit.prevent="Unfollow($page.user.id, user.id)"
-                >
-                  <jet-Primary-button class="float-right">
-                    Unfollow
-                  </jet-Primary-button>
-                </form>
-              </template>
-            </kanban-box>
-            <kanban-ghost
-              v-for="n in 80 - DataRow.length"
-              :key="n"
-            ></kanban-ghost>
-          </kanban-area>
-          <kanban-area v-else>
-            <kanban-box v-for="team in DataRow" :key="team.access_token">
-              <template #image
-                ><div
-                  class="kanban_image_fill_left"
-                  style="
-                    background-image: url('https://erp.kltech-intl.technology/images/icons/avatar.png');
-                  "
-                  @click="viewTeam(team)"
-                ></div
-              ></template>
-              <template #jobs
-                ><span @click="viewTeam(team)">{{ team.name }}</span></template
-              >
-              <template #tags
-                ><span class="field_tag tag_color_6"
-                  ><span></span>{{ team.team_type }}</span
-                ></template
-              >
-
-              <template #button>
-                <form
-                  method="POST"
-                  v-if="team.join == null && team.request == null"
-                  @submit.prevent="Join($page.user, team)"
-                >
-                  <jet-Primary-button class="float-right">
-                    Join
-                  </jet-Primary-button>
-                </form>
-                <form
-                  method="POST"
-                  v-if="team.join == null && team.request != null"
-                  @submit.prevent="CancelRequest($page.user, team)"
-                >
-                  <jet-Primary-button class="float-right">
-                    Cancel Request
-                  </jet-Primary-button>
-                </form>
-                <form
-                  method="POST"
-                  v-if="team.join != null && team.request == null"
-                  @submit.prevent="LeaveTeam($page.user, team)"
-                >
-                  <jet-Primary-button class="float-right">
-                    Leave
-                  </jet-Primary-button>
-                </form>
-              </template>
-            </kanban-box>
-            <kanban-ghost
-              v-for="n in 80 - DataRow.length"
-              :key="n"
-            ></kanban-ghost>
-          </kanban-area>
-        </div>
-      </div>
-    </app-content>
-  </app-layout>
+              <jet-Primary-button class="float-right">
+                Join
+              </jet-Primary-button>
+            </form>
+            <form
+              method="POST"
+              v-if="team.join == null && team.request != null"
+              @submit.prevent="CancelRequest($page.user, team)"
+            >
+              <jet-Primary-button class="float-right">
+                Cancel Request
+              </jet-Primary-button>
+            </form>
+            <form
+              method="POST"
+              v-if="team.join != null && team.request == null"
+              @submit.prevent="LeaveTeam($page.user, team)"
+            >
+              <jet-danger-button :type="'submit'" class="float-right">
+                Leave
+              </jet-danger-button>
+            </form>
+          </template>
+        </kanban-box>
+        <kanban-ghost v-for="n in 80 - DataRow.length" :key="n"></kanban-ghost>
+      </kanban-area>
+    </template>
+  </jet-dashboard>
 </template>
 
-
 <script>
-import AppContent from "@/Jetstream/ApplicationContent";
-import AppLayout from "@/Layouts/AppLayout";
-import ControlPanel from "@/Jetstream/ControlPanel";
-import SearchPanel from "@/Jetstream/SearchPanel";
+// Dependence Page
+import JetDashboard from "./Dashboard";
+// workspace
+import JetWorkspaceButton from "@/Jetstream/WorkspaceButton";
+import JetBoardSearch from "@/Jetstream/BoardSearch";
+// button Component
 import JetPrimaryButton from "@/Jetstream/PrimaryButton";
+import JetDangerButton from "@/Jetstream/DangerButton";
 // Kanban Component
 import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBox";
 import KanbanGhost from "@/Jetstream/KanbanGhost";
-// import { search } from "../../utils/index.js";
-import axios from "axios";
 
 export default {
   props: ["teams", "users"],
-
   components: {
-    AppContent,
-    AppLayout,
-    ControlPanel,
-    SearchPanel,
+    JetDashboard,
+    JetWorkspaceButton,
+    JetBoardSearch,
     JetPrimaryButton,
+    JetDangerButton,
     KanbanArea,
     KanbanBox,
     KanbanGhost,
@@ -258,7 +200,6 @@ export default {
   data() {
     let sortOrders = {};
     return {
-      isMobile: true,
       fetchUser: false,
       fetchTeam: true,
       // search and Paginate
@@ -276,18 +217,7 @@ export default {
       },
     };
   },
-  created() {
-    this.detectMob();
-  },
-
   methods: {
-    detectMob() {
-      if (window.innerWidth <= 767) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    },
     Follow(uid, friend) {
       this.$inertia.post(route("user.follow"), {
         user_id: uid,
@@ -352,8 +282,10 @@ export default {
     },
     CheckDataType() {
       if (this.fetchUser == true) {
+        this.pagination.total = this.users.original.result.length;
         return "users";
       } else {
+        this.pagination.total = this.teams.original.result.length;
         return "team";
       }
     },

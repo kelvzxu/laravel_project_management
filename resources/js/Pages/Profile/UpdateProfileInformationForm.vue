@@ -129,6 +129,25 @@
             </div>
 
             <div class="form-group">
+              <label class="required" for="user_public_email"
+                >Public email</label
+              >
+              <select v-model="form.show_public_email" class="custom-select">
+                <option
+                  value="false"
+                  :select="'false' == form.show_public_email"
+                >
+                  Do not show on profile
+                </option>
+                <option value="true" :select="'true' == form.show_public_email">
+                  {{ form.email }}
+                </option></select
+              ><small class="form-text text-muted"
+                >This email will be displayed on your public profile</small
+              >
+            </div>
+
+            <div class="form-group">
               <jet-label for="skype" value="Skype" />
               <jet-input
                 id="skype"
@@ -236,25 +255,6 @@
                 ><i class="far fa-question-circle"></i
               ></a>
             </div>
-            <h5 class="font-weight-bold">Private contributions</h5>
-            <div class="form-check form-check-inline mb-2">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                v-model="form.include_private_contributions"
-                name="include_private_contributions"
-                id="include_private_contributions"
-              /><label
-                class="form-check-label"
-                for="include_private_contributions"
-                >Include private contributions on my profile</label
-              >
-            </div>
-            <small class="form-text text-muted">
-              Choose to show contributions of private projects on your public
-              profile without any project, repository or organization
-              information
-            </small>
           </div>
         </div>
       </div>
@@ -319,8 +319,6 @@ export default {
           organization: this.user.organization,
           bio: this.user.bio,
           private_profile: this.user.private_profile,
-          include_private_contributions: this.user
-            .include_private_contributions,
           photo: null,
         },
         {

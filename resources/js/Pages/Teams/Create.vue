@@ -7,36 +7,18 @@
             <div class="workspace-header-component">
               <div class="workspace-cover-component-wrapper">
                 <div
-                  v-show="BannerImage"
                   class="workspace-cover-component"
-                  :style="'background-image:  url(\'' + BannerImage + '\');'"
+                  v-bind:style="[
+                    BannerImage
+                      ? {
+                          'background-image': 'url(\'' + BannerImage + '\')',
+                        }
+                      : {
+                          'background-image':
+                            'url(/assets/img/standartbanner.jpeg)',
+                        },
+                  ]"
                   style="
-                    background-size: 100%;
-                    background-position: center center;
-                  "
-                >
-                  <div class="add-cover-button-component-wrapper">
-                    <div class="add-cover-button-component">
-                      <input
-                        type="file"
-                        class="hidden"
-                        ref="photo"
-                        @change="updateBanner"
-                      />
-                      <div
-                        class="add-cover-button"
-                        @click.prevent="selectBanner"
-                      >
-                        + Add cover
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  v-show="!BannerImage"
-                  class="workspace-cover-component"
-                  style="
-                    background-image: url('https://cdn7.monday.com/images/workspaces_cover_photos/full/photo-1559251606-c623743a6d76.jpeg');
                     background-size: 100%;
                     background-position: center center;
                   "
@@ -172,19 +154,28 @@
                       <td class="o_td_label">
                         <label
                           class="o_form_label"
-                          for="o_field_input_666"
+                          for="o_field_input_665"
                           data-original-title=""
                           title=""
                           >Team Type</label
                         >
                       </td>
                       <td style="width: 100%">
-                        <jet-input
-                          id="name1"
-                          type="text"
-                          class="mt-1 block w-full"
-                          v-model="form.name"
-                        />
+                        <div class="o_input_dropdown">
+                          <select
+                            v-model="form.team_type"
+                            class="mt-1 block w-full"
+                          >
+                            <option
+                              v-for="row in team_types"
+                              :select="row.id == form.team_type"
+                              :key="row.id"
+                              :value="row.id"
+                            >
+                              {{ row.name }}
+                            </option>
+                          </select>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
@@ -273,8 +264,15 @@ export default {
     JetLabel,
   },
   data() {
+    let team_type = [
+      { id: "public", name: "Public" },
+      { id: "private", name: "Private" },
+    ];
+
     return {
+      team_types: team_type,
       ViewMember: true,
+      ViewProject: false,
       BannerImage: null,
       form: this.$inertia.form(
         {
@@ -282,6 +280,7 @@ export default {
           name: "",
           attachment: "",
           access_token: "",
+          team_type: "private",
           // owner: this.user.name,
         },
         {
@@ -306,6 +305,7 @@ export default {
         this.StoreBanner.url = this.$refs.photo.files[0].name;
         this.StoreBanner.type = this.$refs.photo.files[0].type;
         this.StoreBanner.size = this.$refs.photo.files[0].size;
+        this.StoreBanner.file = this.$refs.photo.files[0];
         this.form.attachment = this.StoreBanner;
       }
       this.form.post(route("teams.store"), {

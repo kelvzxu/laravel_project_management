@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\User;
+use Storage;
 use Validator;
 use Socialite;
 use Auth;
@@ -37,10 +39,11 @@ class GithubController extends Controller
                     'email' => $user['email'],
                     'github_id'=> $user['id'],
                     'email_verified_at' =>date("Y-m-d h:i:s"),
-                    'password' => encrypt('123456dummy'),
+                    'password' => Hash::make('123456dummy'),
                     'website_url' => $user['blog'],
                     'location' => $user['location'],
                     'twitter'=>$user['twitter_username'],
+                    'profile_photo_path'=> $this->storeimage($response),
                 ]);
                 
                 $team = $this->createTeam($newUser);
@@ -63,5 +66,14 @@ class GithubController extends Controller
             'name' => explode(' ', $user->name, 2)[0]."'s Team",
             'personal_team' => true,
         ]));
+    }
+
+    public function storeimage($response){
+        $url = $response->avatar;
+        $contents = file_get_contents($url);
+        $name =  Hash::make($response->name);
+        $filename = "profile-photos/$response->id-$name.png";
+        Storage::put("public/$filename", $contents);
+        return $filename;
     }
 }

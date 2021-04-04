@@ -35,7 +35,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
-                // 'show_public_email'=> $input['show_public_email'],
+                'show_public_email'=> $input['show_public_email'],
                 'skype'=> $input['skype'],
                 'linkedin'=> $input['linkedin'],
                 'twitter'=> $input['twitter'],
@@ -45,7 +45,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'organization'=> $input['organization'],
                 'bio'=> $input['bio'],
                 'private_profile'=> $input['private_profile'],
-                'include_private_contributions'=> $input['include_private_contributions'],
             ])->save();
         }
     }
