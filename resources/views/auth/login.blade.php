@@ -34,7 +34,7 @@
                 <a href="{{ url('auth/github') }}" class="social-icon">
                 <i class="fab fa-github"></i>
                 </a>
-                <a href="#" class="social-icon">
+                <a href="{{ url('auth/linkedin') }}" class="social-icon">
                 <i class="fab fa-linkedin-in"></i>
                 </a>
             </div>

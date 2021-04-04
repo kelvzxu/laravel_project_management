@@ -27,11 +27,6 @@ class CreateProjectsTable extends Migration
             $table->string('label_tasks')->nullable();
             $table->date('date_start')->nullable();
             $table->date('date_end')->nullable();
-            $table->boolean('allow_subtasks')->nullable();
-            $table->boolean('allow_recurring_tasks')->nullable();
-            $table->boolean('rating_active')->nullable(); 
-            $table->string('rating_status')->nullable();
-            $table->string('rating_status_period')->nullable();
             $table->boolean('allow_timesheets')->nullable();
             $table->boolean('allow_timesheet_timer')->nullable();
             $table->float('cost_hours')->default(0);

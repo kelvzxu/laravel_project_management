@@ -1,16 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Laravel\Jetstream\Http\Controllers\Inertia\TeamMemberController;
+// Thirty Apps Login
 use App\Http\Controllers\Auth\GithubController;
+use App\Http\Controllers\Auth\LinkedinController;
+// Inheritance
+use Laravel\Jetstream\Http\Controllers\Inertia\TeamMemberController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\InheritTeamController;
 use App\Http\Controllers\Auth\InheritTeamMemberController;
 use App\Http\Controllers\Auth\UsersController;
+// Project Module
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserFriendController;
 use App\Http\Controllers\RequestJoinController;
-// Project Module
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTaskController;
 use App\Http\Controllers\ProjectTaskTypeController;
@@ -34,8 +37,17 @@ use App\Http\Controllers\ReportController;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
-Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);
+
+Route::group(['prefix'=>'auth/github'],function(){
+        Route::get('/', [GithubController::class, 'redirectToGithub']);
+        Route::get('/callback', [GithubController::class, 'handleGithubCallback']);
+});
+
+Route::group(['prefix'=>'auth/linkedin'],function(){
+        Route::get('/', [LinkedinController::class, 'redirectToLinkedin']);
+        Route::get('/callback', [LinkedinController::class, 'handleLinkedinCallback']);
+});
+
 Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
     Route::group(['prefix'=>'user'],function(){      
         Route::get('/profile', [ProfileController::class, 'show'])

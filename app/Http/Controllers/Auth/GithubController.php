@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\User;
+use Storage;
 use Validator;
 use Socialite;
 use Auth;
@@ -41,6 +42,7 @@ class GithubController extends Controller
                     'website_url' => $user['blog'],
                     'location' => $user['location'],
                     'twitter'=>$user['twitter_username'],
+                    'profile_photo_path'=> $this->storeimage($response),
                 ]);
                 
                 $team = $this->createTeam($newUser);
@@ -63,5 +65,14 @@ class GithubController extends Controller
             'name' => explode(' ', $user->name, 2)[0]."'s Team",
             'personal_team' => true,
         ]));
+    }
+
+    public function storeimage($response){
+        $url = $response->avatar;
+        $contents = file_get_contents($url);
+        $name = substr($url, strrpos($url, '/') + 1);
+        $filename = "profile-photos/$response->id-$response->name.png";
+        Storage::put("public/$filename", $contents);
+        return $filename;
     }
 }

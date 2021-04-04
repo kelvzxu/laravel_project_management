@@ -45,7 +45,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'organization'=> $input['organization'],
                 'bio'=> $input['bio'],
                 'private_profile'=> $input['private_profile'],
-                'include_private_contributions'=> $input['include_private_contributions'],
             ])->save();
         }
     }

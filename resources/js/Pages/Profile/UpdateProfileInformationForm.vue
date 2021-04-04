@@ -236,25 +236,6 @@
                 ><i class="far fa-question-circle"></i
               ></a>
             </div>
-            <h5 class="font-weight-bold">Private contributions</h5>
-            <div class="form-check form-check-inline mb-2">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                v-model="form.include_private_contributions"
-                name="include_private_contributions"
-                id="include_private_contributions"
-              /><label
-                class="form-check-label"
-                for="include_private_contributions"
-                >Include private contributions on my profile</label
-              >
-            </div>
-            <small class="form-text text-muted">
-              Choose to show contributions of private projects on your public
-              profile without any project, repository or organization
-              information
-            </small>
           </div>
         </div>
       </div>
@@ -319,8 +300,6 @@ export default {
           organization: this.user.organization,
           bio: this.user.bio,
           private_profile: this.user.private_profile,
-          include_private_contributions: this.user
-            .include_private_contributions,
           photo: null,
         },
         {
