@@ -96,6 +96,53 @@
           </template>
         </kanban-progress>
       </kanban-area>
+      <kanban-area v-else>
+        <kanban-box
+          v-for="task in project.task"
+          :key="task.id"
+          :data-id="task.id"
+          @click.native="ViewTask(task)"
+        >
+          <template #header>{{ task.name }}</template>
+          <template #body v-if="task.tags"
+            ><span
+              class="badge badge-pill"
+              v-bind:style="{ 'background-color': task.tags.color }"
+              >{{ task.tags.name }}</span
+            ></template
+          >
+          <template #button>
+            <div
+              v-if="task.priority"
+              style="color: gold"
+              class="o_priority kanban_field_widget mr-2"
+            >
+              <i class="o_priority_star fas fa-star"></i>
+            </div>
+            <div v-else class="o_priority kanban_field_widget mr-2">
+              <i class="o_priority_star far fa-star"></i>
+            </div>
+            <div
+              class="o_kanban_inline_block dropdown o_mail_activity kanban_field_widget mr-2"
+            >
+              <i class="far fa-fw o_activity_color_default fa-clock mt-1"></i>
+            </div>
+          </template>
+          <template #dateline v-if="task.date_end">{{
+            task.date_end | formatDate
+          }}</template>
+          <template #picture>
+            <img
+              :src="task.responsible.profile_photo_url"
+              class="o_m2o_avatar rounded-circle"
+            />
+          </template>
+        </kanban-box>
+        <kanban-ghost
+          v-for="n in 30 - project.task.length"
+          :key="n"
+        ></kanban-ghost>
+      </kanban-area>
     </template>
   </jet-dashboard>
 </template>
@@ -113,6 +160,7 @@ import JetWrapperButton from "@/Jetstream/WrapperButton";
 import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBoxGroup";
 import KanbanProgress from "@/Jetstream/KanbanProgress";
+import KanbanGhost from "@/Jetstream/KanbanGhost";
 // Module
 import draggable from "vuedraggable";
 // Page Component
@@ -127,6 +175,7 @@ export default {
     KanbanArea,
     KanbanBox,
     KanbanProgress,
+    KanbanGhost,
     JetBoardSorting,
     JetBoardSearch,
     JetBoardDropdown,
@@ -161,6 +210,7 @@ export default {
   },
   created() {
     this.detectMob();
+    console.log(this);
   },
   methods: {
     detectMob() {

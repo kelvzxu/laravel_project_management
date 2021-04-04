@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\InheritTeamController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTaskController;
 // Dependencies Models
+use App\Models\ProjectTask;
 use App\Models\ProjectTaskType;
 use App\Models\ProjectTaskTypeRel;
 
@@ -46,6 +47,7 @@ class ProjectTaskTypeController extends Controller
 
      public function destroy(Request $request,$StageId){
          $this->RemoveRelationsTaskRel($request,$StageId);
+         $this->RemoveRelationsTask($request,$StageId);
          $data = $request->all();
          $stage = ProjectTaskType::findOrFail($StageId);
          $stage->delete();
@@ -55,6 +57,12 @@ class ProjectTaskTypeController extends Controller
      public function RemoveRelationsTaskRel(Request $request,$StageId){
         $stage_rels = ProjectTaskTypeRel::where('project_task_type_id',$StageId)->get();
         foreach($stage_rels as $e => $data){
+            $data->delete();
+        }
+     }
+     public function RemoveRelationsTask(Request $request,$StageId){
+        $task = ProjectTask::where('stage_id',$StageId)->get();
+        foreach($task as $e => $data){
             $data->delete();
         }
      }

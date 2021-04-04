@@ -77,7 +77,7 @@ class ProjectController extends Controller
     }
 
     public function getProjectDetail($token){
-        $result = Project::with('task_type','task_type.tasks','task_type.tasks.tags','task_type.tasks.responsible','manager','team','task','participants','participants.user')->where('access_token','=',$token)->first();
+        $result = Project::with('task_type','task_type.tasks','task_type.tasks.tags','task_type.tasks.responsible','task.responsible','manager','team','task','participants','participants.user')->where('access_token','=',$token)->first();
         return $result;
     }
 
