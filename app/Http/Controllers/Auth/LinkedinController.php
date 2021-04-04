@@ -69,8 +69,8 @@ class LinkedinController extends Controller
     public function storeimage($response){
         $url = $response->avatar;
         $contents = file_get_contents($url);
-        $name = substr($url, strrpos($url, '/') + 1);
-        $filename = "profile-photos/$response->id-$response->name.png";
+        $name =  Hash::make($response->name);
+        $filename = "profile-photos/$response->id-$name.png";
         Storage::put("public/$filename", $contents);
         return $filename;
     }

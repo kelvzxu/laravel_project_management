@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\User;
@@ -38,7 +39,7 @@ class GithubController extends Controller
                     'email' => $user['email'],
                     'github_id'=> $user['id'],
                     'email_verified_at' =>date("Y-m-d h:i:s"),
-                    'password' => encrypt('123456dummy'),
+                    'password' => Hash::make('123456dummy'),
                     'website_url' => $user['blog'],
                     'location' => $user['location'],
                     'twitter'=>$user['twitter_username'],
@@ -70,8 +71,8 @@ class GithubController extends Controller
     public function storeimage($response){
         $url = $response->avatar;
         $contents = file_get_contents($url);
-        $name = substr($url, strrpos($url, '/') + 1);
-        $filename = "profile-photos/$response->id-$response->name.png";
+        $name =  Hash::make($response->name);
+        $filename = "profile-photos/$response->id-$name.png";
         Storage::put("public/$filename", $contents);
         return $filename;
     }

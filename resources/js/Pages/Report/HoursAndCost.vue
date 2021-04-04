@@ -65,9 +65,7 @@
                   class="o_timesheet_plan_dashboard_cell"
                   style="text-align: right"
                 >
-                  {{
-                    formatPrice((overtime + effective) * -project.cost_hours)
-                  }}
+                  {{ formatPrice(effective * -project.cost_hours) }}
                 </td>
                 <td title="Revenues linked to Timesheets already invoiced.">
                   Timesheet Cost
@@ -79,7 +77,7 @@
                     {{
                       formatPrice(
                         planned * project.cost_hours +
-                          (overtime + effective) * -project.cost_hours
+                          effective * -project.cost_hours
                       )
                     }}
                   </b>
