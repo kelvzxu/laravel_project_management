@@ -129,6 +129,25 @@
             </div>
 
             <div class="form-group">
+              <label class="required" for="user_public_email"
+                >Public email</label
+              >
+              <select v-model="form.show_public_email" class="custom-select">
+                <option
+                  value="false"
+                  :select="'false' == form.show_public_email"
+                >
+                  Do not show on profile
+                </option>
+                <option value="true" :select="'true' == form.show_public_email">
+                  {{ form.email }}
+                </option></select
+              ><small class="form-text text-muted"
+                >This email will be displayed on your public profile</small
+              >
+            </div>
+
+            <div class="form-group">
               <jet-label for="skype" value="Skype" />
               <jet-input
                 id="skype"

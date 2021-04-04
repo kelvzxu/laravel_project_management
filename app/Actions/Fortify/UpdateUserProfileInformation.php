@@ -35,7 +35,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
-                // 'show_public_email'=> $input['show_public_email'],
+                'show_public_email'=> $input['show_public_email'],
                 'skype'=> $input['skype'],
                 'linkedin'=> $input['linkedin'],
                 'twitter'=> $input['twitter'],

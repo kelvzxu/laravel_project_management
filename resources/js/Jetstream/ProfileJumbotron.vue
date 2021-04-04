@@ -16,7 +16,7 @@
     </template>
     <template #name>{{ $page.user.name }}</template>
     <template #username v-if="$page.user.show_public_email">
-      <span class="middle-dot-divider"> @{{ $page.user.email }} </span>
+      <span class="middle-dot-divider"> {{ $page.user.email }} </span>
     </template>
     <template #join_date
       ><small

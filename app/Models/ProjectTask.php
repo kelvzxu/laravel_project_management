@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 // dependencies Models
 use App\Models\AccountAnalyticLine;
@@ -16,7 +15,6 @@ use App\Models\Project;
 class ProjectTask extends Model
 {
     use HasFactory;
-    use SoftDeletes; 
 
     protected $fillable = [
         'access_token','email_cc','active','name','description',
