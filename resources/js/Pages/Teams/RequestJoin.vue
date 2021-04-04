@@ -158,6 +158,9 @@
           <template #board_subs_images>
             <img :src="team.owner.profile_photo_url" class="inner-image" />
           </template>
+          <template #board_subs>
+            Member / {{ team.users.length + 1 }}
+          </template>
           <template #board_button_group>
             <jet-board-search
               ><input
@@ -227,55 +230,6 @@
             </table-responsive>
           </template>
         </jet-content-wrapper>
-        <!-- <div
-          class="first-level-content-wrapper first-level-control-pinned"
-          id="first-level-content-wrapper"
-        >
-          <div
-            class="first-level-content react-board"
-            id="first-level-content"
-            style="margin-right: 0px"
-          >
-            <div
-              class="current-board-component"
-              id="current-board-component-id"
-            ></div>
-            <table-responsive>
-              <template #header>
-                <tr>
-                  <th
-                    class="o_handle_cell o_column_sortable o_list_number_th"
-                    style="min-width: 33px; width: 33px"
-                  ></th>
-                  <th style="width: 171px">Name</th>
-                  <th style="width: 190px">role</th>
-                  <th style="width: 190px">Request Date</th>
-                  <th style="width: 90px">Action</th>
-                </tr>
-              </template>
-              <template #content>
-                <tr class="data_row" v-for="(request, i) in requests" :key="i">
-                  <td class="text-center">{{ i + 1 }}</td>
-                  <td>{{ request.user.name }}</td>
-                  <td>{{ request.role }}</td>
-                  <td>{{ request.created_at | formatDate }}</td>
-                  <td>
-                    <form
-                      method="POST"
-                      @submit.prevent="
-                        AcceptRequest($request.user_id, request.team_id)
-                      "
-                    >
-                      <jet-Primary-button class="float-right">
-                        Accept
-                      </jet-Primary-button>
-                    </form>
-                  </td>
-                </tr>
-              </template>
-            </table-responsive>
-          </div>
-        </div> -->
       </template>
     </jet-application-control>
   </app-layout>

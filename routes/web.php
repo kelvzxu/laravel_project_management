@@ -75,6 +75,8 @@ Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){
                         ->name('team.join');
         Route::post('/store', [InheritTeamController::class, 'store'])
                 ->name('teams.store');
+        Route::put('/teams/{team}', [InheritTeamController::class, 'update'])
+                ->name('teams.update');
         // RequestJoinController
         Route::post('/{team}/approve/{user}', [RequestJoinController::class, 'Approve'])
                 ->name('request_join.approve');   
