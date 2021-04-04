@@ -15,15 +15,22 @@
     <template #board_subs_images>
       <img :src="project.manager.profile_photo_url" class="inner-image" />
     </template>
-    <template #board_subs> Member / {{ team.users.length + 1 }} </template>
+    <template #board_subs>
+      Member / {{ project.participants.length }}
+    </template>
     <template #board_button>
-      <create-task :users="users" :project="project" :team="team" />
+      <create-task
+        :users="users"
+        :project="project"
+        :team="team"
+        v-if="project.task_type.length > 0"
+      />
+      <jet-wrapper-button v-else> Add Participants </jet-wrapper-button>
     </template>
     <template #board_button_group>
       <jet-board-search
         ><input placeholder="Search... " v-model="search" style="width: 100%"
       /></jet-board-search>
-      <jet-board-filter-dropdown @click.native="FilterData" />
     </template>
     <template #board_component>
       <kanban-area :type="'group'" v-if="isMobile == false">
@@ -140,6 +147,7 @@ import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
 import JetBoardFilterDropdown from "@/Jetstream/BoardFilterDropdown";
 import JetWorkspaceSubHeader from "@/Jetstream/WorkspaceSubHeader";
+import JetWrapperButton from "@/Jetstream/WrapperButton";
 // Kanban Component
 import KanbanArea from "@/Jetstream/KanbanArea";
 import KanbanBox from "@/Jetstream/KanbanBoxGroup";
@@ -164,6 +172,7 @@ export default {
     JetBoardFilterDropdown,
     draggable,
     JetWorkspaceSubHeader,
+    JetWrapperButton,
   },
   data() {
     let sortOrders = {};
@@ -209,13 +218,6 @@ export default {
     },
     ViewTask(row) {
       this.$inertia.visit(route("project_task.view", row.access_token));
-    },
-    FilterData() {
-      if (this.FilterDropdown == false) {
-        this.FilterDropdown = true;
-      } else {
-        this.FilterDropdown = false;
-      }
     },
     paginate(array, length, pageNumber) {
       this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
