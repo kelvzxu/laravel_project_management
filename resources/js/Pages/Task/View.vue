@@ -195,6 +195,21 @@
                   />
                 </td>
               </tr>
+              <tr>
+                <td class="o_td_label">
+                  <label class="o_form_label" for="o_field_input_668"
+                    >Priority</label
+                  >
+                </td>
+                <td style="width: 100%">
+                  <input
+                    id="o_field_input_737"
+                    type="checkbox"
+                    v-model="TaskForm.priority"
+                    :disabled="FormType == 'view'"
+                  />
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -480,6 +495,7 @@ export default {
           sequence: this.task.sequence,
           email_cc: this.task.email_cc,
           planned_hours: this.task.planned_hours,
+          priority: this.task.priority,
         },
         {
           bag: "UpdateTask",

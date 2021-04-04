@@ -271,6 +271,46 @@
                           />
                         </td>
                       </tr>
+                      <tr>
+                        <td class="o_td_label">
+                          <label
+                            class="o_form_label"
+                            for="o_field_input_668"
+                            data-original-title=""
+                            title=""
+                            >Date Start</label
+                          >
+                        </td>
+                        <td style="width: 100%">
+                          <jet-input
+                            id="date_start"
+                            type="date"
+                            class="mt-1 block w-full"
+                            v-model="ProjectForm.date_start"
+                            :disabled="FormType == 'view'"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="o_td_label">
+                          <label
+                            class="o_form_label"
+                            for="o_field_input_668"
+                            data-original-title=""
+                            title=""
+                            >Deadline</label
+                          >
+                        </td>
+                        <td style="width: 100%">
+                          <jet-input
+                            id="date_end"
+                            type="date"
+                            class="mt-1 block w-full"
+                            v-model="ProjectForm.date_end"
+                            :disabled="FormType == 'view'"
+                          />
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                   <table class="o_group o_inner_group col-12 col-md-5">
@@ -455,6 +495,8 @@ export default {
           allow_timesheet_timer: this.project.allow_timesheet_timer,
           description: this.project.description,
           cost_hours: this.project.cost_hours,
+          date_start: this.project.date_start,
+          date_end: this.project.date_end,
         },
         {
           bag: "createTeam",

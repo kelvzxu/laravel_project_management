@@ -64,7 +64,14 @@
                   ></template
                 >
                 <template #button>
-                  <div class="o_priority kanban_field_widget mr-2">
+                  <div
+                    v-if="task.priority"
+                    style="color: gold"
+                    class="o_priority kanban_field_widget mr-2"
+                  >
+                    <i class="o_priority_star fas fa-star"></i>
+                  </div>
+                  <div v-else class="o_priority kanban_field_widget mr-2">
                     <i class="o_priority_star far fa-star"></i>
                   </div>
                   <div
@@ -89,52 +96,6 @@
           </template>
         </kanban-progress>
       </kanban-area>
-    </template>
-    <template #dialog_node>
-      <jet-board-dropdown v-if="FilterDropdown">
-        <template #board_filter_item>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-text-column"
-                ></i
-                ><span class="column-list-item-title">Active Project</span>
-              </div>
-            </div>
-          </div>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-person-column"
-                ></i
-                ><span class="column-list-item-title">Followed</span>
-              </div>
-            </div>
-          </div>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-person-column"
-                ></i
-                ><span class="column-list-item-title">My Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="columns-list-item-wrapper">
-            <div class="floating-columns-list-item-component">
-              <div class="column-list-item-content">
-                <i
-                  class="icon column-type-icon icon icon-dapulse-person-column"
-                ></i
-                ><span class="column-list-item-title">Archived</span>
-              </div>
-            </div>
-          </div>
-        </template>
-      </jet-board-dropdown>
     </template>
   </jet-dashboard>
 </template>
