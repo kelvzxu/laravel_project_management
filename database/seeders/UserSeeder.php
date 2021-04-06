@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Storage;
 use App\Models\User;
 use App\Models\Team;
 use Illuminate\Support\Facades\Hash;
@@ -31,9 +32,9 @@ class UserSeeder extends Seeder
         $faker = Faker::create('ja_JP');
  
     	for($i = 1; $i <= 150; $i++){
-
+            $name = $faker->name;
             $newUser = User::create([
-                'name' => $faker->name,
+    			'name' => $name,
                 'email' => $faker->email,
                 'email_verified_at' => now(),
                 'password' => Hash::make('demo123456'),
@@ -45,6 +46,7 @@ class UserSeeder extends Seeder
                 'bio' => $faker->realText($maxNbChars = 200, $indexSize = 2),
                 'created_at' => now(),
                 'updated_at' => now(),
+                'profile_photo_path'=> $this->storeimage($name),
             ]);
 
             $team = $this->createTeam($newUser);
@@ -56,9 +58,9 @@ class UserSeeder extends Seeder
         $faker = Faker::create('id_ID');
  
     	for($i = 1; $i <= 150; $i++){
- 
+            $name = $faker->name;
             $newUser = User::create([
-    			'name' => $faker->name,
+    			'name' => $name,
                 'email' => $faker->email,
                 'email_verified_at' => now(),
                 'password' => Hash::make('demo123456'),
@@ -70,6 +72,7 @@ class UserSeeder extends Seeder
                 'bio' => $faker->realText($maxNbChars = 200, $indexSize = 2),
                 'created_at' => now(),
                 'updated_at' => now(),
+                'profile_photo_path'=> $this->storeimage($name),
     		]);
 
             $team = $this->createTeam($newUser);
@@ -81,9 +84,9 @@ class UserSeeder extends Seeder
         $faker = Faker::create('zh_TW');
  
     	for($i = 1; $i <= 150; $i++){
- 
-    	    $newUser = User::create([
-    			'name' => $faker->name,
+            $name = $faker->name;
+            $newUser = User::create([
+    			'name' => $name,
                 'email' => $faker->email,
                 'email_verified_at' => now(),
                 'password' => Hash::make('demo123456'),
@@ -93,6 +96,7 @@ class UserSeeder extends Seeder
                 'location' => "China, $faker->city",
                 'organization' => $faker->company,
                 'bio' => $faker->realText($maxNbChars = 200, $indexSize = 2),
+                'profile_photo_path'=> $this->storeimage($name),
                 'created_at' => now(),
                 'updated_at' => now(),
     		]);
@@ -105,9 +109,9 @@ class UserSeeder extends Seeder
         $faker = Faker::create('ko_KR');
  
     	for($i = 1; $i <= 150; $i++){
- 
-    	    $newUser = User::create([
-    			'name' => $faker->name,
+            $name = $faker->name;
+            $newUser = User::create([
+    			'name' => $name,
                 'email' => $faker->email,
                 'email_verified_at' => now(),
                 'password' => Hash::make('demo123456'),
@@ -117,6 +121,7 @@ class UserSeeder extends Seeder
                 'location' => "Korea, $faker->province",
                 'organization' => $faker->company,
                 'bio' => $faker->realText($maxNbChars = 200, $indexSize = 2),
+                'profile_photo_path'=> $this->storeimage($name),
                 'created_at' => now(),
                 'updated_at' => now(),
     		]);
@@ -128,9 +133,9 @@ class UserSeeder extends Seeder
         $faker = Faker::create('en_US');
  
     	for($i = 1; $i <= 250; $i++){
- 
-    	    $newUser = User::create([
-    			'name' => $faker->name,
+            $name = $faker->name;
+            $newUser = User::create([
+    			'name' => $name,
                 'email' => $faker->email,
                 'email_verified_at' => now(),
                 'password' => Hash::make('demo123456'),
@@ -140,6 +145,7 @@ class UserSeeder extends Seeder
                 'location' => "$faker->state, $faker->city",
                 'organization' => $faker->company,
                 'bio' => $faker->realText($maxNbChars = 200, $indexSize = 2),
+                'profile_photo_path'=> $this->storeimage($name),
                 'created_at' => now(),
                 'updated_at' => now(),
     		]);
@@ -156,4 +162,21 @@ class UserSeeder extends Seeder
             'personal_team' => true,
         ]));
     }
+
+    public function storeimage($response){
+        $user = $this->getUnsplashUser();
+        $url = "https://source.unsplash.com/user/$user";
+        $contents = file_get_contents($url);
+        $name =  $name =  str_replace("/","_",Hash::make($response));
+        $filename = "profile-photos/$name.png";
+        Storage::put("public/$filename", $contents);
+        return $filename;
+    }
+
+    public function getUnsplashUser(){
+        $a=array("j_erhunse","ilienerwise","tamarabellis","zhangkaiyv","cikstefan","vdapinto","hollowkeith","aiony","leeminfu","sgwang0511","allphotobangkok","meeerick_","creativesbyjim","ryanmfranco");
+        $random_users=array_rand($a,1);
+        return $a[$random_users];
+    }
+
 }

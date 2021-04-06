@@ -4,7 +4,7 @@
         <div class="signin-signup">
             <form  action="{{ route('login') }}" method="POST" class="sign-in-form">
             @csrf
-            <img src="https://witech.co.id/web/image/res.company/1/favicon/" alt="" srcset="" class="application-logo">
+            <img src="{{asset('assets/img/logo.png')}}" alt="" srcset="" class="application-logo">
             <h2 class="title">Sign in</h2>
             <x-jet-validation-errors class="mb-4" />
             <div class="input-field">
@@ -41,6 +41,7 @@
             </form>
             <form action="{{ route('register') }}" method="POST" class="sign-up-form">
                 @csrf
+                <img src="{{asset('assets/img/logo.png')}}" alt="" srcset="" class="application-logo">
                 <h2 class="title">Sign up</h2>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
@@ -85,8 +86,8 @@
             <div class="content">
             <h3>New here ?</h3>
             <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                ex ratione. Aliquid!
+                Register now and manage project work in order to 
+                achieve maximum progress
             </p>
             <button class="btn transparent" id="sign-up-btn">
                 Sign up
@@ -96,10 +97,9 @@
         </div>
         <div class="panel right-panel">
             <div class="content">
-            <h3>One of us ?</h3>
+            <h3>Already have an account ?</h3>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-                laboriosam ad deleniti.
+                sign up now and manage your project now
             </p>
             <button class="btn transparent" id="sign-in-btn">
                 Sign in
