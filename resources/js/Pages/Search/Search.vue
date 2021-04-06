@@ -3,16 +3,6 @@
     <template #filter>
       <jet-workspace-button
         :class="{
-          'workspace floating': DataType == 'team',
-        }"
-        @click.native="
-          (fetchTeams = true), (fetchUser = false), (currentUser = $page.user)
-        "
-      >
-        <i class="fas fa-users main-icon"></i>Teams
-      </jet-workspace-button>
-      <jet-workspace-button
-        :class="{
           'workspace floating': DataType == 'users',
         }"
         @click.native="
@@ -21,8 +11,18 @@
       >
         <i class="fas fa-user main-icon"></i>Users
       </jet-workspace-button>
+      <jet-workspace-button
+        :class="{
+          'workspace floating': DataType == 'team',
+        }"
+        @click.native="
+          (fetchTeams = true), (fetchUser = false), (currentUser = $page.user)
+        "
+      >
+        <i class="fas fa-users main-icon"></i>Teams
+      </jet-workspace-button>
     </template>
-    <template #page_name>Search Teams</template>
+    <template #page_name>{{ view_type }}</template>
     <template #page
       >{{ pagination.from }}-{{ pagination.to }} /
       {{ pagination.total }}</template
@@ -200,9 +200,10 @@ export default {
   data() {
     let sortOrders = {};
     return {
-      fetchUser: false,
-      fetchTeam: true,
-      // search and Paginate
+      fetchUser: true,
+      fetchTeam: false,
+      view_type: "Search Users",
+      // search and Pcaginate
       sortKey: "",
       sortOrders: sortOrders,
       search: "",
@@ -283,9 +284,11 @@ export default {
     CheckDataType() {
       if (this.fetchUser == true) {
         this.pagination.total = this.users.original.result.length;
+        this.view_type = "Search Users";
         return "users";
       } else {
         this.pagination.total = this.teams.original.result.length;
+        this.view_type = "Search Team";
         return "team";
       }
     },

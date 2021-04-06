@@ -19,11 +19,11 @@ class UserSeeder extends Seeder
     public function run()
     {
         try{
-            $this->UserUs();
             $this->UserJapan();
             $this->UserIndonesia();
             $this->UserChina();
             $this->UserKorea();
+            $this->UserUs();
         }catch(\Exception $e){
         }
     }
@@ -167,7 +167,7 @@ class UserSeeder extends Seeder
         $user = $this->getUnsplashUser();
         $url = "https://source.unsplash.com/user/$user";
         $contents = file_get_contents($url);
-        $name =  Hash::make($response);
+        $name =  $name =  str_replace("/","_",Hash::make($response));
         $filename = "profile-photos/$name.png";
         Storage::put("public/$filename", $contents);
         return $filename;
