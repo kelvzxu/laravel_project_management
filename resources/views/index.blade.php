@@ -37,7 +37,7 @@
       </div>
       <nav class="navbar navbar-expand-md fixed-top scrolling-navbar">
         <div class="container">
-          <a href="index.html" class="navbar-brand"><img src="img/logo.png" alt=""></a>       
+          <a href="index.html" class="navbar-brand"><img src="{{asset('assets/img/logo.png')}}" alt="" width=80px></a>       
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <i class="lni-menu"></i>
           </button>
@@ -47,14 +47,11 @@
                 <a class="nav-link page-scroll" href="#home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#services">About</a>
+                <a class="nav-link page-scroll" href="#features">Features</a>
               </li>  
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#features">Services</a>
-              </li>     
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="#team">Team</a>
-              </li> 
+                <a class="nav-link page-scroll" href="#business-plan">Plan</a>
+              </li>   
               <li class="nav-item">
                 <a class="nav-link page-scroll" href="#contact">Contact</a>
               </li> 
@@ -95,7 +92,7 @@
 
 
     <!-- Services Section Start -->
-    <section id="services" class="section mt-0">
+    <section id="features" class="section mt-0">
       <div class="container">
         <div class="row">
           <!-- Start Col -->
@@ -163,255 +160,6 @@
       </div>
     </section>
     <!-- Business Plan Section End -->
-
-
-
-    <!-- Cool Fetatures Section Start -->
-    <section id="features" class="section">
-      <div class="container">
-        <!-- Start Row -->
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="features-text section-header text-center">  
-              <div>   
-                <h2 class="section-title">Services We Provide</h2>
-                <div class="desc-text">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do <br> eiusmod tempor incididunt ut labore et dolore.</p>
-                </div>
-              </div> 
-            </div>
-          </div>
-
-        </div>
-        <!-- End Row -->
-        <!-- Start Row -->
-        <div class="row featured-bg">
-         <!-- Start Col -->
-          <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-             <!-- Start Fetatures -->
-            <div class="feature-item featured-border1">
-               <div class="feature-icon float-left">
-                 <i class="lni-coffee-cup"></i>
-               </div>
-               <div class="feature-info float-left">
-                 <h4>Easy to Customize</h4>
-                 <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-               </div>
-            </div>
-            <!-- End Fetatures -->
-          </div>
-           <!-- End Col -->
-          
-         <!-- Start Col -->
-          <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-             <!-- Start Fetatures -->
-            <div class="feature-item featured-border2">
-               <div class="feature-icon float-left">
-                 <i class="lni-briefcase"></i>
-               </div>
-               <div class="feature-info float-left">
-                 <h4>Business Template</h4>
-                 <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-               </div>
-            </div>
-            <!-- End Fetatures -->
-          </div>
-           <!-- End Col -->
-          
-         <!-- Start Col -->
-          <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-             <!-- Start Fetatures -->
-            <div class="feature-item featured-border1">
-               <div class="feature-icon float-left">
-                 <i class="lni-invention"></i>
-               </div>
-               <div class="feature-info float-left">
-                 <h4>Clean & Trendy Design</h4>
-                 <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-               </div>
-            </div>
-            <!-- End Fetatures -->
-          </div>
-           <!-- End Col -->
-          
-         <!-- Start Col -->
-          <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-             <!-- Start Fetatures -->
-            <div class="feature-item featured-border2">
-               <div class="feature-icon float-left">
-                <i class="lni-layers"></i>
-               </div>
-               <div class="feature-info float-left">
-                 <h4>Tons of Sections</h4>
-                 <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-               </div>
-            </div>
-            <!-- End Fetatures -->
-          </div>
-           <!-- End Col -->
-          
-         <!-- Start Col -->
-          <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-             <!-- Start Fetatures -->
-            <div class="feature-item featured-border3">
-               <div class="feature-icon float-left">
-                 <i class="lni-reload"></i>
-               </div>
-               <div class="feature-info float-left">
-                 <h4>Free Future Updates</h4>
-                 <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-               </div>
-            </div>
-            <!-- End Fetatures -->
-          </div>
-           <!-- End Col -->
-          
-         <!-- Start Col -->
-          <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-             <!-- Start Fetatures -->
-            <div class="feature-item">
-               <div class="feature-icon float-left">
-                 <i class="lni-support"></i>
-               </div>
-               <div class="feature-info float-left">
-                 <h4>Premier Support</h4>
-                 <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-               </div>
-            </div>
-            <!-- End Fetatures -->
-          </div>
-           <!-- End Col -->
-          
-
-        </div>
-        <!-- End Row -->
-      </div>
-    </section>
-    <!-- Cool Fetatures Section End --> 
-
-    <!-- Team section Start -->
-    <section id="team" class="section">
-      <div class="container">
-        <!-- Start Row -->
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="team-text section-header text-center">  
-              <div>   
-                <h2 class="section-title">Team Members</h2>
-                <div class="desc-text">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>  
-                  <p>eiusmod tempor incididunt ut labore et dolore.</p>
-                </div>
-              </div> 
-            </div>
-          </div>
-
-        </div>
-        <!-- End Row -->
-        <!-- Start Row -->
-        <div class="row">
-          <!-- Start Col -->
-          <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="single-team">
-              <div class="team-thumb">
-                <img src="img/team/01.jpg" class="img-fluid" alt="">
-              </div>
-
-              <div class="team-details">
-              <div class="team-social-icons">
-                  <ul class="social-list">
-                    <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                    <li><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                    <li><a href="#"><i class="lni-google-plus"></i></a></li>
-                  </ul>
-                </div> 
-                <div class="team-inner text-center">
-                  <h5 class="team-title">Patric Green</h5>
-                  <p>Lead Designer</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Start Col -->
- 
-          <!-- Start Col -->
-          <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="single-team">
-              <div class="team-thumb">
-                <img src="img/team/02.jpg" class="img-fluid" alt="">
-              </div>
-
-              <div class="team-details">
-              <div class="team-social-icons">
-                  <ul class="social-list">
-                    <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                    <li><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                    <li><a href="#"><i class="lni-google-plus"></i></a></li>
-                  </ul>
-                </div>
-                <div class="team-inner text-center">
-                  <h5 class="team-title">Celina D Cruze</h5>
-                  <p>Front-end Developer</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Start Col -->
- 
-          <!-- Start Col -->
-          <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="single-team">
-              <div class="team-thumb">
-                <img src="img/team/03.jpg" class="img-fluid" alt="">
-              </div>
-
-              <div class="team-details">
-              <div class="team-social-icons">
-                  <ul class="social-list">
-                    <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                    <li><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                    <li><a href="#"><i class="lni-google-plus"></i></a></li>
-                  </ul>
-                </div>
-                <div class="team-inner text-center">
-                  <h5 class="team-title">Daryl Dixon</h5>
-                  <p>Content Writer</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Start Col -->
- 
-          <!-- Start Col -->
-          <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="single-team">
-              <div class="team-thumb">
-                <img src="img/team/04.jpg" class="img-fluid" alt="">
-              </div>
-
-              <div class="team-details">
-                <div class="team-social-icons">
-                  <ul class="social-list">
-                    <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                    <li><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                    <li><a href="#"><i class="lni-google-plus"></i></a></li>
-                  </ul>
-                </div>
-                <div class="team-inner text-center">
-                  <h5 class="team-title">Mark Parker</h5>
-                  <p>Support Engineer</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Start Col -->
- 
-
-        </div>
-        <!-- End Row -->
-      </div>
-    </section>
-    <!-- Team section End -->
 
     <!-- Contact Us Section -->
     <section id="contact" class="section">
@@ -512,8 +260,8 @@
           <!-- Start Col -->
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
               
-              <div class="footer-logo">
-               <img src="img/footer-logo.png" alt="">
+              <div class="footer-logo bg-aqua">
+               <img src="{{asset('assets/img/logo.png')}}" width=150px alt="">
               </div>
             </div>
              <!-- End Col -->
@@ -533,13 +281,12 @@
               <!-- Start Col -->
             <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
               <div class="widget">
-                <h3 class="block-title">Product</h3>
+                <h3 class="block-title">Menu</h3>
                 <ul class="menu">
-                  <li><a href="#">  - Customer Service</a></li>
-                  <li><a href="#">- Enterprise</a></li>
-                  <li><a href="#">- Price</a></li>
-                  <li><a href="#">- Scurity</a></li>
-                  <li><a href="#">- Why SLICK?</a></li>
+                  <li><a class="page-scroll" href="#home">  - Home</a></li>
+                  <li><a class="page-scroll" href="#features">- Features</a></li>
+                  <li><a class="page-scroll" href="#business-plan">- Plan</a></li>
+                  <li><a class="page-scroll" href="#contact">- Contact</a></li>
                 </ul>
               </div>
             </div>
