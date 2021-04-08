@@ -25,7 +25,7 @@
         :team="team"
         v-if="project.task_type.length > 0"
       />
-      <jet-wrapper-button v-else> Add Participants </jet-wrapper-button>
+      <jet-wrapper-button v-else> Add Tasks </jet-wrapper-button>
     </template>
     <template #board_button_group>
       <jet-board-search
