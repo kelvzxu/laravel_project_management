@@ -2984,10 +2984,6 @@ input.pager_value:focus {
     }
 }
 
-.application-dialog_modal {
-    z-index: 1000;
-}
-
 /* form component */
 .o_field_widget {
     width: 100%;
@@ -3376,4 +3372,10 @@ div.kanban_area div.o_kanban_group.ui-sortable.o_kanban_has_progressbar div#kanb
 .user_inner_container {
     max-width: 550px;
     margin: 0 auto auto auto;
+}
+
+.application-dialog_modal {
+    margin: 1.75rem auto;
+    z-index: 1000;
+    max-width: 500px;
 }
