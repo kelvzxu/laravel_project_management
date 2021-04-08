@@ -17,7 +17,7 @@
           <i class="far fa-save main-icon"></i>Save Change
         </jet-workspace-button>
         <jet-workspace-button
-          @click.native="DestroyProject"
+          @click.native="RemoveProjects"
           v-if="project.manager.id == $page.user.id"
         >
           <i class="far fa-trash-alt main-icon"></i>Delete Project
@@ -418,6 +418,26 @@
         </div>
       </div>
     </template>
+    <template #dialog_node>
+      <jet-dialog-modal :show="RemoveProjectModal" @close="RemoveProjectModal = false">
+      <template #title> CONFIRM DELETE PROJECT </template>
+
+      <template #content>
+        <span>
+            Deleting a project can cause you to lose all data related to the project.</span>
+        <span>Are you sure you want to continue the action?</span>
+      </template>
+
+      <template #footer>
+        <jet-success-button
+          class="ml-2"
+          @click.native="DestroyProject"
+        >
+          Yes I'm Sure
+        </jet-success-button>
+      </template>
+    </jet-dialog-modal>
+    </template>
   </jet-dashboard>
 </template>
 
@@ -425,6 +445,8 @@
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
 import JetDashboard from "@/Jetstream/Dashboard";
 // Workspace Component
+import JetDialogModal from "@/Jetstream/DialogModal";
+import JetSuccessButton from "@/Jetstream/SuccessButton";
 import JetBoardSorting from "@/Jetstream/BoardSorting";
 import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
@@ -464,6 +486,8 @@ export default {
     JetBoardSearch,
     JetBoardDropdown,
     JetBoardFilterDropdown,
+    JetDialogModal,
+    JetSuccessButton,
     draggable,
     JetWorkspaceSubHeader,
     JetActionMessage,
@@ -482,6 +506,7 @@ export default {
       ViewDescription: true,
       ViewSetting: false,
       ViewParticipants: false,
+      RemoveProjectModal: false,
       FormType: "view",
       ProjectForm: this.$inertia.form(
         {
@@ -541,6 +566,9 @@ export default {
     },
     BackMethods() {
       this.$inertia.visit(route("project.show", this.project.access_token));
+    },
+    RemoveProjects() {
+      this.RemoveProjectModal = true;
     },
     Destroyparticipant(data) {
       this.$inertia.delete(route("project_user.destroy", data), {

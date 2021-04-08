@@ -16,7 +16,7 @@
         >
           <i class="far fa-save main-icon"></i>Save Change
         </jet-workspace-button>
-        <jet-workspace-button @click.native="DestroyTask">
+        <jet-workspace-button @click.native="RemoveTasks">
           <i class="far fa-trash-alt main-icon"></i>Delete Task
         </jet-workspace-button>
         <jet-workspace-button @click.native="BackMethods">
@@ -431,6 +431,26 @@
         </div>
       </div>
     </template>
+    <template #dialog_node>
+      <jet-dialog-modal :show="RemoveTasksModal" @close="RemoveTasksModal = false">
+      <template #title> CONFIRM DELETE TASK </template>
+
+      <template #content>
+        <span>
+            Deleting Tasks can cause you to lose job logs regarding tasks</span>
+        <span>Are you sure you want to continue the action?</span>
+      </template>
+
+      <template #footer>
+        <jet-success-button
+          class="ml-2"
+          @click.native="DestroyTask"
+        >
+          Yes I'm Sure
+        </jet-success-button>
+      </template>
+    </jet-dialog-modal>
+    </template>
   </jet-dashboard>
 </template>
 
@@ -438,6 +458,8 @@
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
 import JetDashboard from "@/Jetstream/Dashboard";
 // Workspace Component
+import JetDialogModal from "@/Jetstream/DialogModal";
+import JetSuccessButton from "@/Jetstream/SuccessButton";
 import JetBoardSorting from "@/Jetstream/BoardSorting";
 import JetBoardSearch from "@/Jetstream/BoardSearch";
 import JetBoardDropdown from "@/Jetstream/BoardDropdown";
@@ -474,6 +496,9 @@ export default {
     JetInput,
     JetBoardButton,
     ProgressBar,
+    JetDialogModal,
+    JetSuccessButton,
+    RemoveTasksModal: false,
   },
 
   data() {
@@ -482,6 +507,7 @@ export default {
       ViewDescription: true,
       ViewTimesheet: false,
       ViewExtraInfo: false,
+      RemoveTasksModal: false,
       TaskForm: this.$inertia.form(
         {
           id: this.task.id,
@@ -565,6 +591,9 @@ export default {
           this.FormType = "view";
         }
       });
+    },
+    RemoveTasks() {
+      this.RemoveTasksModal = true;
     },
     DestroyTask() {
       this.form.delete(route("project_task.destroy", this.task), {
