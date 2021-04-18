@@ -47,7 +47,9 @@
               <td style="vertical-align: middle">
                 <progress-bar
                   :options="options"
-                  :value="parseInt(data.progress) / data.count"
+                  :value="
+                    Number((parseInt(data.progress) / data.count).toFixed(2))
+                  "
                 />
               </td>
             </tr>
@@ -96,6 +98,9 @@ export default {
         },
       },
     };
+  },
+  created() {
+    console.log(this);
   },
   methods: {
     FormatHours(value) {
