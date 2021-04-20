@@ -119,7 +119,7 @@ import TableResponsive from "@/Jetstream/TableResponsive";
 // Module
 import draggable from "vuedraggable";
 // Page Component
-import CreateStage from "./CreateStage";
+import CreateStage from "./CreateTags";
 
 export default {
   props: ["team", "users", "project", "tags"],
