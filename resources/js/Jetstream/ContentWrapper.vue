@@ -13,7 +13,7 @@
           <div id="board-wrapper-first-level-content" class="board-wrapper">
             <div id="board-header" class="board-header collapse-mode-enabled">
               <div
-                class="board-header-content-wrapper monday-board-header-content-wrapper-v2"
+                class="board-header-content-wrapper laravel-board-header-content-wrapper-v2"
               >
                 <div class="board-header-main">
                   <div class="board-header-top">
@@ -61,11 +61,11 @@
                         <div
                           class="board-actions-section subscribers-list-wrapper"
                         >
-                          <div class="monday-board-control">
-                            <div class="monday-board-control__icon">
+                          <div class="laravel-board-control">
+                            <div class="laravel-board-control__icon">
                               <i class="fa fa-users"></i>
                             </div>
-                            <div class="monday-board-control__text">
+                            <div class="laravel-board-control__text">
                               <slot name="board_subs" />
                             </div>
                           </div>
@@ -92,7 +92,7 @@
                   </div>
                 </div>
                 <div class="board-header-view-bar">
-                  <div class="board-filter new-board-filter monday-v2-header">
+                  <div class="board-filter new-board-filter laravel-v2-header">
                     <div class="board-subset-left-side-container"></div>
                     <div class="filter-buttons-wrapper">
                       <slot name="board_button_group" />
