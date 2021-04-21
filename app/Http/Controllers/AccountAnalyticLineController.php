@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AccountAnalyticLine;
 use App\Http\Controllers\ProjectTaskController;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Project;
 use DB;
 
 class AccountAnalyticLineController extends Controller
 {
     public function fetchAnalyticLine (Request $request,$ProjectId){
-       $result = AccountAnalyticLine::where("project_id",$ProjectId)->orderByDESC('updated_at')->get();
+       $project = app(ProjectController::class)->getProjectById($ProjectId);
+       $manager = $project->user_id;
+       if ($manager == Auth::id()){
+           $result = AccountAnalyticLine::where("project_id",$ProjectId)->orderByDESC('updated_at')->get();
+       }
+       else{
+        $result = AccountAnalyticLine::where("project_id",$ProjectId)->where('user_id',Auth::id())->orderByDESC('updated_at')->get();
+       }
        return $result;
     }
 

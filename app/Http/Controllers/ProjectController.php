@@ -81,6 +81,11 @@ class ProjectController extends Controller
         return $result;
     }
 
+    public function getProjectById($id){
+        $result = Project::findOrFail($id);
+        return $result;
+    }
+
     public function update(Request $request){
         $project = Project::findOrFail($request->id);
         $project->update($request->all());
