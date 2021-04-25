@@ -17,6 +17,9 @@ use DB;
 class ProjectController extends Controller
 {
     public function Store(Request $request){
+        $request->validate([
+            'name' => ['required'],
+        ]);
         try{
             $data=$request->all();
             $data['access_token']=bin2hex(random_bytes(24));

@@ -3379,3 +3379,13 @@ div.kanban_area div.o_kanban_group.ui-sortable.o_kanban_has_progressbar div#kanb
     z-index: 1000;
     max-width: 500px;
 }
+
+.tab-content span ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+.tab-content span ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}

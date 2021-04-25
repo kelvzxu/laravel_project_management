@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 // Thirty Apps Login
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\LinkedinController;
+use App\Http\Controllers\Auth\TwitterController;
 // Inheritance
 use Laravel\Jetstream\Http\Controllers\Inertia\TeamMemberController;
 use App\Http\Controllers\Auth\ProfileController;
@@ -36,7 +37,7 @@ use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('landing');
 
 Route::group(['prefix'=>'auth/github'],function(){
         Route::get('/', [GithubController::class, 'redirectToGithub']);
@@ -46,6 +47,11 @@ Route::group(['prefix'=>'auth/github'],function(){
 Route::group(['prefix'=>'auth/linkedin'],function(){
         Route::get('/', [LinkedinController::class, 'redirectToLinkedin']);
         Route::get('/callback', [LinkedinController::class, 'handleLinkedinCallback']);
+});
+
+Route::group(['prefix'=>'auth/twitter'],function(){
+        Route::get('/', [TwitterController::class, 'redirectToTwitter']);
+        Route::get('/callback', [TwitterController::class, 'handleTwitterCallback']);
 });
 
 Route::group(['middleware' => 'auth','middleware' => 'verified'], function (){

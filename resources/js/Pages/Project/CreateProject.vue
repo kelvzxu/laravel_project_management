@@ -17,10 +17,7 @@
               class="mt-1 block w-full"
               v-model="CreateProject.name"
             />
-            <jet-input-error
-              :message="CreateProject.error('email')"
-              class="mt-2"
-            />
+            <jet-input-error :message="$page.errors.name" class="mt-2" />
           </div>
           <div class="col-span-6 sm:col-span-4">
             <label class="form-check-label" for="allow_timesheets"
@@ -114,7 +111,7 @@ export default {
         preserveScroll: true,
       }).then((response) => {
         this.sequence = Math.floor(Math.random() * 1000) + 1;
-        if (!this.CreateProject.hasErrors()) {
+        if (Object.keys(this.$page.errors).length === 0) {
           this.AddProjectModal = false;
         }
       });

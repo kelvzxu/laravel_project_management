@@ -48,6 +48,11 @@ class ProjectTaskController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'name' => ['required'],
+            'stage_id' => ['required'],
+            'user_id' => ['required'],
+        ]);
         try{
             $data=$request->all();
             $data['access_token'] = bin2hex(random_bytes(24));
