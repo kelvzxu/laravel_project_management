@@ -42,7 +42,7 @@ export default {
   },
 
   mounted() {
-    this.board = document.querySelector("div.monday-board-control__icon");
+    this.board = document.querySelector("div.laravel-board-control__icon");
     this.permission_icon = document.querySelector(
       "div.workspace-permission-icon-wrapper"
     );

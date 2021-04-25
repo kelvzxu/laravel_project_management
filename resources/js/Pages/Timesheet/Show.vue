@@ -249,6 +249,7 @@ export default {
           hours: this.UpdateForm.hours,
           minutes: this.UpdateForm.minutes,
           task_id: this.UpdateForm.task_id,
+          user_id: this.UpdateForm.user_id,
           preserveScroll: true,
         })
         .then((response) => {

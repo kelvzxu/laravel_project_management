@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AccountAnalyticLine;
 use App\Http\Controllers\ProjectTaskController;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Project;
 use DB;
 
 class AccountAnalyticLineController extends Controller
 {
     public function fetchAnalyticLine (Request $request,$ProjectId){
-       $result = AccountAnalyticLine::where("project_id",$ProjectId)->orderByDESC('updated_at')->get();
+       $project = app(ProjectController::class)->getProjectById($ProjectId);
+       $manager = $project->user_id;
+       if ($manager == Auth::id()){
+           $result = AccountAnalyticLine::where("project_id",$ProjectId)->orderByDESC('updated_at')->get();
+       }
+       else{
+        $result = AccountAnalyticLine::where("project_id",$ProjectId)->where('user_id',Auth::id())->orderByDESC('updated_at')->get();
+       }
        return $result;
     }
 
@@ -87,7 +95,7 @@ class AccountAnalyticLineController extends Controller
         $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(date),'YYYY-MM')"))->get();
         return $result;
     }
-
+ 
     public function getParticipants($ProjectId){
         $query = "account_analytic_lines.user_id, sum(account_analytic_lines.unit_amount) as hours, sum(project_tasks.progress) as progress, count(project_tasks.progress) as count";
         $result = AccountAnalyticLine::select(DB::raw($query))->join('project_tasks','project_tasks.id','account_analytic_lines.task_id')->where('account_analytic_lines.project_id',$ProjectId)->groupBy('account_analytic_lines.user_id')->get();

@@ -126,7 +126,7 @@
                 <div class="new-upgrade-button-container" submenuindex="0">
                   <button
                     type="button"
-                    class="new-upgrade-button monday-style-button monday-style-button--size-md monday-style-button--kind-primary monday-style-button--color-positive"
+                    class="new-upgrade-button laravel-style-button laravel-style-button--size-md laravel-style-button--kind-primary laravel-style-button--color-positive"
                     name=""
                     id=""
                     aria-labelledby=""
@@ -135,7 +135,7 @@
                     style="--element-width: 159.797px; --element-height: 40px"
                   >
                     <span
-                      class="icon_component monday-style-button--left-icon icon_component--no-focus-style fa icon-upgrade-stars-new"
+                      class="icon_component laravel-style-button--left-icon icon_component--no-focus-style fa icon-upgrade-stars-new"
                       aria-label=""
                       tabindex="-1"
                       role=""

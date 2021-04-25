@@ -28,7 +28,7 @@ class ReportController extends Controller
             $months[] = $month=date("F",strtotime($month));
         }
         return Jetstream::inertia()->render($request, 'Report/Overview', [
-            'project' =>$project,
+            'project' =>$project, 
             'team' =>$team->load('owner', 'users'),
             'hours' => $hours,
             'participants'=>$participants->load('responsible'),
