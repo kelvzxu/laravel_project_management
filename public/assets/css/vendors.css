@@ -234,12 +234,12 @@
   --spacing-xxl:48px;
   --spacing-xxxl:64px; }
 
-.monday-loader-component {
+.laravel-loader-component {
   position: relative;
   height: 100%;
   width: 100%; }
 
-.monday-loader-component .circle-loader-spinner {
+.laravel-loader-component .circle-loader-spinner {
   -webkit-animation: rotate 1s linear infinite;
   animation: rotate 1s linear infinite;
   position: absolute;
@@ -248,7 +248,7 @@
   margin-top: -50%;
   margin-left: -50%; }
 
-.monday-loader-component .circle-loader-spinner .circle-loader-spinner-path {
+.laravel-loader-component .circle-loader-spinner .circle-loader-spinner-path {
   stroke: currentColor;
   stroke-linecap: round;
   -webkit-animation: dash 1s infinite;
@@ -568,85 +568,85 @@
   color: #323338;
   color: var(--primary-text-color); }
 
-.monday-style-dialog-content-wrapper {
+.laravel-style-dialog-content-wrapper {
   outline: 0; }
 
-.monday-style-animation-opacity-slide-appear {
+.laravel-style-animation-opacity-slide-appear {
   opacity: 0; }
 
-.monday-style-animation-opacity-slide-appear.top {
+.laravel-style-animation-opacity-slide-appear.top {
   transform: translateY(16px); }
 
-.monday-style-animation-opacity-slide-appear.right {
+.laravel-style-animation-opacity-slide-appear.right {
   transform: translateX(-16px); }
 
-.monday-style-animation-opacity-slide-appear.bottom {
+.laravel-style-animation-opacity-slide-appear.bottom {
   transform: translateY(-16px); }
 
-.monday-style-animation-opacity-slide-appear.left {
+.laravel-style-animation-opacity-slide-appear.left {
   transform: translateX(16px); }
 
-.monday-style-animation-opacity-slide-appear-active {
+.laravel-style-animation-opacity-slide-appear-active {
   transition: opacity .2s ease,transform .2s ease-out;
   opacity: 1;
   pointer-events: none; }
 
-.monday-style-animation-opacity-slide-appear-active.bottom, .monday-style-animation-opacity-slide-appear-active.top {
+.laravel-style-animation-opacity-slide-appear-active.bottom, .laravel-style-animation-opacity-slide-appear-active.top {
   transform: translateY(0); }
 
-.monday-style-animation-opacity-slide-appear-active.left, .monday-style-animation-opacity-slide-appear-active.right {
+.laravel-style-animation-opacity-slide-appear-active.left, .laravel-style-animation-opacity-slide-appear-active.right {
   transform: translateX(0); }
 
-.monday-style-animation-expand-appear, .monday-style-animation-expand-exit {
+.laravel-style-animation-expand-appear, .laravel-style-animation-expand-exit {
   transition: transform 0.1s cubic-bezier(0, 0, 0.35, 1); }
 
-.monday-style-animation-expand-appear.top, .monday-style-animation-expand-appear.top-end, .monday-style-animation-expand-appear.top-start, .monday-style-animation-expand-exit.top, .monday-style-animation-expand-exit.top-end, .monday-style-animation-expand-exit.top-start {
+.laravel-style-animation-expand-appear.top, .laravel-style-animation-expand-appear.top-end, .laravel-style-animation-expand-appear.top-start, .laravel-style-animation-expand-exit.top, .laravel-style-animation-expand-exit.top-end, .laravel-style-animation-expand-exit.top-start {
   transform-origin: bottom center;
   transform: scale(0.8); }
 
-.monday-style-animation-expand-appear.top-end.edge-bottom, .monday-style-animation-expand-appear.top-start.edge-bottom, .monday-style-animation-expand-appear.top.edge-bottom, .monday-style-animation-expand-exit.top-end.edge-bottom, .monday-style-animation-expand-exit.top-start.edge-bottom, .monday-style-animation-expand-exit.top.edge-bottom {
+.laravel-style-animation-expand-appear.top-end.edge-bottom, .laravel-style-animation-expand-appear.top-start.edge-bottom, .laravel-style-animation-expand-appear.top.edge-bottom, .laravel-style-animation-expand-exit.top-end.edge-bottom, .laravel-style-animation-expand-exit.top-start.edge-bottom, .laravel-style-animation-expand-exit.top.edge-bottom {
   transform-origin: bottom left; }
 
-.monday-style-animation-expand-appear.top-end.edge-top, .monday-style-animation-expand-appear.top-start.edge-top, .monday-style-animation-expand-appear.top.edge-top, .monday-style-animation-expand-exit.top-end.edge-top, .monday-style-animation-expand-exit.top-start.edge-top, .monday-style-animation-expand-exit.top.edge-top {
+.laravel-style-animation-expand-appear.top-end.edge-top, .laravel-style-animation-expand-appear.top-start.edge-top, .laravel-style-animation-expand-appear.top.edge-top, .laravel-style-animation-expand-exit.top-end.edge-top, .laravel-style-animation-expand-exit.top-start.edge-top, .laravel-style-animation-expand-exit.top.edge-top {
   transform-origin: bottom right; }
 
-.monday-style-animation-expand-appear.right, .monday-style-animation-expand-appear.right-end, .monday-style-animation-expand-appear.right-start, .monday-style-animation-expand-exit.right, .monday-style-animation-expand-exit.right-end, .monday-style-animation-expand-exit.right-start {
+.laravel-style-animation-expand-appear.right, .laravel-style-animation-expand-appear.right-end, .laravel-style-animation-expand-appear.right-start, .laravel-style-animation-expand-exit.right, .laravel-style-animation-expand-exit.right-end, .laravel-style-animation-expand-exit.right-start {
   transform-origin: left;
   transform: scale(0.8); }
 
-.monday-style-animation-expand-appear.right-end.edge-bottom, .monday-style-animation-expand-appear.right-start.edge-bottom, .monday-style-animation-expand-appear.right.edge-bottom, .monday-style-animation-expand-exit.right-end.edge-bottom, .monday-style-animation-expand-exit.right-start.edge-bottom, .monday-style-animation-expand-exit.right.edge-bottom {
+.laravel-style-animation-expand-appear.right-end.edge-bottom, .laravel-style-animation-expand-appear.right-start.edge-bottom, .laravel-style-animation-expand-appear.right.edge-bottom, .laravel-style-animation-expand-exit.right-end.edge-bottom, .laravel-style-animation-expand-exit.right-start.edge-bottom, .laravel-style-animation-expand-exit.right.edge-bottom {
   transform-origin: top left; }
 
-.monday-style-animation-expand-appear.right-end.edge-top, .monday-style-animation-expand-appear.right-start.edge-top, .monday-style-animation-expand-appear.right.edge-top, .monday-style-animation-expand-exit.right-end.edge-top, .monday-style-animation-expand-exit.right-start.edge-top, .monday-style-animation-expand-exit.right.edge-top {
+.laravel-style-animation-expand-appear.right-end.edge-top, .laravel-style-animation-expand-appear.right-start.edge-top, .laravel-style-animation-expand-appear.right.edge-top, .laravel-style-animation-expand-exit.right-end.edge-top, .laravel-style-animation-expand-exit.right-start.edge-top, .laravel-style-animation-expand-exit.right.edge-top {
   transform-origin: bottom left; }
 
-.monday-style-animation-expand-appear.bottom, .monday-style-animation-expand-appear.bottom-end, .monday-style-animation-expand-appear.bottom-start, .monday-style-animation-expand-exit.bottom, .monday-style-animation-expand-exit.bottom-end, .monday-style-animation-expand-exit.bottom-start {
+.laravel-style-animation-expand-appear.bottom, .laravel-style-animation-expand-appear.bottom-end, .laravel-style-animation-expand-appear.bottom-start, .laravel-style-animation-expand-exit.bottom, .laravel-style-animation-expand-exit.bottom-end, .laravel-style-animation-expand-exit.bottom-start {
   transform-origin: top;
   transform: scale(0.8); }
 
-.monday-style-animation-expand-appear.bottom-end.edge-bottom, .monday-style-animation-expand-appear.bottom-start.edge-bottom, .monday-style-animation-expand-appear.bottom.edge-bottom, .monday-style-animation-expand-exit.bottom-end.edge-bottom, .monday-style-animation-expand-exit.bottom-start.edge-bottom, .monday-style-animation-expand-exit.bottom.edge-bottom {
+.laravel-style-animation-expand-appear.bottom-end.edge-bottom, .laravel-style-animation-expand-appear.bottom-start.edge-bottom, .laravel-style-animation-expand-appear.bottom.edge-bottom, .laravel-style-animation-expand-exit.bottom-end.edge-bottom, .laravel-style-animation-expand-exit.bottom-start.edge-bottom, .laravel-style-animation-expand-exit.bottom.edge-bottom {
   transform-origin: top left; }
 
-.monday-style-animation-expand-appear.bottom-end.edge-top, .monday-style-animation-expand-appear.bottom-start.edge-top, .monday-style-animation-expand-appear.bottom.edge-top, .monday-style-animation-expand-exit.bottom-end.edge-top, .monday-style-animation-expand-exit.bottom-start.edge-top, .monday-style-animation-expand-exit.bottom.edge-top {
+.laravel-style-animation-expand-appear.bottom-end.edge-top, .laravel-style-animation-expand-appear.bottom-start.edge-top, .laravel-style-animation-expand-appear.bottom.edge-top, .laravel-style-animation-expand-exit.bottom-end.edge-top, .laravel-style-animation-expand-exit.bottom-start.edge-top, .laravel-style-animation-expand-exit.bottom.edge-top {
   transform-origin: top right; }
 
-.monday-style-animation-expand-appear.left, .monday-style-animation-expand-appear.left-end, .monday-style-animation-expand-appear.left-start, .monday-style-animation-expand-exit.left, .monday-style-animation-expand-exit.left-end, .monday-style-animation-expand-exit.left-start {
+.laravel-style-animation-expand-appear.left, .laravel-style-animation-expand-appear.left-end, .laravel-style-animation-expand-appear.left-start, .laravel-style-animation-expand-exit.left, .laravel-style-animation-expand-exit.left-end, .laravel-style-animation-expand-exit.left-start {
   transform-origin: right;
   transform: scale(0.8); }
 
-.monday-style-animation-expand-appear.left-end.edge-bottom, .monday-style-animation-expand-appear.left-start.edge-bottom, .monday-style-animation-expand-appear.left.edge-bottom, .monday-style-animation-expand-exit.left-end.edge-bottom, .monday-style-animation-expand-exit.left-start.edge-bottom, .monday-style-animation-expand-exit.left.edge-bottom {
+.laravel-style-animation-expand-appear.left-end.edge-bottom, .laravel-style-animation-expand-appear.left-start.edge-bottom, .laravel-style-animation-expand-appear.left.edge-bottom, .laravel-style-animation-expand-exit.left-end.edge-bottom, .laravel-style-animation-expand-exit.left-start.edge-bottom, .laravel-style-animation-expand-exit.left.edge-bottom {
   transform-origin: top right; }
 
-.monday-style-animation-expand-appear.left-end.edge-top, .monday-style-animation-expand-appear.left-start.edge-top, .monday-style-animation-expand-appear.left.edge-top, .monday-style-animation-expand-exit.left-end.edge-top, .monday-style-animation-expand-exit.left-start.edge-top, .monday-style-animation-expand-exit.left.edge-top {
+.laravel-style-animation-expand-appear.left-end.edge-top, .laravel-style-animation-expand-appear.left-start.edge-top, .laravel-style-animation-expand-appear.left.edge-top, .laravel-style-animation-expand-exit.left-end.edge-top, .laravel-style-animation-expand-exit.left-start.edge-top, .laravel-style-animation-expand-exit.left.edge-top {
   transform-origin: bottom right; }
 
-.monday-style-animation-expand-appear-active, .monday-style-animation-expand-exit {
+.laravel-style-animation-expand-appear-active, .laravel-style-animation-expand-exit {
   transition: transform 0.1s cubic-bezier(0, 0, 0.35, 1); }
 
-.monday-style-animation-expand-appear-active {
+.laravel-style-animation-expand-appear-active {
   pointer-events: none; }
 
-.monday-style-animation-expand-appear-active.bottom, .monday-style-animation-expand-appear-active.bottom-end, .monday-style-animation-expand-appear-active.bottom-start, .monday-style-animation-expand-appear-active.left, .monday-style-animation-expand-appear-active.left-end, .monday-style-animation-expand-appear-active.left-start, .monday-style-animation-expand-appear-active.right, .monday-style-animation-expand-appear-active.right-end, .monday-style-animation-expand-appear-active.right-start, .monday-style-animation-expand-appear-active.top, .monday-style-animation-expand-appear-active.top-end, .monday-style-animation-expand-appear-active.top-start {
+.laravel-style-animation-expand-appear-active.bottom, .laravel-style-animation-expand-appear-active.bottom-end, .laravel-style-animation-expand-appear-active.bottom-start, .laravel-style-animation-expand-appear-active.left, .laravel-style-animation-expand-appear-active.left-end, .laravel-style-animation-expand-appear-active.left-start, .laravel-style-animation-expand-appear-active.right, .laravel-style-animation-expand-appear-active.right-end, .laravel-style-animation-expand-appear-active.right-start, .laravel-style-animation-expand-appear-active.top, .laravel-style-animation-expand-appear-active.top-end, .laravel-style-animation-expand-appear-active.top-start {
   transform: scale(1); }
 
 .dialog-node {
@@ -655,7 +655,7 @@
   height: 0;
   z-index: 100000; }
 
-.monday-style-tooltip {
+.laravel-style-tooltip {
   position: relative;
   display: inline-block;
   border-radius: 4px;
@@ -665,7 +665,7 @@
   max-width: 50vw;
   word-break: break-word; }
 
-.monday-style-tooltip, .monday-style-tooltip.padding-size-md {
+.laravel-style-tooltip, .laravel-style-tooltip.padding-size-md {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto,sans-serif;
@@ -673,84 +673,84 @@
   font-weight: 400;
   line-height: 22px; }
 
-.monday-style-tooltip.padding-size-md {
+.laravel-style-tooltip.padding-size-md {
   border-radius: 8px;
   padding: 16px; }
 
-.monday-style-tooltip a.tooltip-white-link {
+.laravel-style-tooltip a.tooltip-white-link {
   color: #fff; }
 
-.monday-style-arrow-dark, .monday-style-tooltip-dark {
+.laravel-style-arrow-dark, .laravel-style-tooltip-dark {
   background-color: #323338;
   background-color: var(--inverted-color-background);
   color: #fff;
   color: var(--text-color-on-inverted); }
 
-.monday-style-arrow-white, .monday-style-tooltip-white {
+.laravel-style-arrow-white, .laravel-style-tooltip-white {
   background-color: #fff;
   color: #333;
   box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.2);
   border: 1px solid #f1f1f1; }
 
-.monday-style-arrow-primary, .monday-style-tooltip-primary {
+.laravel-style-arrow-primary, .laravel-style-tooltip-primary {
   background-color: #0085ff;
   background-color: var(--primary-color);
   color: #fff;
   color: var(--text-color-on-primary); }
 
-.monday-style-arrow-success, .monday-style-tooltip-success {
+.laravel-style-arrow-success, .laravel-style-tooltip-success {
   background-color: #00ca72;
   background-color: var(--positive-color);
   color: #fff;
   color: var(--text-color-on-primary); }
 
-.monday-style-arrow-surface, .monday-style-tooltip-surface {
+.laravel-style-arrow-surface, .laravel-style-tooltip-surface {
   background-color: #5b607a;
   color: #fff; }
 
-.monday-style-arrow-private, .monday-style-tooltip-private {
+.laravel-style-arrow-private, .laravel-style-tooltip-private {
   background-color: #f65f7c;
   background-color: var(--private-color);
   color: #fff;
   color: var(--text-color-on-primary); }
 
-.monday-style-arrow-share, .monday-style-tooltip-share {
+.laravel-style-arrow-share, .laravel-style-tooltip-share {
   background-color: #a358df;
   background-color: var(--color-purple);
   color: #fff;
   color: var(--text-color-on-primary); }
 
-.monday-style-arrow-error, .monday-style-tooltip-error {
+.laravel-style-arrow-error, .laravel-style-tooltip-error {
   background-color: #e44258;
   background-color: var(--negative-color);
   color: #fff;
   color: var(--text-color-on-primary); }
 
-.monday-style-arrow {
+.laravel-style-arrow {
   width: 12px;
   height: 12px;
   position: absolute;
   border-radius: 2px; }
 
-.monday-style-tooltip-arrow[data-placement*=bottom] {
+.laravel-style-tooltip-arrow[data-placement*=bottom] {
   top: 1px; }
 
-.monday-style-tooltip-arrow[data-placement*=top] {
+.laravel-style-tooltip-arrow[data-placement*=top] {
   bottom: 1px; }
 
-.monday-style-tooltip-arrow[data-placement*=left] {
+.laravel-style-tooltip-arrow[data-placement*=left] {
   right: 1px; }
 
-.monday-style-tooltip-arrow[data-placement*=right] {
+.laravel-style-tooltip-arrow[data-placement*=right] {
   left: 1px; }
 
-.monday-style-dialog-content-component {
+.laravel-style-dialog-content-component {
   padding: 6px; }
 
-.monday-style-dialog-content-component:focus {
+.laravel-style-dialog-content-component:focus {
   outline: none; }
 
-.monday-style-button {
+.laravel-style-button {
   --loader-padding:8px;
   outline: none;
   border: none;
@@ -767,45 +767,45 @@
   --element-height:32;
   min-width: var(--element-width); }
 
-.monday-style-button--margin-right {
+.laravel-style-button--margin-right {
   margin-right: 8px; }
 
-.monday-style-button--margin-left {
+.laravel-style-button--margin-left {
   margin-left: 8px; }
 
-.monday-style-button--right-flat {
+.laravel-style-button--right-flat {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-.monday-style-button--left-flat {
+.laravel-style-button--left-flat {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
-.monday-style-button.monday-style-button--loading {
+.laravel-style-button.laravel-style-button--loading {
   min-width: 0;
   width: var(--element-height);
   height: var(--element-height);
   position: relative; }
 
-.monday-style-button .monday-style-button__loader {
+.laravel-style-button .laravel-style-button__loader {
   position: absolute;
   left: var(--loader-padding);
   top: var(--loader-padding); }
 
-.monday-style-button .monday-style-button__loader, .monday-style-button .monday-style-button__loader .monday-style-button-loader-svg {
+.laravel-style-button .laravel-style-button__loader, .laravel-style-button .laravel-style-button__loader .laravel-style-button-loader-svg {
   width: calc(var(--element-height) - var(--loader-padding)*2);
   height: calc(var(--element-height) - var(--loader-padding)*2); }
 
-.monday-style-button:active:not(.monday-style-button--prevent-click-animation) {
+.laravel-style-button:active:not(.laravel-style-button--prevent-click-animation) {
   transform: scale(0.95) translateZ(0); }
 
-.monday-style-button .monday-style-button--left-icon {
+.laravel-style-button .laravel-style-button--left-icon {
   padding-right: 8px; }
 
-.monday-style-button .monday-style-button--right-icon {
+.laravel-style-button .laravel-style-button--right-icon {
   padding-left: 8px; }
 
-.monday-style-button--size-sm {
+.laravel-style-button--size-sm {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto,sans-serif;
@@ -816,14 +816,14 @@
   min-height: 32px;
   line-height: 24px; }
 
-.monday-style-button--size-sm .monday-style-button__loader {
+.laravel-style-button--size-sm .laravel-style-button__loader {
   top: 7px; }
 
-.monday-style-button--size-md {
+.laravel-style-button--size-md {
   padding: 8px 16px;
   min-height: 40px; }
 
-.monday-style-button--size-lg, .monday-style-button--size-md {
+.laravel-style-button--size-lg, .laravel-style-button--size-md {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto,sans-serif;
@@ -831,48 +831,48 @@
   font-size: 16px;
   line-height: 24px; }
 
-.monday-style-button--size-lg {
+.laravel-style-button--size-lg {
   padding: 12px 24px;
   min-height: 48px; }
 
-.monday-style-button--kind-primary {
+.laravel-style-button--kind-primary {
   color: #fff;
   color: var(--text-color-on-primary); }
 
-.monday-style-button--kind-primary.monday-style-button--color-primary {
+.laravel-style-button--kind-primary.laravel-style-button--color-primary {
   background-color: #0085ff;
   background-color: var(--primary-color); }
 
-.monday-style-button--kind-primary.monday-style-button--color-primary-active, .monday-style-button--kind-primary.monday-style-button--color-primary:focus, .monday-style-button--kind-primary.monday-style-button--color-primary:hover {
+.laravel-style-button--kind-primary.laravel-style-button--color-primary-active, .laravel-style-button--kind-primary.laravel-style-button--color-primary:focus, .laravel-style-button--kind-primary.laravel-style-button--color-primary:hover {
   background-color: #0071d9;
   background-color: var(--primary-hover-color); }
 
-.monday-style-button--kind-primary.monday-style-button--color-positive {
+.laravel-style-button--kind-primary.laravel-style-button--color-positive {
   background-color: #00ca72;
   background-color: var(--positive-color); }
 
-.monday-style-button--kind-primary.monday-style-button--color-positive-active, .monday-style-button--kind-primary.monday-style-button--color-positive:focus, .monday-style-button--kind-primary.monday-style-button--color-positive:hover {
+.laravel-style-button--kind-primary.laravel-style-button--color-positive-active, .laravel-style-button--kind-primary.laravel-style-button--color-positive:focus, .laravel-style-button--kind-primary.laravel-style-button--color-positive:hover {
   background-color: #00a25b;
   background-color: var(--positive-color-hover); }
 
-.monday-style-button--kind-primary.monday-style-button--color-negative {
+.laravel-style-button--kind-primary.laravel-style-button--color-negative {
   background-color: #e44258;
   background-color: var(--negative-color); }
 
-.monday-style-button--kind-primary.monday-style-button--color-negative-active, .monday-style-button--kind-primary.monday-style-button--color-negative:focus, .monday-style-button--kind-primary.monday-style-button--color-negative:hover {
+.laravel-style-button--kind-primary.laravel-style-button--color-negative-active, .laravel-style-button--kind-primary.laravel-style-button--color-negative:focus, .laravel-style-button--kind-primary.laravel-style-button--color-negative:hover {
   background-color: #b63546;
   background-color: var(--negative-color-hover); }
 
-.monday-style-button--kind-primary.monday-style-button--color-on-primary-color {
+.laravel-style-button--kind-primary.laravel-style-button--color-on-primary-color {
   background-color: #fff;
   background-color: var(--text-color-on-primary); }
 
-.monday-style-button--kind-primary.monday-style-button--color-on-primary-color-active, .monday-style-button--kind-primary.monday-style-button--color-on-primary-color:focus, .monday-style-button--kind-primary.monday-style-button--color-on-primary-color:hover {
+.laravel-style-button--kind-primary.laravel-style-button--color-on-primary-color-active, .laravel-style-button--kind-primary.laravel-style-button--color-on-primary-color:focus, .laravel-style-button--kind-primary.laravel-style-button--color-on-primary-color:hover {
   background-color: #e6e9ef;
   -webkit-backdrop-filter: brightness(85%);
   backdrop-filter: brightness(85%); }
 
-.monday-style-button--kind-primary.monday-style-button:disabled {
+.laravel-style-button--kind-primary.laravel-style-button:disabled {
   background-color: #e6e9ef;
   background-color: var(--disabled-background-color);
   color: #676879;
@@ -880,50 +880,50 @@
   cursor: not-allowed;
   pointer-events: none; }
 
-.monday-style-button--kind-secondary {
+.laravel-style-button--kind-secondary {
   border: 1px solid #e6e9ef;
   border-color: var(--ui-border-color);
   color: #323338;
   color: var(--primary-text-color);
   background-color: rgba(0, 0, 0, 0); }
 
-.monday-style-button--kind-secondary.monday-style-button--size-lg, .monday-style-button--kind-secondary.monday-style-button--size-md, .monday-style-button--kind-secondary.monday-style-button--size-sm {
+.laravel-style-button--kind-secondary.laravel-style-button--size-lg, .laravel-style-button--kind-secondary.laravel-style-button--size-md, .laravel-style-button--kind-secondary.laravel-style-button--size-sm {
   line-height: 22px; }
 
-.monday-style-button--kind-secondary.monday-style-button--color-primary-active, .monday-style-button--kind-secondary.monday-style-button--color-primary:focus, .monday-style-button--kind-secondary.monday-style-button--color-primary:hover {
+.laravel-style-button--kind-secondary.laravel-style-button--color-primary-active, .laravel-style-button--kind-secondary.laravel-style-button--color-primary:focus, .laravel-style-button--kind-secondary.laravel-style-button--color-primary:hover {
   background-color: #c5c7d0;
   background-color: var(--primary-background-hover-color); }
 
-.monday-style-button--kind-secondary.monday-style-button--color-positive {
+.laravel-style-button--kind-secondary.laravel-style-button--color-positive {
   color: #00ca72;
   color: var(--positive-color);
   border-color: #00ca72;
   border-color: var(--positive-color); }
 
-.monday-style-button--kind-secondary.monday-style-button--color-positive-active, .monday-style-button--kind-secondary.monday-style-button--color-positive:focus, .monday-style-button--kind-secondary.monday-style-button--color-positive:hover {
+.laravel-style-button--kind-secondary.laravel-style-button--color-positive-active, .laravel-style-button--kind-secondary.laravel-style-button--color-positive:focus, .laravel-style-button--kind-secondary.laravel-style-button--color-positive:hover {
   background-color: var(--positive-color-selected); }
 
-.monday-style-button--kind-secondary.monday-style-button--color-negative {
+.laravel-style-button--kind-secondary.laravel-style-button--color-negative {
   color: #e44258;
   color: var(--negative-color);
   border-color: #e44258;
   border-color: var(--negative-color); }
 
-.monday-style-button--kind-secondary.monday-style-button--color-negative-active, .monday-style-button--kind-secondary.monday-style-button--color-negative:focus, .monday-style-button--kind-secondary.monday-style-button--color-negative:hover {
+.laravel-style-button--kind-secondary.laravel-style-button--color-negative-active, .laravel-style-button--kind-secondary.laravel-style-button--color-negative:focus, .laravel-style-button--kind-secondary.laravel-style-button--color-negative:hover {
   background-color: #b63546;
   background-color: var(--negative-color-selected); }
 
-.monday-style-button--kind-secondary.monday-style-button--color-on-primary-color {
+.laravel-style-button--kind-secondary.laravel-style-button--color-on-primary-color {
   color: #fff;
   color: var(--text-color-on-primary);
   border-color: #fff;
   border-color: var(--text-color-on-primary); }
 
-.monday-style-button--kind-secondary.monday-style-button--color-on-primary-color-active, .monday-style-button--kind-secondary.monday-style-button--color-on-primary-color:focus, .monday-style-button--kind-secondary.monday-style-button--color-on-primary-color:hover {
+.laravel-style-button--kind-secondary.laravel-style-button--color-on-primary-color-active, .laravel-style-button--kind-secondary.laravel-style-button--color-on-primary-color:focus, .laravel-style-button--kind-secondary.laravel-style-button--color-on-primary-color:hover {
   -webkit-backdrop-filter: brightness(85%);
   backdrop-filter: brightness(85%); }
 
-.monday-style-button--kind-secondary:disabled {
+.laravel-style-button--kind-secondary:disabled {
   border-color: #e6e9ef;
   border-color: var(--disabled-background-color);
   color: #676879;
@@ -931,51 +931,51 @@
   cursor: not-allowed;
   pointer-events: none; }
 
-.monday-style-button--kind-secondary:disabled:hover {
+.laravel-style-button--kind-secondary:disabled:hover {
   background-color: rgba(0, 0, 0, 0); }
 
-.monday-style-button--kind-tertiary {
+.laravel-style-button--kind-tertiary {
   color: #323338;
   color: var(--primary-text-color);
   background-color: rgba(0, 0, 0, 0); }
 
-.monday-style-button--kind-tertiary.monday-style-button--color-primary-active, .monday-style-button--kind-tertiary.monday-style-button--color-primary:focus, .monday-style-button--kind-tertiary.monday-style-button--color-primary:hover {
+.laravel-style-button--kind-tertiary.laravel-style-button--color-primary-active, .laravel-style-button--kind-tertiary.laravel-style-button--color-primary:focus, .laravel-style-button--kind-tertiary.laravel-style-button--color-primary:hover {
   background-color: #c5c7d0;
   background-color: var(--primary-background-hover-color); }
 
-.monday-style-button--kind-tertiary.monday-style-button--color-positive {
+.laravel-style-button--kind-tertiary.laravel-style-button--color-positive {
   color: #00ca72;
   color: var(--positive-color); }
 
-.monday-style-button--kind-tertiary.monday-style-button--color-positive-active, .monday-style-button--kind-tertiary.monday-style-button--color-positive:focus, .monday-style-button--kind-tertiary.monday-style-button--color-positive:hover {
+.laravel-style-button--kind-tertiary.laravel-style-button--color-positive-active, .laravel-style-button--kind-tertiary.laravel-style-button--color-positive:focus, .laravel-style-button--kind-tertiary.laravel-style-button--color-positive:hover {
   background-color: var(--positive-color-selected); }
 
-.monday-style-button--kind-tertiary.monday-style-button--color-negative {
+.laravel-style-button--kind-tertiary.laravel-style-button--color-negative {
   color: #e44258;
   color: var(--negative-color); }
 
-.monday-style-button--kind-tertiary.monday-style-button--color-negative-active, .monday-style-button--kind-tertiary.monday-style-button--color-negative:focus, .monday-style-button--kind-tertiary.monday-style-button--color-negative:hover {
+.laravel-style-button--kind-tertiary.laravel-style-button--color-negative-active, .laravel-style-button--kind-tertiary.laravel-style-button--color-negative:focus, .laravel-style-button--kind-tertiary.laravel-style-button--color-negative:hover {
   background-color: #b63546;
   background-color: var(--negative-color-selected); }
 
-.monday-style-button--kind-tertiary.monday-style-button--color-on-primary-color {
+.laravel-style-button--kind-tertiary.laravel-style-button--color-on-primary-color {
   color: #fff;
   color: var(--text-color-on-primary); }
 
-.monday-style-button--kind-tertiary.monday-style-button--color-on-primary-color-active, .monday-style-button--kind-tertiary.monday-style-button--color-on-primary-color:focus, .monday-style-button--kind-tertiary.monday-style-button--color-on-primary-color:hover {
+.laravel-style-button--kind-tertiary.laravel-style-button--color-on-primary-color-active, .laravel-style-button--kind-tertiary.laravel-style-button--color-on-primary-color:focus, .laravel-style-button--kind-tertiary.laravel-style-button--color-on-primary-color:hover {
   -webkit-backdrop-filter: brightness(85%);
   backdrop-filter: brightness(85%); }
 
-.monday-style-button--kind-tertiary:disabled {
+.laravel-style-button--kind-tertiary:disabled {
   color: #676879;
   color: var(--disabled-text-color);
   cursor: not-allowed;
   pointer-events: none; }
 
-.monday-style-button--kind-tertiary:disabled:hover {
+.laravel-style-button--kind-tertiary:disabled:hover {
   background-color: rgba(0, 0, 0, 0); }
 
-.monday-style-button--no-side-padding {
+.laravel-style-button--no-side-padding {
   padding-right: 0;
   padding-left: 0; }
 
@@ -1048,7 +1048,7 @@
 .linear-progress-bar--wrapper .linear-progress-bar__container .linear-progress-bar__secondary--positive {
   opacity: .3; }
 
-.monday-style-link {
+.laravel-style-link {
   display: flex;
   align-items: center;
   -webkit-font-smoothing: antialiased;
@@ -1063,43 +1063,43 @@
   -ms-writing-mode: lr-tb;
   writing-mode: horizontal-tb; }
 
-.monday-style-link:focus-visible {
+.laravel-style-link:focus-visible {
   outline-color: #1f76c2;
   outline-color: var(--link-color); }
 
-.monday-style-link:hover .monday-style-link--text {
+.laravel-style-link:hover .laravel-style-link--text {
   text-decoration: underline; }
 
-.monday-style-link--icon-start {
+.laravel-style-link--icon-start {
   line-height: 24px;
   margin-right: 8px; }
 
-.monday-style-link--icon-end {
+.laravel-style-link--icon-end {
   line-height: 24px;
   margin-left: 8px; }
 
 @supports ((-webkit-margin-start: initial) or (margin-inline-start: initial)) {
-  .monday-style-link--icon-start {
+  .laravel-style-link--icon-start {
     line-height: 24px;
     margin-right: 0;
     -webkit-margin-end: 8px;
     margin-inline-end: 8px; }
-  .monday-style-link--icon-end {
+  .laravel-style-link--icon-end {
     line-height: 24px;
     margin-left: 0;
     -webkit-margin-start: 8px;
     margin-inline-start: 8px; } }
 
-.monday-style-menu:focus {
+.laravel-style-menu:focus {
   outline: none; }
 
-.monday-style-menu--small {
+.laravel-style-menu--small {
   width: 200px; }
 
-.monday-style-menu--medium {
+.laravel-style-menu--medium {
   width: 220px; }
 
-.monday-style-menu--large {
+.laravel-style-menu--large {
   width: 240px; }
 
 .dialog-content-container:focus {
@@ -1128,7 +1128,7 @@
   background-color: #fff;
   background-color: var(--modal-background-color); }
 
-.monday-style-menu-item {
+.laravel-style-menu-item {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto,sans-serif;
@@ -1145,51 +1145,51 @@
   -ms-user-select: none;
   user-select: none; }
 
-.monday-style-menu-item .monday-style-menu-item__icon-wrapper {
+.laravel-style-menu-item .laravel-style-menu-item__icon-wrapper {
   margin-right: 8px; }
 
-.monday-style-menu-item .monday-style-menu-item__sub_menu_icon-wrapper {
+.laravel-style-menu-item .laravel-style-menu-item__sub_menu_icon-wrapper {
   margin-left: 4px; }
 
-.monday-style-menu-item .monday-style-menu-item__icon-wrapper, .monday-style-menu-item .monday-style-menu-item__sub_menu_icon-wrapper {
+.laravel-style-menu-item .laravel-style-menu-item__icon-wrapper, .laravel-style-menu-item .laravel-style-menu-item__sub_menu_icon-wrapper {
   display: flex;
   align-items: center; }
 
-.monday-style-menu-item .monday-style-menu-item__icon-wrapper .monday-style-menu-item__icon, .monday-style-menu-item .monday-style-menu-item__icon-wrapper .monday-style-menu-item__sub_menu_icon, .monday-style-menu-item .monday-style-menu-item__sub_menu_icon-wrapper .monday-style-menu-item__icon, .monday-style-menu-item .monday-style-menu-item__sub_menu_icon-wrapper .monday-style-menu-item__sub_menu_icon {
+.laravel-style-menu-item .laravel-style-menu-item__icon-wrapper .laravel-style-menu-item__icon, .laravel-style-menu-item .laravel-style-menu-item__icon-wrapper .laravel-style-menu-item__sub_menu_icon, .laravel-style-menu-item .laravel-style-menu-item__sub_menu_icon-wrapper .laravel-style-menu-item__icon, .laravel-style-menu-item .laravel-style-menu-item__sub_menu_icon-wrapper .laravel-style-menu-item__sub_menu_icon {
   color: #676879;
   color: var(--icon-color); }
 
-.monday-style-menu-item.monday-style-menu-item--disabled, .monday-style-menu-item.monday-style-menu-item--disabled .monday-style-menu-item__icon, .monday-style-menu-item.monday-style-menu-item--disabled .monday-style-menu-item__sub_menu_icon {
+.laravel-style-menu-item.laravel-style-menu-item--disabled, .laravel-style-menu-item.laravel-style-menu-item--disabled .laravel-style-menu-item__icon, .laravel-style-menu-item.laravel-style-menu-item--disabled .laravel-style-menu-item__sub_menu_icon {
   cursor: not-allowed;
   color: #676879;
   color: var(--disabled-text-color); }
 
-.monday-style-menu-item:not(.monday-style-menu-item--disabled).monday-style-menu-item--focused {
+.laravel-style-menu-item:not(.laravel-style-menu-item--disabled).laravel-style-menu-item--focused {
   background-color: #c5c7d0;
   background-color: var(--primary-background-hover-color);
   border-radius: 4px; }
 
-.monday-style-menu-item .monday-style-menu-item__title {
+.laravel-style-menu-item .laravel-style-menu-item__title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   flex-grow: 1; }
 
-.monday-style-divider {
+.laravel-style-divider {
   background-color: #e6e9ef;
   background-color: var(--ui-border-color); }
 
-.monday-style-divider--horizontal {
+.laravel-style-divider--horizontal {
   height: 1px;
   width: 100%;
   margin: 4px 0; }
 
-.monday-style-divider--vertical {
+.laravel-style-divider--vertical {
   height: 100%;
   width: 1px;
   margin: 0 4px; }
 
-.monday-style-menu-title {
+.laravel-style-menu-title {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto,sans-serif;
@@ -1197,23 +1197,23 @@
   font-weight: 400;
   line-height: 22px; }
 
-.monday-style-menu-title .monday-style-menu-title__caption {
+.laravel-style-menu-title .laravel-style-menu-title__caption {
   color: #676879;
   color: var(--icon-color); }
 
-.monday-style-menu-title .monday-style-menu-title__caption--center {
+.laravel-style-menu-title .laravel-style-menu-title__caption--center {
   display: flex;
   flex-basis: 100%;
   align-items: center;
   margin: 4px 0; }
 
-.monday-style-menu-title .monday-style-menu-title__caption--bottom, .monday-style-menu-title .monday-style-menu-title__caption--top {
+.laravel-style-menu-title .laravel-style-menu-title__caption--bottom, .laravel-style-menu-title .laravel-style-menu-title__caption--top {
   padding-left: 8px; }
 
-.monday-style-menu-title .monday-style-menu-title__caption--bottom {
+.laravel-style-menu-title .laravel-style-menu-title__caption--bottom {
   padding-bottom: 4px; }
 
-.monday-style-menu-title .monday-style-menu-title__caption--center:after, .monday-style-menu-title .monday-style-menu-title__caption--center:before {
+.laravel-style-menu-title .laravel-style-menu-title__caption--center:after, .laravel-style-menu-title .laravel-style-menu-title__caption--center:before {
   content: "";
   flex-grow: 1;
   background-color: #e6e9ef;
@@ -1223,31 +1223,31 @@
   line-height: 0;
   margin: 0 8px; }
 
-.monday-style-menu-title .monday-style-menu-title__divider {
+.laravel-style-menu-title .laravel-style-menu-title__divider {
   height: 1px;
   width: 100%;
   margin: 4px 0;
   background-color: #e6e9ef;
   background-color: var(--ui-border-color); }
 
-.monday-style-radio-button-component {
+.laravel-style-radio-button-component {
   display: grid;
   grid-template-columns: 1.5em auto;
   grid-gap: .5em;
   cursor: pointer; }
 
-.monday-style-radio-button-component__radio-input-container {
+.laravel-style-radio-button-component__radio-input-container {
   display: flex;
   align-items: center;
   justify-content: center; }
 
-.monday-style-radio-button-component__radio-input-container__radio-input {
+.laravel-style-radio-button-component__radio-input-container__radio-input {
   opacity: 0;
   width: 0;
   height: 0;
   margin: 0; }
 
-.monday-style-radio-button-component__radio-input-container__radio-control {
+.laravel-style-radio-button-component__radio-input-container__radio-control {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1258,7 +1258,7 @@
   border-radius: 50%;
   transition: border-width 0.1s cubic-bezier(0, 0, 0.35, 1); }
 
-input:checked + .monday-style-radio-button-component__radio-input-container__radio-control {
+input:checked + .laravel-style-radio-button-component__radio-input-container__radio-control {
   -webkit-animation-name: radio-checked-animation;
   animation-name: radio-checked-animation;
   -webkit-animation-duration: .1s;
@@ -1271,35 +1271,35 @@ input:checked + .monday-style-radio-button-component__radio-input-container__rad
   border-color: var(--primary-color);
   border-width: .3em; }
 
-input:disabled + .monday-style-radio-button-component__radio-input-container__radio-control {
+input:disabled + .laravel-style-radio-button-component__radio-input-container__radio-control {
   border: .5em solid #e6e9ef;
   border-color: var(--disabled-background-color);
   border-radius: 50%; }
 
-input:checked:disabled + .monday-style-radio-button-component__radio-input-container__radio-control {
+input:checked:disabled + .laravel-style-radio-button-component__radio-input-container__radio-control {
   border: .3em solid #e6e9ef;
   border-color: var(--disabled-background-color);
   background-color: #323338;
   background-color: var(--secondary-text-color); }
 
-.monday-style-radio-button-component__radio-label {
+.laravel-style-radio-button-component__radio-label {
   line-height: 21px;
   font-weight: 400;
   color: #323338;
   color: var(--primary-text-color); }
 
-.monday-style-radio-button-component.disabled {
+.laravel-style-radio-button-component.disabled {
   cursor: not-allowed; }
 
-.monday-style-radio-button-component.disabled .monday-style-radio-button-component__radio-label {
+.laravel-style-radio-button-component.disabled .laravel-style-radio-button-component__radio-label {
   color: #676879;
   color: var(--disabled-text-color); }
 
-.monday-style-radio-button-component:hover .monday-style-radio-button-component__radio-input-container input:enabled:checked + .monday-style-radio-button-component__radio-input-container__radio-control {
+.laravel-style-radio-button-component:hover .laravel-style-radio-button-component__radio-input-container input:enabled:checked + .laravel-style-radio-button-component__radio-input-container__radio-control {
   border-color: #0071d9;
   border-color: var(--primary-hover-color); }
 
-.monday-style-radio-button-component:focus-within .monday-style-radio-button-component__radio-input-container input:enabled:not(:checked) + .monday-style-radio-button-component__radio-input-container__radio-control, .monday-style-radio-button-component:hover .monday-style-radio-button-component__radio-input-container input:enabled:not(:checked) + .monday-style-radio-button-component__radio-input-container__radio-control {
+.laravel-style-radio-button-component:focus-within .laravel-style-radio-button-component__radio-input-container input:enabled:not(:checked) + .laravel-style-radio-button-component__radio-input-container__radio-control, .laravel-style-radio-button-component:hover .laravel-style-radio-button-component__radio-input-container input:enabled:not(:checked) + .laravel-style-radio-button-component__radio-input-container__radio-control {
   border-color: #323338;
   border-color: var(--primary-text-color); }
 
@@ -1378,26 +1378,26 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   display: flex;
   justify-content: center; }
 
-.menu-button--wrapper--reference-icon, .monday-style-split-button {
+.menu-button--wrapper--reference-icon, .laravel-style-split-button {
   align-items: center; }
 
-.monday-style-split-button {
+.laravel-style-split-button {
   display: inline-flex;
   border-radius: 4px;
   transition: transform 50ms, min-width 0.1s cubic-bezier(0, 0, 0.35, 1); }
 
-.monday-style-split-button__secondary-button-wrapper .monday-style-split-button__secondary-button-icon-wrapper {
+.laravel-style-split-button__secondary-button-wrapper .laravel-style-split-button__secondary-button-icon-wrapper {
   display: inline-flex;
   padding: 0 4px; }
 
-.monday-style-split-button--active {
+.laravel-style-split-button--active {
   transform: scale(0.95); }
 
-.monday-style-split-button--disabled {
+.laravel-style-split-button--disabled {
   cursor: not-allowed;
   pointer-events: none; }
 
-.monday-style-split-button--kind-primary.monday-style-split-button--disabled .monday-style-split-button__secondary-button {
+.laravel-style-split-button--kind-primary.laravel-style-split-button--disabled .laravel-style-split-button__secondary-button {
   border-color: #e6e9ef;
   border-left: 1px solid;
   border-left-color: var(--ui-border-color);
@@ -1405,7 +1405,7 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   border-right-color: var(--ui-border-color);
   border-top-color: var(--ui-border-color); }
 
-.monday-style-split-button--kind-primary:not(.monday-style-split-button--disabled).monday-style-split-button--color-primary .monday-style-split-button__secondary-button {
+.laravel-style-split-button--kind-primary:not(.laravel-style-split-button--disabled).laravel-style-split-button--color-primary .laravel-style-split-button__secondary-button {
   border-color: #0071d9;
   border-left: 1px solid;
   border-left-color: var(--primary-hover-color);
@@ -1413,7 +1413,7 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   border-right-color: var(--primary-hover-color);
   border-top-color: var(--primary-hover-color); }
 
-.monday-style-split-button--kind-primary:not(.monday-style-split-button--disabled).monday-style-split-button--color-positive .monday-style-split-button__secondary-button {
+.laravel-style-split-button--kind-primary:not(.laravel-style-split-button--disabled).laravel-style-split-button--color-positive .laravel-style-split-button__secondary-button {
   border-color: #00a25b;
   border-left: 1px solid;
   border-left-color: var(--positive-color-hover);
@@ -1421,7 +1421,7 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   border-right-color: var(--positive-color-hover);
   border-top-color: var(--positive-color-hover); }
 
-.monday-style-split-button--kind-primary:not(.monday-style-split-button--disabled).monday-style-split-button--color-negative .monday-style-split-button__secondary-button {
+.laravel-style-split-button--kind-primary:not(.laravel-style-split-button--disabled).laravel-style-split-button--color-negative .laravel-style-split-button__secondary-button {
   border-color: #b63546;
   border-left: 1px solid;
   border-left-color: var(--negative-color-hover);
@@ -1429,7 +1429,7 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   border-right-color: var(--negative-color-hover);
   border-top-color: var(--negative-color-hover); }
 
-.monday-style-split-button--kind-primary:not(.monday-style-split-button--disabled).monday-style-split-button--color-on-primary-color .monday-style-split-button__secondary-button {
+.laravel-style-split-button--kind-primary:not(.laravel-style-split-button--disabled).laravel-style-split-button--color-on-primary-color .laravel-style-split-button__secondary-button {
   border-color: #e6e9ef;
   border-left: 1px solid;
   border-left-color: var(--color-ui_grey);
@@ -1437,10 +1437,10 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   border-right-color: var(--color-ui_grey);
   border-top-color: var(--color-ui_grey); }
 
-.monday-style-split-button--kind-secondary .monday-style-split-button__main-button {
+.laravel-style-split-button--kind-secondary .laravel-style-split-button__main-button {
   border-right: none; }
 
-.monday-style-split-button--kind-secondary.monday-style-split-button--color-primary.monday-style-split-button--split-content-open .monday-style-split-button__secondary-button, .monday-style-split-button--kind-secondary.monday-style-split-button--color-primary.monday-style-split-button--split-content-open .monday-style-split-button__secondary-button:hover {
+.laravel-style-split-button--kind-secondary.laravel-style-split-button--color-primary.laravel-style-split-button--split-content-open .laravel-style-split-button__secondary-button, .laravel-style-split-button--kind-secondary.laravel-style-split-button--color-primary.laravel-style-split-button--split-content-open .laravel-style-split-button__secondary-button:hover {
   color: #0085ff;
   color: var(--primary-color);
   border-color: #0085ff;
@@ -1448,57 +1448,57 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   background-color: #dff0ff;
   background-color: var(--primary-selected-color); }
 
-.monday-style-split-button--kind-tertiary .monday-style-split-button__secondary-button {
+.laravel-style-split-button--kind-tertiary .laravel-style-split-button__secondary-button {
   border-left: 1px solid rgba(0, 0, 0, 0);
   margin-left: 1px; }
 
-.monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary.monday-style-split-button--hovered .monday-style-split-button__secondary-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary.monday-style-split-button--split-content-open .monday-style-split-button__secondary-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary:focus .monday-style-split-button__secondary-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary:hover .monday-style-split-button__secondary-button {
+.laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary.laravel-style-split-button--hovered .laravel-style-split-button__secondary-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary.laravel-style-split-button--split-content-open .laravel-style-split-button__secondary-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary:focus .laravel-style-split-button__secondary-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary:hover .laravel-style-split-button__secondary-button {
   border-color: rgba(0, 0, 0, 0);
   background-color: #c5c7d0;
   background-color: var(--primary-background-hover-color); }
 
-.monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary.monday-style-split-button--hovered .monday-style-split-button__main-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary.monday-style-split-button--split-content-open .monday-style-split-button__main-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary:focus .monday-style-split-button__main-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary:hover .monday-style-split-button__main-button {
+.laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary.laravel-style-split-button--hovered .laravel-style-split-button__main-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary.laravel-style-split-button--split-content-open .laravel-style-split-button__main-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary:focus .laravel-style-split-button__main-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary:hover .laravel-style-split-button__main-button {
   background-color: #c5c7d0;
   background-color: var(--primary-background-hover-color); }
 
-.monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary.monday-style-split-button--split-content-open .monday-style-split-button__secondary-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary.monday-style-split-button--split-content-open .monday-style-split-button__secondary-button:hover {
+.laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary.laravel-style-split-button--split-content-open .laravel-style-split-button__secondary-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary.laravel-style-split-button--split-content-open .laravel-style-split-button__secondary-button:hover {
   color: #0085ff;
   color: var(--primary-color);
   background-color: #dff0ff;
   background-color: var(--primary-selected-color); }
 
-.monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary .monday-style-split-button__main-button:focus, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary .monday-style-split-button__main-button:hover, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary .monday-style-split-button__secondary-button:focus, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-primary .monday-style-split-button__secondary-button:hover {
+.laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary .laravel-style-split-button__main-button:focus, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary .laravel-style-split-button__main-button:hover, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary .laravel-style-split-button__secondary-button:focus, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-primary .laravel-style-split-button__secondary-button:hover {
   background-color: #e6e9ef;
   background-color: var(--ui-border-color); }
 
-.monday-style-split-button--kind-tertiary.monday-style-split-button--color-positive.monday-style-split-button--split-content-open .monday-style-split-button__secondary-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-positive:focus .monday-style-split-button__secondary-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-positive:hover .monday-style-split-button__secondary-button {
+.laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-positive.laravel-style-split-button--split-content-open .laravel-style-split-button__secondary-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-positive:focus .laravel-style-split-button__secondary-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-positive:hover .laravel-style-split-button__secondary-button {
   border-color: rgba(0, 0, 0, 0);
   background-color: var(--positive-color-selected); }
 
-.monday-style-split-button--kind-tertiary.monday-style-split-button--color-positive.monday-style-split-button--split-content-open .monday-style-split-button__main-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-positive:focus .monday-style-split-button__main-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-positive:hover .monday-style-split-button__main-button {
+.laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-positive.laravel-style-split-button--split-content-open .laravel-style-split-button__main-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-positive:focus .laravel-style-split-button__main-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-positive:hover .laravel-style-split-button__main-button {
   background-color: var(--positive-color-selected); }
 
-.monday-style-split-button--kind-tertiary.monday-style-split-button--color-negative.monday-style-split-button--split-content-open .monday-style-split-button__secondary-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-negative:focus .monday-style-split-button__secondary-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-negative:hover .monday-style-split-button__secondary-button {
+.laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-negative.laravel-style-split-button--split-content-open .laravel-style-split-button__secondary-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-negative:focus .laravel-style-split-button__secondary-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-negative:hover .laravel-style-split-button__secondary-button {
   border-color: rgba(0, 0, 0, 0);
   background-color: #b63546;
   background-color: var(--negative-color-selected); }
 
-.monday-style-split-button--kind-tertiary.monday-style-split-button--color-negative.monday-style-split-button--split-content-open .monday-style-split-button__main-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-negative:focus .monday-style-split-button__main-button, .monday-style-split-button--kind-tertiary.monday-style-split-button--color-negative:hover .monday-style-split-button__main-button {
+.laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-negative.laravel-style-split-button--split-content-open .laravel-style-split-button__main-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-negative:focus .laravel-style-split-button__main-button, .laravel-style-split-button--kind-tertiary.laravel-style-split-button--color-negative:hover .laravel-style-split-button__main-button {
   background-color: #b63546;
   background-color: var(--negative-color-selected); }
 
-.monday-style-counter {
+.laravel-style-counter {
   display: inline-flex;
   justify-content: center;
   border-radius: 30px;
   overflow: hidden;
   transform-origin: center; }
 
-.monday-style-counter--with-animation {
+.laravel-style-counter--with-animation {
   -webkit-animation: circle-pop .25s;
   animation: circle-pop .25s; }
 
-.monday-style-counter--size-sm {
+.laravel-style-counter--size-sm {
   font-size: 12px;
   color: #323338;
   color: var(--secondary-text-color);
@@ -1506,71 +1506,71 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   line-height: 18px;
   padding: 0 6px; }
 
-.monday-style-counter--size-lg, .monday-style-counter--size-sm {
+.laravel-style-counter--size-lg, .laravel-style-counter--size-sm {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto,sans-serif;
   font-weight: 400; }
 
-.monday-style-counter--size-lg {
+.laravel-style-counter--size-lg {
   font-size: 14px;
   line-height: 22px;
   line-height: 24px;
   min-width: 24px;
   padding: 0 8px; }
 
-.monday-style-counter--fade-enter {
+.laravel-style-counter--fade-enter {
   opacity: 0;
   transform: translateY(15px); }
 
-.monday-style-counter--fade-enter-active {
+.laravel-style-counter--fade-enter-active {
   transition: transform 0.15s cubic-bezier(0, 0, 0.35, 1), opacity 70ms; }
 
-.monday-style-counter--fade-enter-active, .monday-style-counter--fade-exit {
+.laravel-style-counter--fade-enter-active, .laravel-style-counter--fade-exit {
   position: relative;
   opacity: 1;
   transform: translateY(0); }
 
-.monday-style-counter--fade-exit-active {
+.laravel-style-counter--fade-exit-active {
   position: relative;
   opacity: 0;
   transform: translateY(-15px);
   transition: transform 0.15s cubic-bezier(0, 0, 0.35, 1), opacity 70ms; }
 
-.monday-style-counter--kind-fill.monday-style-counter--color-primary {
+.laravel-style-counter--kind-fill.laravel-style-counter--color-primary {
   color: #fff;
   color: var(--text-color-on-primary);
   background-color: #0085ff;
   background-color: var(--primary-color); }
 
-.monday-style-counter--kind-fill.monday-style-counter--color-dark {
+.laravel-style-counter--kind-fill.laravel-style-counter--color-dark {
   color: #fff;
   color: var(--text-color-on-inverted);
   background-color: #323338;
   background-color: var(--inverted-color-background); }
 
-.monday-style-counter--kind-fill.monday-style-counter--color-negative {
+.laravel-style-counter--kind-fill.laravel-style-counter--color-negative {
   color: #fff;
   color: var(--text-color-on-primary);
   background-color: #e44258;
   background-color: var(--negative-color); }
 
-.monday-style-counter--kind-line {
+.laravel-style-counter--kind-line {
   border: 1px solid; }
 
-.monday-style-counter--kind-line.monday-style-counter--color-primary {
+.laravel-style-counter--kind-line.laravel-style-counter--color-primary {
   color: #0085ff;
   color: var(--primary-color); }
 
-.monday-style-counter--kind-line.monday-style-counter--color-dark {
+.laravel-style-counter--kind-line.laravel-style-counter--color-dark {
   color: #323338;
   color: var(--inverted-color-background); }
 
-.monday-style-counter--kind-line.monday-style-counter--color-negative {
+.laravel-style-counter--kind-line.laravel-style-counter--color-negative {
   color: #e44258;
   color: var(--negative-color); }
 
-.monday-style-attention-box-component {
+.laravel-style-attention-box-component {
   padding: 24px;
   border-radius: 8px;
   font-size: 14px;
@@ -1583,56 +1583,56 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   color: #323338;
   color: var(--color-mud_black); }
 
-.monday-style-attention-box-component--type-primary {
+.laravel-style-attention-box-component--type-primary {
   color: #323338;
   color: var(--primary-text-color);
   background-color: #dff0ff;
   background-color: var(--primary-selected-color); }
 
-.monday-style-attention-box-component--type-primary__title-container__icon {
+.laravel-style-attention-box-component--type-primary__title-container__icon {
   color: #0085ff;
   color: var(--primary-color); }
 
-.monday-style-attention-box-component--type-danger {
+.laravel-style-attention-box-component--type-danger {
   background-color: #b63546;
   background-color: var(--negative-color-selected); }
 
-.monday-style-attention-box-component--type-danger__title-container__icon {
+.laravel-style-attention-box-component--type-danger__title-container__icon {
   color: #e44258;
   color: var(--negative-color); }
 
-.monday-style-attention-box-component--type-success {
+.laravel-style-attention-box-component--type-success {
   background-color: var(--positive-color-selected); }
 
-.monday-style-attention-box-component--type-success__title-container__icon {
+.laravel-style-attention-box-component--type-success__title-container__icon {
   color: #00ca72;
   color: var(--positive-color); }
 
-.monday-style-attention-box-component--type-dark {
+.laravel-style-attention-box-component--type-dark {
   background-color: #f5f6f8;
   background-color: var(--dark-background-on-secondary-color);
   color: #323338;
   color: var(--primary-text-color); }
 
-.monday-style-attention-box-component--type-dark__title-container__icon {
+.laravel-style-attention-box-component--type-dark__title-container__icon {
   color: #323338;
   color: var(--primary-text-color); }
 
-.monday-style-attention-box-component__title-container {
+.laravel-style-attention-box-component__title-container {
   display: flex;
   align-items: center;
   margin-bottom: 16px; }
 
-.monday-style-attention-box-component__title-container__icon {
+.laravel-style-attention-box-component__title-container__icon {
   height: 24px;
   width: 24px;
   margin-right: 8px; }
 
-.monday-style-attention-box-component__title-container__title {
+.laravel-style-attention-box-component__title-container__title {
   font-size: 18px;
   font-weight: 500; }
 
-.monday-style-label {
+.laravel-style-label {
   align-items: center;
   justify-content: center;
   border-radius: 4px 4px 4px 0;
@@ -1650,91 +1650,91 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   animation-timing-function: cubic-bezier(0, 0, 0.35, 1);
   position: relative; }
 
-.monday-style-label, .monday-style-label__leg-wrapper {
+.laravel-style-label, .laravel-style-label__leg-wrapper {
   display: inline-flex; }
 
-.monday-style-label__leg-wrapper {
+.laravel-style-label__leg-wrapper {
   position: absolute;
   height: 8px;
   top: 100%;
   left: 0; }
 
-.monday-style-label--kind-fill.monday-style-label--color-primary {
+.laravel-style-label--kind-fill.laravel-style-label--color-primary {
   color: #fff;
   color: var(--text-color-on-primary);
   background-color: #0085ff;
   background-color: var(--primary-color); }
 
-.monday-style-label--kind-fill.monday-style-label--color-primary svg path {
+.laravel-style-label--kind-fill.laravel-style-label--color-primary svg path {
   fill: #0085ff;
   fill: var(--primary-color); }
 
-.monday-style-label--kind-fill.monday-style-label--color-dark {
+.laravel-style-label--kind-fill.laravel-style-label--color-dark {
   color: #fff;
   color: var(--text-color-on-inverted);
   background-color: #323338;
   background-color: var(--inverted-color-background); }
 
-.monday-style-label--kind-fill.monday-style-label--color-dark svg path {
+.laravel-style-label--kind-fill.laravel-style-label--color-dark svg path {
   fill: #323338;
   fill: var(--inverted-color-background); }
 
-.monday-style-label--kind-fill.monday-style-label--color-negative {
+.laravel-style-label--kind-fill.laravel-style-label--color-negative {
   color: #fff;
   color: var(--text-color-on-primary);
   background-color: #e44258;
   background-color: var(--negative-color); }
 
-.monday-style-label--kind-fill.monday-style-label--color-negative svg path {
+.laravel-style-label--kind-fill.laravel-style-label--color-negative svg path {
   fill: #e44258;
   fill: var(--negative-color); }
 
-.monday-style-label--kind-fill.monday-style-label--color-positive {
+.laravel-style-label--kind-fill.laravel-style-label--color-positive {
   color: #fff;
   color: var(--text-color-on-primary);
   background-color: #00ca72;
   background-color: var(--positive-color); }
 
-.monday-style-label--kind-fill.monday-style-label--color-positive svg path {
+.laravel-style-label--kind-fill.laravel-style-label--color-positive svg path {
   fill: #00ca72;
   fill: var(--positive-color); }
 
-.monday-style-label--kind-line {
+.laravel-style-label--kind-line {
   border: 1px solid; }
 
-.monday-style-label--kind-line .monday-style-label__leg-wrapper {
+.laravel-style-label--kind-line .laravel-style-label__leg-wrapper {
   left: -1px;
   top: calc(100% + 1px); }
 
-.monday-style-label--kind-line.monday-style-label--color-primary {
+.laravel-style-label--kind-line.laravel-style-label--color-primary {
   color: #0085ff;
   color: var(--primary-color); }
 
-.monday-style-label--kind-line.monday-style-label--color-primary svg path {
+.laravel-style-label--kind-line.laravel-style-label--color-primary svg path {
   fill: #0085ff;
   fill: var(--primary-color); }
 
-.monday-style-label--kind-line.monday-style-label--color-dark {
+.laravel-style-label--kind-line.laravel-style-label--color-dark {
   color: #323338;
   color: var(--inverted-color-background); }
 
-.monday-style-label--kind-line.monday-style-label--color-dark svg path {
+.laravel-style-label--kind-line.laravel-style-label--color-dark svg path {
   fill: #323338;
   fill: var(--inverted-color-background); }
 
-.monday-style-label--kind-line.monday-style-label--color-negative {
+.laravel-style-label--kind-line.laravel-style-label--color-negative {
   color: #e44258;
   color: var(--negative-color); }
 
-.monday-style-label--kind-line.monday-style-label--color-negative svg path {
+.laravel-style-label--kind-line.laravel-style-label--color-negative svg path {
   fill: #e44258;
   fill: var(--negative-color); }
 
-.monday-style-label--kind-line.monday-style-label--color-positive {
+.laravel-style-label--kind-line.laravel-style-label--color-positive {
   color: #00ca72;
   color: var(--positive-color); }
 
-.monday-style-label--kind-line.monday-style-label--color-positive svg path {
+.laravel-style-label--kind-line.laravel-style-label--color-positive svg path {
   fill: #00ca72;
   fill: var(--positive-color); }
 
@@ -1758,7 +1758,7 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   to {
     transform: rotate(0deg); } }
 
-.monday-style-checkbox {
+.laravel-style-checkbox {
   align-items: center;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -1767,11 +1767,11 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   height: -moz-min-content;
   height: min-content; }
 
-.monday-style-checkbox, .monday-style-checkbox__checkbox {
+.laravel-style-checkbox, .laravel-style-checkbox__checkbox {
   position: relative;
   display: flex; }
 
-.monday-style-checkbox__checkbox {
+.laravel-style-checkbox__checkbox {
   cursor: pointer;
   visibility: visible;
   justify-content: center;
@@ -1784,7 +1784,7 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   transition: transform 50ms cubic-bezier(0, 0, 0.35, 1);
   overflow: hidden; }
 
-.monday-style-checkbox__checkbox:after {
+.laravel-style-checkbox__checkbox:after {
   content: " ";
   background-color: rgba(0, 0, 0, 0);
   position: absolute;
@@ -1794,21 +1794,21 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   right: 0;
   width: 100%; }
 
-.monday-style-checkbox__checkbox:hover {
+.laravel-style-checkbox__checkbox:hover {
   border-color: #323338;
   border-color: var(--secondary-text-color); }
 
-.monday-style-checkbox__icon {
+.laravel-style-checkbox__icon {
   width: 100%;
   color: #fff;
   color: var(--text-color-on-primary);
   visibility: hidden; }
 
-.monday-style-checkbox__disabled .monday-style-checkbox__label {
+.laravel-style-checkbox__disabled .laravel-style-checkbox__label {
   color: #676879;
   color: var(--disabled-text-color); }
 
-.monday-style-checkbox__label {
+.laravel-style-checkbox__label {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto,sans-serif;
@@ -1824,46 +1824,46 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   color: #323338;
   color: var(--primary-text-color); }
 
-.monday-style-checkbox__input {
+.laravel-style-checkbox__input {
   opacity: 0;
   width: 0;
   height: 0;
   position: absolute; }
 
-.monday-style-checkbox__input:focus + .monday-style-checkbox__checkbox {
+.laravel-style-checkbox__input:focus + .laravel-style-checkbox__checkbox {
   border-color: #323338;
   border-color: var(--secondary-text-color); }
 
-.monday-style-checkbox__input:focus:checked + .monday-style-checkbox__checkbox {
+.laravel-style-checkbox__input:focus:checked + .laravel-style-checkbox__checkbox {
   background-color: #0071d9;
   background-color: var(--primary-hover-color);
   border-color: rgba(0, 0, 0, 0); }
 
-.monday-style-checkbox__input:checked:focus + .monday-style-checkbox__checkbox:after {
+.laravel-style-checkbox__input:checked:focus + .laravel-style-checkbox__checkbox:after {
   background-color: #0071d9;
   background-color: var(--primary-hover-color); }
 
-.monday-style-checkbox__input:checked + .monday-style-checkbox__checkbox {
+.laravel-style-checkbox__input:checked + .laravel-style-checkbox__checkbox {
   -webkit-animation: checkbox-grow-animation 50ms;
   animation: checkbox-grow-animation 50ms;
   background-color: #0085ff;
   background-color: var(--primary-color);
   border-color: rgba(0, 0, 0, 0); }
 
-.monday-style-checkbox__input:checked + .monday-style-checkbox__checkbox__prevent-animation {
+.laravel-style-checkbox__input:checked + .laravel-style-checkbox__checkbox__prevent-animation {
   -webkit-animation-duration: 0ms;
   animation-duration: 0ms; }
 
-.monday-style-checkbox__input:checked + .monday-style-checkbox__checkbox:hover {
+.laravel-style-checkbox__input:checked + .laravel-style-checkbox__checkbox:hover {
   background-color: #0071d9;
   background-color: var(--primary-hover-color);
   border-color: rgba(0, 0, 0, 0); }
 
-.monday-style-checkbox__input:checked + .monday-style-checkbox__checkbox:hover:after {
+.laravel-style-checkbox__input:checked + .laravel-style-checkbox__checkbox:hover:after {
   background-color: #0071d9;
   background-color: var(--primary-hover-color); }
 
-.monday-style-checkbox__input:checked + .monday-style-checkbox__checkbox:after {
+.laravel-style-checkbox__input:checked + .laravel-style-checkbox__checkbox:after {
   content: " ";
   background-color: #0085ff;
   background-color: var(--primary-color);
@@ -1873,20 +1873,20 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   transform-origin: right;
   left: 0; }
 
-.monday-style-checkbox__input:checked + .monday-style-checkbox__checkbox > .monday-style-checkbox__icon {
+.laravel-style-checkbox__input:checked + .laravel-style-checkbox__checkbox > .laravel-style-checkbox__icon {
   visibility: visible; }
 
-.monday-style-checkbox__input:checked:disabled + .monday-style-checkbox__checkbox:after {
+.laravel-style-checkbox__input:checked:disabled + .laravel-style-checkbox__checkbox:after {
   background-color: #e6e9ef;
   background-color: var(--disabled-background-color); }
 
-.monday-style-checkbox__input:disabled + .monday-style-checkbox__checkbox, .monday-style-checkbox__input:disabled + .monday-style-checkbox__checkbox:hover {
+.laravel-style-checkbox__input:disabled + .laravel-style-checkbox__checkbox, .laravel-style-checkbox__input:disabled + .laravel-style-checkbox__checkbox:hover {
   background-color: #e6e9ef;
   background-color: var(--disabled-background-color);
   border-color: #e6e9ef;
   border-color: var(--ui-border-color); }
 
-.monday-style-checkbox__input:disabled + .monday-style-checkbox__checkbox .monday-style-checkbox__icon, .monday-style-checkbox__input:disabled + .monday-style-checkbox__checkbox:hover .monday-style-checkbox__icon {
+.laravel-style-checkbox__input:disabled + .laravel-style-checkbox__checkbox .laravel-style-checkbox__icon, .laravel-style-checkbox__input:disabled + .laravel-style-checkbox__checkbox:hover .laravel-style-checkbox__icon {
   color: #676879;
   color: var(--disabled-text-color); }
 
@@ -1971,7 +1971,7 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   background-color: var(--primary-selected-color);
   cursor: pointer; }
 
-.monday-style-toast {
+.laravel-style-toast {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto,sans-serif;
@@ -1993,37 +1993,37 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   min-width: 390px;
   border-radius: 4px; }
 
-.monday-style-toast, .monday-style-toast-icon {
+.laravel-style-toast, .laravel-style-toast-icon {
   display: flex; }
 
-.monday-style-toast-icon {
+.laravel-style-toast-icon {
   padding-left: 8px;
   padding-right: 8px; }
 
-.monday-style-toast-content {
+.laravel-style-toast-content {
   line-height: 22px;
   font-size: 14px;
   flex-grow: 1; }
 
-.monday-style-toast-content-no-icon {
+.laravel-style-toast-content-no-icon {
   padding-left: 8px; }
 
-.monday-style-toast-action {
+.laravel-style-toast-action {
   padding-right: 8px; }
 
-.monday-style-toast--type-normal {
+.laravel-style-toast--type-normal {
   background-color: #0085ff;
   background-color: var(--primary-color); }
 
-.monday-style-toast--type-positive {
+.laravel-style-toast--type-positive {
   background-color: #00ca72;
   background-color: var(--positive-color); }
 
-.monday-style-toast--type-negative {
+.laravel-style-toast--type-negative {
   background-color: #e44258;
   background-color: var(--negative-color); }
 
-.monday-style-toast-animation-enter-active, .monday-style-toast-animation-exit-active {
+.laravel-style-toast-animation-enter-active, .laravel-style-toast-animation-exit-active {
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
   -webkit-animation-direction: forwards;
@@ -2031,13 +2031,13 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards; }
 
-.monday-style-toast-animation-enter-active {
+.laravel-style-toast-animation-enter-active {
   -webkit-animation-duration: .4s;
   animation-duration: .4s;
   -webkit-animation-name: toast-pop-in;
   animation-name: toast-pop-in; }
 
-.monday-style-toast-animation-exit-active {
+.laravel-style-toast-animation-exit-active {
   -webkit-animation-duration: .16s;
   animation-duration: .16s;
   -webkit-animation-name: toast-pop-out;
@@ -2199,63 +2199,63 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
 .banner.rtl .banner--content.image-position__right {
   grid-template-areas: "title    title     image" "subtitle subtitle  image"; }
 
-.monday-style-step-indicator-component {
+.laravel-style-step-indicator-component {
   color: #fff;
   color: var(--text-color-on-primary);
   font-size: 14px;
   display: flex; }
 
-.monday-style-step-indicator-component--with-animation {
+.laravel-style-step-indicator-component--with-animation {
   -webkit-animation: circle-pop .25s;
   animation: circle-pop .25s; }
 
-.monday-style-step-indicator-component--swap-enter {
+.laravel-style-step-indicator-component--swap-enter {
   opacity: 0;
   transform: translateY(15px); }
 
-.monday-style-step-indicator-component--swap-enter-active {
+.laravel-style-step-indicator-component--swap-enter-active {
   transition: transform 0.15s cubic-bezier(0, 0, 0.35, 1), opacity 70ms; }
 
-.monday-style-step-indicator-component--swap-enter-active, .monday-style-step-indicator-component--swap-exit {
+.laravel-style-step-indicator-component--swap-enter-active, .laravel-style-step-indicator-component--swap-exit {
   position: relative;
   opacity: 1;
   transform: translateY(0); }
 
-.monday-style-step-indicator-component--swap-exit-active {
+.laravel-style-step-indicator-component--swap-exit-active {
   position: relative;
   opacity: 0;
   transform: translateY(-15px);
   transition: transform 0.15s cubic-bezier(0, 0, 0.35, 1), opacity 70ms; }
 
-.monday-style-step-indicator-component__number-container {
+.laravel-style-step-indicator-component__number-container {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   display: flex; }
 
-.monday-style-step-indicator-component__number-container__text {
+.laravel-style-step-indicator-component__number-container__text {
   margin: auto;
   display: flex;
   align-items: center; }
 
-.monday-style-step-indicator-component__number-container__text__check-icon {
+.laravel-style-step-indicator-component__number-container__text__check-icon {
   width: 20px;
   height: 20px;
   margin-top: 2px; }
 
-.monday-style-step-indicator-component__text-container {
+.laravel-style-step-indicator-component__text-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: 8px; }
 
-.monday-style-step-indicator-component__text-container__title {
+.laravel-style-step-indicator-component__text-container__title {
   width: 100%; }
 
-.monday-style-step-indicator-component__text-container__title .visually-hidden {
+.laravel-style-step-indicator-component__text-container__title .visually-hidden {
   display: none; }
 
-.monday-style-step-indicator-component__text-container__title__text {
+.laravel-style-step-indicator-component__text-container__title__text {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto,sans-serif;
@@ -2265,29 +2265,29 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   color: #323338;
   color: var(--primary-text-color); }
 
-.monday-style-step-indicator-component__text-container__subtitle__text {
+.laravel-style-step-indicator-component__text-container__subtitle__text {
   width: 100%;
   font-size: 14px;
   color: #676879;
   color: var(--disabled-text-color); }
 
-.monday-style-step-indicator-component--type-primary__number-container {
+.laravel-style-step-indicator-component--type-primary__number-container {
   background-color: #0085ff;
   background-color: var(--primary-color); }
 
-.monday-style-step-indicator-component--type-danger__number-container {
+.laravel-style-step-indicator-component--type-danger__number-container {
   background-color: #e44258;
   background-color: var(--negative-color); }
 
-.monday-style-step-indicator-component--type-success__number-container {
+.laravel-style-step-indicator-component--type-success__number-container {
   background-color: #00ca72;
   background-color: var(--positive-color); }
 
-.monday-style-step-indicator-component--type-dark__number-container {
+.laravel-style-step-indicator-component--type-dark__number-container {
   background-color: #323338;
   background-color: var(--primary-text-color); }
 
-.monday-style-step-indicator-component--status-pending__number-container {
+.laravel-style-step-indicator-component--status-pending__number-container {
   background-color: #e6e9ef;
   background-color: var(--disabled-background-color); }
 
@@ -2311,11 +2311,11 @@ input:checked:disabled + .monday-style-radio-button-component__radio-input-conta
   to {
     transform: scale(1); } }
 
-.dark-app-theme .monday-style-step-indicator-component--type-dark__number-container {
+.dark-app-theme .laravel-style-step-indicator-component--type-dark__number-container {
   color: #323338;
   color: var(--color-mud_black); }
 
-.dark-app-theme .monday-style-step-indicator-component--status-pending__number-container {
+.dark-app-theme .laravel-style-step-indicator-component--status-pending__number-container {
   color: #323338;
   color: var(--primary-text-color); }
 

@@ -2457,7 +2457,7 @@ input[type="submit"].ds-btn-block {
     align-items: center;
 }
 
-.external-app-store-header-component .app-store-header-inner .header-right-section .monday-logo {
+.external-app-store-header-component .app-store-header-inner .header-right-section .laravel-logo {
     margin-top: 8px;
     margin-right: 32px;
 }
@@ -2476,7 +2476,7 @@ input[type="submit"].ds-btn-block {
 }
 
 @media only screen and (max-device-width: 768px) {
-    .apps-marketplace-mobile-support .external-app-store-header-component .app-store-header-inner .header-right-section>.monday-logo {
+    .apps-marketplace-mobile-support .external-app-store-header-component .app-store-header-inner .header-right-section>.laravel-logo {
         display: none;
     }
 
@@ -2569,7 +2569,7 @@ input[type="submit"].ds-btn-block {
         background: none;
     }
 
-    .apps-marketplace-mobile-support .app-store-app-page-header-component .app-store-app-page-header-app-details .app-image-wrapper .app-image.monday-app {
+    .apps-marketplace-mobile-support .app-store-app-page-header-component .app-store-app-page-header-app-details .app-image-wrapper .app-image.laravel-app {
         width: 100%;
         height: 100%;
         border-radius: 8px;
@@ -2698,7 +2698,7 @@ input[type="submit"].ds-btn-block {
     font-size: 30px;
 }
 
-.app-store-app-page-header-component .app-header-inner .app-image-wrapper .app-image.monday-app {
+.app-store-app-page-header-component .app-header-inner .app-image-wrapper .app-image.laravel-app {
     width: 100%;
     height: 100%;
     border-radius: 8px;
@@ -6378,7 +6378,7 @@ a.ds-text-link-component:hover {
     z-index: 901;
 }
 
-.monday-legend__wrapper {
+.laravel-legend__wrapper {
     background-color: #ffffff;
     background-color: var(--primary-background-color);
     width: 100%;
@@ -6387,7 +6387,7 @@ a.ds-text-link-component:hover {
     box-shadow: 0px -4px 24px rgba(0, 0, 0, 0.05);
 }
 
-.monday-legend__container {
+.laravel-legend__container {
     width: 90%;
     justify-content: center;
     align-items: center;
@@ -6397,7 +6397,7 @@ a.ds-text-link-component:hover {
     margin-block-end: var(--spacing-medium);
 }
 
-.monday-legend__circle {
+.laravel-legend__circle {
     height: 12px;
     width: 12px;
     border-radius: 50%;
@@ -6410,19 +6410,19 @@ a.ds-text-link-component:hover {
     overflow-wrap: break-word;
 }
 
-.monday-legend__field {
+.laravel-legend__field {
     -webkit-margin-before: var(--spacing-medium);
     margin-block-start: var(--spacing-medium);
     display: flex;
     align-items: center;
 }
 
-.monday-legend__field:not(:last-child) {
+.laravel-legend__field:not(:last-child) {
     -webkit-margin-end: var(--spacing-large);
     margin-inline-end: var(--spacing-large);
 }
 
-.monday-legend__field-name {
+.laravel-legend__field-name {
     display: inline-block;
     max-width: 120px;
     overflow: hidden;
@@ -8163,7 +8163,7 @@ a.ds-text-link-component:hover {
     position: relative;
 }
 
-.form-consumer-iframe-container .loader-wrapper .monday-loader-wrapper {
+.form-consumer-iframe-container .loader-wrapper .laravel-loader-wrapper {
     position: absolute;
     left: 0;
     right: 0;
@@ -12915,97 +12915,97 @@ a.ds-text-link-component:hover {
 }
 
 /* mixin for multiline */
-.monday-columns-per-board-with-type-enforcement {
+.laravel-columns-per-board-with-type-enforcement {
     display: flex;
     flex-direction: column;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker {
+.laravel-columns-per-board-with-type-enforcement__picker {
     margin-top: 8px;
     overflow-y: scroll;
     max-height: 194px;
     padding-bottom: 16px;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-control,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-control {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-control,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-control {
     border-color: #c5c7d0 !important;
     border-color: var(--ui-border-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-value,
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-placeholder,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-value,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-placeholder {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-value,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-placeholder,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-value,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-placeholder {
     color: #323338 !important;
     color: var(--primary-text-color) !important;
     background-color: #ffffff !important;
     background-color: var(--secondary-background-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-value-label,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-value-label {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-value-label,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-value-label {
     color: #323338 !important;
     color: var(--primary-text-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-menu-outer,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-menu-outer {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-menu-outer,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-menu-outer {
     background-color: #ffffff !important;
     background-color: var(--secondary-background-color) !important;
     border-color: #c5c7d0 !important;
     border-color: var(--ui-border-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-menu-outer .Select-option,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-menu-outer .Select-option {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-menu-outer .Select-option,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-menu-outer .Select-option {
     background-color: #ffffff !important;
     background-color: var(--secondary-background-color) !important;
     color: #323338;
     color: var(--primary-text-color);
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-menu-outer .Select-option.is-focused,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-menu-outer .Select-option.is-focused {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-menu-outer .Select-option.is-focused,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-menu-outer .Select-option.is-focused {
     background-color: #e6e9ef !important;
     background-color: var(--primary-background-hover-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-menu-outer .Select-option.is-selected,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-menu-outer .Select-option.is-selected {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-menu-outer .Select-option.is-selected,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-menu-outer .Select-option.is-selected {
     background-color: #e5f4ff !important;
     background-color: var(--primary-selected-color) !important;
     color: #0085ff !important;
     color: var(--primary-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-noresults,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-noresults {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select-noresults,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select-noresults {
     background-color: #ffffff !important;
     background-color: var(--secondary-background-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select--multi .Select-value,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select--multi .Select-value {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select--multi .Select-value,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select--multi .Select-value {
     background-color:  !important;
     background-color: var(--notification-unread-highlight-color) !important;
     color: #323338 !important;
     color: var(--primary-text-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select--multi .Select-value .Select-value-icon,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select--multi .Select-value .Select-value-icon {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select--multi .Select-value .Select-value-icon,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select--multi .Select-value .Select-value-icon {
     color: #323338 !important;
     color: var(--primary-text-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select--multi .Select-value .Select-value-icon:hover,
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select--multi .Select-value .Select-value-icon:hover {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-dropdown-component .Select--multi .Select-value .Select-value-icon:hover,
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component .Select--multi .Select-value .Select-value-icon:hover {
     background-color: #ffffff !important;
     background-color: var(--secondary-background-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-field-component input {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-field-component input {
     background-color: #ffffff !important;
     background-color: var(--secondary-background-color) !important;
     border-color: #c5c7d0 !important;
@@ -13014,46 +13014,46 @@ a.ds-text-link-component:hover {
     color: var(--primary-text-color);
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-field-component input[disabled] {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-field-component input[disabled] {
     background-color: #e6e9ef !important;
     background-color: var(--disabled-background-color) !important;
     cursor: not-allowed;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-field-component input[disabled]:-ms-input-placeholder {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-field-component input[disabled]:-ms-input-placeholder {
     color: rgba(103, 104, 121, 0.75);
     color: var(--disabled-text-color);
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-field-component input[disabled]::placeholder {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-field-component input[disabled]::placeholder {
     color: rgba(103, 104, 121, 0.75);
     color: var(--disabled-text-color);
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-multiple-component .item-list-item-actions button {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-multiple-component .item-list-item-actions button {
     color: #676879 !important;
     color: var(--secondary-text-color) !important;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-multiple-component .item-list-item-actions button:hover {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-multiple-component .item-list-item-actions button:hover {
     color: #323338 !important;
     color: var(--primary-text-color) !important;
     background-color: initial;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component.columns:last-child .choose-objects.dropdown:last-child {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component.columns:last-child .choose-objects.dropdown:last-child {
     margin-bottom: 0px;
 }
 
-.monday-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component.columns .choose-objects.dropdown .category-name {
+.laravel-columns-per-board-with-type-enforcement__picker .settings-objects-per-category-picker-component.columns .choose-objects.dropdown .category-name {
     font-weight: 300;
 }
 
-.monday-columns-per-board-with-type-enforcement__undo-column-type {
+.laravel-columns-per-board-with-type-enforcement__undo-column-type {
     font-weight: bold;
 }
 
-.monday-columns-per-board-with-type-enforcement__hide {
+.laravel-columns-per-board-with-type-enforcement__hide {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -13061,12 +13061,12 @@ a.ds-text-link-component:hover {
     cursor: pointer;
 }
 
-.monday-columns-per-board-with-type-enforcement__hide:hover {
+.laravel-columns-per-board-with-type-enforcement__hide:hover {
     color: #0071d9;
     color: var(--primary-hover-color);
 }
 
-.monday-columns-per-board-with-type-enforcement__undo-section {
+.laravel-columns-per-board-with-type-enforcement__undo-section {
     position: relative;
     border-radius: 4px;
     padding: 8px;
@@ -13074,7 +13074,7 @@ a.ds-text-link-component:hover {
     background: var(--pulse-selected-background-color);
 }
 
-.monday-columns-per-board-with-type-enforcement__error-section {
+.laravel-columns-per-board-with-type-enforcement__error-section {
     position: relative;
     border-radius: 4px;
     padding: 8px;
@@ -13082,14 +13082,14 @@ a.ds-text-link-component:hover {
     background: var(--pulse-selected-background-color);
 }
 
-.monday-columns-per-board-with-type-enforcement__undo {
+.laravel-columns-per-board-with-type-enforcement__undo {
     font-width: bold;
     color: #0085ff;
     color: var(--primary-color);
     cursor: pointer;
 }
 
-.monday-columns-per-board-with-type-enforcement__undo:hover {
+.laravel-columns-per-board-with-type-enforcement__undo:hover {
     color: #0071d9;
     color: var(--primary-hover-color);
 }
@@ -16483,13 +16483,13 @@ a.ds-text-link-component:hover {
     transform: translateX(-9px);
 }
 
-.joined-board-add-content-component .welcome-to-monday-content-wrapper {
+.joined-board-add-content-component .welcome-to-laravel-content-wrapper {
     display: flex;
     align-items: center;
     margin-bottom: 8px;
 }
 
-.joined-board-add-content-component .welcome-to-monday-content-wrapper .image-container {
+.joined-board-add-content-component .welcome-to-laravel-content-wrapper .image-container {
     display: flex;
     align-items: center;
     width: 54px;
@@ -16498,22 +16498,22 @@ a.ds-text-link-component:hover {
     overflow: hidden;
 }
 
-.joined-board-add-content-component .welcome-to-monday-content-wrapper .image-container img {
+.joined-board-add-content-component .welcome-to-laravel-content-wrapper .image-container img {
     width: 100%;
 }
 
-.joined-board-add-content-component .welcome-to-monday-content-wrapper .content-container {
+.joined-board-add-content-component .welcome-to-laravel-content-wrapper .content-container {
     flex: 1;
     display: flex;
     align-items: center;
 }
 
-.joined-board-add-content-component .welcome-to-monday-content-wrapper .content-container .welcome-to-monday {
+.joined-board-add-content-component .welcome-to-laravel-content-wrapper .content-container .welcome-to-laravel {
     font-size: 22px;
     line-height: 32px;
 }
 
-.joined-board-add-content-component .welcome-to-monday-content-wrapper .content-container .user-name {
+.joined-board-add-content-component .welcome-to-laravel-content-wrapper .content-container .user-name {
     text-transform: capitalize;
 }
 
@@ -17023,7 +17023,7 @@ a.ds-text-link-component:hover {
     padding-left: 16px;
 }
 
-.board-content-component.monday-v2-header-content {
+.board-content-component.laravel-v2-header-content {
     margin-top: 0px;
 }
 
@@ -18317,7 +18317,7 @@ body a.button_link:focus {
     margin-right: 5px;
 }
 
-.board-subset-dialog-pinnable-option-component .monday-pin-icon-wrapper--unpinnable {
+.board-subset-dialog-pinnable-option-component .laravel-pin-icon-wrapper--unpinnable {
     opacity: 0.4;
 }
 
@@ -18489,11 +18489,11 @@ body a.button_link:focus {
     padding-top: 16px;
 }
 
-.board-subset-picker-content-component-v2 .monday-pinned-subsets-separator-wrapper {
+.board-subset-picker-content-component-v2 .laravel-pinned-subsets-separator-wrapper {
     padding: 0px 16px;
 }
 
-.board-subset-picker-content-component-v2 .monday-pinned-subsets-separator-wrapper .monday-pinned-subsets-separator {
+.board-subset-picker-content-component-v2 .laravel-pinned-subsets-separator-wrapper .laravel-pinned-subsets-separator {
     height: 1px;
     border-color: #e6e9ef;
     border-color: var(--layout-border-color);
@@ -18502,7 +18502,7 @@ body a.button_link:focus {
     margin-top: 5px;
 }
 
-.board-subset-picker-content-component-v2 .monday-pinned-subsets-section-title {
+.board-subset-picker-content-component-v2 .laravel-pinned-subsets-section-title {
     padding: 8px 12px;
     font-size: 14px;
 }
@@ -19184,11 +19184,11 @@ body a.button_link:focus {
     left: unset;
 }
 
-.board-filter.new-board-filter.monday-v2-header .advanced-filter .advanced-filter-dialog_v2 {
+.board-filter.new-board-filter.laravel-v2-header .advanced-filter .advanced-filter-dialog_v2 {
     right: initial;
 }
 
-.board-filter.board-filter-v3.monday-v2-header:not(.top-bar) .advanced-filter .advanced-filter-dialog_v2 {
+.board-filter.board-filter-v3.laravel-v2-header:not(.top-bar) .advanced-filter .advanced-filter-dialog_v2 {
     right: initial;
 }
 
@@ -21820,39 +21820,39 @@ body a.button_link:focus {
     transform: translateY(11px);
 }
 
-.monday-freeze-columns-menu-section {
+.laravel-freeze-columns-menu-section {
     color: #323338;
     color: var(--primary-text-color);
     padding: unset;
     height: 100%;
 }
 
-.monday-freeze-columns-menu-section .floating-columns-dialog-component {
+.laravel-freeze-columns-menu-section .floating-columns-dialog-component {
     width: 100%;
     height: 100%;
 }
 
-.monday-freeze-columns-menu-section .floating-columns-dialog-component .floating-columns-list-component {
+.laravel-freeze-columns-menu-section .floating-columns-dialog-component .floating-columns-list-component {
     max-height: 255px;
 }
 
-.monday-columns-filter-menu-section {
+.laravel-columns-filter-menu-section {
     color: #323338;
     color: var(--primary-text-color);
     height: 100%;
     padding: unset;
 }
 
-.monday-columns-filter-menu-section .columns-filter-dialog-component .column-filter-title {
+.laravel-columns-filter-menu-section .columns-filter-dialog-component .column-filter-title {
     margin-top: unset;
     padding: 16px 16px 0 16px;
 }
 
-.monday-columns-filter-menu-section .columns-list-component {
+.laravel-columns-filter-menu-section .columns-list-component {
     max-height: 240px;
 }
 
-.monday-columns-filter-menu-section .dialog-button-component.subset-save-button-wrapper {
+.laravel-columns-filter-menu-section .dialog-button-component.subset-save-button-wrapper {
     margin-top: 0px;
 }
 
@@ -22088,7 +22088,7 @@ body a.button_link:focus {
     margin: 8px -30px 0;
 }
 
-.board-filter.new-board-filter.monday-v2-header {
+.board-filter.new-board-filter.laravel-v2-header {
     border-top: none;
     border-bottom: none;
     border-color: #e6e9ef;
@@ -22100,26 +22100,26 @@ body a.button_link:focus {
     justify-content: flex-start;
 }
 
-.board-filter.new-board-filter.monday-v2-header.top-bar {
+.board-filter.new-board-filter.laravel-v2-header.top-bar {
     border-top: none;
 }
 
-.board-filter.new-board-filter.monday-v2-header .board-subset-left-side-container {
+.board-filter.new-board-filter.laravel-v2-header .board-subset-left-side-container {
     flex: 1 1 auto;
     margin-right: 0px;
     order: 1;
     margin-left: 16px;
 }
 
-.board-filter.new-board-filter.monday-v2-header .board-subset-left-side-container .board-pulses-activity {
+.board-filter.new-board-filter.laravel-v2-header .board-subset-left-side-container .board-pulses-activity {
     margin-left: 0;
 }
 
-.board-filter.new-board-filter.monday-v2-header .board-subset-left-side-container .async-filter-loader {
+.board-filter.new-board-filter.laravel-v2-header .board-subset-left-side-container .async-filter-loader {
     order: 2;
 }
 
-.board-filter.new-board-filter.monday-v2-header .filter-buttons-wrapper {
+.board-filter.new-board-filter.laravel-v2-header .filter-buttons-wrapper {
     margin-left: initial;
 }
 
@@ -22883,7 +22883,7 @@ body a.button_link:focus {
     background-color: #e44258;
 }
 
-.monday-board-control {
+.laravel-board-control {
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -22893,19 +22893,19 @@ body a.button_link:focus {
     white-space: nowrap;
 }
 
-.monday-board-control:hover {
+.laravel-board-control:hover {
     background-color: #e6e9ef;
     background-color: var(--primary-background-hover-color);
 }
 
-.monday-board-control__text {
+.laravel-board-control__text {
     margin-left: 8px;
     font-size: 14px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
 }
 
-.monday-add-to-board-menu .monday-add-to-board-menu-button {
+.laravel-add-to-board-menu .laravel-add-to-board-menu-button {
     display: flex;
     height: 36px;
     align-items: center;
@@ -22919,7 +22919,7 @@ body a.button_link:focus {
     border-width: 1px;
 }
 
-.monday-add-to-board-menu .monday-add-to-board-menu-button .monday-board-control {
+.laravel-add-to-board-menu .laravel-add-to-board-menu-button .laravel-board-control {
     height: 100%;
 }
 
@@ -23162,7 +23162,7 @@ body a.button_link:focus {
     white-space: nowrap;
 }
 
-.board-wrapper .board-actions-v2 .monday-add-to-board-wrapper {
+.board-wrapper .board-actions-v2 .laravel-add-to-board-wrapper {
     margin: 0 16px;
 }
 
@@ -23691,79 +23691,79 @@ body a.button_link:focus {
     width: 4px;
 }
 
-.monday-subset-toolbar-extended {
+.laravel-subset-toolbar-extended {
     display: flex;
     align-items: flex-end;
     margin-left: auto;
 }
 
-.monday-subset-toolbar-extended__automations-integrations {
+.laravel-subset-toolbar-extended__automations-integrations {
     margin-left: auto;
     margin-right: 8px;
     margin-bottom: 6px;
 }
 
-.monday-subset-toolbar-extended__automations-integrations .automations-button-component .entity-counter {
+.laravel-subset-toolbar-extended__automations-integrations .automations-button-component .entity-counter {
     white-space: nowrap;
 }
 
-.monday-subset-toolbar-extended__automations-integrations .automations-button-component .automations-button,
-.monday-subset-toolbar-extended__automations-integrations .automations-button-component .integrations-button {
+.laravel-subset-toolbar-extended__automations-integrations .automations-button-component .automations-button,
+.laravel-subset-toolbar-extended__automations-integrations .automations-button-component .integrations-button {
     width: unset;
     font-size: 14px;
     font-weight: 400;
 }
 
-.monday-subset-toolbar-extended__collapse-header-btn {
+.laravel-subset-toolbar-extended__collapse-header-btn {
     margin-left: 8px;
     margin-bottom: 10px;
 }
 
-.monday-subset-toolbar-compact {
+.laravel-subset-toolbar-compact {
     display: flex;
     align-items: center;
     margin-left: auto;
     margin-right: 16px;
 }
 
-.monday-subset-toolbar-compact.collapse-mode-enabled {
+.laravel-subset-toolbar-compact.collapse-mode-enabled {
     margin-right: 0;
     align-items: flex-start;
     margin-top: 1px;
 }
 
-.monday-subset-toolbar-compact__controls {
+.laravel-subset-toolbar-compact__controls {
     display: flex;
     align-items: center;
     margin-right: 8px;
 }
 
-.monday-subset-toolbar-compact__board-menu-btn {
+.laravel-subset-toolbar-compact__board-menu-btn {
     margin-left: 8px;
 }
 
-.monday-subset-toolbar-compact__expand-header-btn {
+.laravel-subset-toolbar-compact__expand-header-btn {
     margin-left: 8px;
     margin-top: 7px;
 }
 
 /* mixin for multiline */
-.monday-board-subset-item {
+.laravel-board-subset-item {
     max-width: 152px;
     border-bottom: 2px solid transparent;
     padding-bottom: 4px;
 }
 
-.monday-board-subset-item__button {
+.laravel-board-subset-item__button {
     padding: 7px 16px;
 }
 
-.monday-board-subset-item__button:hover,
-.monday-board-subset-item__button.monday-board-subset-item--options-dialog-open {
+.laravel-board-subset-item__button:hover,
+.laravel-board-subset-item__button.laravel-board-subset-item--options-dialog-open {
     padding-right: 10px;
 }
 
-.monday-board-subset-item__options-button {
+.laravel-board-subset-item__options-button {
     display: none;
     align-items: center;
     justify-content: center;
@@ -23773,40 +23773,40 @@ body a.button_link:focus {
     font-weight: 400;
 }
 
-.monday-board-subset-item__options-button .icon {
+.laravel-board-subset-item__options-button .icon {
     height: 12px;
     font-size: 13px;
 }
 
-.monday-board-subset-item__options-button:hover {
+.laravel-board-subset-item__options-button:hover {
     background-color: #ffffff;
     background-color: var(--primary-background-color);
 }
 
-.monday-board-subset-item__options-button.is-open {
+.laravel-board-subset-item__options-button.is-open {
     color: #0085ff;
     color: var(--primary-color);
     background-color: #e5f4ff;
     background-color: var(--primary-selected-color);
 }
 
-.monday-board-subset-item__button:hover .monday-board-subset-item__options-button,
-.monday-board-subset-item__options-button.is-open {
+.laravel-board-subset-item__button:hover .laravel-board-subset-item__options-button,
+.laravel-board-subset-item__options-button.is-open {
     display: flex;
 }
 
-.monday-board-subset-item__left-icon {
+.laravel-board-subset-item__left-icon {
     margin-right: 6px;
     position: relative;
     font-size: 16px;
 }
 
-.monday-board-subset-item__label {
+.laravel-board-subset-item__label {
     font-size: 14px;
     font-weight: 400;
 }
 
-.monday-board-subset-item__subset-additional-icon {
+.laravel-board-subset-item__subset-additional-icon {
     position: absolute;
     font-size: 9px;
     right: -5px;
@@ -23823,40 +23823,40 @@ body a.button_link:focus {
     background-color: var(--primary-background-color);
 }
 
-.monday-board-subset-item__subset-additional-icon .icon {
+.laravel-board-subset-item__subset-additional-icon .icon {
     margin-top: 1px;
 }
 
-.monday-board-subset-item__button:hover .monday-board-subset-item__subset-additional-icon {
+.laravel-board-subset-item__button:hover .laravel-board-subset-item__subset-additional-icon {
     background-color: #e6e9ef;
     background-color: var(--primary-background-hover-color);
 }
 
-.monday-board-subset-item__pinned-icon {
+.laravel-board-subset-item__pinned-icon {
     transform: rotate(315deg);
 }
 
-.monday-board-subset-item__favorite-icon {
+.laravel-board-subset-item__favorite-icon {
     height: 14px;
     width: 14px;
 }
 
-.monday-board-subset-item--renaming .monday-board-subset-item__options-button {
+.laravel-board-subset-item--renaming .laravel-board-subset-item__options-button {
     display: none !important;
 }
 
-.monday-board-subset-item__label {
+.laravel-board-subset-item__label {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.monday-board-subset-item--active {
+.laravel-board-subset-item--active {
     border-color: #0085ff;
     border-color: var(--primary-color);
 }
 
-.monday-board-pinned-subsets {
+.laravel-board-pinned-subsets {
     display: flex;
     align-items: center;
     width: 100%;
@@ -23896,7 +23896,7 @@ body a.button_link:focus {
     color: var(--primary-text-color);
 }
 
-.board-subset-show-more-picker-component .monday-show-more-options {
+.board-subset-show-more-picker-component .laravel-show-more-options {
     padding: 0 8px 8px 8px;
     max-height: 324px;
     overflow: auto;
@@ -23904,11 +23904,11 @@ body a.button_link:focus {
     font-weight: 400;
 }
 
-.board-subset-show-more-picker-component .monday-show-more-options::-webkit-scrollbar {
+.board-subset-show-more-picker-component .laravel-show-more-options::-webkit-scrollbar {
     width: 6px;
 }
 
-.board-subset-show-more-picker-component .monday-show-more-options::-webkit-scrollbar-thumb {
+.board-subset-show-more-picker-component .laravel-show-more-options::-webkit-scrollbar-thumb {
     background-color: #e1e1e1;
     border-radius: 4px;
 }
@@ -23933,14 +23933,14 @@ body a.button_link:focus {
     margin-bottom: 4px;
 }
 
-.monday-board-subsets-tabs {
+.laravel-board-subsets-tabs {
     display: flex;
     align-items: center;
     overflow: hidden;
     margin-right: 48px;
 }
 
-.monday-board-subsets-tabs__separator {
+.laravel-board-subsets-tabs__separator {
     background-color: #e6e9ef;
     background-color: var(--layout-border-color);
     width: 1px;
@@ -23981,65 +23981,65 @@ body a.button_link:focus {
 }
 
 /* mixin for multiline */
-.monday-board-subset-toolbar {
+.laravel-board-subset-toolbar {
     width: 100%;
     display: flex;
     align-items: center;
 }
 
-.monday-board-subset-toolbar.fade-in-enter {
+.laravel-board-subset-toolbar.fade-in-enter {
     opacity: 0.01;
 }
 
-.monday-board-subset-toolbar.fade-in-enter-active {
+.laravel-board-subset-toolbar.fade-in-enter-active {
     opacity: 1;
     transition: opacity 150ms ease-in;
 }
 
-.monday-board-subset-toolbar__board-name-wrapper {
+.laravel-board-subset-toolbar__board-name-wrapper {
     max-width: 160px;
     align-items: center;
     display: flex;
     margin-right: 16px;
 }
 
-.monday-board-subset-toolbar__board-name-wrapper .board-name {
+.laravel-board-subset-toolbar__board-name-wrapper .board-name {
     font-size: 24px;
 }
 
-.monday-board-subset-toolbar__subset-picker {
+.laravel-board-subset-toolbar__subset-picker {
     max-width: 160px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     transition: background-color 0.2s ease-in-out;
 }
 
-.monday-board-subset-toolbar__subset-picker .board-subset-picker-component-v2 {
+.laravel-board-subset-toolbar__subset-picker .board-subset-picker-component-v2 {
     width: 100%;
     height: 100%;
 }
 
-.monday-board-subset-toolbar__subset-picker:hover {
+.laravel-board-subset-toolbar__subset-picker:hover {
     background-color: #e6e9ef;
     background-color: var(--primary-background-hover-color);
 }
 
-.monday-board-subset-toolbar__subset-picker .board-subset-picker-switch {
+.laravel-board-subset-toolbar__subset-picker .board-subset-picker-switch {
     padding: 10px;
 }
 
-.monday-board-subset-toolbar__separator {
+.laravel-board-subset-toolbar__separator {
     background-color: #e6e9ef;
     background-color: var(--layout-border-color);
     width: 1px;
     margin: 8px 8px;
 }
 
-.monday-board-subset-toolbar__subset-placeholder {
+.laravel-board-subset-toolbar__subset-placeholder {
     max-width: 180px;
 }
 
-.monday-board-subset-toolbar__subset-placeholder .monday-board-subset-item {
+.laravel-board-subset-toolbar__subset-placeholder .laravel-board-subset-item {
     padding: 10px;
     display: flex;
     align-items: center;
@@ -24048,7 +24048,7 @@ body a.button_link:focus {
     border-top-right-radius: 4px;
 }
 
-.monday-board-subset-toolbar__pinned-subsets {
+.laravel-board-subset-toolbar__pinned-subsets {
     display: flex;
     align-items: center;
 }
@@ -24146,8 +24146,8 @@ body a.button_link:focus {
     transition: max-height 150ms cubic-bezier(0, 0, 0.35, 1), opacity 100ms ease-out 50ms;
 }
 
-.board-wrapper .board-header .board-header-content-wrapper.monday-board-header-content-wrapper-v2 .board-header-main,
-.object-component .board-header .board-header-content-wrapper.monday-board-header-content-wrapper-v2 .board-header-main {
+.board-wrapper .board-header .board-header-content-wrapper.laravel-board-header-content-wrapper-v2 .board-header-main,
+.object-component .board-header .board-header-content-wrapper.laravel-board-header-content-wrapper-v2 .board-header-main {
     margin-bottom: 8px;
 }
 
@@ -27011,7 +27011,7 @@ div.board-subscribers-dialog-modal .exit-modal-icon {
     z-index: 10;
 }
 
-.set-pulse-nickname-modal .monday-loader-wrapper {
+.set-pulse-nickname-modal .laravel-loader-wrapper {
     height: 90%;
 }
 
@@ -27513,13 +27513,13 @@ div.board-subscribers-dialog-modal .exit-modal-icon {
     margin: auto;
 }
 
-.board-dashboard-component .powered-by-monday {
+.board-dashboard-component .powered-by-laravel {
     position: absolute;
     right: 16px;
     bottom: 16px;
 }
 
-.board-dashboard-component .powered-by-monday .powered-by-label {
+.board-dashboard-component .powered-by-laravel .powered-by-label {
     display: block;
     font-weight: 500;
 }
@@ -28862,24 +28862,24 @@ div.board-subscribers-dialog-modal .exit-modal-icon {
     flex-direction: column;
 }
 
-.overview-section-grid-wrapper.MondayboardOverviewSection-overview-section .overview-section-content-wrapper {
+.overview-section-grid-wrapper.laravelboardOverviewSection-overview-section .overview-section-content-wrapper {
     padding-top: 0;
 }
 
-.overview-section-grid-wrapper.MondayboardOverviewSection-overview-section .overview-section-content-wrapper:hover .back-to-board {
+.overview-section-grid-wrapper.laravelboardOverviewSection-overview-section .overview-section-content-wrapper:hover .back-to-board {
     visibility: visible;
 }
 
-.overview-section-grid-wrapper.MondayboardOverviewSection-overview-section .overview-section-content-wrapper:not(:hover) .back-to-board {
+.overview-section-grid-wrapper.laravelboardOverviewSection-overview-section .overview-section-content-wrapper:not(:hover) .back-to-board {
     visibility: hidden;
 }
 
-.overview-section-grid-wrapper.MondayboardOverviewSection-overview-section .overview-section-content-wrapper .mondayboard-site-overview-section-component-with-back-button {
+.overview-section-grid-wrapper.laravelboardOverviewSection-overview-section .overview-section-content-wrapper .laravelboard-site-overview-section-component-with-back-button {
     display: flex;
     flex-grow: 1;
 }
 
-.overview-section-grid-wrapper.MondayboardOverviewSection-overview-section .overview-section-content-wrapper .mondayboard-site-overview-section-component-with-back-button .back-to-board {
+.overview-section-grid-wrapper.laravelboardOverviewSection-overview-section .overview-section-content-wrapper .laravelboard-site-overview-section-component-with-back-button .back-to-board {
     position: absolute;
     border-radius: 24px;
     outline: none;
@@ -28891,7 +28891,7 @@ div.board-subscribers-dialog-modal .exit-modal-icon {
     border: none;
 }
 
-.overview-section-grid-wrapper.MondayboardOverviewSection-overview-section .overview-section-content-wrapper .mondayboard-site-overview-section-component-with-back-button .mondayboard-overview-section-component {
+.overview-section-grid-wrapper.laravelboardOverviewSection-overview-section .overview-section-content-wrapper .laravelboard-site-overview-section-component-with-back-button .laravelboard-overview-section-component {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -28899,24 +28899,24 @@ div.board-subscribers-dialog-modal .exit-modal-icon {
     justify-content: center;
 }
 
-.overview-section-grid-wrapper.MondayboardOverviewSection-overview-section .overview-section-content-wrapper .mondayboard-site-overview-section-component-with-back-button .mondayboard-overview-section-component iframe {
+.overview-section-grid-wrapper.laravelboardOverviewSection-overview-section .overview-section-content-wrapper .laravelboard-site-overview-section-component-with-back-button .laravelboard-overview-section-component iframe {
     display: flex;
     flex-grow: 1;
     width: 100%;
 }
 
-.overview-section-grid-wrapper.MondayboardOverviewSection-overview-section .overview-section-content-wrapper .mondayboard-site-overview-section-component-with-back-button .mondayboard-overview-section-component .llama {
+.overview-section-grid-wrapper.laravelboardOverviewSection-overview-section .overview-section-content-wrapper .laravelboard-site-overview-section-component-with-back-button .laravelboard-overview-section-component .llama {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 75%;
 }
 
-.overview-section-grid-wrapper.MondayboardOverviewSection-overview-section .overview-section-content-wrapper .mondayboard-site-overview-section-component-with-back-button .mondayboard-overview-section-component .llama img {
+.overview-section-grid-wrapper.laravelboardOverviewSection-overview-section .overview-section-content-wrapper .laravelboard-site-overview-section-component-with-back-button .laravelboard-overview-section-component .llama img {
     width: 50%;
 }
 
-.overview-section-grid-wrapper.MondayboardOverviewSection-overview-section .overview-section-content-wrapper .mondayboard-site-overview-section-component-with-back-button .mondayboard-overview-section-component .llama .invalid-link {
+.overview-section-grid-wrapper.laravelboardOverviewSection-overview-section .overview-section-content-wrapper .laravelboard-site-overview-section-component-with-back-button .laravelboard-overview-section-component .llama .invalid-link {
     margin-top: 8px;
     text-align: center;
 }
@@ -34917,12 +34917,12 @@ body#main div.timeline-container div.tl-resize:hover {
     z-index: 2;
 }
 
-.monday-timeline-tooltip__content {
+.laravel-timeline-tooltip__content {
     display: flex;
     flex-direction: column;
 }
 
-.monday-timeline-tooltip__content .monday-timeline-tooltip__title {
+.laravel-timeline-tooltip__content .laravel-timeline-tooltip__title {
     font-weight: bold;
     -webkit-margin-after: var(--spacing-small);
     margin-block-end: var(--spacing-small);
@@ -37097,7 +37097,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     color: var(--disabled-text-color);
 }
 
-.card-data-component-wrapper .single-cell-wrapper .monday-style-dialog-content-wrapper {
+.card-data-component-wrapper .single-cell-wrapper .laravel-style-dialog-content-wrapper {
     z-index: 100;
 }
 
@@ -39315,7 +39315,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     height: 90px;
 }
 
-.desktop-app-download-dialog .transition-header .monday-logo {
+.desktop-app-download-dialog .transition-header .laravel-logo {
     margin-left: 32px;
     height: 90px;
 }
@@ -41475,7 +41475,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     color: var(--disabled-text-color);
 }
 
-.pulse-card-component .pulse-card-cell-wrapper .monday-style-dialog-content-wrapper {
+.pulse-card-component .pulse-card-cell-wrapper .laravel-style-dialog-content-wrapper {
     z-index: 100;
 }
 
@@ -41953,7 +41953,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     height: 100%;
 }
 
-.automations-dynamic-mapping-field-component .loading-state .monday-loader-wrapper {
+.automations-dynamic-mapping-field-component .loading-state .laravel-loader-wrapper {
     display: flex;
     justify-content: center;
     margin-top: -45px;
@@ -42882,7 +42882,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     height: 100%;
 }
 
-.checkbox-options-field .loading-state .monday-loader-wrapper {
+.checkbox-options-field .loading-state .laravel-loader-wrapper {
     display: flex;
     justify-content: center;
     margin-top: -45px;
@@ -42936,7 +42936,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     height: 100%;
 }
 
-.dropdown-options-field .loading-state .monday-loader-wrapper {
+.dropdown-options-field .loading-state .laravel-loader-wrapper {
     display: flex;
     justify-content: center;
 }
@@ -43931,21 +43931,21 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
 }
 
 /* mixin for multiline */
-.monday-board-relation-item-component {
+.laravel-board-relation-item-component {
     border-radius: 4px;
     display: flex;
     width: 100%;
     height: 26px;
 }
 
-.monday-board-relation-item-component__color {
+.laravel-board-relation-item-component__color {
     width: 5px;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     opacity: 0.6;
 }
 
-.monday-board-relation-item-component__content {
+.laravel-board-relation-item-component__content {
     width: calc(100% - 5px);
     display: flex;
     align-items: center;
@@ -43955,21 +43955,21 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     background-color: var(--primary-background-color);
 }
 
-.monday-board-relation-item-component__content span {
+.laravel-board-relation-item-component__content span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.monday-board-relation-item-component--is-empty {
+.laravel-board-relation-item-component--is-empty {
     opacity: 0.6;
 }
 
-.monday-board-relation-item-component--is-empty:hover {
+.laravel-board-relation-item-component--is-empty:hover {
     opacity: 1;
 }
 
-.monday-board-relation-item-component--is-empty .monday-board-relation-item-component__content {
+.laravel-board-relation-item-component--is-empty .laravel-board-relation-item-component__content {
     justify-content: center;
 }
 
@@ -44002,30 +44002,30 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     content: attr(extracount);
 }
 
-.monday-board-relation-item-component-with-counter {
+.laravel-board-relation-item-component-with-counter {
     width: 100%;
     display: flex;
 }
 
-.monday-board-relation-item-component-with-counter__item {
+.laravel-board-relation-item-component-with-counter__item {
     width: 100%;
 }
 
-.monday-board-relation-item-component-with-counter__counter {
+.laravel-board-relation-item-component-with-counter__counter {
     display: flex;
     align-items: center;
     margin-left: 5px;
 }
 
-.monday-board-relation-item-component-with-counter__counter--big .dropdown-counter-text {
+.laravel-board-relation-item-component-with-counter__counter--big .dropdown-counter-text {
     min-width: 25px;
 }
 
-.monday-board-relation-item-component-with-counter--has-counter .monday-board-relation-item-component-with-counter__item {
+.laravel-board-relation-item-component-with-counter--has-counter .laravel-board-relation-item-component-with-counter__item {
     width: calc(100% - 30px);
 }
 
-.monday-board-relation-item-component-with-counter--has-counter .monday-board-relation-item-component-with-counter__counter {
+.laravel-board-relation-item-component-with-counter--has-counter .laravel-board-relation-item-component-with-counter__counter {
     width: 30px;
 }
 
@@ -44586,7 +44586,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     padding: 8px;
 }
 
-.dropdown-cell-dropdown-picker-component .monday-dropdown-column-loader-container {
+.dropdown-cell-dropdown-picker-component .laravel-dropdown-column-loader-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54459,11 +54459,11 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     border-radius: 4px;
 }
 
-.welcome-to-monday-videos-component .video-center-component {
+.welcome-to-laravel-videos-component .video-center-component {
     padding: 0;
 }
 
-.welcome-to-monday-videos-component .active-video-component {
+.welcome-to-laravel-videos-component .active-video-component {
     padding-bottom: 0;
 }
 
@@ -55829,7 +55829,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     justify-content: center;
 }
 
-.sync-calendar-modal-img .sync-calendar-modal-img-monday-container {
+.sync-calendar-modal-img .sync-calendar-modal-img-laravel-container {
     flex: 1 1 0;
     position: relative;
     display: flex;
@@ -55837,7 +55837,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     justify-content: flex-end;
 }
 
-.sync-calendar-modal-img .sync-calendar-modal-img-monday-container .sync-calendar-modal-img-monday {
+.sync-calendar-modal-img .sync-calendar-modal-img-laravel-container .sync-calendar-modal-img-laravel {
     height: 100%;
     padding-right: 12px;
 }
@@ -56884,7 +56884,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     height: 100%;
 }
 
-.automations-center-component .automations-center-inner-full-screen .loading-state .monday-loader-wrapper {
+.automations-center-component .automations-center-inner-full-screen .loading-state .laravel-loader-wrapper {
     display: flex;
     justify-content: center;
     margin-top: -45px;
@@ -61242,11 +61242,11 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     align-items: center;
 }
 
-.automations-editor-new-authentication-component .connect-visualization .oauth-logos .oauth-logo.monday-logo {
+.automations-editor-new-authentication-component .connect-visualization .oauth-logos .oauth-logo.laravel-logo {
     margin-right: 14px;
 }
 
-.automations-editor-new-authentication-component .connect-visualization .oauth-logos .oauth-logo:not(.monday-logo) {
+.automations-editor-new-authentication-component .connect-visualization .oauth-logos .oauth-logo:not(.laravel-logo) {
     margin-left: 14px;
 }
 
@@ -62286,7 +62286,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     opacity: 1;
 }
 
-.monday-bug-button {
+.laravel-bug-button {
     position: fixed;
     right: 40px;
     bottom: 40px;
@@ -62302,21 +62302,21 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     background-color: #335c82;
 }
 
-.monday-bug-button.feature-active {
+.laravel-bug-button.feature-active {
     background-color: #0085ff;
 }
 
-.monday-bug-button:hover,
-.monday-bug-button.active {
+.laravel-bug-button:hover,
+.laravel-bug-button.active {
     opacity: 1;
 }
 
-.monday-bug-button:hover .bug-button-close-button,
-.monday-bug-button.active .bug-button-close-button {
+.laravel-bug-button:hover .bug-button-close-button,
+.laravel-bug-button.active .bug-button-close-button {
     opacity: 0.8;
 }
 
-.monday-bug-button .icon-wrapper {
+.laravel-bug-button .icon-wrapper {
     height: 100%;
     width: 100%;
     display: flex;
@@ -62325,7 +62325,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     padding: 10px;
 }
 
-.monday-bug-button .bug-button-close-button {
+.laravel-bug-button .bug-button-close-button {
     position: absolute;
     right: -10px;
     top: -10px;
@@ -62339,7 +62339,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     border-radius: 50%;
 }
 
-.monday-bug-button .bug-button-close-button:hover {
+.laravel-bug-button .bug-button-close-button:hover {
     opacity: 1;
 }
 
@@ -65971,7 +65971,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     display: flex;
 }
 
-.chat-title-section-component .logo-section .chat-title-monday-logo {
+.chat-title-section-component .logo-section .chat-title-laravel-logo {
     background-color: #ffffff;
     border-radius: 50%;
     padding: 4px;
@@ -65982,7 +65982,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     margin: auto 12px;
 }
 
-.chat-title-section-component .logo-section .chat-title-monday-logo .monday-logo-image {
+.chat-title-section-component .logo-section .chat-title-laravel-logo .laravel-logo-image {
     height: 24px;
 }
 
@@ -66023,7 +66023,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     margin-right: 8px;
 }
 
-.message-component .message-logo-container .monday-logo-image {
+.message-component .message-logo-container .laravel-logo-image {
     width: 32px;
     height: 32px;
     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
@@ -66036,7 +66036,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     font-size: 16px;
 }
 
-.message-component.monday-message .message-text-container {
+.message-component.laravel-message .message-text-container {
     max-width: 250px;
     line-height: 24px;
     background-color: #f5f6f8;
@@ -66045,7 +66045,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     padding: 16px;
 }
 
-.message-component.monday-message .message-text-container.first-in-row {
+.message-component.laravel-message .message-text-container.first-in-row {
     border-bottom-left-radius: 4px;
 }
 
@@ -66548,7 +66548,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     width: 100%;
 }
 
-.payments-step-indicator-component .monday-style-step-indicator-component__number-container {
+.payments-step-indicator-component .laravel-style-step-indicator-component__number-container {
     width: 30px;
     height: 30px;
     margin-top: 5px;
@@ -69109,7 +69109,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     text-align: center;
 }
 
-.confirmation-page-component .monday-loader-wrapper {
+.confirmation-page-component .laravel-loader-wrapper {
     position: initial;
 }
 
@@ -70613,7 +70613,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     text-align: center;
 }
 
-.surface-search-content .monday-search-everything-loader-wrapper {
+.surface-search-content .laravel-search-everything-loader-wrapper {
     position: absolute;
     left: 0px;
     right: 0px;
@@ -70627,20 +70627,20 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     pointer-events: none;
 }
 
-.surface-search-content .monday-search-everything-loader-wrapper img {
+.surface-search-content .laravel-search-everything-loader-wrapper img {
     width: 180px;
     height: 90px;
 }
 
-.surface-search-content .monday-search-everything-loader-wrapper .search-everything-loader-text {
+.surface-search-content .laravel-search-everything-loader-wrapper .search-everything-loader-text {
     font-size: 18px;
     font-weight: 400;
     color: #ffffff;
 }
 
-.surface-search-content .monday-search-everything-loader-wrapper .monday-search-everything-loader-css {
-    -webkit-animation: monday-loader-spin-animation 0.8s linear infinite;
-    animation: monday-loader-spin-animation 0.8s linear infinite;
+.surface-search-content .laravel-search-everything-loader-wrapper .laravel-search-everything-loader-css {
+    -webkit-animation: laravel-loader-spin-animation 0.8s linear infinite;
+    animation: laravel-loader-spin-animation 0.8s linear infinite;
     border: 5px solid #ddd;
     border-top: 5px solid #00c875;
     border-radius: 50%;
@@ -70649,14 +70649,14 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     margin-bottom: 8px;
 }
 
-@keyframes monday-loader-spin-animation {
+@keyframes laravel-loader-spin-animation {
     to {
         border-top-color: #00c875;
         transform: rotate(360deg);
     }
 }
 
-@-webkit-keyframes monday-loader-spin-animation {
+@-webkit-keyframes laravel-loader-spin-animation {
     to {
         border-top-color: #00c875;
         transform: rotate(360deg);
@@ -71185,7 +71185,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     display: none;
 }
 
-.workspace-card-component .homepage-join-button .monday-style-button {
+.workspace-card-component .homepage-join-button .laravel-style-button {
     border: none;
 }
 
@@ -71504,14 +71504,14 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     margin-top: 12px;
 }
 
-.monday-as-work-os-component {
+.laravel-as-work-os-component {
     height: 80vh;
     background-color: #ffffff;
     width: 600px;
     overflow: hidden;
 }
 
-.monday-as-work-os-component .header {
+.laravel-as-work-os-component .header {
     height: 92px;
     border-bottom: 1px solid #e6e9ef;
     position: relative;
@@ -71520,7 +71520,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     align-items: center;
 }
 
-.monday-as-work-os-component .header .close-icon {
+.laravel-as-work-os-component .header .close-icon {
     position: absolute;
     top: 14px;
     right: 16px;
@@ -71529,33 +71529,33 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     transition: color 200ms ease;
 }
 
-.monday-as-work-os-component .header .close-icon:hover {
+.laravel-as-work-os-component .header .close-icon:hover {
     color: #333333;
 }
 
-.monday-as-work-os-component .header .title {
+.laravel-as-work-os-component .header .title {
     color: #1c1f3b;
     font-size: 24px;
     line-height: 28px;
     font-weight: 700;
 }
 
-.monday-as-work-os-component .content {
+.laravel-as-work-os-component .content {
     height: calc(100% - 92px);
     padding: 0px 60px 32px;
     overflow-y: auto;
 }
 
-.monday-as-work-os-component .content::-webkit-scrollbar {
+.laravel-as-work-os-component .content::-webkit-scrollbar {
     width: 6px;
 }
 
-.monday-as-work-os-component .content::-webkit-scrollbar-thumb {
+.laravel-as-work-os-component .content::-webkit-scrollbar-thumb {
     background-color: #c4c4c4;
     border-radius: 4px;
 }
 
-.monday-as-work-os-component .content .work-os-explanation {
+.laravel-as-work-os-component .content .work-os-explanation {
     border-bottom: 1px solid #e6e9ef;
     padding: 24px 0px;
     font-size: 16px;
@@ -71563,85 +71563,85 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     color: #323338;
 }
 
-.monday-as-work-os-component .content .work-os-explanation .second-explanation {
+.laravel-as-work-os-component .content .work-os-explanation .second-explanation {
     margin-top: 8px;
 }
 
-.monday-as-work-os-component .content .building-blocks-wrapper {
+.laravel-as-work-os-component .content .building-blocks-wrapper {
     margin-top: 32px;
 }
 
-.monday-as-work-os-component .content .building-blocks-wrapper .title {
+.laravel-as-work-os-component .content .building-blocks-wrapper .title {
     font-size: 18px;
     line-height: 21px;
     font-weight: 700;
 }
 
-.monday-as-work-os-component .content .building-blocks-wrapper .building-block-items {
+.laravel-as-work-os-component .content .building-blocks-wrapper .building-block-items {
     display: flex;
     flex-wrap: wrap;
     margin-top: 24px;
 }
 
-.monday-as-work-os-component .content .building-blocks-wrapper .building-block-items .building-block-item-component-wrapper {
+.laravel-as-work-os-component .content .building-blocks-wrapper .building-block-items .building-block-item-component-wrapper {
     width: 220px;
     margin-bottom: 8px;
 }
 
-.monday-as-work-os-component .content .coming-soon-wrapper {
+.laravel-as-work-os-component .content .coming-soon-wrapper {
     margin-top: 48px;
     padding-bottom: 32px;
     border-bottom: 1px solid #e6e9ef;
 }
 
-.monday-as-work-os-component .content .coming-soon-wrapper .coming-soon-title-wrapper {
+.laravel-as-work-os-component .content .coming-soon-wrapper .coming-soon-title-wrapper {
     display: flex;
     font-size: 14px;
     line-height: 16px;
 }
 
-.monday-as-work-os-component .content .coming-soon-wrapper .coming-soon-title-wrapper .coming-soon-text {
+.laravel-as-work-os-component .content .coming-soon-wrapper .coming-soon-title-wrapper .coming-soon-text {
     font-weight: 700;
     color: #333333;
 }
 
-.monday-as-work-os-component .content .coming-soon-wrapper .coming-soon-title-wrapper .coming-soon-date {
+.laravel-as-work-os-component .content .coming-soon-wrapper .coming-soon-title-wrapper .coming-soon-date {
     margin-left: 4px;
     color: #c4c4c4;
 }
 
-.monday-as-work-os-component .content .coming-soon-wrapper .coming-soon-items {
+.laravel-as-work-os-component .content .coming-soon-wrapper .coming-soon-items {
     margin-top: 24px;
     display: flex;
     flex-wrap: wrap;
 }
 
-.monday-as-work-os-component .content .coming-soon-wrapper .coming-soon-items .coming-soon-item-component-wrapper {
+.laravel-as-work-os-component .content .coming-soon-wrapper .coming-soon-items .coming-soon-item-component-wrapper {
     width: 220px;
     margin-bottom: 8px;
 }
 
-.monday-as-work-os-component .content .webinar-wrapper {
+.laravel-as-work-os-component .content .webinar-wrapper {
     margin-top: 24px;
 }
 
-.monday-as-work-os-component .content .webinar-wrapper .webinar-content {
+.laravel-as-work-os-component .content .webinar-wrapper .webinar-content {
     font-size: 16px;
     line-height: 24px;
 }
 
-.monday-as-work-os-component .content .webinar-wrapper .webinar-footer {
+.laravel-as-work-os-component .content .webinar-wrapper .webinar-footer {
     display: flex;
     margin-top: 16px;
 }
 
-.monday-as-work-os-component .content .webinar-wrapper .webinar-footer .webinar-date {
+.laravel-as-work-os-component .content .webinar-wrapper .webinar-footer .webinar-date {
     font-size: 16px;
     line-height: 19px;
     flex-grow: 1;
 }
 
-.monday-as-work-os-component .content .webinar-wrapper .webinar-footer .webinar-registration-button {
+.laravel-as-work-os-component .content .webinar-wrapper .webinar-footer .webinar-registration-button {
     font-size: 16px;
     line-height: 24px;
     color: #0085ff;
@@ -72329,7 +72329,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     justify-content: center;
 }
 
-.special-landscape-promotion-component .promotion-leftside-content .cyber-monday-img {
+.special-landscape-promotion-component .promotion-leftside-content .cyber-laravel-img {
     width: 262px;
 }
 
@@ -72417,11 +72417,11 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     color: #808080;
 }
 
-.modal-component.system-modal.onboarding-welcome-to-monday-wrapper {
+.modal-component.system-modal.onboarding-welcome-to-laravel-wrapper {
     background-color: transparent;
 }
 
-.onboarding-welcome-to-monday-component {
+.onboarding-welcome-to-laravel-component {
     position: relative;
     width: 632px;
     height: 544px;
@@ -72430,7 +72430,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     color: #ffffff;
 }
 
-.onboarding-welcome-to-monday-component .hotdog-decorator {
+.onboarding-welcome-to-laravel-component .hotdog-decorator {
     position: absolute;
     background-color: #0085ff;
     background-color: var(--primary-color);
@@ -72442,7 +72442,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     z-index: -1;
 }
 
-.onboarding-welcome-to-monday-component .close-icon-wrapper {
+.onboarding-welcome-to-laravel-component .close-icon-wrapper {
     position: absolute;
     right: 4px;
     top: 4px;
@@ -72450,24 +72450,24 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     cursor: pointer;
 }
 
-.onboarding-welcome-to-monday-component .close-icon-wrapper:hover {
+.onboarding-welcome-to-laravel-component .close-icon-wrapper:hover {
     color: #e6e6e6;
 }
 
-.onboarding-welcome-to-monday-component .welcome-to-monday-title {
+.onboarding-welcome-to-laravel-component .welcome-to-laravel-title {
     font-size: 30px;
     line-height: 38px;
     font-weight: 400;
     margin-bottom: 16px;
 }
 
-.onboarding-welcome-to-monday-component .monday-explenation-subtitle {
+.onboarding-welcome-to-laravel-component .laravel-explenation-subtitle {
     font-size: 16px;
     line-height: 24px;
     margin-bottom: 24px;
 }
 
-.onboarding-welcome-to-monday-component .video-container {
+.onboarding-welcome-to-laravel-component .video-container {
     position: relative;
     height: 294px;
     width: 85.75%;
@@ -72476,7 +72476,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     box-shadow: 0 4px 14px 0 rgba(186, 186, 186, 0.5);
 }
 
-.onboarding-welcome-to-monday-component .video-container iframe {
+.onboarding-welcome-to-laravel-component .video-container iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -72899,7 +72899,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     margin-top: 8px;
 }
 
-.map-columns-component .map-columns-content-container .map-columns-item-picker-wrapper .map-columns-item-picker .map-columns-select-wrapper .map-columns-title-checker-wrapper .monday-style-checkbox__label {
+.map-columns-component .map-columns-content-container .map-columns-item-picker-wrapper .map-columns-item-picker .map-columns-select-wrapper .map-columns-title-checker-wrapper .laravel-style-checkbox__label {
     font-size: 16px;
 }
 
@@ -73612,7 +73612,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     margin-bottom: 16px;
 }
 
-.onboarding-viewer-welcome-component .monday-explenation-subtitle {
+.onboarding-viewer-welcome-component .laravel-explenation-subtitle {
     font-size: 16px;
     line-height: 24px;
     margin-bottom: 24px;
@@ -74736,7 +74736,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     width: auto;
 }
 
-.onboarding-mobile-welcome-component .mobile-welcome-to-monday-title {
+.onboarding-mobile-welcome-component .mobile-welcome-to-laravel-title {
     font-size: 35px;
     font-weight: bold;
     line-height: 38px;
@@ -74744,7 +74744,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     text-align: center;
 }
 
-.onboarding-mobile-welcome-component .mobile-welcome-to-monday-subtitle {
+.onboarding-mobile-welcome-component .mobile-welcome-to-laravel-subtitle {
     font-size: 18px;
     line-height: 28px;
     margin-top: 16px;
@@ -77679,7 +77679,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     background-color: #e44258;
 }
 
-.top-bar-component-container.top_monday_notification {
+.top-bar-component-container.top_laravel_notification {
     background-color: #5b5ed1;
 }
 
@@ -78885,12 +78885,12 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     cursor: pointer;
 }
 
-.monday-light-input-component {
+.laravel-light-input-component {
     width: 100%;
     position: relative;
 }
 
-.monday-light-input-component .monday-light-input-wrapper {
+.laravel-light-input-component .laravel-light-input-wrapper {
     width: 100%;
     border-bottom: 1px solid #979797;
     transition: border-color 200ms ease;
@@ -78898,11 +78898,11 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     display: flex;
 }
 
-.monday-light-input-component .monday-light-input-wrapper.is-input-focused {
+.laravel-light-input-component .laravel-light-input-wrapper.is-input-focused {
     border-bottom: 2px solid #2bb9ff;
 }
 
-.monday-light-input-component .monday-light-input-wrapper .monday-light-required-star {
+.laravel-light-input-component .laravel-light-input-wrapper .laravel-light-required-star {
     margin-right: 8px;
     color: #c4c4c4;
     font-size: 20px;
@@ -78910,7 +78910,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     transform: translateY(6px);
 }
 
-.monday-light-input-component .monday-light-input-wrapper .monday-light-input {
+.laravel-light-input-component .laravel-light-input-wrapper .laravel-light-input {
     height: 100%;
     width: 100%;
     font-size: 18px;
@@ -78920,28 +78920,28 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     color: #333333;
 }
 
-.monday-light-input-component .monday-light-input-wrapper .monday-light-input:-ms-input-placeholder {
+.laravel-light-input-component .laravel-light-input-wrapper .laravel-light-input:-ms-input-placeholder {
     color: #c4c4c4;
     font-weight: 300;
 }
 
-.monday-light-input-component .monday-light-input-wrapper .monday-light-input::placeholder {
+.laravel-light-input-component .laravel-light-input-wrapper .laravel-light-input::placeholder {
     color: #c4c4c4;
     font-weight: 300;
 }
 
-.monday-light-input-component .monday-light-input-wrapper .monday-light-input-icon-wrapper {
+.laravel-light-input-component .laravel-light-input-wrapper .laravel-light-input-icon-wrapper {
     display: flex;
     align-items: center;
 }
 
-.monday-light-input-component .monday-light-input-bottom-notice {
+.laravel-light-input-component .laravel-light-input-bottom-notice {
     position: absolute;
     left: 0;
     font-size: 12px;
 }
 
-.monday-light-input-component .monday-light-input-bottom-notice.error {
+.laravel-light-input-component .laravel-light-input-bottom-notice.error {
     color: #fb275d;
 }
 
@@ -78951,7 +78951,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     width: 100%;
 }
 
-.template-input-component .template-inputs-wrapper .monday-light-input-component {
+.template-input-component .template-inputs-wrapper .laravel-light-input-component {
     margin-bottom: 24px;
 }
 
@@ -79453,7 +79453,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     background: #eeeeee !important;
 }
 
-.monday-multi-step-loader-wrapper {
+.laravel-multi-step-loader-wrapper {
     width: 100%;
     height: 100%;
     display: flex;
@@ -79461,7 +79461,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     justify-content: center;
 }
 
-.monday-multi-step-loader-wrapper .monday-multi-step-loader {
+.laravel-multi-step-loader-wrapper .laravel-multi-step-loader {
     display: flex;
     flex-direction: column;
     width: 280px;
@@ -79469,7 +79469,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     margin-bottom: 100px;
 }
 
-.monday-multi-step-loader-wrapper .monday-multi-step-loader__text {
+.laravel-multi-step-loader-wrapper .laravel-multi-step-loader__text {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80753,7 +80753,7 @@ div.timeline-container div.tl-content div.tl-pulse.tl-pulse-rollup .tl-pulse-pro
     }
 }
 
-.create-solution-from-templates-modal .monday-solution-preview {
+.create-solution-from-templates-modal .laravel-solution-preview {
     padding: 70px 20px 20px 20px;
 }
 
@@ -83473,7 +83473,7 @@ li.notification.board_kind_share.board_kind_share:before {
 }
 
 .surface-content-component .surface-search-content .search-everything-content .loader_wrapper,
-.surface-content-component .surface-search-content .search-everything-content .monday-search-everything-loader-wrapper {
+.surface-content-component .surface-search-content .search-everything-content .laravel-search-everything-loader-wrapper {
     text-align: center;
     padding: 250px 0px;
     position: absolute;
@@ -83482,13 +83482,13 @@ li.notification.board_kind_share.board_kind_share:before {
     display: none !important;
 }
 
-.surface-content-component .surface-search-content .search-everything-content .loader_wrapper .monday-loader-css,
-.surface-content-component .surface-search-content .search-everything-content .monday-search-everything-loader-wrapper .monday-loader-css {
+.surface-content-component .surface-search-content .search-everything-content .loader_wrapper .laravel-loader-css,
+.surface-content-component .surface-search-content .search-everything-content .laravel-search-everything-loader-wrapper .laravel-loader-css {
     margin: auto auto 8px auto;
 }
 
 .surface-content-component .surface-search-content .search-everything-content.loading .loader_wrapper,
-.surface-content-component .surface-search-content .search-everything-content.loading .monday-search-everything-loader-wrapper {
+.surface-content-component .surface-search-content .search-everything-content.loading .laravel-search-everything-loader-wrapper {
     display: block !important;
 }
 
@@ -83926,7 +83926,7 @@ li.notification.board_kind_share.board_kind_share:before {
 .search-everything-content .search_page.home_screen .homescreen_wrapper .searches_section .search_item .search_link .icon.icon-dapulse-doc,
 .search-everything-content .search_page.home_screen .homescreen_wrapper .searches_section .search_item .search_link .icon.icon-dapulse-mention,
 .search-everything-content .search_page.home_screen .homescreen_wrapper .searches_section .search_item .search_link .icon.fa.fa-archive,
-.search-everything-content .search_page.home_screen .homescreen_wrapper .searches_section .search_item .search_link .icon.icon-monday-pulse-circle {
+.search-everything-content .search_page.home_screen .homescreen_wrapper .searches_section .search_item .search_link .icon.icon-laravel-pulse-circle {
     color: #ffffff;
 }
 
@@ -85740,9 +85740,9 @@ li.notification.board_kind_share.board_kind_share:before {
     color: #0071d9;
 }
 
-.new-boards-list-button-component .monday-loader-css {
-    -webkit-animation: monday-loader-spin-animation 0.8s linear infinite;
-    animation: monday-loader-spin-animation 0.8s linear infinite;
+.new-boards-list-button-component .laravel-loader-css {
+    -webkit-animation: laravel-loader-spin-animation 0.8s linear infinite;
+    animation: laravel-loader-spin-animation 0.8s linear infinite;
     border: 5px solid #ddd;
     border-top: 5px solid;
     border-top-color: #0085ff;
@@ -85755,7 +85755,7 @@ li.notification.board_kind_share.board_kind_share:before {
     z-index: 99999;
 }
 
-@keyframes monday-loader-spin-animation {
+@keyframes laravel-loader-spin-animation {
     to {
         border-top-color: #0085ff;
         border-top-color: var(--primary-color);
@@ -85763,7 +85763,7 @@ li.notification.board_kind_share.board_kind_share:before {
     }
 }
 
-@-webkit-keyframes monday-loader-spin-animation {
+@-webkit-keyframes laravel-loader-spin-animation {
     to {
         border-top-color: #0085ff;
         border-top-color: var(--primary-color);
@@ -88580,7 +88580,7 @@ li.notification.board_kind_share.board_kind_share:before {
     height: 25px;
 }
 
-.create-new-account-for-guest-component .guest-new-account-image-wrapper .monday-guest-icon {
+.create-new-account-for-guest-component .guest-new-account-image-wrapper .laravel-guest-icon {
     width: 62px;
     margin-right: 8px;
 }
@@ -90160,7 +90160,7 @@ li.notification.board_kind_share.board_kind_share:before {
     height: 70%;
 }
 
-.apps-store-featured-app-card-component .apps-store-featured-app-card-logo .apps-store-featured-app-card-logo-image.monday-app {
+.apps-store-featured-app-card-component .apps-store-featured-app-card-logo .apps-store-featured-app-card-logo-image.laravel-app {
     width: 100%;
     height: 100%;
     border-radius: 8px;
@@ -90209,7 +90209,7 @@ li.notification.board_kind_share.board_kind_share:before {
     height: 70%;
 }
 
-.apps-store-regular-card-component .apps-store-regular-card-photo .apps-store-regular-card-image.monday-app {
+.apps-store-regular-card-component .apps-store-regular-card-photo .apps-store-regular-card-image.laravel-app {
     width: 100%;
     height: 100%;
     border-radius: 8px;
@@ -90278,7 +90278,7 @@ li.notification.board_kind_share.board_kind_share:before {
     height: 70%;
 }
 
-.apps-store-installed-app-card-wrapper .apps-store-installed-app-card .installed-app-logo .installed-app-logo-img.monday-app {
+.apps-store-installed-app-card-wrapper .apps-store-installed-app-card .installed-app-logo .installed-app-logo-img.laravel-app {
     width: 100%;
     height: 100%;
     border-radius: 8px;
@@ -90618,16 +90618,16 @@ li.notification.board_kind_share.board_kind_share:before {
     }
 }
 
-#main.monday-apps-marketplace {
+#main.laravel-apps-marketplace {
     height: 100%;
     overflow: auto;
 }
 
-#main.monday-apps-marketplace .embedded-marketplace {
+#main.laravel-apps-marketplace .embedded-marketplace {
     height: 100%;
 }
 
-#main.monday-apps-marketplace .embedded-marketplace #apps-marketplace-root {
+#main.laravel-apps-marketplace .embedded-marketplace #apps-marketplace-root {
     height: 100%;
 }
 

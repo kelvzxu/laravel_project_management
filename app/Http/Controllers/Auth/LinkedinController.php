@@ -26,12 +26,20 @@ class LinkedinController extends Controller
     
             $response = Socialite::driver('linkedin')->stateless()->user();
             $user = $response->user;
-            $finduser = User::where('linkedin_id', $response['id'])->first();
+            $finduser = User::where('linkedin_id', $response['id'])->orWhere('email',$response->email)->first();
      
             if($finduser){
-                Auth::login($finduser);
-    
-                return redirect('/dashboard');
+                if($finduser->linkedin_id){
+                    Auth::login($finduser);
+                    return redirect('/dashboard');
+                }
+                else{
+                    $finduser->update([
+                        'linkedin_id'=> $response->id
+                    ]);
+                    Auth::login($finduser);
+                    return redirect('/dashboard');
+                }
      
             }else{
                 $newUser = User::create([

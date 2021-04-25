@@ -122,10 +122,10 @@ table {
     border-spacing: 0
 }
 
-.content .monday-loader-wrapper,
-.ReactModal__Content .monday-loader-wrapper,
-.dialog-node .monday-loader-wrapper,
-.first-level-content .monday-loader-wrapper {
+.content .laravel-loader-wrapper,
+.ReactModal__Content .laravel-loader-wrapper,
+.dialog-node .laravel-loader-wrapper,
+.first-level-content .laravel-loader-wrapper {
     position: absolute;
     left: 0px;
     right: 0px;
@@ -142,31 +142,31 @@ table {
     flex-direction: column
 }
 
-.content .monday-loader-wrapper img.monday-loader-img,
-.ReactModal__Content .monday-loader-wrapper img.monday-loader-img,
-.dialog-node .monday-loader-wrapper img.monday-loader-img,
-.first-level-content .monday-loader-wrapper img.monday-loader-img {
+.content .laravel-loader-wrapper img.laravel-loader-img,
+.ReactModal__Content .laravel-loader-wrapper img.laravel-loader-img,
+.dialog-node .laravel-loader-wrapper img.laravel-loader-img,
+.first-level-content .laravel-loader-wrapper img.laravel-loader-img {
     width: 90px;
     height: 90px;
     content: url(/images/loader/loader.gif);
-    content: var(--monday-loader-gif-path)
+    content: var(--laravel-loader-gif-path)
 }
 
-.content .monday-loader-wrapper .loader-text,
-.ReactModal__Content .monday-loader-wrapper .loader-text,
-.dialog-node .monday-loader-wrapper .loader-text,
-.first-level-content .monday-loader-wrapper .loader-text {
+.content .laravel-loader-wrapper .loader-text,
+.ReactModal__Content .laravel-loader-wrapper .loader-text,
+.dialog-node .laravel-loader-wrapper .loader-text,
+.first-level-content .laravel-loader-wrapper .loader-text {
     font-size: 18px;
     font-weight: 400;
     color: #808080
 }
 
-.content .monday-loader-wrapper .monday-loader-css,
-.ReactModal__Content .monday-loader-wrapper .monday-loader-css,
-.dialog-node .monday-loader-wrapper .monday-loader-css,
-.first-level-content .monday-loader-wrapper .monday-loader-css {
-    -webkit-animation: monday-loader-spin-animation 0.8s linear infinite;
-    animation: monday-loader-spin-animation 0.8s linear infinite;
+.content .laravel-loader-wrapper .laravel-loader-css,
+.ReactModal__Content .laravel-loader-wrapper .laravel-loader-css,
+.dialog-node .laravel-loader-wrapper .laravel-loader-css,
+.first-level-content .laravel-loader-wrapper .laravel-loader-css {
+    -webkit-animation: laravel-loader-spin-animation 0.8s linear infinite;
+    animation: laravel-loader-spin-animation 0.8s linear infinite;
     border: 5px solid #ddd;
     border-top: 5px solid #00c875;
     border-radius: 50%;
@@ -175,7 +175,7 @@ table {
     margin-bottom: 8px
 }
 
-@keyframes monday-loader-spin-animation {
+@keyframes laravel-loader-spin-animation {
     to {
         border-top-color: #00c875;
         -webkit-transform: rotate(360deg);
@@ -183,7 +183,7 @@ table {
     }
 }
 
-@-webkit-keyframes monday-loader-spin-animation {
+@-webkit-keyframes laravel-loader-spin-animation {
     to {
         border-top-color: #00c875;
         -webkit-transform: rotate(360deg);
@@ -447,7 +447,7 @@ body#main #content .switch_inbox .back_to:hover {
     color: #fff
 }
 
-body#main .content .monday-loader-wrapper {
+body#main .content .laravel-loader-wrapper {
     position: absolute;
     left: 0px;
     right: 0px;
@@ -464,20 +464,20 @@ body#main .content .monday-loader-wrapper {
     flex-direction: column
 }
 
-body#main .content .monday-loader-wrapper img {
+body#main .content .laravel-loader-wrapper img {
     width: 90px;
     height: 90px
 }
 
-body#main .content .monday-loader-wrapper .loader-text {
+body#main .content .laravel-loader-wrapper .loader-text {
     font-size: 18px;
     font-weight: 400;
     color: #808080
 }
 
-body#main .content .monday-loader-wrapper .monday-loader-css {
-    -webkit-animation: monday-loader-spin-animation 1s linear infinite;
-    animation: monday-loader-spin-animation 1s linear infinite;
+body#main .content .laravel-loader-wrapper .laravel-loader-css {
+    -webkit-animation: laravel-loader-spin-animation 1s linear infinite;
+    animation: laravel-loader-spin-animation 1s linear infinite;
     border: 5px solid #ddd;
     border-top: 5px solid #00c875;
     border-radius: 50%;
@@ -486,7 +486,7 @@ body#main .content .monday-loader-wrapper .monday-loader-css {
     margin-bottom: 8px
 }
 
-@keyframes monday-loader-spin-animation {
+@keyframes laravel-loader-spin-animation {
     to {
         border-top-color: #00c875;
         -webkit-transform: rotate(360deg);
@@ -494,7 +494,7 @@ body#main .content .monday-loader-wrapper .monday-loader-css {
     }
 }
 
-@-webkit-keyframes monday-loader-spin-animation {
+@-webkit-keyframes laravel-loader-spin-animation {
     to {
         border-top-color: #00c875;
         -webkit-transform: rotate(360deg);
@@ -1932,7 +1932,7 @@ div#fancybox-buttons a:hover {
     overflow: hidden
 }
 
-.application .application-layers .first-level .first-level-content-wrapper .first-level-content .monday-loader-wrapper {
+.application .application-layers .first-level .first-level-content-wrapper .first-level-content .laravel-loader-wrapper {
     position: absolute;
     left: 0px;
     right: 0px;
@@ -1949,21 +1949,21 @@ div#fancybox-buttons a:hover {
     flex-direction: column
 }
 
-.application .application-layers .first-level .first-level-content-wrapper .first-level-content .monday-loader-wrapper img {
+.application .application-layers .first-level .first-level-content-wrapper .first-level-content .laravel-loader-wrapper img {
     width: 90px;
     height: 90px
 }
 
-.application .application-layers .first-level .first-level-content-wrapper .first-level-content .monday-loader-wrapper .loader-text {
+.application .application-layers .first-level .first-level-content-wrapper .first-level-content .laravel-loader-wrapper .loader-text {
     font-size: 18px;
     font-weight: 400;
     color: #676879;
     color: var(--secondary-text-color)
 }
 
-.application .application-layers .first-level .first-level-content-wrapper .first-level-content .monday-loader-wrapper .monday-loader-css {
-    -webkit-animation: monday-loader-spin-animation 1s linear infinite;
-    animation: monday-loader-spin-animation 1s linear infinite;
+.application .application-layers .first-level .first-level-content-wrapper .first-level-content .laravel-loader-wrapper .laravel-loader-css {
+    -webkit-animation: laravel-loader-spin-animation 1s linear infinite;
+    animation: laravel-loader-spin-animation 1s linear infinite;
     border: 5px solid #ddd;
     border-top: 5px solid #00c875;
     border-radius: 50%;
@@ -1972,7 +1972,7 @@ div#fancybox-buttons a:hover {
     margin-bottom: 8px
 }
 
-@keyframes monday-loader-spin-animation {
+@keyframes laravel-loader-spin-animation {
     to {
         border-top-color: #00c875;
         -webkit-transform: rotate(360deg);
@@ -1980,7 +1980,7 @@ div#fancybox-buttons a:hover {
     }
 }
 
-@-webkit-keyframes monday-loader-spin-animation {
+@-webkit-keyframes laravel-loader-spin-animation {
     to {
         border-top-color: #00c875;
         -webkit-transform: rotate(360deg);
@@ -2027,7 +2027,7 @@ div#fancybox-buttons a:hover {
     --redactor-context-link-color: #fff;
     --ajax-spinner-gif-path: url(/images/ajax_spinner.gif);
     --scrollbar-color: #c5c7d0;
-    --monday-loader-gif-path: url(/images/loader/loader.gif)
+    --laravel-loader-gif-path: url(/images/loader/loader.gif)
 }
 
 .dark-app-theme {
@@ -2066,7 +2066,7 @@ div#fancybox-buttons a:hover {
     --redactor-context-link-color: #fff;
     --ajax-spinner-gif-path: url(/images/ajax_spinner_dark.gif);
     --scrollbar-color: #c5c7d0;
-    --monday-loader-gif-path: url(/images/loader/dark_loader.gif)
+    --laravel-loader-gif-path: url(/images/loader/dark_loader.gif)
 }
 
 .dark-app-theme.adobe-app-theme {
@@ -2458,8 +2458,8 @@ div#fancybox-buttons a:hover {
 .icon-marketplace-arrow-right:before,
 .icon-marketplace-report-app:before,
 .icon-mentioned-notification:before,
-.icon-monday-icon:before,
-.icon-monday-pulse-circle:before,
+.icon-laravel-icon:before,
+.icon-laravel-pulse-circle:before,
 .icon-more-dots:before,
 .icon-move-to:before,
 .icon-new-crown:before,
@@ -2761,8 +2761,8 @@ div#fancybox-buttons a:hover {
 .icon-v2-moon:before,
 .icon-v2-moveto-o:before,
 .icon-v2-multiple-person-column:before,
-.icon-v2-my-monday:before,
-.icon-v2-my-monday-0:before,
+.icon-v2-my-laravel:before,
+.icon-v2-my-laravel-0:before,
 .icon-v2-my-week:before,
 .icon-v2-my-week-o:before,
 .icon-v2-new:before,
@@ -2952,7 +2952,7 @@ div#fancybox-buttons a:hover {
 .icon-v2-vote-hand:before,
 .icon-v2-vote-hand-outline:before,
 .icon-v2-week-column:before,
-.icon-v2-white-monday-logo:before,
+.icon-v2-white-laravel-logo:before,
 .icon-v2-widget-view:before,
 .icon-v2-workload-workflow:before,
 .icon-v2-x-chips:before,
@@ -4474,11 +4474,11 @@ div#fancybox-buttons a:hover {
     content: "\f262"
 }
 
-.icon-monday-icon:before {
+.icon-laravel-icon:before {
     content: "\f263"
 }
 
-.icon-monday-pulse-circle:before {
+.icon-laravel-pulse-circle:before {
     content: "\f264"
 }
 
@@ -5686,11 +5686,11 @@ div#fancybox-buttons a:hover {
     content: "\f376"
 }
 
-.icon-v2-my-monday:before {
+.icon-v2-my-laravel:before {
     content: "\f477"
 }
 
-.icon-v2-my-monday-0:before {
+.icon-v2-my-laravel-0:before {
     content: "\f478"
 }
 
@@ -6450,7 +6450,7 @@ div#fancybox-buttons a:hover {
     content: "\f422"
 }
 
-.icon-v2-white-monday-logo:before {
+.icon-v2-white-laravel-logo:before {
     content: "\f423"
 }
 
@@ -16360,7 +16360,7 @@ div.image-wrapper {
     height: 40px
 }
 
-.trello_on_boarding_offer_fancybox .on_boarding_offer_wrapper .images_wrapper .monday_image {
+.trello_on_boarding_offer_fancybox .on_boarding_offer_wrapper .images_wrapper .laravel_image {
     height: 40px
 }
 
@@ -16973,7 +16973,7 @@ div.image-wrapper {
     animation: spin 0.5s linear infinite
 }
 
-.monday-style-button-box-sizing {
+.laravel-style-button-box-sizing {
     -webkit-box-sizing: border-box !important;
     box-sizing: border-box !important
 }
@@ -27471,7 +27471,7 @@ div#new-users div.users-right-content .team-tip .team-tip-inner ul b {
     color: #5f6c72
 }
 
-#integrations_page .integromat-integrations .integromat .integromat-widget .monday-to-monday {
+#integrations_page .integromat-integrations .integromat .integromat-widget .laravel-to-laravel {
     color: #0085ff;
     color: var(--primary-color);
     cursor: pointer
@@ -27637,8 +27637,8 @@ div#new-users div.users-right-content .team-tip .team-tip-inner ul b {
     background-size: 100%
 }
 
-.from_to .dapulse_left_side.monday_logo {
-    background: url(/images/integrations/monday_icon.svg) no-repeat
+.from_to .dapulse_left_side.laravel_logo {
+    background: url(/images/integrations/laravel_icon.svg) no-repeat
 }
 
 .from_to .dapulse_left_side.dapulse_logo {
@@ -29451,7 +29451,7 @@ body#main.on_boarding_one_screen_active.new_on_boarding_one_screen .pulse_group_
 }
 
 .search_content .loader_wrapper,
-.search_content .monday-loader-wrapper {
+.search_content .laravel-loader-wrapper {
     text-align: center;
     padding: 350px 0px;
     position: absolute;
@@ -29460,13 +29460,13 @@ body#main.on_boarding_one_screen_active.new_on_boarding_one_screen .pulse_group_
     display: none !important
 }
 
-.search_content .loader_wrapper .monday-loader-css,
-.search_content .monday-loader-wrapper .monday-loader-css {
+.search_content .loader_wrapper .laravel-loader-css,
+.search_content .laravel-loader-wrapper .laravel-loader-css {
     margin: auto auto 8px auto
 }
 
 .search_content.loading .loader_wrapper,
-.search_content.loading .monday-loader-wrapper {
+.search_content.loading .laravel-loader-wrapper {
     display: block !important
 }
 

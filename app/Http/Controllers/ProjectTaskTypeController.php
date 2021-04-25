@@ -31,6 +31,10 @@ class ProjectTaskTypeController extends Controller
      }
 
      public function store(Request $request){
+        $request->validate([
+            'name' => ['required'],
+            'sequence' => ['required'],
+        ]);
         $data = $request->all();
         $stage = ProjectTaskType::create($data);
         $data['project_task_type_id'] = $stage->id;

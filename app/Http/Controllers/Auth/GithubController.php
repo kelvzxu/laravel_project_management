@@ -26,13 +26,21 @@ class GithubController extends Controller
     
             $response = Socialite::driver('github')->stateless()->user();
             $user = $response->user;
-            $finduser = User::where('github_id', $user['id'])->first();
+            $finduser = User::where('github_id', $user['id'])->orWhere('email', $user['email'])->first();
      
             if($finduser){
-                Auth::login($finduser);
-    
-                return redirect('/dashboard');
-     
+                if($finduser->github_id){
+                    Auth::login($finduser);
+                    return redirect('/dashboard');
+                }
+                else{
+                    $finduser->update([
+                        'github_id'=> $user['id'],
+                    ]);
+                    Auth::login($finduser);
+                    return redirect('/dashboard');
+                }
+
             }else{
                 $newUser = User::create([
                     'name' => $user['name'],
@@ -76,4 +84,5 @@ class GithubController extends Controller
         Storage::put("public/$filename", $contents);
         return $filename;
     }
+
 }

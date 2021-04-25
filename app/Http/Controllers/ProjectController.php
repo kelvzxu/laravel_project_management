@@ -17,6 +17,9 @@ use DB;
 class ProjectController extends Controller
 {
     public function Store(Request $request){
+        $request->validate([
+            'name' => ['required'],
+        ]);
         try{
             $data=$request->all();
             $data['access_token']=bin2hex(random_bytes(24));
@@ -78,6 +81,11 @@ class ProjectController extends Controller
 
     public function getProjectDetail($token){
         $result = Project::with('task_type','task_type.tasks','task_type.tasks.tags','task_type.tasks.responsible','task.responsible','manager','team','task','participants','participants.user')->where('access_token','=',$token)->first();
+        return $result;
+    }
+
+    public function getProjectById($id){
+        $result = Project::findOrFail($id);
         return $result;
     }
 

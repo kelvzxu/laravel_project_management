@@ -18,7 +18,7 @@
               required
               v-model="form.name"
             />
-            <jet-input-error :message="form.error('name')" class="mt-2" />
+            <jet-input-error :message="$page.errors.name" class="mt-2" />
           </div>
           <div class="col-span-6 sm:col-span-4 mt-2">
             <jet-label for="sequence" value="Stage sequence" />
@@ -30,7 +30,7 @@
               class="mt-1 block w-full"
               v-model="form.sequence"
             />
-            <jet-input-error :message="form.error('name')" class="mt-2" />
+            <jet-input-error :message="$page.errors.sequence" class="mt-2" />
           </div>
           <div class="col-span-6 sm:col-span-4 mt-1">
             <label class="form-check-label" for="is_closed"
@@ -119,7 +119,7 @@ export default {
         })
         .then((response) => {
           this.form.access_token = Math.random().toString(36).substring(7);
-          if (!this.form.hasErrors()) {
+          if (Object.keys(this.$page.errors).length === 0) {
             this.AddNewStage = false;
           }
         });

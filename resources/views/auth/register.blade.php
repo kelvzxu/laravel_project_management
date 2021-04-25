@@ -4,7 +4,10 @@
         <div class="signin-signup">
             <form  action="{{ route('login') }}" method="POST" class="sign-in-form">
             @csrf
+
+            <a href="{{route('landing')}}">
             <img src="{{asset('assets/img/logo.png')}}" alt="" srcset="" class="application-logo">
+            </a>
             <h2 class="title">Sign in</h2>
             <x-jet-validation-errors class="mb-4" />
             <div class="input-field">
@@ -28,20 +31,22 @@
                 <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="#" class="social-icon">
+                <a href="{{ url('auth/twitter') }}" class="social-icon">
                 <i class="fab fa-twitter"></i>
                 </a>
                 <a href="{{ url('auth/github') }}" class="social-icon">
                 <i class="fab fa-github"></i>
                 </a>
-                <a href="#" class="social-icon">
+                <a href="{{ url('auth/linkedin') }}" class="social-icon">
                 <i class="fab fa-linkedin-in"></i>
                 </a>
             </div>
             </form>
             <form action="{{ route('register') }}" method="POST" class="sign-up-form">
                 @csrf
-                <img src="{{asset('assets/img/logo.png')}}" alt="" srcset="" class="application-logo">
+                <a href="{{route('landing')}}">
+                    <img src="{{asset('assets/img/logo.png')}}" alt="" srcset="" class="application-logo">
+                </a>
                 <h2 class="title">Sign up</h2>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
@@ -67,13 +72,13 @@
                     <a href="#" class="social-icon">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a href="{{ url('auth/twitter') }}" class="social-icon">
                         <i class="fab fa-twitter"></i>
                     </a>
                     <a href="{{ url('auth/github') }}" class="social-icon">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a href="{{ url('auth/linkedin') }}" class="social-icon">
                 <i class="fab fa-linkedin-in"></i>
                 </a>
             </div>

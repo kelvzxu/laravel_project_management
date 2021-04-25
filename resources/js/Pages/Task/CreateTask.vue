@@ -16,7 +16,7 @@
               required
               v-model="form.name"
             />
-            <jet-input-error :message="form.error('name')" class="mt-2" />
+            <jet-input-error :message="$page.errors.name" class="mt-2" />
           </div>
           <div class="col-span-6 sm:col-span-4 mt-2">
             <jet-label for="stage_id" value="Stage" />
@@ -30,7 +30,7 @@
                 {{ row.name }}
               </option>
             </select>
-            <jet-input-error :message="form.error('stage_id')" class="mt-2" />
+            <jet-input-error :message="$page.errors.stage_id" class="mt-2" />
           </div>
           <div class="col-span-6 sm:col-span-4 mt-2">
             <jet-label for="user_id" value="Responsibility" />
@@ -44,7 +44,7 @@
                 {{ row.user.name }}
               </option>
             </select>
-            <jet-input-error :message="form.error('user_id')" class="mt-2" />
+            <jet-input-error :message="$page.errors.user_id" class="mt-2" />
           </div>
         </div>
       </template>
@@ -120,7 +120,7 @@ export default {
         })
         .then((response) => {
           this.form.access_token = Math.random().toString(36).substring(7);
-          if (!this.form.hasErrors()) {
+          if (Object.keys(this.$page.errors).length === 0) {
             this.AddNewTask = false;
           }
         });

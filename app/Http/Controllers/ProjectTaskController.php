@@ -48,6 +48,11 @@ class ProjectTaskController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'name' => ['required'],
+            'stage_id' => ['required'],
+            'user_id' => ['required'],
+        ]);
         try{
             $data=$request->all();
             $data['access_token'] = bin2hex(random_bytes(24));
@@ -136,4 +141,10 @@ class ProjectTaskController extends Controller
         $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->get();
         return $result;
     }
+
+    // public function getParticipants($ProjectId){
+    //     $query = "user_id,sum(account_analytic_lines.unit_amount) as hours, sum(project_tasks.progress) as progress, count(project_tasks.progress) as count,sum(project_tasks.planned_hours) as planned";
+    //     $result = ProjectTask::select(DB::raw($query))->join('account_analytic_lines','project_tasks.id','account_analytic_lines.task_id')->where('account_analytic_lines.project_id',$ProjectId)->groupBy('project_tasks.user_id')->get();
+    //     return $result;
+    // }
 }
