@@ -65,7 +65,7 @@
                   class="o_timesheet_plan_dashboard_cell"
                   style="text-align: right"
                 >
-                  {{ formatPrice(effective * -project.cost_hours) }}
+                  {{ formatPrice(TimesheetCost) }}
                 </td>
                 <td title="Revenues linked to Timesheets already invoiced.">
                   Timesheet Cost
@@ -77,7 +77,7 @@
                     {{
                       formatPrice(
                         planned * project.cost_hours +
-                          effective * -project.cost_hours
+                          (-TimesheetCost)
                       )
                     }}
                   </b>
@@ -93,7 +93,7 @@
 </template>
 <script>
 export default {
-  props: ["project", "hours"],
+  props: ["project", "hours","TimesheetCost"],
   data() {
     return {
       planned: 0,

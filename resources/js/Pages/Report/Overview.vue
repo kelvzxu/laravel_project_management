@@ -4,7 +4,7 @@
     <template #project_name>{{ project.name }}</template>
     <template #report>
       <div id="report" class="container project_overview_report">
-        <hours-and-project-cost :project="project" :hours="hours" />
+        <hours-and-project-cost :project="project" :hours="hours" :TimesheetCost="timesheetCost" />
         <time-people :participants="participants" />
       </div>
       <time-planning :analysis="analysis" :months="months" />
@@ -20,7 +20,7 @@ import TimePeople from "./TimeByPeople";
 import TimePlanning from "./TimeAndPlan";
 
 export default {
-  props: ["project", "team", "hours", "participants", "analysis", "months"],
+  props: ["project", "team", "hours", "participants", "analysis", "months","timesheetCost"],
 
   components: {
     JetDashboard,
@@ -56,6 +56,9 @@ export default {
         },
       },
     };
+  },
+  created() {
+    console.log(this)
   },
   methods: {
     FormatHours(value) {

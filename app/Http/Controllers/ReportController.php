@@ -22,6 +22,7 @@ class ReportController extends Controller
         $team = app(InheritTeamController::class)->getTeam($project->team_id);
         $hours = app(ProjectTaskController::class)->getHoursRecorded($project->id);
         $participants = app(AccountAnalyticLineController::class)->getParticipants($project->id);
+        $timesheetCost = app(AccountAnalyticLineController::class)->computeTimesheetCost($project->id);
         $progressdetails = $this->prepareTimesheetPlanning($project);
         for ($i = 0; $i <= 3; $i++) {
             $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
@@ -32,6 +33,7 @@ class ReportController extends Controller
             'team' =>$team->load('owner', 'users'),
             'hours' => $hours,
             'participants'=>$participants->load('responsible'),
+            'timesheetCost' => $timesheetCost,
             'analysis'=>$progressdetails,
             'months' => $months
         ]);
