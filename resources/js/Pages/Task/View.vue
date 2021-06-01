@@ -257,13 +257,15 @@
               :class="{ active: ViewDescription == true }"
               id="notebook_page_desc"
             >
-              <div v-if="FormType == 'view'" class="container">
-                <div v-html="TaskForm.description"></div>
+              <div class="col-12">
+                <div v-if="FormType == 'view'" class="container mt-1">
+                  <span v-html="TaskForm.description"></span>
+                </div>
+                <vue-editor
+                  v-if="FormType == 'edit'"
+                  v-model="TaskForm.description"
+                ></vue-editor>
               </div>
-              <vue-editor
-                v-if="FormType == 'edit'"
-                v-model="TaskForm.description"
-              ></vue-editor>
             </div>
             <div
               class="tab-pane"
@@ -432,24 +434,25 @@
       </div>
     </template>
     <template #dialog_node>
-      <jet-dialog-modal :show="RemoveTasksModal" @close="RemoveTasksModal = false">
-      <template #title> CONFIRM DELETE TASK </template>
+      <jet-dialog-modal
+        :show="RemoveTasksModal"
+        @close="RemoveTasksModal = false"
+      >
+        <template #title> CONFIRM DELETE TASK </template>
 
-      <template #content>
-        <span>
-            Deleting Tasks can cause you to lose job logs regarding tasks</span>
-        <span>Are you sure you want to continue the action?</span>
-      </template>
+        <template #content>
+          <span>
+            Deleting Tasks can cause you to lose job logs regarding tasks</span
+          >
+          <span>Are you sure you want to continue the action?</span>
+        </template>
 
-      <template #footer>
-        <jet-success-button
-          class="ml-2"
-          @click.native="DestroyTask"
-        >
-          Yes I'm Sure
-        </jet-success-button>
-      </template>
-    </jet-dialog-modal>
+        <template #footer>
+          <jet-success-button class="ml-2" @click.native="DestroyTask">
+            Yes I'm Sure
+          </jet-success-button>
+        </template>
+      </jet-dialog-modal>
     </template>
   </jet-dashboard>
 </template>
