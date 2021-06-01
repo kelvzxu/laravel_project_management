@@ -22,8 +22,7 @@ class TwitterController extends Controller
 
     public function handleTwitterCallback()
     {
-        try {
-    
+        try {      
             $response = Socialite::driver('twitter')->user();
             $user = $response->user;
             $finduser = User::where('twitter_id', $response->id)->orWhere('email',$response->email)->first();
