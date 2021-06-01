@@ -28,7 +28,7 @@
       <jet-wrapper-button v-else> Add Tasks </jet-wrapper-button>
     </template>
     <template #board_button_group>
-      <jet-board-search
+      <jet-board-search v-if="isMobile != false"
         ><input placeholder="Search... " v-model="search" style="width: 100%"
       /></jet-board-search>
     </template>

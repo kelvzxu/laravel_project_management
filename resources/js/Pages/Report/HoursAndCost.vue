@@ -65,7 +65,7 @@
                   class="o_timesheet_plan_dashboard_cell"
                   style="text-align: right"
                 >
-                  {{ formatPrice(effective * -project.cost_hours) }}
+                  {{ formatPrice(TimesheetCost) }}
                 </td>
                 <td title="Revenues linked to Timesheets already invoiced.">
                   Timesheet Cost
@@ -75,10 +75,7 @@
                 <td class="o_timesheet_plan_dashboard_total">
                   <b>
                     {{
-                      formatPrice(
-                        planned * project.cost_hours +
-                          effective * -project.cost_hours
-                      )
+                      formatPrice(planned * project.cost_hours + -TimesheetCost)
                     }}
                   </b>
                 </td>
@@ -93,7 +90,7 @@
 </template>
 <script>
 export default {
-  props: ["project", "hours"],
+  props: ["project", "hours", "TimesheetCost"],
   data() {
     return {
       planned: 0,
@@ -107,6 +104,7 @@ export default {
   },
   methods: {
     prepareReportValue(params) {
+      console.log(params);
       if (params) {
         this.planned = params.planned;
         this.overtime = parseFloat(params.overtime);

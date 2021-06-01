@@ -53,10 +53,7 @@
             <th style="width: 190px">Activity Type</th>
             <th style="width: 190px">Responsible</th>
             <th style="width: 190px">Due Date</th>
-            <th
-              style="width: 20px"
-              v-if="$page.user.id == project.manager.id"
-            ></th>
+            <th style="width: 20px"></th>
             <th
               style="width: 20px"
               v-if="$page.user.id == project.manager.id"

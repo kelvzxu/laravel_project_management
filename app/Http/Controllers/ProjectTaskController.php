@@ -39,6 +39,13 @@ class ProjectTaskController extends Controller
             }
             if ($request->planned_hours){
                 $data['progress'] = $this->computePercentace($task->effective_hours,$request->planned_hours);
+                $data['remaining_hours'] = $request->planned_hours-$task->effective_hours;
+                if ($request->planned_hours > $task->effective_hours){
+                    $data['overtime']=0;
+                }
+                else{
+                    $data['overtime']=$task->effective_hours-$request->planned_hours;
+                }
             }
             $task->update($data);
             return back(303);
@@ -100,17 +107,19 @@ class ProjectTaskController extends Controller
         echo$task;
         $effective_hours = $task->effective_hours - $timesheet['old_unit_amount'];
         $effective_hours += $timesheet['unit_amount'];
+        $remaining_hours = $task->planned_hours - $effective_hours;
         if ($task->planned_hours > $effective_hours){
             $progress = $this->computePercentace($effective_hours,$task->planned_hours);
-            $remaining_hours = 0;
+            $overtime = 0;
         }
         else{
             $progress = 100;
-            $remaining_hours = $effective_hours-$task->planned_hours;
+            $overtime = $effective_hours-$task->planned_hours;
         }
         $task->update([
             'effective_hours'=>$effective_hours,
             'progress'=>$progress,
+            'overtime'=>$overtime,
             'remaining_hours'=>$remaining_hours,
         ]);
     }
@@ -131,13 +140,13 @@ class ProjectTaskController extends Controller
     }
 
     public function getHoursRecorded($ProjectId){
-        $query = "project_id, sum(remaining_hours) as overtime, sum(effective_hours) as effective, sum(planned_hours) as planned";
+        $query = "project_id, sum(overtime) as overtime, sum(effective_hours) as effective, sum(planned_hours) as planned";
         $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy('project_id')->first();
         return $result;
     }
 
     public function getTasks($ProjectId){
-        $query = "id,name,planned_hours as planned,remaining_hours as remaining,created_at";
+        $query = "id,name,planned_hours as planned,overtime as overtime,created_at";
         $result = ProjectTask::select(DB::raw($query))->where('project_id',$ProjectId)->get();
         return $result;
     }

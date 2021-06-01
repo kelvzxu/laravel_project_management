@@ -22,6 +22,7 @@ class ReportController extends Controller
         $team = app(InheritTeamController::class)->getTeam($project->team_id);
         $hours = app(ProjectTaskController::class)->getHoursRecorded($project->id);
         $participants = app(AccountAnalyticLineController::class)->getParticipants($project->id);
+        $timesheetCost = app(AccountAnalyticLineController::class)->computeTimesheetCost($project->id);
         $progressdetails = $this->prepareTimesheetPlanning($project);
         for ($i = 0; $i <= 3; $i++) {
             $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
@@ -32,6 +33,7 @@ class ReportController extends Controller
             'team' =>$team->load('owner', 'users'),
             'hours' => $hours,
             'participants'=>$participants->load('responsible'),
+            'timesheetCost' => $timesheetCost,
             'analysis'=>$progressdetails,
             'months' => $months
         ]);
@@ -56,7 +58,7 @@ class ReportController extends Controller
         
         $planned_hours = app(ProjectTaskController::class)->getPlannedAnalysis($project->id);
         $timesheet = app(AccountAnalyticLineController::class)->getTimesheetAnalysis($project->id);
-        $analysis = $this->prepareTimesheetPlanningAnalysis($planned_hours,$timesheet);
+        $analysis = $this->prepareTimesheetPlanningAnalysis($planned_hours,$timesheet,$project);
 
         return Jetstream::inertia()->render($request, 'Report/TimesheetPlanning', [
             'project' =>$project,
@@ -71,7 +73,7 @@ class ReportController extends Controller
         $team = app(InheritTeamController::class)->getTeam($project->team_id);
         
         $projectcost = app(AccountAnalyticLineController::class)->getProjectCost($project->id);
-        $cost = $this->prepareProjectCost($projectcost);
+        $cost = $this->prepareProjectCost($projectcost,$project);
         return Jetstream::inertia()->render($request, 'Report/CostAnalysis', [
             'project' =>$project,
             'team' =>$team->load('owner', 'users'),
@@ -79,10 +81,13 @@ class ReportController extends Controller
         ]);
     }
 
-    public function prepareTimesheetPlanningAnalysis($planned_hours,$timesheets){
+    public function prepareTimesheetPlanningAnalysis($planned_hours,$timesheets,$project){
         $data = [];
+        $date_start = $project->date_start;
+        $year_month = date("Y-m",strtotime(date($date_start)));
+        $new_date_start = "$year_month-01";
         for ($i = 0; $i <= 12; $i++) {
-            $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+            $month = date("Y-m", strtotime( date($new_date_start)." +$i months"));
             $timesheet = $timesheets->firstWhere('month', $month);
             $planned = $planned_hours->firstWhere('month', $month);
             $year=date("Y",strtotime($month));
@@ -96,10 +101,13 @@ class ReportController extends Controller
         return $data;
     }
 
-    public function prepareProjectCost($costs){
+    public function prepareProjectCost($costs,$project){
         $data = [];
+        $date_start = $project->date_start;
+        $year_month = date("Y-m",strtotime(date($date_start)));
+        $new_date_start = "$year_month-01";
         for ($i = 0; $i <= 12; $i++) {
-            $month = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+            $month = date("Y-m", strtotime( date( $new_date_start )." +$i months"));
             $cost = $costs->firstWhere('month', $month);
             $year=date("Y",strtotime($month));
             $month=date("F",strtotime($month));

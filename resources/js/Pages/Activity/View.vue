@@ -19,7 +19,7 @@
         <jet-workspace-button @click.native="DestroyActivity">
           <i class="far fa-trash-alt main-icon"></i>Delete Activity
         </jet-workspace-button>
-        <jet-workspace-button @click.native="BackMethods">
+        <jet-workspace-button @click.native="Discard">
           <i class="fas fa-undo-alt main-icon"></i>Back
         </jet-workspace-button>
       </div>
@@ -28,7 +28,7 @@
     <template #board_description><b>Project Activity</b></template>
     <template #board_subs_images_label>Responsible </template>
     <template #board_subs_images>
-      <img :src="activity.responsibleprofile_photo_url" class="inner-image" />
+      <img :src="activity.responsible.profile_photo_url" class="inner-image" />
     </template>
     <template #board_subs> Member / {{ team.users.length + 1 }} </template>
     <template #board_component>

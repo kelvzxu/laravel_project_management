@@ -19,6 +19,7 @@ class ProjectController extends Controller
     public function Store(Request $request){
         $request->validate([
             'name' => ['required'],
+            'cost_hours' => ['required'],
         ]);
         try{
             $data=$request->all();

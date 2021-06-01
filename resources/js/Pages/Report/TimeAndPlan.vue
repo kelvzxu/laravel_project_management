@@ -58,9 +58,7 @@
               </td>
 
               <td class="text-center">
-                <span class="text-muted">{{
-                  FormatHours(data.remaining)
-                }}</span>
+                <span class="text-muted">{{ FormatHours(data.overtime) }}</span>
               </td>
             </tr>
           </tbody>
