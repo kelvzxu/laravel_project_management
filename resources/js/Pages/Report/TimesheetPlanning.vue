@@ -82,7 +82,7 @@ export default {
           },
         ],
       };
-      let data = this.analysis.reverse();
+      let data = this.analysis;
       let i;
       for (i in data) {
         this.datacollection.labels.push(data[i].month);

@@ -74,7 +74,7 @@ export default {
           },
         ],
       };
-      let data = this.costs.reverse();
+      let data = this.costs;
       let i;
       for (i in data) {
         this.datacollection.labels.push(data[i].month);
