@@ -20,6 +20,17 @@
             <jet-input-error :message="$page.errors.name" class="mt-2" />
           </div>
           <div class="col-span-6 sm:col-span-4">
+            <jet-label for="cost_hours" value="Cost Hours" />
+            <jet-input
+              id="cost_hours"
+              type="number"
+              ref="cost_hours"
+              class="mt-1 block w-full"
+              v-model="CreateProject.cost_hours"
+            />
+            <jet-input-error :message="$page.errors.cost_hours" class="mt-2" />
+          </div>
+          <div class="col-span-6 sm:col-span-4">
             <label class="form-check-label" for="allow_timesheets"
               >Allow Timesheets
             </label>
@@ -80,6 +91,7 @@ export default {
       CreateProject: this.$inertia.form(
         {
           name: "",
+          cost_hours: "0",
           allow_timesheets: true,
           sequence: Math.floor(Math.random() * 1000) + 1,
           user_id: this.users.id,
