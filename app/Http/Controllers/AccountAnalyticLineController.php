@@ -107,4 +107,9 @@ class AccountAnalyticLineController extends Controller
         $result = AccountAnalyticLine::select(DB::raw($query))->where('project_id',$ProjectId)->groupBy(DB::raw("to_char(date(date),'YYYY-MM'),task_id"))->get();
         return $result;
     }
+
+    public function computeTimesheetCost($ProjectId){
+        $result = AccountAnalyticLine::where("project_id",$ProjectId)->sum('amount');
+        return $result;
+    }
 }
